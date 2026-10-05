@@ -7,7 +7,11 @@ One row per generation I kept or seriously considered. Rejected outputs are kept
 | Tool | Version | Where it ran | License / terms |
 |---|---|---|---|
 | Stable Diffusion XL Base 1.0 (`sd_xl_base_1.0.safetensors`, Stability AI) | 1.0 | Local: Comfy Desktop, ComfyUI v0.38.2, Python 3.13.12, NVIDIA RTX 3060 Laptop GPU (6 GB) | CreativeML Open RAIL++-M (use allowed, with use-based restrictions). *To verify on the model's Hugging Face page.* |
+| Stable Audio 3 Small-SFX (`stable_audio_3_small_sfx.safetensors`, Stability AI, ComfyUI repackage `Comfy-Org/stable-audio-3`) | 3.0 Small, post-trained | Local, same machine | Stability AI Community License; text encoder T5Gemma under the Gemma Terms of Use. Trained on licensed AudioSparx and CC-licensed Freesound audio. |
+| Stable Audio 3 Small-Music (`stable_audio_3_small_music.safetensors`) | 3.0 Small, post-trained | Local, same machine | Same as Small-SFX |
+| T5Gemma text encoder (`t5gemma_b_b_ul2.safetensors`) | — | Local | Gemma Terms of Use |
 | ComfyUI | v0.38.2 | Local | GPL-3.0 |
+| FFmpeg | system build | Claude's sandbox, for decoding and encoding audio | LGPL/GPL |
 
 **Not generative-model output:** the img2img guide images in `design/guides/` (v1, v2, v3, v3.1), the stripe masks in `design/guides/stripe-mask/`, and every script in `tools/` were made by Claude. They are inputs and edit tools, not generated assets.
 
@@ -108,6 +112,30 @@ No pixels of the tank were otherwise repainted.
 
 **Design change:** the character sheet planned a white stripe *and number*. The number was dropped (prompts ask for no numbers), which also removes the mirrored-digit risk in CHANGE-BRIEF case 4.
 
+## Generations — audio
+
+**Workflow:** ComfyUI template "Stable Audio 3.0 Medium Base" with the checkpoint switched to the Small models. `use_reprompt` = false, so the prompt below is exactly what the model received (no Qwen expansion). All settings and seeds below are read from the metadata ComfyUI writes into each FLAC file (the seed shown in the UI after a run is the next seed, not the one used). Sampler: `lcm`, scheduler `simple`, denoise 1.0. Output format FLAC (lossless; the save node offers no WAV).
+
+| # | Asset ID | Model | Steps / cfg | Seed | Duration | Prompt | Outcome and reason | Edits |
+|---|---|---|---|---|---|---|---|---|
+| A-01 | `SFX-fire` | Small-SFX | 50 / 7.0 | 639358157117823 | 2.0 s | single heavy tank cannon shot, deep low boom with a sharp crack, short metallic ring, close distance, dry outdoor recording, no music | **Rejected.** Seven separate bursts in 2 s, little low end (about 6% below 200 Hz), a noise plateau that never decays, 335 clipped samples. Cause: the template's 50 steps / cfg 7.0 are meant for the Medium model; the post-trained Small model is meant for about 8 steps / cfg 1.0. | — |
+| A-02 | `SFX-fire` | Small-SFX | 8 / 1.0 | 262736776156513 | 2.0 s | same as A-01 | **Accepted, edited.** One clean shot, about 77% of the energy below 200 Hz, natural decay to silence. | Trimmed to 1.42 s, 30 ms fade-out, peak −1 dBFS, WAV |
+| A-03 | `SFX-cover-hit` | Small-SFX | 8 / 1.0 | 761466301926287 | 1.5 s | shell impact on a brick wall, bricks and stones cracking, crumbling and falling, short burst of debris, close distance, dry outdoor recording, no music | **Accepted, edited.** Single bright crumbling impact, mid and high frequencies, gone within 0.5 s (good for a frequent sound). | Trimmed to 0.95 s, fade, peak −1 dBFS, WAV |
+| A-04 | `SFX-player-hit` | Small-SFX | 8 / 1.0 | 133954354425645 | 1.0 s | heavy metal impact on thick steel armor plate, sharp short clang with a dull thud, close distance, dry recording, no music | **Accepted, edited.** Metallic clang with a low thud, even spread across low, mid and high bands, fast decay. | Fade, peak −1 dBFS, WAV (1.12 s) |
+| A-05 | `SFX-explode` | Small-SFX | 8 / 1.0 | 49468606960129 | 4.0 s | large tank explosion, deep powerful boom followed by a long rumbling fading tail and falling debris, outdoor, no music | **Accepted, edited, known issue.** Long rumbling tail as asked, but 99% of the energy is below about 320 Hz; no high-frequency debris. | Fade, peak −1 dBFS, WAV (4.09 s) |
+| A-06 | `SFX-victory` | Small-Music | 8 / 1.0 | 773409015664764 | 4.0 s | short restrained military victory sting, solemn low brass chord swelling and resolving, single soft snare roll, slow, somber, no vocals | **Accepted, edited.** Low brass and snare in the 80–800 Hz range, swells and dies away within about 2 s; restrained, as the storyboard asks. | Fade, peak −1 dBFS, WAV (4.09 s) |
+| A-07 | `MUS-battle-loop` | Small-Music | 8 / 1.0 | 328515072202867 | 45 s | slow tense military ambient loop, 70 BPM, 4/4, low war drums and deep percussion, sustained dark bass drone, sparse low strings, grim and steady, no lead melody, no vocals | **Accepted, edited.** Detected tempo 70 BPM (2-bar phrases repeat every 6.86 s), steady level from 0 to 42 s, fade-out in the last 3 s. | Loop cut (see Edits), OGG Vorbis |
+
+**Known issue (A-02, A-05):** the cannon shot and the explosion are both almost all low frequency, so they sound alike apart from length, and laptop speakers reproduce little below about 200 Hz, so both may be quiet there. Regenerating with "sharp crack / debris / shrapnel" in the prompt was considered and deferred for time.
+
+### Audio edits
+
+- **One-shot sounds (A-02 to A-06):** `tools/process_sfx.py` (written by Claude). Cuts leading silence (keeps 5 ms before the onset), cuts the tail once the level stays below −60 dB relative to the peak, applies a 30 ms fade-out, normalises the peak to −1 dBFS, writes 16-bit 44.1 kHz WAV.
+- **Music loop (A-07):** `tools/make_loop.py` (written by Claude). Loop length is exactly 8 bars at 70 BPM (27.429 s). The start point is searched in 5–14 s for the best match between the audio after the start and after the end; best start 13.253 s, end 40.682 s (match score 0.98, before the fade-out). The last 150 ms are blended with the audio that leads into the start point (equal-power crossfade), so the end flows into the start; peak −1 dBFS; OGG Vorbis q6. `assets/audio/music/MUS-battle-loop_3x_preview.ogg` plays the loop three times in a row for the listening check.
+- Checks: `design/asset-log/audio/SFX-fire_waveforms.png` (A-01 vs A-02), `SFX_all_waveforms.png` (the four combat sounds and their frequency bands), `MUS-battle-loop_seam.png` (where the loop was cut and the waveform across the loop point).
+- **Listening check (to do by me):** play the 3x preview on headphones at least three times and confirm no click or jump at the loop point.
+
+
 ## Who decided
 
-I ran every generation in ComfyUI and made these decisions: turret denoise 0.60 (over 0.55 and 0.75), round barrel over square, re-running the straight turrets for a cupola, picking T-12 for `down`, and stopping before re-rolling `up` and `right`. Claude rendered the guide images and stripe masks, wrote the cutout, stripe, color-match and check scripts, ran the checks, and drafted the outcomes and reasons in this log. I reviewed and confirmed the outcomes on: ________.
+I ran every generation in ComfyUI and made these decisions: turret denoise 0.60 (over 0.55 and 0.75), round barrel over square, re-running the straight turrets for a cupola, picking T-12 for `down`, and stopping before re-rolling `up` and `right`. Claude rendered the guide images and stripe masks, analysed and edited the audio files, wrote the cutout, stripe, color-match and check scripts, ran the checks, and drafted the outcomes and reasons in this log. I reviewed and confirmed the outcomes on: ________.
