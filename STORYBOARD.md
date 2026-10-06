@@ -118,3 +118,12 @@ Eight panels, in play order. All panels use a **16:9** frame. During play the ca
 ## Authorship note
 
 I chose the opening (top-down overview, then zoom to the tank), respawning at the spawn point with destroyed enemies staying gone, and going straight to a victory screen. Claude proposed the panel order and contents based on CONCEPT.md, the low-angle illustration on the victory screen, restarting the music on respawn, and the asset IDs. The panel sketches are rough code-drawn images made by Claude, not generative-model assets.
+
+
+## Revisions after building the slice (appended)
+
+- Panel 1 (top-down opening zoom) was not built; the slice starts in the gameplay view.
+- Panel 8: the victory screen uses the right-facing YunqiZ sprite, not a low-angle illustration.
+- Close-ups (panels 4, 5) are not separate camera shots; the slice keeps one camera and uses screen shake.
+- Enemy tanks are YunqiZ tinted grey in code, not separate designs.
+- Broken cover (panel 3) no longer blocks tanks or shells.

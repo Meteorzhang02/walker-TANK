@@ -90,3 +90,11 @@ Every frame of YunqiZ must keep the following identical:
 Claude proposed the pose list, the layering strategy, the circular collision shape, the palette hex values, the consistency rules and the planned on-screen size. I chose the tank's name, 8 directions, the independently rotating turret, the white identification stripe and number, the front dozer blade and the rear storage box (after the first silhouette test showed up and down looked the same), and accepted the pose list.
 
 The three planning images (`silhouette.png`, `turnaround.png`, `collision.png`) are rough code-drawn sketches made by Claude from a simple box model of the tank (`design/character/draw_sketches.py`). They are planning references only and are not generative-model assets.
+
+
+## Revisions after the first generation (appended)
+
+- **No number on the stripe.** The prompts asked for no numbers, so the stripe is plain; this also removes the mirrored-digit risk.
+- **Turret:** the barrel is round with a muzzle collar (v3 guide), not square. Three of five turrets have a domed commander cupola; up and right do not (known issue).
+- **Overlays and poses 5–11:** muzzle flash, hit flash, smoke and fire are code effects, not generated overlays. The destroyed pose is the darkened sprite with smoke. The victory pose (11) was not made.
+- **Palette:** every hull and turret was color-matched to `#4B5320` after generation (see ASSET-LOG).

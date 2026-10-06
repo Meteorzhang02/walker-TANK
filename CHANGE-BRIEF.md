@@ -91,3 +91,10 @@ Enemy cannon fire reuses `SFX-fire` at lower volume and pitch. It is not counted
 ## Authorship note
 
 I chose the full slice scope (enemies that move and fire, failure and respawn). Claude drafted this brief from CONCEPT.md, CHARACTER-SHEET.md and STORYBOARD.md, and proposed the source plan for each asset, the double-trigger rules (reload timer, `has_hit`, invulnerability window, `is_dead`, `level_won`), pausing and resuming the music, separate audio buses, reusing `SFX-fire` for enemies, panel 1 as a stretch goal, and the predicted failure cases (several of them came from risks found while drafting the earlier documents).
+
+
+## Revisions and outcomes (appended after building the slice)
+
+- **Asset sources changed:** `ENEMY-tank` and `ENEMY-wreck` are YunqiZ tinted in code; `CHAR-move` is a code wobble; `CHAR-destroyed` is the darkened sprite; `CHAR-victory` and `FX-*` are not generated (code particles). Panel 1 was not built.
+- **Sound map held:** reload timer, `has_hit`, 0.3 s invulnerability, `is_dead` and `level_won` were implemented as planned; the automated check confirms one sound per event.
+- **Predicted failures, outcome:** (1) drift — held, IoU 0.99 hull / 0.97–0.98 turret; (2) turret alignment — holds at the fixed pivot offset; (3) up/down — fixed by the blade and box; (4) mirrored number — avoided, no number; (5) blending into the ground — happened for the cover on the raw ground, fixed by calming the ground; (6) detail at game size — held; (7) double triggers — none, automated check passes; (8) loop click — loop cut at a bar boundary with a crossfade, no click heard; (9) muted readability — passes.
