@@ -2,3 +2,12 @@
 exports/
 *.mp4
 *.mp3
+# Brutalist film build media (the MP4 goes to course media storage, not GitHub)
+youtube/**/*.mp4
+youtube/**/*.mov
+youtube/**/*.wav
+youtube/**/*.flac
+youtube/**/*.png
+youtube/**/exports/
+youtube/**/_cache/
+youtube/**/node_modules/
