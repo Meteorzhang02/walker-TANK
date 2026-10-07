@@ -1,0 +1,183 @@
+{
+ "schema_version": 1,
+ "game": {
+  "name": "walker-TANK",
+  "build_id": "52acbd5444813fc5a9357dad952d4378b879b141ae0f0b8996f42de396ef7f6f"
+ },
+ "captures": {
+  "run-01": {
+   "path": "capture/run-01.mp4",
+   "sha256": "0a14c8b657bcb455f25fd0e93fc8126274808257494eac5ff71a5572368fe6af",
+   "build_id": "52acbd5444813fc5a9357dad952d4378b879b141ae0f0b8996f42de396ef7f6f",
+   "method": "scripted-input",
+   "input_log": "capture/run-01-inputs.jsonl"
+  }
+ },
+ "features": [
+  {
+   "id": "idle-state",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B15",
+     "start_s": 0.0,
+     "action_s": 0.5,
+     "end_s": 5.0,
+     "observation": "No keys held: hull holds still with the 0.2 px engine shake; turret follows the swept cursor.",
+     "riff": "Idle is a code wobble, not a generated frame."
+    }
+   ]
+  },
+  {
+   "id": "eight-facings-moving",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B15",
+     "start_s": 5.0,
+     "action_s": 5.5,
+     "end_s": 13.0,
+     "observation": "Eight short drives, hull sprite changes per facing (3 mirrored), 0.6 px track rumble while moving.",
+     "riff": "Hull follows keys, turret follows mouse."
+    }
+   ]
+  },
+  {
+   "id": "fire-recoil-muzzle",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B17",
+     "start_s": 13.0,
+     "action_s": 13.6,
+     "end_s": 18.0,
+     "observation": "Player shots at 13.6, 15.0, 16.43 s with muzzle flash and SFX-fire.",
+     "riff": "Reload gates the shell and the sound together."
+    }
+   ]
+  },
+  {
+   "id": "cover-crack-break",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B17",
+     "start_s": 13.0,
+     "action_s": 14.0,
+     "end_s": 18.0,
+     "observation": "Near-left cover cracked at hit 2 (14.0 s), broken at hit 4 (16.83 s); one SFX-cover-hit per hit.",
+     "riff": "Broken cover stops blocking."
+    }
+   ]
+  },
+  {
+   "id": "damage-smoke-flames",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B19",
+     "start_s": 30.0,
+     "action_s": 32.5,
+     "end_s": 43.0,
+     "observation": "Hit to 50 % at 32.5 s starts smoke; hit to 25 % at 40.23 s adds flames; SFX-player-hit each time.",
+     "riff": "Damage is readable without sound."
+    }
+   ]
+  },
+  {
+   "id": "destroyed-respawn-music-cut",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B21",
+     "start_s": 18.0,
+     "action_s": 18.47,
+     "end_s": 30.0,
+     "observation": "Death at 18.47 s: SFX-explode, music stopped, respawn message; respawn at 20.47 s with music restarted from 0.",
+     "riff": "Failure has its own sound picture."
+    }
+   ]
+  },
+  {
+   "id": "pause-music-holds",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B21",
+     "start_s": 18.0,
+     "action_s": 24.6,
+     "end_s": 30.0,
+     "observation": "Esc at 24.6 s: PAUSED label, music paused at 4.20 s; Esc at 27.1 s resumes at 4.21 s.",
+     "riff": "Pause holds the music's place."
+    }
+   ]
+  },
+  {
+   "id": "enemy-ai-and-kills",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B21",
+     "start_s": 18.0,
+     "action_s": 24.27,
+     "end_s": 30.0,
+     "observation": "Enemy destroyed at 24.27 s (explosion, wreck stays); enemies wander, aim and fire throughout.",
+     "riff": "Wrecks stay destroyed."
+    }
+   ]
+  },
+  {
+   "id": "victory",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B24",
+     "start_s": 47.33,
+     "action_s": 47.53,
+     "end_s": 55.57,
+     "observation": "Last enemy at 47.53 s: SFX-explode + one SFX-victory, music stopped, VICTORY panel 3/3, time 0:45. Game audio only, no narration.",
+     "riff": "The victory sting is heard alone."
+    }
+   ]
+  },
+  {
+   "id": "mute-music-sfx-keys",
+   "status": "implemented",
+   "evidence": [],
+   "note": "Implemented in main.gd but not driven in run-01; no evidence. Not a complete walkthrough."
+  },
+  {
+   "id": "restart-after-victory",
+   "status": "implemented",
+   "evidence": [],
+   "note": "Implemented in main.gd but not driven in run-01; no evidence. Not a complete walkthrough."
+  },
+  {
+   "id": "opening-zoom-panel-1",
+   "status": "planned",
+   "evidence": [],
+   "reason": "Storyboard/README: not built in this slice."
+  },
+  {
+   "id": "victory-illustration-pose-11",
+   "status": "planned",
+   "evidence": [],
+   "reason": "Storyboard/README: not built in this slice."
+  },
+  {
+   "id": "separate-enemy-design",
+   "status": "planned",
+   "evidence": [],
+   "reason": "Storyboard/README: not built in this slice."
+  }
+ ]
+}

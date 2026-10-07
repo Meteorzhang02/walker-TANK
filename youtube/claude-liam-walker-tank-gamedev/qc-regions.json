@@ -1,0 +1,149 @@
+{
+ "B03": {
+  "full_bleed": true,
+  "contrast_regions": [
+   {
+    "label": "film disclosure label: SCRIPTED INPUT",
+    "box": [
+     0.5023,
+     0.9565,
+     0.9807,
+     0.9778
+    ]
+   },
+   {
+    "label": "film label: PREVIEW \u00b7 same take, shown again later",
+    "box": [
+     0.35,
+     0.8782,
+     0.65,
+     0.9106
+    ]
+   }
+  ],
+  "contrast_reason": "Real Godot gameplay, not a flat card: the 1280x720 game canvas is rendered edge to edge at 4K by design (full_bleed), and the dark, textured battlefield drags the whole-frame ink average down. These regions test the text the FILM adds (disclosure label; PREVIEW / GAME AUDIO label). The game's own HUD text (name, enemy counter, control hints) is the student's unaltered UI: it measured 0.15-0.30 regional separation (white default labels without outline on the busy ground) and was inspected manually; recorded as a finding in _qc/REPORT.md, not altered."
+ },
+ "B04": {
+  "full_bleed": true,
+  "contrast_regions": [
+   {
+    "label": "film disclosure label: SCRIPTED INPUT",
+    "box": [
+     0.5023,
+     0.9565,
+     0.9807,
+     0.9778
+    ]
+   },
+   {
+    "label": "film label (PREVIEW / GAME AUDIO ONLY)",
+    "box": [
+     0.3815,
+     0.8843,
+     0.6182,
+     0.9106
+    ]
+   }
+  ],
+  "contrast_reason": "Real Godot gameplay, not a flat card: the 1280x720 game canvas is rendered edge to edge at 4K by design (full_bleed), and the dark, textured battlefield drags the whole-frame ink average down. These regions test the text the FILM adds (disclosure label; PREVIEW / GAME AUDIO label). The game's own HUD text (name, enemy counter, control hints) is the student's unaltered UI: it measured 0.15-0.30 regional separation (white default labels without outline on the busy ground) and was inspected manually; recorded as a finding in _qc/REPORT.md, not altered."
+ },
+ "B15": {
+  "full_bleed": true,
+  "contrast_regions": [
+   {
+    "label": "film disclosure label: SCRIPTED INPUT",
+    "box": [
+     0.5023,
+     0.9565,
+     0.9807,
+     0.9778
+    ]
+   }
+  ],
+  "contrast_reason": "Real Godot gameplay, not a flat card: the 1280x720 game canvas is rendered edge to edge at 4K by design (full_bleed), and the dark, textured battlefield drags the whole-frame ink average down. These regions test the text the FILM adds (disclosure label; PREVIEW / GAME AUDIO label). The game's own HUD text (name, enemy counter, control hints) is the student's unaltered UI: it measured 0.15-0.30 regional separation (white default labels without outline on the busy ground) and was inspected manually; recorded as a finding in _qc/REPORT.md, not altered."
+ },
+ "B17": {
+  "full_bleed": true,
+  "contrast_regions": [
+   {
+    "label": "film disclosure label: SCRIPTED INPUT",
+    "box": [
+     0.5023,
+     0.9565,
+     0.9807,
+     0.9778
+    ]
+   }
+  ],
+  "contrast_reason": "Real Godot gameplay, not a flat card: the 1280x720 game canvas is rendered edge to edge at 4K by design (full_bleed), and the dark, textured battlefield drags the whole-frame ink average down. These regions test the text the FILM adds (disclosure label; PREVIEW / GAME AUDIO label). The game's own HUD text (name, enemy counter, control hints) is the student's unaltered UI: it measured 0.15-0.30 regional separation (white default labels without outline on the busy ground) and was inspected manually; recorded as a finding in _qc/REPORT.md, not altered."
+ },
+ "B21": {
+  "full_bleed": true,
+  "contrast_regions": [
+   {
+    "label": "film disclosure label: SCRIPTED INPUT",
+    "box": [
+     0.5023,
+     0.9565,
+     0.9807,
+     0.9778
+    ]
+   }
+  ],
+  "contrast_reason": "Real Godot gameplay, not a flat card: the 1280x720 game canvas is rendered edge to edge at 4K by design (full_bleed), and the dark, textured battlefield drags the whole-frame ink average down. These regions test the text the FILM adds (disclosure label; PREVIEW / GAME AUDIO label). The game's own HUD text (name, enemy counter, control hints) is the student's unaltered UI: it measured 0.15-0.30 regional separation (white default labels without outline on the busy ground) and was inspected manually; recorded as a finding in _qc/REPORT.md, not altered."
+ },
+ "B19": {
+  "full_bleed": true,
+  "contrast_regions": [
+   {
+    "label": "film disclosure label: SCRIPTED INPUT",
+    "box": [
+     0.5023,
+     0.9565,
+     0.9807,
+     0.9778
+    ]
+   }
+  ],
+  "contrast_reason": "Real Godot gameplay, not a flat card: the 1280x720 game canvas is rendered edge to edge at 4K by design (full_bleed), and the dark, textured battlefield drags the whole-frame ink average down. These regions test the text the FILM adds (disclosure label; PREVIEW / GAME AUDIO label). The game's own HUD text (name, enemy counter, control hints) is the student's unaltered UI: it measured 0.15-0.30 regional separation (white default labels without outline on the busy ground) and was inspected manually; recorded as a finding in _qc/REPORT.md, not altered."
+ },
+ "B23": {
+  "full_bleed": true,
+  "contrast_regions": [
+   {
+    "label": "film disclosure label: SCRIPTED INPUT",
+    "box": [
+     0.5023,
+     0.9565,
+     0.9807,
+     0.9778
+    ]
+   }
+  ],
+  "contrast_reason": "Real Godot gameplay, not a flat card: the 1280x720 game canvas is rendered edge to edge at 4K by design (full_bleed), and the dark, textured battlefield drags the whole-frame ink average down. These regions test the text the FILM adds (disclosure label; PREVIEW / GAME AUDIO label). The game's own HUD text (name, enemy counter, control hints) is the student's unaltered UI: it measured 0.15-0.30 regional separation (white default labels without outline on the busy ground) and was inspected manually; recorded as a finding in _qc/REPORT.md, not altered."
+ },
+ "B24": {
+  "full_bleed": true,
+  "contrast_regions": [
+   {
+    "label": "film disclosure label: SCRIPTED INPUT",
+    "box": [
+     0.5023,
+     0.9565,
+     0.9807,
+     0.9778
+    ]
+   },
+   {
+    "label": "film label: GAME AUDIO ONLY \u00b7 no narration",
+    "box": [
+     0.3734,
+     0.8843,
+     0.6266,
+     0.9106
+    ]
+   }
+  ],
+  "contrast_reason": "Real Godot gameplay, not a flat card: the 1280x720 game canvas is rendered edge to edge at 4K by design (full_bleed), and the dark, textured battlefield drags the whole-frame ink average down. These regions test the text the FILM adds (disclosure label; PREVIEW / GAME AUDIO label). The game's own HUD text (name, enemy counter, control hints) is the student's unaltered UI: it measured 0.15-0.30 regional separation (white default labels without outline on the busy ground) and was inspected manually; recorded as a finding in _qc/REPORT.md, not altered."
+ }
+}

@@ -43,7 +43,7 @@ Unless a row says otherwise, every hull generation below used:
 | G-09 | `CHAR-hull` down-right | `guide2_hull_down-right.png` (v2) | 0.55 | **Accepted, edited, with a note.** Outline matches (IoU 0.99). Cleaner and less worn than the other four, so wear level is not fully consistent. | Background removed; colour matched | `CHAR-hull_down_right.png` (mirrored for down-left); panels 2–7 |
 | G-10 | `CHAR-hull` down | `guide2_hull_down.png` (v2) | 0.55 | **Accepted, edited, with a note.** Outline matches (IoU 0.99). About 15–20% brighter olive than the right-facing hull. | Background removed; colour matched | `CHAR-hull_down.png`; panels 2–7 |
 
-*G-06 to G-10 assume the shared settings above with denoise 0.55; confirm against the ComfyUI workflow saved in each PNG.*
+*G-06 to G-10 confirmed from the PNG metadata: denoise 0.55, seed 846322750311363.*
 
 ## Checks on the accepted hulls
 
@@ -78,17 +78,17 @@ Turrets use the shared settings above except for the prompt, the guide and the d
 | T-05 | down-right | v3 | 0.75 / fixed | **Rejected.** Most detailed (round turret, mantlet, muzzle brake), but the white stripe disappeared, the turret turned round and no longer followed the guide, and the barrel changed color. Rejected for consistency across directions and player readability. | — | Thumbnail `REJ-08` |
 | T-06 | right | v3 | 0.60 / fixed | **Accepted, edited, known issue.** Round barrel with muzzle collar, stripe kept; flat top without a cupola. | Stripe; cutout; olive color match | `CHAR-turret_right.png` (mirrored for left) |
 | T-07 | up | v3 | 0.60 / fixed | **Accepted, edited, known issue.** Straight barrel, square turret; flat top with a small hatch, no cupola. | Stripe; cutout; olive color match | `CHAR-turret_up.png` |
-| T-08 | up-right | v3 | 0.60 | **Accepted, edited.** Domed cupola. Seen alone, the model drew track-like ribs around the turret edge; on the hull they read as turret-ring detail. Took several attempts; some earlier files under this prefix were actually down-right turrets saved with the wrong prefix. *Exact attempt count and seed to confirm.* | Stripe; cutout; olive color match | `CHAR-turret_up_right.png` (mirrored for up-left) |
+| T-08 | up-right | v3 | 0.60 | **Accepted, edited.** Domed cupola. Seen alone, the model drew track-like ribs around the turret edge; on the hull they read as turret-ring detail. Took several attempts; some earlier files under this prefix were actually down-right turrets saved with the wrong prefix. Seed 846322750311363, denoise 0.60 (from PNG metadata); the file counter reached 00008 partly because of mislabeled down-right files. | Stripe; cutout; olive color match | `CHAR-turret_up_right.png` (mirrored for up-left) |
 | T-09 | down | v3 | 0.60 / fixed | **Rejected.** No cupola, stripe gone, an extra clamp on the barrel. | — | Thumbnail `REJ-09` |
 | T-10 | down | v3.1 | 0.60 / fixed | **Rejected.** Even with the larger cupola in the guide, the top came out flat; the barrel clamp came back. | — | Thumbnail `REJ-10` |
 | T-11 | down | v3.1 | 0.60 / randomized | **Rejected.** Clear cupola, but the barrel came out light steel, unlike the dark barrel in every other direction. | — | Thumbnail `REJ-11` |
-| T-12 | down | v3.1 | 0.60 / randomized | **Accepted, edited.** Clear domed cupola, dark round barrel matching the other directions, visible bore, no clamp. *Seed was randomized and not recorded* (the seed shown in the KSampler after a randomized run is the next seed, not the one used). File `CHAR-turret_down_00009_.png`. | Stripe; cutout; olive color match | `CHAR-turret_down.png` |
+| T-12 | down | v3.1 | **0.55** / fixed 499619143762383 | **Accepted, edited.** Clear domed cupola, dark round barrel matching the other directions, visible bore, no clamp. Made with the fallback plan (denoise back to 0.55 so the cupola drawn in the v3.1 guide survives), so this one turret differs from the other four (0.60). File `CHAR-turret_down_00009_.png`. | Stripe; cutout; olive color match | `CHAR-turret_down.png` |
 
-*T-04, T-06, T-07 and T-08 assume denoise 0.60 with the fixed seed; confirm against the workflow saved in each PNG.*
+*Seeds and denoise for every accepted sprite were read back from the workflow ComfyUI saves inside each PNG: hulls 0.55 / 846322750311363; turrets T-04, T-06, T-07, T-08 0.60 / 846322750311363; T-12 as above.*
 
 ### Decisions on the turret
 
-- **Denoise 0.60 for all turrets** (hull stays at 0.55): 0.55 lost the hatch, 0.75 lost the stripe and the guide's shape. 0.60 kept shape, stripe position and barrel while adding a cupola.
+- **Denoise 0.60 for the turrets** (hull stays at 0.55; the down turret ended at 0.55, see T-12): 0.55 lost the hatch, 0.75 lost the stripe and the guide's shape. 0.60 kept shape, stripe position and barrel while adding a cupola.
 - **Round barrel**: chosen from T-01; the v3 guide was redrawn with a round barrel and muzzle so every direction follows it.
 - **Stopped re-rolling for the cupola**: after T-12, up and right still have a flat top. At 64 px the difference is about 1–2 px (see `check_final_8dir.png`), so further attempts were not worth the time. Logged as a known issue.
 
@@ -111,6 +111,29 @@ All edits are made by scripts in `tools/` (written by Claude) from the raw outpu
 No pixels of the tank were otherwise repainted.
 
 **Design change:** the character sheet planned a white stripe *and number*. The number was dropped (prompts ask for no numbers), which also removes the mirrored-digit risk in CHANGE-BRIEF case 4.
+
+## Generations — environment
+
+SDXL Base 1.0, same sampler as the hull (25 steps, cfg 7.0, `dpmpp_2m`, `karras`), seed **499619143762383** (read from the PNG metadata), 1024 × 1024.
+
+- **Cover prompt:**
+  > realistic weathered red brick wall segment, oblique top-down view, old crumbling bricks with grey mortar, dust and dirt, war-damaged ruin, flat overcast diffuse lighting, game sprite, isolated on plain white background, no shadow, highly detailed
+- **Cover negative:** tank, vehicle, people, grass, plants, text, watermark, ground, scenery, cast shadow, blurry, cartoon, toy
+- **Ground prompt:**
+  > seamless ground texture viewed from directly above, wet dark brown mud with scattered broken brick fragments, gravel and small stones, tire tracks, flat overcast diffuse lighting, uniform, no objects, no shadow, highly detailed
+- **Ground negative:** tank, vehicle, people, grass, plants, water puddle, text, watermark, perspective, horizon, sky, cast shadow, blurry, cartoon
+
+| # | Asset ID | Guide | Denoise | Outcome and reason | Edits | Where used |
+|---|---|---|---|---|---|---|
+| E-01 | `ENV-cover` intact | `design/guides/cover/guide_cover_intact.png` (Claude) | 0.55 | **Accepted, edited.** Weathered bricks and mortar; outline matches the guide (IoU 0.997). Same scale as the tank guides. | Cutout | `assets/sprites/env/ENV-cover_intact.png`; panels 2, 3, 7 |
+| E-02 | `ENV-cover` cracked | `guide_cover_cracked.png` | 0.55 | **Accepted, edited.** Top course missing at the right end, cracked lower bricks (IoU 0.997). Reads as damaged next to E-01 at game size. | Cutout | `ENV-cover_cracked.png`; panel 3 |
+| E-03 | `ENV-cover` broken | `guide_cover_broken.png` | 0.55 | **Accepted, edited.** Low ragged wall with loose bricks (IoU 0.957, rubble pieces moved slightly). | Cutout | `ENV-cover_broken.png`; panels 3, 6 |
+| E-04 | `ENV-ground` | none (text-to-image, denoise 1.0) | 1.0 | **Accepted, edited.** The model made a dense cobble/pebble surface rather than mud with brick bits. Raw, it was as bright and contrasty as the cover, which nearly disappeared into it (`check_scene_v1.png`, CHANGE-BRIEF case 5). Edited rather than regenerated, for time. | Calmed and tiled (see below) | `assets/sprites/env/ENV-ground_tile.png`; all gameplay panels |
+
+**Environment edits:**
+- **Cover cutout:** `tools/cutout_hull.py`, as for the tank.
+- **Ground:** `tools/calm_ground.py` (written by Claude): Gaussian blur r=1.5, contrast reduced to 45% around the mean, darkened and pulled toward mud brown `#4a3e33`; then `tools/make_tile.py` (written by Claude) makes it tile by blending with a copy shifted by half its size, using the shifted copy near the edges.
+- **Check:** `design/asset-log/env/check_scene_v1.png` (raw ground) vs `check_scene_v2.png` (edited ground, tile shown at 192 px), both in color and grayscale with the tank at game size. After the edit, tank, stripe and all three cover stages separate from the ground in both.
 
 ## Generations — audio
 
@@ -138,4 +161,4 @@ No pixels of the tank were otherwise repainted.
 
 ## Who decided
 
-I ran every generation in ComfyUI and made these decisions: turret denoise 0.60 (over 0.55 and 0.75), round barrel over square, re-running the straight turrets for a cupola, picking T-12 for `down`, and stopping before re-rolling `up` and `right`. Claude rendered the guide images and stripe masks, analysed and edited the audio files, wrote the cutout, stripe, color-match and check scripts, ran the checks, and drafted the outcomes and reasons in this log. I reviewed and confirmed the outcomes on: ________.
+I ran every generation in ComfyUI and made these decisions: turret denoise 0.60 (over 0.55 and 0.75), round barrel over square, re-running the straight turrets for a cupola, picking T-12 for `down`, and stopping before re-rolling `up` and `right`. Claude rendered the guide images and stripe masks, analysed and edited the audio files, wrote the cutout, stripe, color-match and check scripts, ran the checks, and drafted the outcomes and reasons in this log. I reviewed and confirmed the outcomes on: 2026-10-07.

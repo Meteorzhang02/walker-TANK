@@ -1,0 +1,13 @@
+{"take": "capture/run-01.mp4", "log_frame_offset": 0,
+ "note": "Frame ranges [start, count] in run-01 (30 fps). Calibration: victory panel first visible in frame 1426 = logged frame; pause label first visible in frame 739 = logged music pause. B03/B04 are labeled previews of intervals shown again later; every other interval is shown once.",
+ "beats": {
+  "B03": {"segments": [[830, 450]], "labels": ["PREVIEW · same take, shown again later"]},
+  "B04": {"segments": [[0, 167], [440, 72], [1120, 96], [1225, 100]],
+          "labels": ["PREVIEW · Cold steel battlefield", "PREVIEW · Cover is not permanent", "PREVIEW · Every shot has weight", "PREVIEW · Damage is information"]},
+  "B15": {"segments": [[0, 390]]},
+  "B17": {"segments": [[390, 150]]},
+  "B21": {"segments": [[540, 360]]},
+  "B19": {"segments": [[900, 390]]},
+  "B23": {"segments": [[1290, 130]]},
+  "B24": {"segments": [[1420, 247]], "labels": ["GAME AUDIO ONLY · no narration"]}
+ }}

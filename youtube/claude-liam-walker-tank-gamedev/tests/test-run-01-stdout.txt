@@ -1,0 +1,15 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS  10 fire presses in one frame -> 1 shell, 1 fire sound
+PASS  fire again after reload -> 2nd fire sound
+PASS  one shell touching cover twice -> 1 cover-hit sound
+PASS  two shells in one frame -> 2 more cover-hit sounds, cover cracked
+PASS  two hits within 0.3 s -> 1 hit sound, damage applied once
+PASS  fatal hit -> 1 explosion, 0 hit sounds, dead
+PASS  last enemy destroyed twice -> 1 victory sound
+PASS  SFX muted -> enemy still damaged, cover still breaks
+RESULT: 0 failed
+WARNING: 22 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 7 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

@@ -99,3 +99,16 @@ How the design went, in order. **Retrospective note:** this log was put together
 - **My playtest:** no sound or music problems with sound on; readable with sound off. From my screenshots the health bar was hard to see, so it was changed to green / yellow / red.
 - **Still unresolved (my notes):** the turret could turn faster, the hull turning could look smoother, and the enemy tanks should look different from YunqiZ.
 - **Trace:** TEST-REPORT.md; `design/test/`.
+
+## 2026-10-05 to 2026-10-07 — making the explainer film
+
+- **Wanted:** the 4K explainer film with Brutalist's `godot-gamedev` skill in `walker` mode.
+- **Asked:** Claude Code (in `brutalist.art`) to read the skill and build the film from my project, with a list of what the assignment requires. It checks the runtime, reads the code and documents, records real gameplay by driving the game itself, writes and voices the narration (local Kokoro), renders and exports.
+- **Got / friction:**
+  - My laptop battery was about to run out during the first gameplay recording. I had it stop the recording safely; the partial take could not be resumed (enemies move randomly), so it was recorded again from the start after I plugged in.
+  - The render and the final export were stopped three times because the computer ran low on memory. I closed other programs; the last time, a leftover 8 GB `ffmpeg` from the killed export was still running, and Claude Code confirmed it was orphaned before re-running the export in the foreground.
+  - The toolkit's quality check failed on 13 beats because the `@NikBearBrown` footer in one shared toolkit template (`GodotDesignFigure.tsx`) sat 3 px below the title-safe line at 4K.
+- **Decided:** I allowed a local, uncommitted edit to that toolkit template (two numbers, matching its sibling template that already passed) and a re-render of the 13 beats, instead of rebuilding them on another layout (about 1.5 h more). My game was not changed and nothing was pushed to the toolkit.
+- **Got:** a 4K film. Its own QC also pointed out that my committed ASSET-LOG was out of date (missing the environment rows), the HUD text has low contrast, and the mute and restart keys are not shown. I updated the documents afterwards; the film shows the commit it was built from.
+- **Human / Claude / model:** Claude Code built the film end to end. I supplied the project and the requirements, made the battery, memory and toolkit decisions above, and watched and listened to the final film myself before accepting it. I watched and listened to the whole film and found no problems.
+- **Trace:** `youtube/claude-liam-walker-tank-gamedev/` (BUILD-PROMPT, beat sheet, evidence, QC files).

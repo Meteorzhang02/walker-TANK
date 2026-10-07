@@ -1,0 +1,4 @@
+file 'D:/CSYE7270/assignment2/walker-TANK/youtube/claude-liam-walker-tank-gamedev/capture/_parts/B04-game-0.wav'
+file 'D:/CSYE7270/assignment2/walker-TANK/youtube/claude-liam-walker-tank-gamedev/capture/_parts/B04-game-1.wav'
+file 'D:/CSYE7270/assignment2/walker-TANK/youtube/claude-liam-walker-tank-gamedev/capture/_parts/B04-game-2.wav'
+file 'D:/CSYE7270/assignment2/walker-TANK/youtube/claude-liam-walker-tank-gamedev/capture/_parts/B04-game-3.wav'

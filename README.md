@@ -4,7 +4,7 @@ A tank-battle asset slice for CSYE7270 Assignment 2. You drive **YunqiZ**, a wor
 
 - **Started from:** an empty Godot 4 project (see [SOURCES.md](SOURCES.md)).
 - **Engine:** Godot 4.7.2 stable.
-- **Film:** `[course media link]` — `[filename]`, SHA-256 `[checksum]`
+- **Film:** [Watch on Google Drive](https://drive.google.com/file/d/1wZdhVj9YaA1GIYIu9yU09Xp2JRoVltxk/view?usp=drive_link) — `claude-liam-walker-tank-gamedev.mp4` (3840×2160 landscape), SHA-256 `b13a75400f8405be572142c3ab1c4565d49f980c2c82b4a6851c6b8d074fd150`
 
 ## Run
 

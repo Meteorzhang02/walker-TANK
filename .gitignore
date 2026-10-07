@@ -11,3 +11,6 @@ youtube/**/*.png
 youtube/**/exports/
 youtube/**/_cache/
 youtube/**/node_modules/
+__pycache__/
+*.pyc
+youtube/**/.remotion-*/

@@ -1,0 +1,150 @@
+{
+ "B03": [
+  {
+   "label": "film disclosure label: SCRIPTED INPUT",
+   "box": [
+    0.5023,
+    0.9565,
+    0.9807,
+    0.9778
+   ]
+  },
+  {
+   "label": "film label: PREVIEW \u00b7 same take, shown again later",
+   "box": [
+    0.35,
+    0.8782,
+    0.65,
+    0.9106
+   ],
+   "_seg": 0
+  }
+ ],
+ "B04": [
+  {
+   "label": "film disclosure label: SCRIPTED INPUT",
+   "box": [
+    0.5023,
+    0.9565,
+    0.9807,
+    0.9778
+   ]
+  },
+  {
+   "label": "film label: PREVIEW \u00b7 Cold steel battlefield",
+   "box": [
+    0.3815,
+    0.8843,
+    0.6182,
+    0.9106
+   ],
+   "_seg": 0
+  },
+  {
+   "label": "film label: PREVIEW \u00b7 Cover is not permanent",
+   "box": [
+    0.3711,
+    0.8782,
+    0.6289,
+    0.9106
+   ],
+   "_seg": 1
+  },
+  {
+   "label": "film label: PREVIEW \u00b7 Every shot has weight",
+   "box": [
+    0.376,
+    0.8782,
+    0.6237,
+    0.9106
+   ],
+   "_seg": 2
+  },
+  {
+   "label": "film label: PREVIEW \u00b7 Damage is information",
+   "box": [
+    0.3742,
+    0.8782,
+    0.6258,
+    0.9106
+   ],
+   "_seg": 3
+  }
+ ],
+ "B15": [
+  {
+   "label": "film disclosure label: SCRIPTED INPUT",
+   "box": [
+    0.5023,
+    0.9565,
+    0.9807,
+    0.9778
+   ]
+  }
+ ],
+ "B17": [
+  {
+   "label": "film disclosure label: SCRIPTED INPUT",
+   "box": [
+    0.5023,
+    0.9565,
+    0.9807,
+    0.9778
+   ]
+  }
+ ],
+ "B21": [
+  {
+   "label": "film disclosure label: SCRIPTED INPUT",
+   "box": [
+    0.5023,
+    0.9565,
+    0.9807,
+    0.9778
+   ]
+  }
+ ],
+ "B19": [
+  {
+   "label": "film disclosure label: SCRIPTED INPUT",
+   "box": [
+    0.5023,
+    0.9565,
+    0.9807,
+    0.9778
+   ]
+  }
+ ],
+ "B23": [
+  {
+   "label": "film disclosure label: SCRIPTED INPUT",
+   "box": [
+    0.5023,
+    0.9565,
+    0.9807,
+    0.9778
+   ]
+  }
+ ],
+ "B24": [
+  {
+   "label": "film disclosure label: SCRIPTED INPUT",
+   "box": [
+    0.5023,
+    0.9565,
+    0.9807,
+    0.9778
+   ]
+  },
+  {
+   "label": "film label: GAME AUDIO ONLY \u00b7 no narration",
+   "box": [
+    0.3734,
+    0.8843,
+    0.6266,
+    0.9106
+   ],
+   "_seg": 0
+  }
+ ]
+}

@@ -1,0 +1,33 @@
+{
+ "file": "assets/raw/hull/CHAR-hull_right_00001_.png",
+ "ckpt": "sd_xl_base_1.0.safetensors",
+ "guide": "guide2_hull_right.png",
+ "ksampler": {
+  "seed": 846322750311363,
+  "steps": 25,
+  "cfg": 7.0,
+  "sampler_name": "dpmpp_2m",
+  "scheduler": "karras",
+  "denoise": 0.55,
+  "model": [
+   "15",
+   0
+  ],
+  "positive": [
+   "10",
+   0
+  ],
+  "negative": [
+   "11",
+   0
+  ],
+  "latent_image": [
+   "18",
+   0
+  ]
+ },
+ "prompts": [
+  "realistic military tank hull without turret, oblique top-down view, worn olive drab paint, chipped edges showing bare steel, wide front dozer blade, rear storage box, flat overcast diffuse lighting, game sprite, isolated on plain white background, no shadow, highly detailed",
+  "turret, cannon, gun barrel, text, watermark, people, ground, scenery, cast shadow, blurry, cartoon, toy"
+ ]
+}

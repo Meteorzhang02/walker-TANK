@@ -24,7 +24,7 @@ No paid generation services were used. No artist names, brands, copyrighted char
 - **Edit and check scripts in `tools/`:** cutout, stripe painting, olive color match, ground calming and tiling, audio trimming, loop cutting, analysis, and resizing to game textures.
 - **Game code:** wrote all GDScript in `scripts/` and the automated test in `tests/`, and fixed the errors I reported from Godot.
 - **Logs and reports:** drafted ASSET-LOG, TEST-REPORT, SOURCES and README from the real files, metadata and my reports.
-- **Film:** `[script / narration — to fill]`
+- **Film:** built by **Claude Code** with the course-provided **Brutalist** toolkit (`godot-gamedev` skill, `walker` mode): gameplay capture, narration script, local Kokoro `am_onyx` voice (no paid TTS), Remotion render. Its records are in `youtube/claude-liam-walker-tank-gamedev/`. One shared toolkit template was edited locally (footer 3 px) with my approval; see FRICTIONAL.
 
 ## What I did
 

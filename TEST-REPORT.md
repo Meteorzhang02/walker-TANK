@@ -1,6 +1,6 @@
 # TEST-REPORT — walker-TANK
 
-- **Source revision tested:** `[commit SHA]`
+- **Source revision tested:** `4616fc7` (the same game source as the film)
 - **Engine:** Godot v4.7.2.stable.official (ed1daf0bf), Windows
 - **Tester:** me (Yunqi Zhang). No other playtesters; none are claimed.
 - **Screenshots:** `design/test/`
@@ -9,7 +9,7 @@
 
 | Check | Result | Evidence |
 |---|---|---|
-| Startup and controls | Runs from the editor (F5). Movement (WASD / arrows), mouse aim, fire (LMB / Space), pause (Esc / P), music mute (M), sound mute (N) and restart after victory (R) all work. **Fresh copy:** `[to do: clone the final commit into a new folder, open it, run it, and write the result here]` | `play-01` to `play-05` |
+| Startup and controls | Runs from the editor (F5). Movement (WASD / arrows), mouse aim, fire (LMB / Space), pause (Esc / P), music mute (M), sound mute (N) and restart after victory (R) all work. **Fresh copy:** cloned `4616fc7` from GitHub into a new folder, imported it in Godot 4.7.2 and ran it: the game started and every sprite, sound and music file was present. | `play-01` to `play-05` |
 | Character against the sheet | See the section below. | `gallery-yunqiz.png`, `design/asset-log/check_final_8dir.png` |
 | Storyboard against the slice | Panels 2–8 covered; panel 1 not built. See the section below. | `play-01` to `play-05`, `play-06` |
 | Sound events | With sound on, fire, cover hit, YunqiZ hit, explosion and victory each played once per occurrence, including holding fire and rapid presses (holding fire repeats at the 0.8 s reload rate, one sound per shell). Also covered by the automated check. | own playtest; `automated-test-result.png` |
@@ -41,7 +41,7 @@ PASS  SFX muted -> enemy still damaged, cover still breaks
 RESULT: 0 failed
 ```
 
-The first run also printed leak warnings at exit because the test quit without freeing the scene; the test now frees the scene before quitting. No assertion was removed or weakened.
+Godot also prints ObjectDB leak warnings when the headless run exits. They come from quitting the engine, not from a failed check. Freeing the scene before quitting did not remove them; they are harmless and still printed. No assertion was removed or weakened.
 
 ## Character against the sheet
 
@@ -100,4 +100,6 @@ Each was driven by an observation and is recorded in ASSET-LOG.md or FRICTIONAL.
 - No sound or music faults found with sound on; the slice was readable muted.
 - **Turret turning** could feel more responsive, and **hull turning** more natural (it snaps between the 8 facings).
 - **Enemy tanks** should look different from YunqiZ, not only tinted.
+- **HUD text** (labels at the top and the control hint at the bottom) has fairly low contrast against the ground; readable, but a candidate fix. Found by the film's QC.
+- The explainer film's gameplay is scripted input driven by the capture tool, labelled in the film as not a human playtest; my own playtest is the one described above.
 - Not tested: other people playing; laptop speakers for the low-frequency cannon and explosion (ASSET-LOG known issue); difficulty balance.
