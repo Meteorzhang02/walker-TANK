@@ -1,100 +1,59 @@
-# CHANGE-BRIEF — walker-TANK
+# CHANGE-BRIEF — Assignment 3: three 3D assets for walker-TANK
 
-The plan and predictions for the Assignment 2 asset slice, written before the first generation.
+Written and committed **before** any asset was built. This original is kept as written; later changes go in the *Revisions* section at the end, never by editing the predictions above it.
 
-## Slice scope
+## Context
 
-One small arena with destructible cover and **three enemy tanks that move and fire back**. The player drives YunqiZ, fires from cover, takes damage, can be destroyed and respawn at the spawn point, and wins by destroying all three enemies.
+walker-TANK is a 2D, oblique top-down tank game on a ruined brick battlefield (see CONCEPT.md). The game itself stays 2D for now. This assignment adds a small Godot 3D scene, `scenes/asset_room_3d.tscn`, with a floor, one light, a camera and the three assets side by side at game scale. Assignments 4 and 5 reuse it.
 
-- **Storyboard panels the slice covers:** 2, 3, 4, 5, 6, 7, 8.
-- **Panel 1 (top-down opening zoom):** stretch goal. If it is not built, the slice starts directly in the gameplay view, and TEST-REPORT.md names panel 1 as not covered.
+**Scale reference.** All sizes are in metres (1 Blender unit = 1 m = 1 Godot 3D unit; no conversion). They are justified against YunqiZ, the player's tank, which I size as a medium tank: **hull 6.0 m long × 3.4 m wide × 1.6 m high, 2.4 m to the top of the turret**. The 3D scene includes a plain grey box of the hull size, labelled "scale reference, not an asset", so the three assets can be judged beside the tank.
 
-## Asset list
+**Common rules for all three.** Built in Blender from basic shapes only (cube, cylinder), at most six shapes, flat colour materials (Principled BSDF base colour only), no textures, no bevels, no modifiers left unapplied. Blender is Z-up. Each asset is built around the world origin, with its base on the floor (Z = 0), in its own `.blend` file, and exported as `.glb` with +Y Up on.
 
-"Source" says how each asset is planned to be made. Every art, sound and music category includes at least one asset from a generative model.
+## Asset 1 — `cover_wall` (broken brick cover)
 
-### Art
+- **What it is in the game:** the destructible cover the player hides behind (pillar: *cover is not permanent*). In the 3D scene it is the intact stage.
+- **Where it appears:** scattered across the battlefield between the player and the enemy tanks.
+- **Size:** **4.0 m wide × 1.0 m deep × 1.8 m high.** Wider than the tank (3.4 m) so the whole hull can hide behind it head-on; taller than the hull (1.6 m) but lower than the turret top (2.4 m), so the turret can fire over it.
+- **Origin:** centre of the underside, so it sits on the floor where it is placed.
+- **Look:** one main brick block 4.0 × 1.0 × 1.5 m, with two smaller blocks of uneven size on top to make a broken, ragged top edge (highest point 1.8 m). 3 cubes. Main block brick red-brown `#8B4A3A`, top blocks darker `#6E3B2E`.
+- **Budget:** **≤ 60 triangles** (3 cubes × 12 = 36 expected).
 
-| ID | Asset | Panels | Source |
-|---|---|---|---|
-| `CHAR-hull` | YunqiZ hull, 5 generated directions (3 mirrored) | 2–7 | Generative model |
-| `CHAR-turret` | YunqiZ turret, 5 generated directions (3 mirrored) | 2–7 | Generative model |
-| `CHAR-move` | Track-rolling frames for the hull (moving state) | 3, 7 | Generative model, edited into frames |
-| `CHAR-recoil` | Hull jolt after firing | 2 | Hull sprite offset in code (no new image) |
-| `CHAR-destroyed` | YunqiZ wreck, 1 direction | 6 | Generative model |
-| `CHAR-victory` | YunqiZ, hatch open, flag raised, low angle | 8 | Generative model |
-| `FX-muzzle` | Muzzle flash overlay | 2 | Generative model |
-| `FX-hit` | Hit flash overlay | 5 | Code (white flash shader) |
-| `FX-smoke` | Smoke overlay (medium health) | 5 | Generative model (fallback: Godot particles) |
-| `FX-burn` | Fire overlay (low health) | 5 | Generative model (fallback: Godot particles) |
-| `FX-explosion` | Explosion frames | 4, 6 | Generative model |
-| `ENEMY-tank` | Enemy tank hull and turret, 5 directions each | 2–4, 7 | Generative model |
-| `ENEMY-wreck` | Enemy wreck | 4, 7 | Edited from `ENEMY-tank` (darkened, damaged) |
-| `ENV-ground` | Mud and broken-brick ground tile | 2–7 | Generative model |
-| `ENV-cover` | Cover block in three stages: intact, cracked, broken | 2, 3, 6, 7 | Generative model |
-| `PROJ-shell` | Shell projectile | 2, 3 | Code-drawn |
-| `UI-health` | Health bar | 5 | Godot UI (code) |
-| `UI-victory` | Victory screen layout | 8 | Godot UI (code) around `CHAR-victory` |
+## Asset 2 — `ammo_crate` (shell pickup)
 
-### Sound effects
+- **What it is in the game:** a pickup that refills the tank's shells (planned for a later assignment; it gives the player a reason to leave cover).
+- **Where it appears:** in exposed spots between pieces of cover.
+- **Size:** **1.2 m wide × 0.8 m deep × 0.7 m high.** About a third of the tank's width, small enough that the tank clearly drives over it to collect it, large enough to read from the top-down camera.
+- **Origin:** centre of the underside.
+- **Look:** body cube 1.2 × 0.8 × 0.6 m, a slightly larger lid 1.24 × 0.84 × 0.1 m on top, and a thin off-white stripe across the lid. 3 cubes. Body olive `#4B5320` (the tank's main colour, so it reads as "ours"), lid darker olive `#3D441A`, stripe off-white `#E8E6DF` (the tank's identification-stripe colour).
+- **Budget:** **≤ 60 triangles** (36 expected).
 
-| ID | Sound | Panels | Source |
-|---|---|---|---|
-| `SFX-fire` | Deep, heavy cannon shot | 2 | Generative model |
-| `SFX-cover-hit` | Stone and brick crumbling | 3 | Generative model |
-| `SFX-player-hit` | Sharp metallic impact | 5 | Generative model |
-| `SFX-explode` | Tank explosion with a long fading tail | 4, 6 | Generative model |
-| `SFX-victory` | Short, restrained victory sound | 8 | Generative model |
+## Asset 3 — `tank_hedgehog` (anti-tank obstacle)
 
-### Music
+- **What it is in the game:** a steel obstacle that blocks tank movement but, unlike cover, does not stop shells and never breaks. It forces route choices.
+- **Where it appears:** in rows across roads and gaps between ruins.
+- **Size:** **about 1.9 m wide × 1.9 m deep × 1.4 m high.** Lower than the tank hull, so it does not hide the tank, but clearly a barrier at hull scale.
+- **Origin:** centre of the underside, at floor level, with the three lowest beam ends touching Z = 0.
+- **Look:** three steel beams, 2.4 m long with a 0.15 × 0.15 m section, crossing at their centres at right angles to each other, tilted so the group stands on three beam ends (the classic "Czech hedgehog"). 3 cubes. Rusty dark steel `#5A4A3F`.
+- **Budget:** **≤ 60 triangles** (36 expected).
 
-| ID | Music | Panels | Source |
-|---|---|---|---|
-| `MUS-battle-loop` | Low, slow loop built on drums and bass | 2–7 | Generative model, trimmed to a bar-aligned loop |
+## Why these triangle budgets
 
-## Event-to-sound map
+Every asset is made of cubes only, so 36 triangles each is enough. I set **60 per asset** (well under the course limit of 500) because the game is seen from a high top-down camera where extra geometry would not be visible, and because a low limit makes it obvious if Claude builds more than I asked for.
 
-Each sound plays from the code that already represents its event. Game state changes first; the sound only reports it, so a muted or missing sound changes nothing.
+## Predicted failure cases and how I will check each
 
-| Sound | Exact triggering event | How double triggers are prevented |
-|---|---|---|
-| `SFX-fire` | The player's fire function spawns a shell, after the reload check passes | Reload timer (about 0.8 s): if it is still running, no shell spawns and no sound plays. |
-| `SFX-cover-hit` | A shell collides with a cover block and the block's stage is reduced | The shell is marked `has_hit` and freed on its first collision, so one shell gives one hit and one sound. |
-| `SFX-player-hit` | YunqiZ's `take_damage()` reduces health and health is still above zero | A short invulnerability window (about 0.3 s) ignores repeat hits; no hit sound when the hit is the fatal one. |
-| `SFX-explode` | A tank's `die()` runs (enemy or YunqiZ) | `die()` returns at once if `is_dead` is already true; `is_dead` is set before the sound plays. |
-| `SFX-victory` | The enemy counter reaches zero | A `level_won` flag is checked and set before the sound plays, so the counter cannot fire it twice. |
+1. **An asset arrives lying on its side or upside down** (Blender is Z-up, Godot is Y-up). *Check:* the headless Godot script prints the bounding-box size; the height must be on the Y axis and match the brief. I also look at it in the 3D scene.
+2. **Scale or rotation not applied, so the Godot node scale is not 1, 1, 1 or the asset is 10× or 0.1× too large.** The hedgehog is most at risk because its beams are rotated. *Check:* in Blender the sidebar (N) must show scale 1, 1, 1 and rotation 0, 0, 0 after applying; in Godot the check script prints the node scale and the bounding box, which must be within ±0.1 m of the brief (±0.15 m for the hedgehog).
+3. **Origin in the middle of the object, so it floats or sinks.** *Check:* the check script prints the lowest Y of the bounding box, which must be 0.00 (±0.01); I place each asset on the floor in the scene and look at it from the side.
+4. **Claude builds more than asked** (bevels, extra parts, high segment counts). *Check:* Blender's Scene Statistics must show ≤ 60 triangles per asset and no more than the listed number of objects.
+5. **A colour does not survive the export** (asset appears white or grey in Godot). *Check:* compare each part's colour in Godot with the hex values above.
+6. **The MCP server will not connect on Windows.** *Check:* `get_scene_info` must return the scene. If it does not connect within the two-hour time box, I will log every step and error in FRICTIONAL.md and use the script route.
 
-Enemy cannon fire reuses `SFX-fire` at lower volume and pitch. It is not counted as one of the four required events.
+## Revisions
 
-## Music behavior
-
-- **During play:** `MUS-battle-loop` loops continuously and does not change.
-- **Pause:** the music pauses and resumes from the same point when play resumes.
-- **Failure (YunqiZ destroyed):** the music stops immediately; `SFX-explode` keeps playing on the effects bus, so only the explosion tail is heard.
-- **Respawn:** the music restarts from the beginning.
-- **Success (an enemy destroyed):** no change to the music.
-- **End of the slice (all enemies destroyed):** the music stops, `SFX-victory` plays, and the victory screen appears.
-- **Mute:** music and effects are on separate audio buses (`Music`, `SFX`), each with its own mute key and on-screen toggle.
-
-## Predicted failure cases and how I will check them
-
-1. **Generated directions drift in proportion.** The five hull and turret directions may come out with different sizes, barrel lengths or stripe positions. *Check:* place each direction over `turnaround.png` at the same height; reject any that break the consistency rules in CHARACTER-SHEET.md.
-2. **Turret and hull do not line up when combined.** The turret pivot may sit in a different place on each hull direction. *Check:* in Godot, rotate through all 8 hull directions with the turret aimed in all 8 directions and screenshot the grid.
-3. **Up and down facings look the same at game size.** The first silhouette test already showed this; the design now adds a front dozer blade and a rear storage box. *Risk:* the generative model may drop, shrink or move the blade or box. *Check:* redo the silhouette test at 64 px on every generated hull direction, and reject any where the blade and box are missing or the facing cannot be read.
-4. **Mirrored directions show a reversed number.** *Check:* screenshot the three mirrored directions in-game and confirm no reversed digits are visible.
-5. **YunqiZ disappears against the ground.** The tank and ground are both desaturated. *Check:* screenshot YunqiZ on `ENV-ground` in normal color and in grayscale; the white stripe and outline must still separate it.
-6. **Realistic detail turns to noise at game size.** *Check:* view every accepted sprite at 100% in-game scale, not only enlarged; simplify or reject sprites whose shape is lost.
-7. **A sound fires twice on one event.** For example, rapid fire, or two shells hitting cover at once. *Check:* an automated test that counts calls to each sound per event while simulating rapid input and simultaneous hits.
-8. **The music loop clicks at the seam.** *Check:* listen through at least three loops on headphones and look at the waveform at the loop point.
-9. **The slice is unreadable when muted.** *Check:* a full muted playthrough; firing, cover damage, player damage, failure and victory must all be visible.
+*(none yet — later corrections are added here with the date and the evidence that caused them)*
 
 ## Authorship note
 
-I chose the full slice scope (enemies that move and fire, failure and respawn). Claude drafted this brief from CONCEPT.md, CHARACTER-SHEET.md and STORYBOARD.md, and proposed the source plan for each asset, the double-trigger rules (reload timer, `has_hit`, invulnerability window, `is_dead`, `level_won`), pausing and resuming the music, separate audio buses, reusing `SFX-fire` for enemies, panel 1 as a stretch goal, and the predicted failure cases (several of them came from risks found while drafting the earlier documents).
-
-
-## Revisions and outcomes (appended after building the slice)
-
-- **Asset sources changed:** `ENEMY-tank` and `ENEMY-wreck` are YunqiZ tinted in code; `CHAR-move` is a code wobble; `CHAR-destroyed` is the darkened sprite; `CHAR-victory` and `FX-*` are not generated (code particles). Panel 1 was not built.
-- **Sound map held:** reload timer, `has_hit`, 0.3 s invulnerability, `is_dead` and `level_won` were implemented as planned; the automated check confirms one sound per event.
-- **Predicted failures, outcome:** (1) drift — held, IoU 0.99 hull / 0.97–0.98 turret; (2) turret alignment — holds at the fixed pivot offset; (3) up/down — fixed by the blade and box; (4) mirrored number — avoided, no number; (5) blending into the ground — happened for the cover on the raw ground, fixed by calming the ground; (6) detail at game size — held; (7) double triggers — none, automated check passes; (8) loop click — loop cut at a bar boundary with a crossfade, no click heard; (9) muted readability — passes.
+I asked Claude to propose three assets that fit walker-TANK and to draft this brief. Claude proposed the three assets, the tank reference size, the dimensions, colours, budgets and failure cases. I chose to use these three assets after looking at Blender's window, and accepted the numbers. Colours reuse the palette from my Assignment 2 character sheet.
