@@ -54,6 +54,12 @@ Every asset is made of cubes only, so 36 triangles each is enough. I set **60 pe
 
 *(none yet — later corrections are added here with the date and the evidence that caused them)*
 
+### 2026-10-15 — Asset 3 `tank_hedgehog`: beam length 2.4 m → 2.125 m
+
+- **Change:** each of the three beams is **2.125 m** long instead of 2.4 m. Section (0.15 × 0.15 m), count (3), arrangement (mutually perpendicular, crossing at their centres, standing on three beam ends, plain orientation with each beam's section aligned to the other two beams), colour and budget are unchanged.
+- **Evidence:** computed before building. With 2.4 m beams in that arrangement, rotated so the group stands on three ends and yawed so the footprint is square, the bounding box is **2.011 × 2.011 × 1.559 m**. The height is 0.159 m over the brief's 1.4 m, **0.009 m outside the ±0.15 m tolerance**. The original numbers used the beam centrelines (end-centre height 2.4/√3 = 1.386 m) and left out the 0.15 m section, which adds about 0.17 m of height. With 2.125 m beams the bounding box is **1.794 × 1.794 × 1.400 m** (height = (L + 0.3)/√3).
+- **Unchanged:** the overall size target, **about 1.9 × 1.9 × 1.4 m (±0.15 m)**, stays as written above. The game design depends on it (lower than the 1.6 m hull, clearly a barrier at hull scale); the beam length was only a construction detail.
+
 ## Authorship note
 
 I asked Claude to propose three assets that fit walker-TANK and to draft this brief. Claude proposed the three assets, the tank reference size, the dimensions, colours, budgets and failure cases. I chose to use these three assets after looking at Blender's window, and accepted the numbers. Colours reuse the palette from my Assignment 2 character sheet.
