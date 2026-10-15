@@ -213,3 +213,61 @@ print("objects:", [o.name for o in bpy.data.objects], "meshes:", [m.name for m i
 if errors:
     raise RuntimeError("cover_wall checks failed: " + "; ".join(errors))
 print("cover_wall checks passed")
+
+# --- Step 7: Hand edit made by the student in Edit Mode (G X 0.6), reproduced here so the
+# script matches the saved .blend. Block B (x 0.4..1.4) moves +0.6 m in X to x 1.0..2.0,
+# flush with the right end. Its vertices are the ones with z 1.5..1.65 and |y| = 0.4; the z
+# band alone would also catch the main box's top and block A's bottom (both at z 1.5, |y| 0.5).
+# Note: the saved .blend measures block B at x 0.9993..1.9993 (moved +0.5993 m, 0.7 mm short
+# of the intended 0.6); this step applies the exact 0.6. Then re-run the step 6b checks. ------
+import bpy
+
+wall = bpy.data.objects["cover_wall"]
+me = wall.data
+block_b = [v for v in me.vertices
+           if 1.5 - 1e-4 <= v.co.z <= 1.65 + 1e-4 and abs(abs(v.co.y) - 0.4) < 1e-4]
+if len(block_b) != 8:
+    raise RuntimeError(f"expected 8 block B vertices, found {len(block_b)}")
+for v in block_b:
+    v.co.x += 0.6
+me.update()
+
+xs = [v.co.x for v in me.vertices]
+ys = [v.co.y for v in me.vertices]
+zs = [v.co.z for v in me.vertices]
+size = (max(xs) - min(xs), max(ys) - min(ys), max(zs) - min(zs))
+tris = sum(len(p.vertices) - 2 for p in me.polygons)
+slots = [s.material.name for s in wall.material_slots]
+bx = [v.co.x for v in block_b]
+errors = []
+if any(abs(a - b) > 1e-4 for a, b in zip(size, (4.0, 1.0, 1.8))):
+    errors.append(f"size {size}")
+if abs(min(zs)) > 1e-4:
+    errors.append(f"lowest z {min(zs)}")
+if abs((max(xs) + min(xs)) / 2) > 1e-4 or abs((max(ys) + min(ys)) / 2) > 1e-4:
+    errors.append("origin not at underside centre")
+if tuple(wall.location) != (0.0, 0.0, 0.0):
+    errors.append(f"location {tuple(wall.location)}")
+if tuple(wall.rotation_euler) != (0.0, 0.0, 0.0) or tuple(wall.scale) != (1.0, 1.0, 1.0):
+    errors.append("rotation/scale not applied")
+if tris > 60:
+    errors.append(f"{tris} triangles > 60")
+if len(wall.modifiers):
+    errors.append("modifiers present")
+if slots != ["M_Brick", "M_BrickDark"]:
+    errors.append(f"slots {slots}")
+mesh_objects = [o.name for o in bpy.data.objects if o.type == "MESH"]
+if mesh_objects != ["cover_wall"]:
+    errors.append(f"mesh objects {mesh_objects}")
+if abs(min(bx) - 1.0) > 1e-4 or abs(max(bx) - 2.0) > 1e-4:
+    errors.append(f"block B x {min(bx)}..{max(bx)}, expected 1.0..2.0")
+
+print("block B x:", round(min(bx), 4), "..", round(max(bx), 4))
+print("size:", tuple(round(s, 4) for s in size), "lowest z:", round(min(zs), 4))
+print("triangles:", tris, "faces:", len(me.polygons), "verts:", len(me.vertices))
+print("slots:", slots, "faces per slot:",
+      [sum(1 for p in me.polygons if p.material_index == i) for i in range(len(slots))])
+print("objects:", [o.name for o in bpy.data.objects], "meshes:", [m.name for m in bpy.data.meshes])
+if errors:
+    raise RuntimeError("cover_wall checks after hand edit failed: " + "; ".join(errors))
+print("cover_wall checks after hand edit passed")
