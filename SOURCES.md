@@ -1,5 +1,34 @@
 # SOURCES — walker-TANK
 
+## Assignment 3 — 3D assets
+
+**Starting point:** my own walker-TANK repository from Assignment 2 (tag/commit submitted for A2). Assignment 3 adds a 3D asset room; the 2D game is unchanged.
+
+**Tools and versions**
+
+- Blender 5.2.2 LTS (blender.org), Windows 11.
+- MCP for Blender, the community project named in the syllabus: Python server run with `uvx mcp-for-blender`, Blender add-on 1.8 (protocol 13). Its asset libraries (Poly Haven, Sketchfab, Poly Pizza) and generators (Hyper3D Rodin, Hunyuan3D, Tripo) were **off** throughout; `generate_3d`, `search_assets`, `import_asset` and `record_trajectory_feedback` are denied in `.claude/settings.json`.
+- uv 0.13.0 (Astral), installed with its PowerShell installer.
+- Claude Code 2.1.292, auto-updated to 2.1.299 during the work; model Opus 5.5, through my Northeastern access.
+- Godot 4.7.2 stable (Windows build).
+- Git for Windows' Git Bash, including GNU coreutils `timeout` 8.32, used for the headless time limit.
+
+**Assets:** all three assets (cover_wall, ammo_crate, tank_hedgehog) were built from Blender cubes by code that Claude ran through the MCP at my direction, plus one hand edit of my own on cover_wall. No downloaded, purchased or AI-generated models, textures or materials were used.
+
+**Colours:** flat Principled BSDF base colours chosen in the brief. The olive `#4B5320` and off-white `#E8E6DF` reuse the palette of my Assignment 2 character sheet; the brick and steel colours were proposed by Claude in the brief and accepted by me.
+
+**What AI contributed and what I decided**
+
+- *Brief:* Claude proposed the three assets, the tank reference size, all dimensions, colours, budgets and failure cases at my request; I accepted them. The hedgehog revision (2.4 m → 2.125 m beams) was my choice; Claude computed the evidence and recommended a different fix, which I rejected.
+- *Blender code:* Claude wrote and ran all build code (`tools/blender/build_*.py`) and the exporter (`tools/blender/export_glb.py`). I read each `execute_blender_code` call before approving it (except a few that ran in auto mode before I noticed; see FRICTIONAL.md), decided the join and save questions, accepted the 0.83 m stripe, and made the hand edit on cover_wall myself.
+- *Godot:* Claude wrote `scenes/asset_room_3d.tscn` and `tests/check_a3_assets.gd`. I asked for the FAIL path to be proved and did the visual checks in the Godot editor myself.
+- *Documents:* Claude drafted BLENDER-NOTES.md, CHANGE-BRIEF.md, TEST-REPORT.md and the A3 part of FRICTIONAL.md from my screenshots and terminal output; I checked them against what happened and corrected them.
+- *Film:* [to add after the film is made: script, beat sheet, visuals, narration voice]
+
+**Collaborators:** none.
+
+---
+
 ## What the project started from
 
 An **empty Godot 4 project**. No code or assets were copied from walker-jumpman or from my Assignment 1 project; only the `walker-` naming convention is reused. The full asset log, with every prompt, seed and setting, is in **[ASSET-LOG.md](ASSET-LOG.md)**; rejected-output thumbnails are in `design/asset-log/rejected/`.

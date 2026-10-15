@@ -1,3 +1,89 @@
+# Assignment 3 — Blender MCP, three 3D assets
+
+*Notes for the first session (night of 13–14 October) were written up on 15 October from my screenshots and terminal output of the session (retrospective, but every entry below is backed by a screenshot I kept).*
+
+**Versions:** Windows 11 · Blender 5.2.2 LTS (installed at `D:\blender\blender.exe`) · MCP for Blender add-on 1.8, protocol 13 · uv 0.13.0 · Claude Code 2.1.292, auto-updated to 2.1.299 during the session · model Opus 5.5 · Godot 4.7.2.
+
+## 1. Brief before building
+
+- Claude proposed the three assets (cover_wall, ammo_crate, tank_hedgehog), the tank reference size and all numbers at my request; I accepted them after looking at Blender's window. I moved the Assignment 2 brief to `docs/a2/` with `git mv` and checked with `git diff HEAD:CHANGE-BRIEF.md docs/a2/CHANGE-BRIEF.md` (no output) that it was unchanged.
+- Brief and interface notes committed before any building: **`e6f9f6f`**.
+
+## 2. Getting the MCP connected (time box started about 22:00, 13 October)
+
+What I expected: the chapter's commands would work after swapping macOS steps for Windows ones. What happened:
+
+1. **uv.** The chapter uses `brew install uv` (macOS). I used uv's PowerShell installer instead; `uv --version` → `uv 0.13.0`. Worked first time.
+2. **Registering the server failed as written.** `claude mcp add -e DISABLE_TELEMETRY=true blender -- uvx mcp-for-blender` gave *"Invalid environment variable format: blender"*: the `-e` option took the server name as another variable. Putting the name first worked: `claude mcp add blender -e DISABLE_TELEMETRY=true -- uvx mcp-for-blender`. `claude mcp list` then said *Connected*. I noted that this only proves Claude Code can start the server process, not that it reaches Blender.
+3. **Add-on install.** `uvx mcp-for-blender install-addon` installed the add-on into Blender 5.2's add-on folder. Its message names the button "Connection to Blender"; the assignment lists three other names (Start MCP Server, Connect to Claude, Connect to MCP server). My panel showed *Connected on port 9876* with a *Disconnect* button.
+4. **A telemetry slip.** When I ran `install-addon` a second time with Blender open, it did not exit: it started a server in that terminal, connected to Blender and queried telemetry consent — without `DISABLE_TELEMETRY` set, because that variable is only in Claude Code's server config. I stopped it with Ctrl+C. I cannot verify whether anything was sent in that window. Afterwards I called the server's own `disable_telemetry` tool; `get_addon_status` then returned `telemetry_consent: false`. The tool's own message says minimal anonymous usage counts (tool name, success, duration) are still collected.
+5. **Tools.** `/mcp` listed 9 tools, matching the 2.1.9 names in the assignment. Four of them can fetch outside content or send data out (generate_3d, search_assets, import_asset, record_trajectory_feedback), so I denied them in `.claude/settings.json` instead of relying only on the prompt. All library and generator checkboxes in the Blender panel stayed off (screenshot).
+6. **Login.** Claude Code auto-updated from 2.1.292 to 2.1.299 on restart, and my first prompt failed with *"Login expired"*. `/login` fixed it.
+7. **Permissions.** Claude Code was in auto mode, which would run tools without asking. Because `execute_blender_code` runs any Python inside Blender, I switched to manual mode and approved each call after reading it. I allowed `look` without asking (read-only screenshot); this created `.claude/settings.local.json`, which I keep out of Git.
+8. **First real check.** `get_scene_info` returned the default scene (Cube 2 × 2 × 2 m at the origin, Light, Camera, Object Mode). This was the first proof that Claude was reading my actual Blender session.
+
+Time box result: the add-on server log shows Blender connected at 22:48; Claude Code's first successful `get_scene_info` on my scene was at about 00:01. That is about two hours from my start, of which I estimate about 100 minutes was MCP work; the rest was the Claude Code auto-update and expired login (step 6), which is not an MCP problem. Because the MCP route was working, I did not use the script route.
+
+**Something I noticed:** every tool call carries a `user_prompt` field with my prompt text, so the MCP server sees what I write to Claude, not only the Blender scene.
+
+## 3. cover_wall
+
+- Claude read the brief and pointed out that it did not give the two top blocks' sizes; it proposed them and asked. It also asked whether to keep three objects or join them. I accepted its sizes and chose to join, because separate top blocks would have their origins at Z = 1.5, not on the floor. I told it to save the live `.blend` but not to save from the script.
+- **Reading the code against the description:** for top block B, the comment said *0.1 m in from the front face*; the code centred it in Y (−0.4 to 0.4), so it is 0.1 m in from *both* faces. Harmless (overall size unchanged), so I left it, but it showed me the description and the code can differ.
+- **A failure:** the join step worked, then raised `AttributeError: 'NoneType' object has no attribute 'select_set'` because the view layer still listed the deleted part objects. Claude refreshed the view layer and re-ran apply-and-check as a separate call, which passed. The build script keeps the join (6a) and the corrected second half (6b), not the failed version, and its header comment says so.
+- **Result in Blender:** 4.0 × 1.0 × 1.8 m, lowest Z 0.0, origin at the underside centre, scale 1, 1, 1, 36 triangles (budget 60), 0 non-manifold edges, two material slots, no modifiers.
+- **Background rebuild:** Claude could not find Blender at the default `C:\Program Files` path; it read `bpy.app.binary_path` from my session (`D:\blender\blender.exe`). Then `blender.exe -b --factory-startup --python-exit-code 1 --python tools/blender/build_cover_wall.py` printed the same numbers, *cover_wall checks passed*, **exit code 0**. It also printed a DeprecationWarning: `Material.use_nodes` will be removed in Blender 6.0.
+- What its check does not cover: it checks material slot names, not colour values, and it says nothing about how the asset looks after export to Godot.
+- Committed: **`7d8fbf0`**.
+
+## 4. ammo_crate (15 October; sections 4–7 written the same day)
+
+- Before building I noticed the brief's size left out the lid: the lid overhangs 0.02 m on each side and the stripe adds 0.01 m, so the real box is 1.24 × 0.84 × 0.71 m, not 1.2 × 0.8 × 0.7. Inside the ±0.1 m tolerance, so I told Claude to check against both.
+- I also told Claude about cover_wall's `select_set` error. Its plan joined and baked transforms with bmesh and no operators at all, so that error could not recur.
+- Claude pointed out, unasked, that a stripe as deep as the lid (0.84 m) would share the lid's front and back faces and might flicker (z-fighting). **I accepted its suggestion** to make the stripe 0.83 m.
+- **It worked first time:** every step succeeded on the first call. I checked it by the background rebuild (`checks passed`, exit 0, 36 triangles, +0.04 / +0.04 / +0.01 m from the brief, within tolerance) and by looking at it in Blender.
+
+## 5. tank_hedgehog
+
+- I asked Claude to calculate the bounding box *before* building and to stop if it was outside the brief's tolerance. It computed with NumPy, before building anything, that 2.4 m beams would give 2.011 × 2.011 × **1.559** m: 0.009 m over the height tolerance, because the brief's numbers used beam centrelines and ignored the 0.15 m section. It stopped and offered three options. (The 1.559 m figure is a calculation, never built; only the final 2.125 m version was measured in Blender.)
+- **I rejected Claude's recommendation** (turn each beam 45° on its own axis, 1.508 m high) and chose to shorten the beams to 2.125 m (exactly 1.400 m high). My reason: the overall size is what my game design depends on (lower than the 1.6 m hull, a barrier at hull scale); the beam length was a construction detail and was the wrong number. Claude added a dated entry under *Revisions* in the brief; I checked that it only appended and did not change the original text.
+- Result: 1.794 × 1.794 × 1.400 m, exactly 3 vertices at Z = 0 (checked by the script), 36 triangles, background rebuild exit 0.
+- Claude flagged afterwards that the "apply rotation" step had nothing to do, because the rotation was already baked during the join (`identity: True`). So that step never tested a real rotation; the result is still correct.
+- Commits: ammo_crate `3b73208`, tank_hedgehog and the brief revision `90f403b`.
+
+## 6. My hand edit
+
+- **What and why:** on cover_wall, I selected the lower top block (block B) in Edit Mode with L and moved it +0.6 m along X (G X 0.6), so it is flush with the right end. From the game's top-down camera, two broken stubs with a gap in the middle read more like a shell-damaged wall than one block in the middle.
+- **What it taught me:** moving part of a joined mesh in Edit Mode changes only the vertices; the object's location, rotation and scale stayed 0 / 0 / 1, so the origin stayed on the floor and nothing needed re-applying. In the front view the block looked as if it stuck out past the wall; my sidebar said 4 m, so I trusted the number over my eye.
+- **But the sidebar was not precise enough.** Claude's read-only background inspection of the saved file showed block B had moved 0.5993 m, 0.7 mm short; the sidebar rounds to display precision, so it could not show this. I corrected by hand (G X 0.0007), computed from a 4-decimal printout that was itself rounded, so it then overshot by 0.032 mm. That is inside the build check's 0.1 mm tolerance and far below anything visible, so I stopped. Next time I would type the target coordinate into the sidebar instead of nudging with G.
+- Claude added the edit to `build_cover_wall.py` as a separate, clearly labelled step 7, so the script rebuilds the final asset. Commit `4846465`.
+- **Two process slips here.** (1) While doing this I found Claude Code had switched back to **auto mode**: the script append and a background run were "Allowed by auto mode classifier" without my approval. Nothing harmful ran, but I only noticed afterwards; I switched back to manual mode. (2) Claude then wanted to run a temporary inspection script I could not see. I refused, asked to see its full contents, checked it had no save or export calls, and only then approved it.
+
+## 7. Export and Godot
+
+- Claude checked the glTF exporter's option names in Blender 5.2 before exporting, then wrote `tools/blender/export_glb.py` (GLB, +Y Up, materials on, no cameras, lights or animation) and ran it in background Blender for each `.blend`. Godot's `--import` exited 0 and did not change any A2 `.import` file.
+- Claude converted my brief's sizes from Blender Z-up to Godot Y-up for the check (for example the crate is 1.24 × 0.71 × 0.84 in Godot).
+- `tests/check_a3_assets.gd`: **18 / 18 PASS, exit 0**. Windows has no macOS `timeout`; Claude used Git Bash's GNU `timeout` (coreutils 8.32), because Windows' `timeout.exe` only waits.
+- **I asked for the FAIL path to be proved**, since a check that has never failed may be broken. A scratch copy with ammo_crate's expected height changed to 0.81 printed 2 FAILs and exited with code 1. Commit `ee1c67a`.
+- **My own look in the Godot editor:** top, rear and bottom views of each asset. The crate's stripe is the most readable feature from above; the hedgehog reads as crossing beams; every shadow meets its asset's base; I saw no missing faces or wrong colours. Unresolved: with one light and no ambient fill, faces away from the light are very dark.
+- For merging these documents I switched Claude Code to accept-edits mode (file edits auto-approved, commands still asked) and checked the result afterwards with git diff instead: only added lines, and A2 text unchanged except the one TEST-REPORT link in README's A2 section, which I changed on purpose because the A2 report moved to docs/a2/.
+
+## Who did what
+
+- **Claude:** proposed the assets and numbers, wrote all the Blender code and the build scripts, ran the checks, and drafted these notes from my screenshots.
+- **Me:** accepted the assets, made the join and save decisions, chose 2.125 m beams over Claude's recommendation, made the hand edit and its correction, switched to manual mode and read each code call before approving (and refused an unseen script until I had read it), added the deny rules, caught the telemetry issue, asked for the FAIL path to be proved, kept `.blend1` and `settings.local.json` out of Git, and looked at each asset in Blender and Godot myself.
+- **Accepted:** the stripe made 0.83 m to avoid z-fighting; the operator-free join.
+- **Rejected or changed:** the chapter's `claude mcp add` command order (changed); auto mode (rejected); letting the script save the `.blend` (rejected); Claude's 45° beam option for the hedgehog (rejected, with my reason).
+
+## Unresolved
+
+- Whether anything was sent during the unguarded `install-addon` server run.
+- What "minimal anonymous usage counts" includes in practice.
+- How the colours look under the game's real lighting (only one light here).
+- Why the hand edit moved 0.5993 m when I typed 0.6.
+
+---
+
 # FRICTIONAL — walker-TANK
 
 How the design went, in order. **Retrospective note:** this log was put together on 2026-10-05 from my chat with Claude, the settings ComfyUI saved inside each output file, my screenshots and the commits. Claude organized it; the decisions and the reasons quoted are mine from that chat. Asset-log rows are in [ASSET-LOG.md](ASSET-LOG.md).

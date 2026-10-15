@@ -1,6 +1,6 @@
 # BLENDER-NOTES — learning Blender's window
 
-Blender version: 5.2 (as shown at the right end of the status bar; the course chapter used 5.1.2) · OS: Windows 11 · Interface language: Simplified Chinese
+Blender version: 5.2.2 LTS (reported by the MCP server log; the course chapter used 5.1.2) · OS: Windows 11 · Interface language: Simplified Chinese
 
 This was a short session with no prompting: I opened Blender with the default scene (cube, light, camera), orbited, panned and zoomed the viewport, opened the sidebar, and switched between Object Mode and Edit Mode on the default cube. My Blender runs in Chinese, so the Chinese labels I see are given in brackets.
 

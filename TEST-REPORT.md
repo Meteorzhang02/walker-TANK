@@ -1,105 +1,80 @@
-# TEST-REPORT — walker-TANK
+# TEST-REPORT — Assignment 3: three 3D assets
 
-- **Source revision tested:** `4616fc7` (the same game source as the film)
-- **Engine:** Godot v4.7.2.stable.official (ed1daf0bf), Windows
-- **Tester:** me (Yunqi Zhang). No other playtesters; none are claimed.
-- **Screenshots:** `design/test/`
+The Assignment 2 report has moved, unchanged, to `docs/a2/TEST-REPORT.md`.
+
+**Versions:** Blender 5.2.2 LTS · MCP for Blender add-on 1.8 (protocol 13) · Godot 4.7.2 · Claude Code 2.1.299 (Opus 5.5) · Windows 11, RTX 3060 laptop.
+
+**How to re-run the checks (Windows, Git Bash, from the repo root):**
+
+```bash
+# Blender: rebuild each asset from scratch and check it (exit 0 = pass)
+"/d/blender/blender.exe" -b --factory-startup --python-exit-code 1 --python tools/blender/build_cover_wall.py
+# (same for build_ammo_crate.py and build_tank_hedgehog.py)
+
+# Godot: import, then the headless asset check (exit 0 = all pass, 1 = any FAIL, 124 = time limit hit)
+GODOT="/d/CSYE7270/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe"
+"$GODOT" --headless --path . --import
+timeout 120 "$GODOT" --headless --path . --script res://tests/check_a3_assets.gd --fixed-fps 60
+```
+
+The course commands are written for macOS. On Windows I use Git Bash's GNU `timeout` (coreutils 8.32), because Windows' own `timeout.exe` only waits and does not stop a program; and `--path .` because my Godot project is the repo root, not a `godot/` folder.
 
 ## Results
 
-| Check | Result | Evidence |
+All sizes in metres. Blender is Z-up, Godot is Y-up, so a Blender (x, y, z) size appears in Godot as (x, z, y).
+
+| Check | cover_wall | ammo_crate | tank_hedgehog |
+|---|---|---|---|
+| **Brief** (w × d × h) | 4.0 × 1.0 × 1.8 | 1.2 × 0.8 × 0.7 (±0.1) | about 1.9 × 1.9 × 1.4 (±0.15) |
+| **Blender** (x × y × z; build-script check; my sidebar for cover_wall) | 4.0 × 1.0 × 1.8 | 1.24 × 0.84 × 0.71 | 1.794 × 1.794 × 1.400 |
+| **Godot headless** (x × y × z) | 4.000032 × 1.8 × 1.0 | 1.24 × 0.71 × 0.84 | 1.794236 × 1.400074 × 1.794236 |
+| Matches brief? | yes | yes, +0.04 / +0.04 / +0.01, inside ±0.1 | yes after the revision below; height exact |
+| **Upright** (height on Godot Y) | PASS | PASS | PASS |
+| **Root node scale** in Godot | 1, 1, 1 | 1, 1, 1 | 1, 1, 1 |
+| **Lowest Y** in Godot (origin on floor) | 0.0000 | 0.0000 | 0.0000 (3 vertices at Blender Z = 0) |
+| **Triangles** (budget 60) | 36 | 36 | 36 |
+| **Background rebuild** in Blender | exit 0 | exit 0 | exit 0 |
+| **Godot check** overall | 18 / 18 PASS, exit 0 | | |
+
+Every number above comes from a script output I kept (Blender build-script runs, and `tests/check_a3_assets.gd`, commit `ee1c67a`).
+
+## The check failing on purpose
+
+A check that has never failed may be broken. Claude ran a scratch copy of `check_a3_assets.gd` whose only difference (confirmed with `diff`) was ammo_crate's expected height changed from 0.71 to 0.81. It printed two FAIL lines and `RESULT: FAIL (2 failure(s))` with **exit code 1**; the other 16 checks still passed. The real script and the assets were not changed.
+
+## What the checks do and do not show
+
+- **The Blender build scripts** show that each asset can be rebuilt from nothing with the stated size, origin, applied transforms, triangle count and material slot *names*. They do not check colour values, and they say nothing about the asset after export.
+- **The tank_hedgehog script's "apply rotation" step tested nothing.** The beams' rotation was already baked into the mesh during the join, so the bake step found identity transforms (it printed `identity: True`). The result is correct, but that step never had a real rotation to apply.
+- **The Godot check** measures each `.glb` on its own, instantiated at the origin: size, lowest Y, root scale and the height axis, to 0.01 m. It does **not** check the copies placed in `asset_room_3d.tscn`, whether they rest on the floor there, colours, lighting, shadows, or whether the shapes read as what they are. Headless Godot uses a dummy renderer, so none of that is visible to it.
+- **Hidden faces:** each asset is made of overlapping boxes, so faces inside the asset (the crate lid's underside, the wall's block bottoms, the hedgehog's crossing) still count towards the 36 triangles. They are never visible, so I left them.
+
+## Problems found and what I changed
+
+1. **tank_hedgehog's brief was wrong (evidence-based revision).** I asked Claude to work out the bounding box *before* building. With the brief's 2.4 m beams it came to 2.011 × 2.011 × **1.559** m, 0.009 m over the height tolerance, because the brief's numbers used the beam centrelines and left out the 0.15 m section. Claude recommended turning each beam 45° to fit. I chose instead to shorten the beams to **2.125 m**, because the overall size is what the game design depends on (lower than the 1.6 m hull, a barrier at hull scale), while the beam length was only a construction detail and was the number that was wrong. Result: 1.794 × 1.794 × 1.400 m. The change is recorded under *Revisions* in `CHANGE-BRIEF.md`; the original text is unchanged.
+2. **ammo_crate's brief size left out the lid.** The brief lists the body size, but the lid overhangs by 0.02 m on each side and the stripe adds 0.01 m, so the real box is 1.24 × 0.84 × 0.71 m. Inside the ±0.1 m tolerance, so I kept it; the build script checks both the exact size and the brief tolerance.
+3. **ammo_crate z-fighting avoided.** Claude noticed before building that a stripe exactly as deep as the lid (0.84 m) would share the lid's front and back faces and could flicker. I accepted its suggestion to make the stripe 0.83 m deep. The overall size did not change.
+4. **My hand edit on cover_wall was 0.7 mm short.** I moved block B +0.6 m in Edit Mode. My sidebar then showed 4 m wide and I thought it was flush. Claude's read-only background inspection showed it had moved 0.5993 m, 0.7 mm short: **the sidebar rounds, so it could not show that error.** My correction (G X 0.0007, computed from a 4-decimal printout that was itself rounded) overshot by 0.032 mm. That is inside the build check's 0.1 mm tolerance and far below anything visible, so I stopped there. Lesson: to place something exactly, type the coordinate into the sidebar instead of nudging with G; and decide the tolerance first, then stop when inside it.
+
+## HUMAN CHECK: look
+
+*My own observations in the Godot editor (`scenes/asset_room_3d.tscn`), with the grey 6.0 × 1.6 × 3.4 m box standing in for the YunqiZ hull. Screenshot: `design/godot/asset_room_3d.png`.*
+
+- **From the top** (the game's camera direction): the ammo crate's off-white stripe is the most readable feature in the scene, which is what the brief wanted. The hedgehog reads as three crossing beams. The wall's shadow shows its broken top, higher on the left.
+- **Floor contact:** every asset casts a shadow that meets its base; none of them floats. (This is the check the headless script cannot do for the scene copies.)
+- **Scale:** next to the hull box, the wall is wider than the hull is deep and lower than the turret would be, the crate is small enough to drive over, and the hedgehog is clearly lower than the hull. All three look in proportion.
+- **From behind and below:** I switched the editor to the rear and bottom views for each asset. I saw no missing faces and no wrong colours; I found no problems to fix.
+- **Not resolved:** with one light and no ambient fill, faces turned away from the light are very dark. The brief asked for one light; whether the game's real lighting suits these colours is not tested here.
+
+## Brief failure cases, predicted vs. what happened
+
+| # | Predicted | What happened |
 |---|---|---|
-| Startup and controls | Runs from the editor (F5). Movement (WASD / arrows), mouse aim, fire (LMB / Space), pause (Esc / P), music mute (M), sound mute (N) and restart after victory (R) all work. **Fresh copy:** cloned `4616fc7` from GitHub into a new folder, imported it in Godot 4.7.2 and ran it: the game started and every sprite, sound and music file was present. | `play-01` to `play-05` |
-| Character against the sheet | See the section below. | `gallery-yunqiz.png`, `design/asset-log/check_final_8dir.png` |
-| Storyboard against the slice | Panels 2–8 covered; panel 1 not built. See the section below. | `play-01` to `play-05`, `play-06` |
-| Sound events | With sound on, fire, cover hit, YunqiZ hit, explosion and victory each played once per occurrence, including holding fire and rapid presses (holding fire repeats at the 0.8 s reload rate, one sound per shell). Also covered by the automated check. | own playtest; `automated-test-result.png` |
-| Music | The loop repeated without a click or gap. Pausing paused it and resuming continued from the same point; being destroyed cut it to silence (explosion tail only); respawning restarted it; victory stopped it before the victory sound. Behaves as CHANGE-BRIEF predicted. I also played full rounds with the music on and did not hear a click at the loop point. | own playtest |
-| Muted play | With music and sound both off (M, N), a full round was playable and readable: muzzle flash and shell trails show firing, debris and the cover's cracked and broken stages show cover hits, the hit flash, health bar, smoke and fire show damage, the explosion and wreck show destruction, and the victory panel shows the end. | `play-05-muted.png` |
-| Automated check | 8 / 8 pass (below). | `automated-test-result.png` |
+| 1 | Lying on its side (Z-up vs Y-up) | Did not happen; height is on Godot Y for all three |
+| 2 | Scale or rotation not applied | Did not happen; scale 1, 1, 1 in Blender and Godot. Building from mesh data meant scale was never non-1 |
+| 3 | Origin in the middle, floats or sinks | Did not happen; lowest Y 0.0000 in Godot |
+| 4 | Claude builds more than asked | Did not happen; 36 triangles each, 3 boxes each |
+| 5 | Colours lost on export | Did not happen; colours visible in the Godot screenshot (checked by eye, not measured) |
+| 6 | MCP will not connect on Windows | Connected, after one failed command (see FRICTIONAL.md) |
 
-## Automated check
-
-`tests/test_sound_triggers.gd` drives the real game scene and counts how many times each event asks for a sound.
-
-```bash
-godot --headless --path . -s res://tests/test_sound_triggers.gd
-```
-
-(On my machine: `"/d/CSYE7270/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe"` in place of `godot`; open the project in the editor once first so the assets are imported.)
-
-Result:
-
-```
-PASS  10 fire presses in one frame -> 1 shell, 1 fire sound
-PASS  fire again after reload -> 2nd fire sound
-PASS  one shell touching cover twice -> 1 cover-hit sound
-PASS  two shells in one frame -> 2 more cover-hit sounds, cover cracked
-PASS  two hits within 0.3 s -> 1 hit sound, damage applied once
-PASS  fatal hit -> 1 explosion, 0 hit sounds, dead
-PASS  last enemy destroyed twice -> 1 victory sound
-PASS  SFX muted -> enemy still damaged, cover still breaks
-RESULT: 0 failed
-```
-
-Godot also prints ObjectDB leak warnings when the headless run exits. They come from quitting the engine, not from a failed check. Freeing the scene before quitting did not remove them; they are harmless and still printed. No assertion was removed or weakened.
-
-## Character against the sheet
-
-`design/test/gallery-yunqiz.png` (from `scenes/gallery.tscn`, F6). The first gallery screenshot (`gallery-yunqiz_v1-turret-bug.png`) showed every turret pointing the same way: the gallery used the player script, so the turrets followed the mouse. The gallery now uses the base tank script; the game itself was not affected. The gallery shows YunqiZ in all 8 facings at 2x game size, the idle, smoke, fire and destroyed states, the enemy tint, and the collision circle on each.
-
-| Sheet pose | In the slice | Note |
-|---|---|---|
-| 1 Turnaround, 2 Silhouette | 5 generated facings + 3 mirrored, all present | Outlines match the guides (IoU 0.99 hull, 0.97–0.98 turret) |
-| 3 Idle | Slight engine shake (code) | |
-| 4 Moving | Track rumble wobble (code) | No separate track-rolling frames were generated |
-| 5 Firing | Code muzzle flash | Not a generated overlay |
-| 6 Recoil | Code offset of hull and turret | As planned |
-| 7 Hit | Code white flash | As planned |
-| 8 Light damage, 9 Heavy damage | Code smoke and fire particles at ≤60% and ≤30% health | Planned as generated overlays; made in code for time |
-| 10 Destroyed | Darkened sprite + smoke | No separate generated wreck pose |
-| 11 Victory | Not made | Victory screen uses the right-facing sprite instead |
-
-**Collision:** the circle (r = 16.6 px) matches the plan; the dozer blade, storage box, hull corners and barrel extend past it, as the sheet says. **Known mismatch:** the up and right turrets have no cupola (see ASSET-LOG).
-
-## Storyboard against the slice
-
-| Panel | In-engine screenshot | Differences |
-|---|---|---|
-| 1 Opening top-down zoom | — | **Not built.** The slice starts in the gameplay view. |
-| 2 Fire from cover | `play-01-normal-combat.png` (shells in flight) | Same oblique view, no zoom difference; muzzle flash is a code particle. |
-| 3 Cover breaking | `play-02-cover-destroyed-victory.png` (broken covers with rubble) | Broken cover no longer blocks, as designed. |
-| 4 Enemy destroyed | `play-02`, `play-03` (dark enemy wrecks) | No camera close-up; screen shake is used instead. Explosion is a code particle. |
-| 5 Taking damage | `play-03-victory-player-burning.png` (YunqiZ burning) | Smoke and fire are code particles. |
-| 6 Failure | `play-06-destroyed.png` ("YunqiZ destroyed - respawning", empty health bar, wreck) | No close-up; music cut to silence as planned. |
-| 7 Respawn | `play-07-respawn.png` (back at the spawn point, full green health bar) | Wrecks stay on the map, as planned. |
-| 8 Victory screen | `play-02`, `play-03` | No low-angle illustration (pose 11 not made); right-facing sprite instead. |
-| (Pause) | `play-04-paused.png` | — |
-
-**Enemy tanks:** the storyboard showed separate enemy designs; the slice uses the YunqiZ sprites tinted grey in code. In the screenshots the enemies still read close to YunqiZ's olive, and are told apart mainly by YunqiZ's white stripe and the grey cast. Logged as a known issue.
-
-## Inspect-and-revise cycles
-
-Each was driven by an observation and is recorded in ASSET-LOG.md or FRICTIONAL.md.
-
-1. **Silhouette test → design change:** up and down facings looked the same at 64 px; added a front dozer blade and rear storage box, then redid the silhouette test.
-2. **Flat guide → v2 guide:** img2img on the v1 box guide gave flat color blocks at 0.55 and 0.70 and lost the blade at 0.80; the guide was redrawn with gradients, grain and structure (v2), which gave realistic hulls at 0.55 with the shape kept.
-3. **Square barrel → v3 guide:** the right turret came out with a square barrel and the down-right one with a round barrel; the turret guide was redrawn with a round barrel and muzzle.
-4. **Cutout removed the blade:** the first cutout kept only the largest piece and dropped the separate dozer blade on the right hull; caught on the check sheet and fixed.
-5. **Cannon sound → sampler settings:** the first `SFX-fire` was seven noisy bursts with clipping; the FLAC metadata showed the template's 50 steps / cfg 7.0 (meant for the Medium model); changed to 8 steps / cfg 1.0 and regenerated.
-6. **Busy ground → calmed ground:** in the game-scale scene test the cover almost disappeared into the raw ground; the ground was blurred, lowered in contrast and darkened, and the test repeated (`check_scene_v1.png` → `check_scene_v2.png`).
-7. **Gallery bug:** the first gallery screenshot showed all turrets aimed at the mouse; fixed in the gallery script and re-captured.
-8. **Playtest → health bar:** in my screenshots the default grey health bar was hard to read on the dark ground; it now fills green / yellow / red by health.
-
-## Code problems found while testing
-
-- `enemy.gd` failed to parse in Godot 4.7 (type inference on an untyped target). Fixed by typing the variable.
-- The first project copy was unzipped into a separate folder and Godot could not write to it; moved into the `walker-TANK` repository.
-
-## My playtest notes and what is still uncertain
-
-- No sound or music faults found with sound on; the slice was readable muted.
-- **Turret turning** could feel more responsive, and **hull turning** more natural (it snaps between the 8 facings).
-- **Enemy tanks** should look different from YunqiZ, not only tinted.
-- **HUD text** (labels at the top and the control hint at the bottom) has fairly low contrast against the ground; readable, but a candidate fix. Found by the film's QC.
-- The explainer film's gameplay is scripted input driven by the capture tool, labelled in the film as not a human playtest; my own playtest is the one described above.
-- Not tested: other people playing; laptop speakers for the low-frequency cannon and explosion (ASSET-LOG known issue); difficulty balance.
+Not predicted: the hedgehog's brief size being wrong, the crate's lid overhang, and a Blender error (`AttributeError ... 'select_set'`) during cover_wall's join.
