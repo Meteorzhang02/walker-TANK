@@ -1,0 +1,21 @@
+[typecheck] wrote D:\CSYE7270\assignment2\walker-TANK-a3-film\claude-liam-walker-tank-a3-assets\TYPECHECK.md
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 B01: SKIP
+[typecheck] §8.10 B02: SKIP
+[typecheck] §8.10 B03: SKIP
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 B05: SKIP
+[typecheck] §8.10 B06: SKIP
+[typecheck] §8.10 B07: SKIP
+[typecheck] §8.10 B08: SKIP
+[typecheck] §8.10 B09: SKIP
+[typecheck] §8.10 B10: SKIP
+[typecheck] §8.10 B11: 0.71
+[typecheck] §8.10 B12: SKIP
+[typecheck] §8.10 B13: SKIP
+[typecheck] GATE T: PASS
+[art] motion histogram: graphic:13  video:1
+[art] build stamp → beat_sheet.json (14/14 filled)
+[art] wrote D:\CSYE7270\assignment2\walker-TANK-a3-film\claude-liam-walker-tank-a3-assets\exports\landscape\claude-liam-walker-tank-a3-assets.mp4  (218.6s, audio: per-beat timeline (source audio preserved), drawtext: yes)
+[art] slots: 14/14 filled — B00:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO B08:VIDEO B09:VIDEO B10:VIDEO B11:VIDEO B12:VIDEO B13:VIDEO
+EXPORT_EXIT=0

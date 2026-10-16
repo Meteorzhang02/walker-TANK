@@ -1,0 +1,28 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+--- cover_wall (res://assets/models/cover_wall.glb)
+PASS  cover_wall loads as PackedScene
+PASS  cover_wall has mesh instances (1)
+      aabb position (-2.0, 0.0, -0.5)  end (2.000032, 1.8, 0.5)
+PASS  cover_wall size (4.000032, 1.8, 1.0) vs brief (4.0, 1.8, 1.0) (diff 0.0000, 0.0000, 0.0000; tol 0.01)
+PASS  cover_wall lowest y 0.0000 (want 0.00 +/-0.01)
+PASS  cover_wall root scale (1.0, 1.0, 1.0) (want 1, 1, 1)
+PASS  cover_wall height (1.800 m) is on axis ["y"] (want y)
+--- ammo_crate (res://assets/models/ammo_crate.glb)
+PASS  ammo_crate loads as PackedScene
+PASS  ammo_crate has mesh instances (1)
+      aabb position (-0.62, 0.0, -0.42)  end (0.62, 0.71, 0.42)
+PASS  ammo_crate size (1.24, 0.71, 0.84) vs brief (1.24, 0.71, 0.84) (diff 0.0000, 0.0000, 0.0000; tol 0.01)
+PASS  ammo_crate lowest y 0.0000 (want 0.00 +/-0.01)
+PASS  ammo_crate root scale (1.0, 1.0, 1.0) (want 1, 1, 1)
+PASS  ammo_crate height (0.710 m) is on axis ["y"] (want y)
+--- tank_hedgehog (res://assets/models/tank_hedgehog.glb)
+PASS  tank_hedgehog loads as PackedScene
+PASS  tank_hedgehog has mesh instances (1)
+      aabb position (-0.897118, 0.0, -0.897118)  end (0.897118, 1.400074, 0.897118)
+PASS  tank_hedgehog size (1.794236, 1.400074, 1.794236) vs brief (1.794, 1.4, 1.794) (diff 0.0002, 0.0001, 0.0002; tol 0.01)
+PASS  tank_hedgehog lowest y 0.0000 (want 0.00 +/-0.01)
+PASS  tank_hedgehog root scale (1.0, 1.0, 1.0) (want 1, 1, 1)
+PASS  tank_hedgehog height (1.400 m) is on axis ["y"] (want y)
+RESULT: PASS (0 failure(s))
+check_exit=0

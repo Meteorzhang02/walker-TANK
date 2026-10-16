@@ -11,9 +11,9 @@ Assignment 3 adds a 3D asset room to this repository; the 2D game from Assignmen
   - `tank_hedgehog` — three crossed steel beams, 1.794 × 1.794 × 1.400 m
 - **Build and export scripts:** `tools/blender/build_cover_wall.py`, `build_ammo_crate.py`, `build_tank_hedgehog.py` rebuild each asset from nothing and check it; `tools/blender/export_glb.py` exports a `.blend` to `.glb`.
 - **Headless check:** `tests/check_a3_assets.gd` measures each `.glb` in Godot (size, lowest Y, root scale, height axis): 18 / 18 PASS.
-- **Final film:** [link to be added]
+- **Final film:** [Watch on Google Drive](https://drive.google.com/file/d/1tCX0BUF_Jx4Uj2bW2vaNanxA3WYCKaQn/view?usp=drive_link) — `claude-liam-walker-tank-a3-assets.mp4` (3840×2160 landscape, 3:39), SHA-256 `b91f985d83d7ffed36f941aef078ee3efa676d958c6f58b1ad84931d95c98d8c`. It shows game-source revision `9baa12c`. Its beat sheet, script and evidence are in `youtube/claude-liam-walker-tank-a3-assets/`; the MP4 itself is not in Git.
 
-**Versions:** Godot 4.7.2 · Blender 5.2.2 LTS · MCP for Blender add-on 1.8 · Windows 11.
+**Versions:** Godot 4.7.2 · Blender 5.2.2 LTS · MCP for Blender add-on 1.8 (protocol 13) · Claude Code 2.1.299 (Opus 5.5) · Windows 11.
 
 ### Rebuild, export, import, check (Windows, Git Bash, from the repo root)
 
@@ -42,6 +42,8 @@ timeout 120 "$GODOT" --headless --path . --script res://tests/check_a3_assets.gd
 - tank_hedgehog's "apply rotation" build step had no real rotation to apply (already baked during the join), so that step is untested.
 - ammo_crate is 1.24 × 0.84 × 0.71 m, not the brief's 1.2 × 0.8 × 0.7, because the lid overhang and stripe were left out of the brief; it is inside the ±0.1 m tolerance.
 - The cover_wall hand edit overshoots by 0.032 mm, inside the build check's 0.1 mm tolerance.
+- The film shows my Blender session as my own screenshots (stills), not a screen recording, and the Godot scene with a static camera.
+- The film shows Claude's plan and report but not the text of my prompt (my screenshots do not include it). In its last second the toolkit's locked outro mascot overlaps the @NikBearBrown handle.
 
 Full details: [TEST-REPORT](TEST-REPORT.md) · [BLENDER-NOTES](BLENDER-NOTES.md) · [CHANGE-BRIEF](CHANGE-BRIEF.md) · [FRICTIONAL](FRICTIONAL.md) · [SOURCES](SOURCES.md). The Assignment 2 test report is in [docs/a2/TEST-REPORT.md](docs/a2/TEST-REPORT.md).
 

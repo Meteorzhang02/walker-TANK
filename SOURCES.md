@@ -12,6 +12,7 @@
 - Claude Code 2.1.292, auto-updated to 2.1.299 during the work; model Opus 5.5, through my Northeastern access.
 - Godot 4.7.2 stable (Windows build).
 - Git for Windows' Git Bash, including GNU coreutils `timeout` 8.32, used for the headless time limit.
+- Brutalist (course-provided; `brutalist.art` checkout at commit `22264a3`) with Remotion and local Kokoro TTS, for the film.
 
 **Assets:** all three assets (cover_wall, ammo_crate, tank_hedgehog) were built from Blender cubes by code that Claude ran through the MCP at my direction, plus one hand edit of my own on cover_wall. No downloaded, purchased or AI-generated models, textures or materials were used.
 
@@ -23,7 +24,7 @@
 - *Blender code:* Claude wrote and ran all build code (`tools/blender/build_*.py`) and the exporter (`tools/blender/export_glb.py`). I read each `execute_blender_code` call before approving it (except a few that ran in auto mode before I noticed; see FRICTIONAL.md), decided the join and save questions, accepted the 0.83 m stripe, and made the hand edit on cover_wall myself.
 - *Godot:* Claude wrote `scenes/asset_room_3d.tscn` and `tests/check_a3_assets.gd`. I asked for the FAIL path to be proved and did the visual checks in the Godot editor myself.
 - *Documents:* Claude drafted BLENDER-NOTES.md, CHANGE-BRIEF.md, TEST-REPORT.md and the A3 part of FRICTIONAL.md from my screenshots and terminal output; I checked them against what happened and corrected them.
-- *Film:* [to add after the film is made: script, beat sheet, visuals, narration voice]
+- *Film:* made by **Claude Code** (in auto mode, with my written limits; see FRICTIONAL.md section 8) with the course-provided **Brutalist** toolkit, `godot-gamedev` skill in `walker` mode. Claude Code wrote the beat sheet and narration script from my CHANGE-BRIEF, TEST-REPORT, FRICTIONAL and SOURCES, recorded the running `asset_room_3d.tscn` with Godot's Movie Maker from a `git archive` copy of `9baa12c` (only that copy's `project.godot` got a 4K window override), voiced it with the local Kokoro voice `am_onyx` (no paid TTS or media generation), and rendered it with Remotion. The Blender stills are my own screenshots, labelled as such in the film. I wrote the requirements, supplied the screenshots, and watched the final film. It built the film outside my repo; I copied its records (without media) into `youtube/claude-liam-walker-tank-a3-assets/`. No toolkit file was changed for this film; the only local toolkit edit is the A2 footer edit from 2026-10-07 (see FRICTIONAL).
 
 **Collaborators:** none.
 
