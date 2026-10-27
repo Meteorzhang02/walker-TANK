@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Material" path="res://materials/hint_srgb.tres" id="1_srgb"]
+[ext_resource type="Material" path="res://materials/hint_raw.tres" id="2_raw"]
+
+[sub_resource type="QuadMesh" id="Mesh_quad"]
+size = Vector2(4.5, 1.5)
+
+[sub_resource type="Environment" id="Env_hint"]
+background_mode = 1
+background_color = Color(0.5, 0.5, 0.5, 1)
+tonemap_mode = 0
+tonemap_exposure = 1.0
+ssr_enabled = false
+ssao_enabled = false
+ssil_enabled = false
+sdfgi_enabled = false
+glow_enabled = false
+fog_enabled = false
+volumetric_fog_enabled = false
+adjustment_enabled = false
+
+[node name="HintExperiment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env_hint")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+current = true
+
+[node name="QuadA_srgb" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0)
+mesh = SubResource("Mesh_quad")
+material_override = ExtResource("1_srgb")
+
+[node name="Label3D" type="Label3D" parent="QuadA_srgb"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+text = "A: hint_srgb (source_color)"
+font_size = 64
+
+[node name="QuadB_raw" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0)
+mesh = SubResource("Mesh_quad")
+material_override = ExtResource("2_raw")
+
+[node name="Label3D" type="Label3D" parent="QuadB_raw"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, 0)
+text = "B: hint_raw (no source_color)"
+font_size = 64

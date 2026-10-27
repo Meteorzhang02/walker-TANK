@@ -1,0 +1,86 @@
+Read CLAUDE.md and CHANGE-BRIEF.md, including its Revisions section, first.
+The shaders shaders/brick_surface.gdshader and shaders/hint_experiment.gdshader
+are already written by the human and committed. Never create, edit, reformat or
+fix any file in shaders/. If a shader looks wrong or does not compile, stop and
+report it.
+
+Task: build the materials and scenes the brief's sections 4 and 5 (as revised)
+ask for, audit them, and write a headless test. You cannot run Godot except
+through scripts/run-test.sh, so do not try to run tools; the human runs them.
+
+1. tools/make_hint_png.gd (extends SceneTree): writes
+   res://assets/hint/grey_3x1.png, a 3x1 RGB8 image with pixels (64,64,64),
+   (128,128,128), (192,192,192) from left to right, then quits 0. Print the
+   three values it wrote.
+
+2. Materials (ShaderMaterial .tres files in materials/):
+   - cover_wall_intact.tres and cover_wall_damaged.tres, both using
+     res://shaders/brick_surface.gdshader, with the colour texture
+     assets/textures/brick/red_bricks_04_diff_1k.png and the data texture
+     assets/textures/brick/red_bricks_04_rough_1k.png bound to the sampler
+     uniforms the shader declares. intact: the shader defaults. damaged:
+     albedo_tint Color(0.78, 0.72, 0.66, 1) and brightness 0.7, other values
+     default. Use the uniform names exactly as declared in the shader source.
+   - hint_srgb.tres and hint_raw.tres using res://shaders/hint_experiment.gdshader,
+     both samplers bound to res://assets/hint/grey_3x1.png, the bool uniform
+     true in hint_srgb and false in hint_raw.
+
+3. scenes/asset_room_3d.tscn: add CoverWall2, a second instance of
+   res://assets/models/cover_wall.glb, placed so both walls are fully in view
+   of Camera3D, do not overlap any other node, and stand on the floor. Give it
+   cover_wall_damaged.tres as the surface material override for surface 0 of
+   its mesh instance. Do not change any other node. Do not set Use External on
+   the importer: the human does that in the editor for CoverWall.
+
+4. scenes/hint_experiment.tscn: a Camera3D looking straight at two QuadMesh
+   quads side by side (left: hint_srgb, right: hint_raw), each large enough
+   that every band is many pixels wide in a 1280x720 view; a Label3D above
+   each naming its material; a WorldEnvironment with tonemap Linear, exposure
+   1.0, glow, fog, volumetric fog, SSAO, SSR, SDFGI and adjustments off,
+   background a mid grey. No lights are needed (the shader is unshaded).
+
+5. MATERIALS.md at the repo root: for each texture, its role, the hint the
+   shader source gives it (quote the line number), its import settings read
+   from its .import file, and whether they match the brief; every uniform in
+   brick_surface.gdshader with type, hint, default and group; the values in
+   both brick materials and how they differ; the light the walls are judged
+   under (Sun in asset_room_3d.tscn: its transform and settings); and any
+   mismatch you find. Cite file and line for every fact.
+
+6. tests/test_materials.gd (extends SceneTree, quit(1) on any FAIL, PASS/FAIL
+   lines and a RESULT line, like the existing tests). Assert:
+   - brick_surface.gdshader: shader_type spatial; the colour sampler has
+     source_color and the roughness sampler does not (read from the source
+     text); at least 4 non-sampler uniforms in at least 2 groups
+     (group_uniforms); the uniform list is non-empty (compiled);
+   - both brick .tres load as ShaderMaterial with the same shader, have both
+     textures bound, and differ in at least two parameter values;
+   - the three brick .import files match the brief (compress/mode 2,
+     mipmaps on, normal_map 2 for diff and rough and 1 for nor_gl,
+     detect_3d/compress_to 0);
+   - grey_3x1.png exists, is 3x1, has the values 64/128/192, and its .import
+     is Lossless (compress/mode 0), no mipmaps, detect_3d/compress_to 0;
+   - hint_srgb and hint_raw: same shader, same texture, bool true / false;
+     the hint shader source has one sampler with source_color and one without,
+     both filter_nearest, and render_mode unshaded;
+   - asset_room_3d.tscn: CoverWall2 exists, its surface 0 uses
+     cover_wall_damaged.tres; CoverWall surface 0 resolves to
+     cover_wall_intact.tres through cover_wall.glb.import Use External on
+     M_Brick (this one is expected to FAIL until the human sets it);
+     both walls' surface 1 still use the imported M_BrickDark;
+   - hint_experiment.tscn loads and has the two quads, the camera and the
+     WorldEnvironment with tonemap Linear and exposure 1.0.
+
+7. Run from the repo root, one command per call, no pipes or ';':
+     bash scripts/run-test.sh test_materials.gd 60
+     bash scripts/run-test.sh test_hit_flash.gd 60
+     bash scripts/run-test.sh check_a3_assets.gd 60
+     bash scripts/run-test.sh test_sound_triggers.gd 60
+   Expected now: test_materials fails only on items that need the human
+   (the PNG not yet generated or imported, Use External not yet set); the
+   other three pass at their counts (50, 18, 8).
+
+8. Report: files created or changed with a one-line reason each, every exit
+   code with PASS/FAIL counts, which FAILs are expected and why, exactly what
+   the human must do next in the editor and in Git Bash, and anything you
+   could not confirm. Do not commit. Stop after the report.

@@ -1,0 +1,7 @@
+In tests/test_materials.gd the Use External check (around lines 435-445) reads a key named "use_external", but Godot 4.7.2 saved assets/models/cover_wall.glb.import with these keys under _subresources.materials.M_Brick:
+  "use_external/enabled": true,
+  "use_external/fallback_path": "res://materials/cover_wall_intact.tres",
+  "use_external/path": "res://materials/cover_wall_intact.tres"
+Fix only that check: require use_external/enabled == true and use_external/path resolving to res://materials/cover_wall_intact.tres (accept a uid:// path that resolves to it). Remove the [needs the human] note from that line. Do not change any other check, any other file, or anything in shaders/.
+Then run: bash scripts/run-test.sh test_materials.gd 60
+Report the exact lines you changed and the RESULT line. Do not commit.
