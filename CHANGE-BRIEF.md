@@ -174,3 +174,10 @@ Quad B: x = value / 255; y = 1.055 · x^(1/2.4) − 0.055 (x > 0.0031308); displ
 - The three brick PNGs were imported as Lossless, no mipmaps, normal map Detect, `detect_3d/compress_to` = VRAM. They are now set to the section 5 values, with `detect_3d/compress_to` disabled so the editor cannot change them silently when they are used in 3D. The hint-experiment PNG needs the same: Lossless, no mipmaps, `detect_3d/compress_to` disabled, or using it in 3D would switch it to VRAM Compressed and change its grey values.
 - Two walls: `CoverWall` gets `materials/cover_wall_intact.tres` on `M_Brick` through the importer's **Use External**. A new second instance, `CoverWall2`, gets `materials/cover_wall_damaged.tres` as a surface material override on surface 0.
 
+**2026-10-27 — P1 is covered by the turret (observation in Use It, after the predictions).**
+
+The windowed capture (`tools/capture_hit_flash.gd`, `docs/a5/captures/hit_flash_pixels.csv`) shows that the screen pixel of hull texel (99, 50), viewport (155, 590), is drawn by the **turret** sprite (turret alpha 1.0 there), so the hull prediction does not apply there: measured (70, 76, 31) / (126, 53, 22) / (181, 31, 12) against predicted (87, 97, 40) / (137, 68, 28) / (188, 39, 16) at 0.0 / 0.5 / 1.0.
+
+The turret texel under that pixel is `turret_right.png` (99, 71) = (70, 76, 31), alpha 252 (read with PIL). The turret shares the hit-flash material, so the same colour line applies. Recomputed **after** the observation (so not a prediction): 0.0 → (70, 76, 31); 0.5 → R 70 × 0.7 + 76.5 = 125.5 → 126, G 76 × 0.7 = 53.2 → 53, B 31 × 0.7 = 21.7 → 22; 1.0 → R 70 × 0.4 + 153 = 181, G 76 × 0.4 = 30.4 → 30, B 31 × 0.4 = 12.4 → 12. The measured values match within 1 (G at 1.0 is 31). P2 (the track, not covered) matched its prediction exactly at all three values.
+
+Lesson: a named pixel must be chosen on the final drawn layer, not on one texture of a layered sprite.

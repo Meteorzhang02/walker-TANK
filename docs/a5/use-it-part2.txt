@@ -1,0 +1,57 @@
+================ 1. commit the agent's capture tools (session 5)
+warning: in the working copy of 'tests/check_tools_parse.gd.uid', LF will be replaced by CRLF the next time Git touches it
+4721a4d A5 Use It tools (agent, session 5): in-engine capture tools for hit flash, hint experiment and materials, plus a parse check; shaders/ untouched
+================ 2. commit the first windowed captures (human run)
+warning: in the working copy of 'docs/a5/captures/hint_both.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/hint_pixels.csv.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/hit_flash_0.0.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/hit_flash_0.5.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/hit_flash_1.0.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/hit_flash_2.0.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/hit_flash_pixels.csv.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/material_edit_damaged_only.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/materials_captures.csv.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/materials_side_by_side.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_material_edit_damaged_only.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_materials_captures.csv', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_materials_captures.csv.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_materials_side_by_side.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_albedo_tint_default.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_albedo_tint_max.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_albedo_tint_min.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_brightness_default.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_brightness_max.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_brightness_min.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_roughness_scale_default.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_roughness_scale_max.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_roughness_scale_min.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_uv_scale_default.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_uv_scale_max.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/shader_edit_sweep_uv_scale_min.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_albedo_tint_default.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_albedo_tint_max.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_albedo_tint_min.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_brightness_default.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_brightness_max.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_brightness_min.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_roughness_scale_default.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_roughness_scale_max.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_roughness_scale_min.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_uv_scale_default.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_uv_scale_max.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/captures/sweep_uv_scale_min.png.import', LF will be replaced by CRLF the next time Git touches it
+423c61c A5 Use It captures (human, windowed run): hint bands 6/6 exact; hit flash P2 exact at 0/0.5/1.0, P1 covered by the turret (finding); 2.0 gives (255,0,0) so hint_range does not clamp; sweep and material-edit captures
+================ 3. turret texel under screen pixel (155,590)
+turret_right.png size (177, 177)
+   [(98, 70, (67, 73, 25, 255)), (99, 70, (73, 78, 32, 255)), (100, 70, (74, 79, 33, 255))]
+   [(98, 71, (76, 82, 35, 253)), (99, 71, (70, 76, 31, 252)), (100, 71, (69, 74, 31, 252))]
+   [(98, 72, (67, 71, 28, 255)), (99, 72, (76, 81, 33, 255)), (100, 72, (71, 76, 31, 255))]
+================ 4. shader-edit observation: ALBEDO line x 0.5 on BOTH walls
+33:	ALBEDO = texture(albedo_tex, uv).rgb * albedo_tint.rgb * brightness * 0.5;
+--- side by side
+  CoverWall box @334,371 mean (54.7 41.5 30.9)   CoverWall2 box @134,371 mean (38.6 29.9 24.7)   [both walls at their saved values]
+restored; diff stat (must be empty):
+shader_edit_material_edit_damaged_only.png
+shader_edit_material_edit_damaged_only.png.import
+shader_edit_materials_captures.csv
+================ DONE
