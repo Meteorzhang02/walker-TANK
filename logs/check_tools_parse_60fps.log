@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS  res://tools/capture_hit_flash.gd loads as a GDScript
+PASS  res://tools/capture_hit_flash.gd can_instantiate()
+PASS  res://tools/capture_hit_flash.gd extends SceneTree (base SceneTree)
+PASS  res://tools/capture_hint.gd loads as a GDScript
+PASS  res://tools/capture_hint.gd can_instantiate()
+PASS  res://tools/capture_hint.gd extends SceneTree (base SceneTree)
+PASS  res://tools/capture_materials.gd loads as a GDScript
+PASS  res://tools/capture_materials.gd can_instantiate()
+PASS  res://tools/capture_materials.gd extends SceneTree (base SceneTree)
+RESULT: 9 passed, 0 failed

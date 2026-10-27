@@ -1,0 +1,84 @@
+Read CLAUDE.md and CHANGE-BRIEF.md (including Revisions) first. Never create,
+edit, reformat or fix any file in shaders/. Do not change any game script,
+scene, material or .import file. You only add tool scripts and one parse test.
+You cannot run Godot windowed; the human runs the tools.
+
+Task: write in-engine capture tools for the Use It human checks. Each tool
+extends SceneTree, is run by the human in a real WINDOWED run (not headless):
+  "<godot console exe>" --path . --resolution 1280x720 --script res://tools/<tool>.gd
+loads its scene with change_scene_to_file, waits enough frames for it to be
+drawn, takes its captures, prints a table, writes a CSV, and quits 0 (or 1 on
+error). Captures and CSVs go to res://docs/a5/captures/ (create the folder
+with DirAccess). Every capture uses exactly this function from the assignment
+(adapt only the signature if a capture has no driver; then skip set_process):
+
+func capture(driver: Node, mat: ShaderMaterial, param: StringName, value: float, path: String) -> void:
+	driver.set_process(false)  # also set_physics_process(false) if the driver writes there
+	mat.set_shader_parameter(param, value)
+	await RenderingServer.frame_post_draw
+	get_viewport().get_texture().get_image().save_png(path)
+	driver.set_process(true)
+
+Before each capture also await one extra process frame so the parameter is in
+the frame that is drawn, and check after saving that the parameter still has
+the value set (print it).
+
+1. tools/capture_hit_flash.gd — scene res://scenes/main.tscn.
+   - Freeze the three enemies (process_mode disabled) so nothing shoots.
+     Disable the player's controls and set its aim so it faces right: slot 0,
+     hull_right.png, no flip (read tank.gd _slot_for / _set_sprite and make
+     sure the hull really shows hull_right with flip_h false). Wait until the
+     player's modulate equals tint (1,1,1) and nothing is flashing.
+   - Find the hit-flash driver and its ShaderMaterial (read
+     scripts/hit_flash_driver.gd). Capture hit_amount = 0.0, 0.5, 1.0 and 2.0
+     to hit_flash_0.0.png, hit_flash_0.5.png, hit_flash_1.0.png,
+     hit_flash_2.0.png.
+   - For P1 = texel (99, 50) and P2 = texel (59, 109) of hull_right.png,
+     compute the viewport pixel from the hull Sprite2D's
+     get_global_transform_with_canvas(), its texture size, centered/offset/
+     flip and scale (map the texel centre). In each capture print the RGB at
+     that pixel and the 3x3 neighbourhood mean, beside the predictions from
+     CHANGE-BRIEF.md section 3: 0.0 -> P1 (87,97,40), P2 (16,16,16);
+     0.5 -> (137,68,28), (88,11,11); 1.0 -> (188,39,16), (159,6,6);
+     2.0 -> no prediction (the hint_range question). Write hit_flash_pixels.csv
+     (value, pixel, x, y, measured centre, measured 3x3 mean, predicted,
+     max channel difference).
+
+2. tools/capture_hint.gd — scene res://scenes/hint_experiment.tscn.
+   - One capture, hint_both.png. For each quad and each of its 3 bands
+     (64, 128, 192 left to right in UV), compute the band centre in world
+     space from the quad's transform and mesh size, project it with the
+     scene camera's unproject_position, and sample the capture there
+     (centre and 3x3 mean). Predictions: hint_srgb (Quad A) 64,128,192;
+     hint_raw (Quad B) 137,188,225. Write hint_pixels.csv.
+
+3. tools/capture_materials.gd — scene res://scenes/asset_room_3d.tscn.
+   - materials_side_by_side.png with both walls at their saved values.
+   - Interface sweep on materials/cover_wall_intact.tres as loaded on
+     CoverWall (the damaged one untouched): for each non-sampler uniform of
+     brick_surface.gdshader, read its hint range from the shader source and
+     capture minimum, default and maximum: brightness 0.0/1.0/2.0,
+     roughness_scale 0.0/1.0/1.0, uv_scale 0.1/0.5/4.0, albedo_tint black
+     (0,0,0,1) / default white / white (say in the CSV that default and
+     maximum coincide for roughness_scale and albedo_tint). Restore the
+     default after each uniform. Name files sweep_<uniform>_<min|default|max>.png.
+   - A material-edit observation: set brightness 0.5 on the damaged material
+     only and capture material_edit_damaged_only.png; then restore.
+   - Optional argument: if the user arg "--tag=<name>" is passed (read with
+     OS.get_cmdline_user_args()), prefix every file with <name>_ so the human
+     can rerun the side-by-side capture after a temporary shader edit.
+   - For every capture, print and write to materials_captures.csv the mean
+     RGB of a small box on the front face of each wall (project a point on
+     each wall's front face with unproject_position) so changes can be
+     compared numerically.
+
+4. tests/check_tools_parse.gd (extends SceneTree): load each of the three
+   tool scripts and assert it is a GDScript that can_instantiate() (it must
+   not run them). Run:
+     bash scripts/run-test.sh check_tools_parse.gd 60
+   It must exit 0. Fix only your tool scripts until it does.
+
+5. Report: files created, the exact command line the human runs for each
+   tool (use the Godot path in scripts/run-test.sh line 5), what each tool
+   prints, how you mapped texels and band centres to pixels, and anything you
+   could not confirm. Do not commit. Stop after the report.
