@@ -4,7 +4,7 @@
 
 - **Engine:** Godot 4.7.2 stable (`README.md` lines 16, 57; `scripts/run-test.sh` line 5 runs `Godot_v4.7.2-stable_win64_console.exe`). `project.godot` line 19: `config/features=PackedStringArray("4.7")`.
 - **Project root:** `project.godot` is at the repository root; there is no `godot/` folder, so shaders go in `shaders/` and tests in `tests/` (`CHANGE-BRIEF.md` line 7; `scripts/run-test.sh` line 8 uses `--path .`).
-- **Renderer:** `project.godot` has no `rendering/` section and no renderer key (whole file, lines 1–25), so the engine default applies. See *Unconfirmed*.
+- **Renderer:** Forward+. `project.godot` has no `rendering/` section and no renderer key (whole file, lines 1–25), so the engine default applies; confirmed by the human in Project Settings → Rendering → Renderer → Rendering Method = `forward_plus` (2026-10-27).
 - **2D settings:** viewport 1280×720, stretch mode `canvas_items` (`project.godot` lines 23–25). No `hdr_2d` key (`project.godot`; `CHANGE-BRIEF.md` line 78).
 - **Main scene:** `res://scenes/main.tscn` (`project.godot` line 18). That scene is a single `Node2D` with `scripts/main.gd` attached (`scenes/main.tscn` lines 5–6); `main.gd` builds everything else in code.
 
@@ -49,6 +49,7 @@ Baseline (`CHANGE-BRIEF.md` line 9): `check_a3_assets.gd` 18/18 PASS, `test_soun
 ## Ownership
 
 - Every file in `shaders/` (`shaders/hit_flash.gdshader`, `shaders/brick_surface.gdshader`, `shaders/hint_experiment.gdshader`) is hand-written by the human. An agent never creates, edits, reformats or "fixes" a file in `shaders/`. If a shader looks wrong, report it and stop.
+- `shaders/standard_generated.gdshader` is produced by Godot's *Convert to ShaderMaterial* and saved by the human; agents do not edit it either. The answers in `LANGUAGE-NOTES.md` are written by the human.
 - `CHANGE-BRIEF.md` is the human's spec. Its original text is never edited; changes go only under *Revisions*, dated, and only when the human asks.
 
 ## Out of scope
@@ -60,12 +61,11 @@ Baseline (`CHANGE-BRIEF.md` line 9): `check_a3_assets.gd` 18/18 PASS, `test_soun
 - Movement, collision, input, AI, shells, covers (2D), HUD, audio, music, pause handling and the victory screen are unchanged.
 - The existing tests and their expectations (`tests/check_a3_assets.gd`, `tests/test_sound_triggers.gd`) are not edited; they must still pass at the baseline counts.
 - The `.glb` files, the Blender build scripts, the texture files and their import settings beyond what section 5 of the brief names, and `scripts/run-test.sh` are not changed.
-- No new lights, environment, SSAO or post-processing in `asset_room_3d.tscn` beyond what the brief asks for; the 3D change is limited to `cover_wall` and its second comparison instance.
+- No new lights, environment, SSAO or post-processing in `asset_room_3d.tscn` beyond what the brief asks for; the 3D change is limited to `cover_wall` and its second comparison instance. New files the brief calls for are allowed: the hint-experiment scene, its materials and `tools/make_hint_png.gd` (brief section 4), and the Step 4 scratch scene for the generated StandardMaterial3D.
 - `project.godot` settings (renderer, `hdr_2d`, stretch) are not changed.
 
 ## Unconfirmed
 
-- **Renderer:** no key in `project.godot`, so presumably Godot's default Forward+, but `config/features` lists only `"4.7"` with no renderer tag. Needs a check in Project Settings → Rendering → Renderer (also open in `CHANGE-BRIEF.md` section 7).
 - Whether `COLOR` in a `canvas_item` fragment already includes the node's `modulate` (the brief's reading, to be confirmed).
 - The material names as they appear after glTF import (assumed to be `M_Brick` / `M_BrickDark` from the Blender script; not checked in the imported `.scn`), and whether the `.glb` has UVs suitable for the brick textures.
 - How the second `cover_wall` instance gets its material (brief section 5 defers this to a revision).
