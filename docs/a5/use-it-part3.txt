@@ -1,0 +1,9 @@
+================ 1. keep Godot out of docs/ and drop the capture .import files
+remaining .import files: 0
+================ 2. brief revision: P1 covered by the turret
+revision added
+
+The turret texel under that pixel is `turret_right.png` (99, 71) = (70, 76, 31), alpha 252 (read with PIL). The turret shares the hit-flash material, so the same colour line applies. Recomputed **after** the observation (so not a prediction): 0.0 → (70, 76, 31); 0.5 → R 70 × 0.7 + 76.5 = 125.5 → 126, G 76 × 0.7 = 53.2 → 53, B 31 × 0.7 = 21.7 → 22; 1.0 → R 70 × 0.4 + 153 = 181, G 76 × 0.4 = 30.4 → 30, B 31 × 0.4 = 12.4 → 12. The measured values match within 1 (G at 1.0 is 31). P2 (the track, not covered) matched its prediction exactly at all three values.
+
+Lesson: a named pixel must be chosen on the final drawn layer, not on one texture of a layered sprite.
+================ 3. commit

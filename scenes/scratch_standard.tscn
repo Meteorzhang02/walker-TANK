@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bkbsce38dvnj4"]
+
+[ext_resource type="Shader" uid="uid://d2wlhn87b0v4f" path="res://shaders/standard_generated.gdshader" id="1_a28da"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ql73s"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_anu61"]
+load_path = "res://.godot/imported/red_bricks_04_diff_1k.png-0bcef2ec7534d1077aa971a567fc7b25.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ksxam"]
+load_path = "res://.godot/imported/red_bricks_04_nor_gl_1k.png-5e2c825098d8315dabd8efbe8e84ea61.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qo4iv"]
+load_path = "res://.godot/imported/red_bricks_04_rough_1k.png-574c59d119235471bc5c5edc453c5847.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a7f6y"]
+render_priority = 0
+shader = ExtResource("1_a28da")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = SubResource("CompressedTexture2D_anu61")
+shader_parameter/albedo_texture_size = Vector2i(1024, 1024)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/texture_roughness = SubResource("CompressedTexture2D_qo4iv")
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = SubResource("CompressedTexture2D_ksxam")
+shader_parameter/normal_scale = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[node name="Node3D" type="Node3D" unique_id=228897611]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2122073064]
+mesh = SubResource("BoxMesh_ql73s")
+surface_material_override/0 = SubResource("ShaderMaterial_a7f6y")
