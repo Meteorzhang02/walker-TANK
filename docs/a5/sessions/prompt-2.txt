@@ -1,0 +1,56 @@
+Read CLAUDE.md and CHANGE-BRIEF.md first. The shader shaders/hit_flash.gdshader
+is already written by the human and committed. Never create, edit, reformat or
+fix any file in shaders/. If the shader looks wrong or does not compile, stop
+and report it.
+
+Task: wire the hit flash into the game and prove the rules in CHANGE-BRIEF.md
+section 2 with a headless test.
+
+1. Driver. Create scripts/hit_flash_driver.gd. It gives YunqiZ's hull and
+   turret Sprite2D nodes ONE shared ShaderMaterial using
+   res://shaders/hit_flash.gdshader, and drives the uniform hit_amount from
+   the player's damaged / destroyed signals and reset_full(), following rules
+   1-7 exactly (D = 0.5 s, linear fade on scaled delta, restart on retrigger,
+   hold while paused, 0.0 on destroyed and after respawn). It only reads game
+   state; it never writes health, invulnerability, modulate or any gameplay
+   variable. Enemies get no material. Make the smallest possible change to
+   existing scripts to add the driver (prefer one or two lines in
+   scripts/main.gd where the player is created); do not change tank.gd
+   gameplay logic. If you need a hook in tank.gd or player.gd, explain why in
+   your report before adding it. Use uniform names exactly as declared in the
+   shader; read the declared list with get_shader_uniform_list() rather than
+   assuming.
+
+2. Test. Create tests/test_hit_flash.gd (extends SceneTree, quit(1) on any
+   FAIL, print PASS/FAIL lines and a RESULT line, like the existing tests).
+   Load the real main scene and run the real game loop. Cause hits through
+   the game's own damage path (a shell fired by the game's own firing code,
+   or take_damage() called the way a shell calls it), never by setting
+   hit_amount directly. Sample hit_amount every frame from a node with a high
+   process_priority. Assert:
+   - the shader's uniform list contains hit_amount, flash_color and
+     flash_strength with the types in the brief, and the defaults written in
+     the shader source text match the brief;
+   - rule 1 (1.0 at the first sampled frame), rule 2 (reaches 0.0 after
+     0.5 s of game time within one frame period, then stays 0.0),
+     rule 3 (a hit between 0.3 s and 0.5 s restarts at 1.0),
+     rule 5 (pausing the tree mid-fade holds the value; it resumes after),
+     rule 6 (fatal hit -> 0.0; after reset_full() -> 0.0),
+     rule 7 (no enemy sprite has a ShaderMaterial; hull and turret return the
+     same material object);
+   - the test fails if the shader is missing, does not compile, or does not
+     declare a uniform the driver sets.
+
+3. Run, from the repo root in Git Bash:
+     bash scripts/run-test.sh test_hit_flash.gd 30
+     bash scripts/run-test.sh test_hit_flash.gd 60
+     bash scripts/run-test.sh test_hit_flash.gd 144
+     bash scripts/run-test.sh check_a3_assets.gd 60
+     bash scripts/run-test.sh test_sound_triggers.gd 60
+   All must exit 0, and the existing two at their baseline counts (18/18, 8/8).
+   Do not edit the existing tests.
+
+4. Report: files changed with a one-line reason each, every exit code with its
+   PASS count, the exact lines you added to existing scripts, and anything you
+   could not confirm (for example whether a headless run reports shader
+   compile errors at all). Do not commit. Stop after the report.

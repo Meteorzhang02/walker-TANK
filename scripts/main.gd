@@ -76,6 +76,7 @@ func _ready() -> void:
 	actors.add_child(player)
 	player.destroyed.connect(_on_player_destroyed)
 	player.damaged.connect(_on_player_damaged)
+	preload("res://scripts/hit_flash_driver.gd").new().attach(player)  # A5: hit flash on YunqiZ only
 	for p in ENEMY_SPAWNS:
 		var e = EnemyScript.new()
 		e.world = self
