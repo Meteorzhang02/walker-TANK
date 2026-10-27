@@ -1,0 +1,142 @@
+================ 1. CHANGES
+---- git diff scripts/main.gd
+warning: in the working copy of 'scripts/main.gd', LF will be replaced by CRLF the next time Git touches it
+diff --git a/scripts/main.gd b/scripts/main.gd
+index e9c1df1..21c79a0 100644
+--- a/scripts/main.gd
++++ b/scripts/main.gd
+@@ -76,6 +76,7 @@ func _ready() -> void:
+ 	actors.add_child(player)
+ 	player.destroyed.connect(_on_player_destroyed)
+ 	player.damaged.connect(_on_player_damaged)
++	preload("res://scripts/hit_flash_driver.gd").new().attach(player)  # A5: hit flash on YunqiZ only
+ 	for p in ENEMY_SPAWNS:
+ 		var e = EnemyScript.new()
+ 		e.world = self
+---- git diff --stat scenes/asset_room_3d.tscn
+warning: in the working copy of 'scenes/asset_room_3d.tscn', LF will be replaced by CRLF the next time Git touches it
+ scenes/asset_room_3d.tscn | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
+---- git diff scenes/asset_room_3d.tscn (first 30 lines)
+warning: in the working copy of 'scenes/asset_room_3d.tscn', LF will be replaced by CRLF the next time Git touches it
+diff --git a/scenes/asset_room_3d.tscn b/scenes/asset_room_3d.tscn
+index 5e76e2d..2c0ff71 100644
+--- a/scenes/asset_room_3d.tscn
++++ b/scenes/asset_room_3d.tscn
+@@ -1,4 +1,4 @@
+-[gd_scene load_steps=8 format=3]
++[gd_scene format=3 uid="uid://cigw8jl1ya162"]
+ 
+ [ext_resource type="PackedScene" uid="uid://bjq6ys5cv438d" path="res://assets/models/cover_wall.glb" id="1_wall"]
+ [ext_resource type="PackedScene" uid="uid://bunad0dk23uaj" path="res://assets/models/ammo_crate.glb" id="2_crate"]
+@@ -18,34 +18,34 @@ albedo_color = Color(0.6, 0.6, 0.6, 1)
+ material = SubResource("Mat_ref")
+ size = Vector3(6, 1.6, 3.4)
+ 
+-[node name="AssetRoom3D" type="Node3D"]
++[node name="AssetRoom3D" type="Node3D" unique_id=1843147766]
+ 
+-[node name="Floor" type="MeshInstance3D" parent="."]
++[node name="Floor" type="MeshInstance3D" parent="." unique_id=516960780]
+ mesh = SubResource("Mesh_floor")
+ 
+-[node name="Sun" type="DirectionalLight3D" parent="."]
++[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1625057951]
+ transform = Transform3D(0.866, -0.383, 0.3214, 0, 0.6428, 0.766, -0.5, -0.6634, 0.5567, 0, 10, 0)
+ shadow_enabled = true
+ 
+-[node name="Camera3D" type="Camera3D" parent="."]
++[node name="Camera3D" type="Camera3D" parent="." unique_id=703564010]
+ transform = Transform3D(1, 0, 0, 0, 0.9119, 0.4103, 0, -0.4103, 0.9119, 0, 8, 16)
+ current = true
+---- ls logs/
+check_a3_assets_60fps.log
+scratch_broken_shader.gd
+scratch_broken_shader.gd.uid
+test_hit_flash_144fps.log
+test_hit_flash_30fps.log
+test_hit_flash_60fps.log
+test_sound_triggers_60fps.log
+
+================ 2. TESTS
+test_hit_flash.gd @ 30 fps: exit=0  PASS=50  FAIL=0  | RESULT: 50 passed, 0 failed
+test_hit_flash.gd @ 60 fps: exit=0  PASS=50  FAIL=0  | RESULT: 50 passed, 0 failed
+test_hit_flash.gd @ 144 fps: exit=0  PASS=50  FAIL=0  | RESULT: 50 passed, 0 failed
+check_a3_assets.gd @ 60 fps: exit=0  PASS=18  FAIL=0  | RESULT: PASS (0 failure(s))
+test_sound_triggers.gd @ 60 fps: exit=0  PASS=8  FAIL=0  | RESULT: 0 failed
+---- FAIL lines in test_hit_flash logs (should be none):
+---- PASS lines of test_hit_flash @60:
+PASS  shader file exists: res://shaders/hit_flash.gdshader
+PASS  shader loads as a Shader resource
+PASS  get_shader_uniform_list() is non-empty (shader compiled)
+PASS  hit_amount: float with hint_range
+PASS  flash_color: vec4 source_color (reported as Color)
+PASS  flash_strength: float with hint_range
+PASS  source: shader_type canvas_item
+PASS  source: hit_amount float hint_range(0.0, 1.0) = 0.0
+PASS  source: flash_color vec4 source_color = vec4(1.0, 0.0, 0.0, 1.0)
+PASS  source: flash_strength float hint_range(0.0, 1.0) = 0.6
+PASS  driver node exists under YunqiZ
+PASS  shader declares every uniform the driver sets: hit_amount
+PASS  rule 7: hull has a ShaderMaterial using res://shaders/hit_flash.gdshader
+PASS  rule 7: hull and turret return the same material object
+PASS  rule 7: no enemy sprite has a ShaderMaterial
+PASS  hit_amount is 0.0 before any hit
+PASS  enemy try_fire() spawns a shell toward YunqiZ
+PASS  the shell hits YunqiZ (damaged emitted, health 75)
+PASS  existing white _flash() still runs (modulate 2.2 at the signal)
+PASS  rule 1: first sampled frame after the shell hit is 1.0
+PASS  rule 2 (shell hit): falls linearly on game time (1 - t/D)
+PASS  rule 2 (shell hit): reaches 0.0 after 0.5000 s game time (D = 0.5 +- 0.0167)
+PASS  rule 2 (shell hit): stays 0.0 for 24 frames after
+PASS  phase 2 hit lands (health 50)
+PASS  rule 5: value before pause is mid-fade (0.6333)
+PASS  rule 5: value decreases again after unpause (0.6333 -> 0.5667)
+PASS  rule 3: retrigger at 0.400 s lands (invuln over, health 25)
+PASS  rule 3: value just before the retrigger was mid-fade (0.2333)
+PASS  rule 3: first sampled frame after the retrigger is 1.0
+PASS  rule 5: 12 paused frames recorded during the fade
+PASS  rule 2/5 (fade with pause, before retrigger): falls linearly on game time (1 - t/D)
+PASS  rule 2/5 (fade with pause, before retrigger): holds its value on all 12 paused frames
+PASS  rule 2/5 (fade with pause, before retrigger): still above 0.0 when cut short
+PASS  rule 6: fatal hit -> destroyed emitted, damaged not
+PASS  rule 6: value mid-fade before the fatal hit (0.2333)
+PASS  rule 6: first sampled frame after the fatal hit is 0.0
+PASS  rule 3 (fade after retrigger, until fatal hit): falls linearly on game time (1 - t/D)
+PASS  rule 3 (fade after retrigger, until fatal hit): still above 0.0 when cut short
+PASS  YunqiZ respawned via reset_full() (health 100)
+PASS  rule 6: 0.0 on every frame from destroyed through reset_full()
+PASS  phase 3 hit lands after respawn (health 75)
+PASS  rule 3: second retrigger lands (health 50)
+PASS  rule 1: first sampled frame after the phase 3 hit is 1.0
+PASS  rule 3: value before the retrigger was mid-fade (0.1333)
+PASS  rule 3: restarts at 1.0
+PASS  rule 2/3 (full fade from retrigger): falls linearly on game time (1 - t/D)
+PASS  rule 2/3 (full fade from retrigger): reaches 0.0 after 0.5000 s game time (D = 0.5 +- 0.0167)
+PASS  rule 2/3 (full fade from retrigger): stays 0.0 for 24 frames after
+PASS  rule 7: enemy sprites still have no material at the end
+PASS  rule 7: hull and turret still share one material
+
+================ 3a. MUTATION 1: delete a semicolon
+5:uniform float flash_strength : hint_range(0.0, 1.0) = 0.6
+mutation1 exit=1
+SHADER ERROR: Expected a ';'.
+FAIL  get_shader_uniform_list() is non-empty (shader compiled)
+FAIL  hit_amount: float with hint_range
+FAIL  flash_color: vec4 source_color (reported as Color)
+FAIL  flash_strength: float with hint_range
+FAIL  shader declares every uniform the driver sets: hit_amount
+RESULT: 45 passed, 5 failed
+restored, diff stat:
+
+================ 3b. MUTATION 2: rename the uniform
+3:uniform float hit_amt : hint_range(0.0, 1.0) = 0.0;
+8:	COLOR.rgb = mix(COLOR.rgb, flash_color.rgb, hit_amt * flash_strength);
+mutation2 exit=1
+FAIL  hit_amount: float with hint_range
+FAIL  source: hit_amount float hint_range(0.0, 1.0) = 0.0
+FAIL  shader declares every uniform the driver sets: hit_amount
+RESULT: 47 passed, 3 failed
+restored, diff stat:
+
+================ DONE
