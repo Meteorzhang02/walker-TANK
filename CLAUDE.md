@@ -42,6 +42,15 @@ bash scripts/run-test.sh <test>.gd 144
 
 Baseline (`CHANGE-BRIEF.md` line 9): `check_a3_assets.gd` 18/18 PASS, `test_sound_triggers.gd` 8/8 PASS, both exit 0; a "5 resources still in use at exit" leak message at shutdown is pre-existing and is not a failure. Both tests are `extends SceneTree` scripts that `quit(1)` on any FAIL (`tests/check_a3_assets.gd` lines 1, 93; `tests/test_sound_triggers.gd` lines 1, 101).
 
+## Headless facts
+
+- A headless run uses a dummy renderer: it draws nothing. Headless tests prove that the shaders parse, their uniforms are declared and driven, and the materials are wired; they never prove what the screen shows. Every look is a human check recorded in `TEST-REPORT.md`.
+- Headless does report shader parse errors: deleting a semicolon from `shaders/hit_flash.gdshader` printed `SHADER ERROR: Expected a ';'.` and the test exited 1 (`logs/mutation1_semicolon_60fps.log`).
+- `get_shader_uniform_list()` works headless and returns names, types and ranges, but reports a `source_color` vec4 as a Color with hint 0, so hints are checked from the shader source text (`tests/test_hit_flash.gd`, `tests/test_materials.gd`).
+- Godot 4.7.2 saves Use External under `_subresources.materials.<name>` as `"use_external/enabled"` and `"use_external/path"` (`assets/models/cover_wall.glb.import` lines 42–50).
+- Texture detect-3D compression runs only when a real editor draws the texture; the brick and hint `.import` files set `detect_3d/compress_to=0` so it cannot change them.
+- Not a test: `tools/make_hint_png.gd` and `tools/inspect_cover_wall.gd` are tools run by the human, not checks.
+
 ## Current change
 
 @CHANGE-BRIEF.md
