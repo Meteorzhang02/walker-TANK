@@ -1,0 +1,7 @@
+quad,material,band,file_value,world_x,world_y,world_z,view_x,view_y,x,y,centre_rgb,mean3x3_rgb,predicted,maxdiff_centre,maxdiff_mean,file
+QuadA_srgb,hint_srgb,0,64,-4.0000,0.0000,0.0000,264.67,360.00,264,360,64 64 64,64.0 64.0 64.0,64,0,0.0,hint_both.png
+QuadA_srgb,hint_srgb,1,128,-2.5000,0.0000,0.0000,405.42,360.00,405,360,128 128 128,128.0 128.0 128.0,128,0,0.0,hint_both.png
+QuadA_srgb,hint_srgb,2,192,-1.0000,0.0000,0.0000,546.17,360.00,546,360,192 192 192,192.0 192.0 192.0,192,0,0.0,hint_both.png
+QuadB_raw,hint_raw,0,64,1.0000,0.0000,0.0000,733.83,360.00,733,360,137 137 137,137.0 137.0 137.0,137,0,0.0,hint_both.png
+QuadB_raw,hint_raw,1,128,2.5000,0.0000,0.0000,874.58,360.00,874,360,188 188 188,188.0 188.0 188.0,188,0,0.0,hint_both.png
+QuadB_raw,hint_raw,2,192,4.0000,0.0000,0.0000,1015.33,360.00,1015,360,225 225 225,225.0 225.0 225.0,225,0,0.0,hint_both.png

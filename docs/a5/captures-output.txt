@@ -1,0 +1,151 @@
+================ 0. commit the agent's tools (session 5)
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	captures-output.txt
+	docs/a5/sessions/prompt-5.txt
+	docs/a5/sessions/session-5.jsonl
+	logs/check_tools_parse_60fps.log
+	tests/check_tools_parse.gd
+	tools/capture_hint.gd
+	tools/capture_hit_flash.gd
+	tools/capture_materials.gd
+
+nothing added to commit but untracked files present (use "git add" to track)
+19c89b8 A5 Step 1 review addendum (human, added late on 2026-10-27): Headless facts block in CLAUDE.md, from the mutation and Use External findings
+
+================ capture_hit_flash (windowed)
+
+froze 3 enemies (PROCESS_MODE_DISABLED)
+player: slot 0, hull res://assets/game/yunqiz/hull_right.png flip_h false, turret res://assets/game/yunqiz/turret_right.png flip_h false
+player: modulate (1.0, 1.0, 1.0, 1.0), tint (1.0, 1.0, 1.0, 1.0), is_dead false, health 100
+driver: active false, hit_amount = 0.0, shader res://shaders/hit_flash.gdshader
+hull texture (177.0, 177.0), hull transform with canvas [X: (0.5, 0.0), Y: (0.0, 0.5), O: (150.0, 609.8097)], visible rect (1280.0, 720.0)
+  P1 texel (99, 50) in the imported hull_right.png: (87, 97, 40) a 255; brief source [87, 97, 40]
+  P2 texel (59, 109) in the imported hull_right.png: (16, 16, 16) a 255; brief source [16, 16, 16]
+--- hit_amount = 0.0
+  saved res://docs/a5/captures/hit_flash_0.0.png (err 0); hit_amount after saving = 0.0 (set 0.0)
+  image 1280x720 format 4, view->image scale (1.0, 1.0)
+  px  texel      image x,y    centre          3x3 mean              predicted       max|d| centre/mean   turret a
+  P1  (99, 50)   155,590      70 76 31        74.7 78.7 33.2        87 97 40        21 / 18.3   1.00  (turret covers this pixel)
+  P2  (59, 109)  135,620      16 16 16        22.8 23.2 23.1        16 16 16        0 / 7.2   0.00
+--- hit_amount = 0.5
+  saved res://docs/a5/captures/hit_flash_0.5.png (err 0); hit_amount after saving = 0.5 (set 0.5)
+  image 1280x720 format 4, view->image scale (1.0, 1.0)
+  px  texel      image x,y    centre          3x3 mean              predicted       max|d| centre/mean   turret a
+  P1  (99, 50)   155,590      126 53 22       128.8 55.0 23.4       137 68 28       15 / 13.0   1.00  (turret covers this pixel)
+  P2  (59, 109)  135,620      88 11 11        92.6 16.3 16.2        88 11 11        0 / 5.3   0.00
+--- hit_amount = 1.0
+  saved res://docs/a5/captures/hit_flash_1.0.png (err 0); hit_amount after saving = 1.0 (set 1.0)
+  image 1280x720 format 4, view->image scale (1.0, 1.0)
+  px  texel      image x,y    centre          3x3 mean              predicted       max|d| centre/mean   turret a
+  P1  (99, 50)   155,590      181 31 12       182.8 31.6 13.6       188 39 16       8 / 7.4   1.00  (turret covers this pixel)
+  P2  (59, 109)  135,620      159 6 6         162.1 9.2 9.2         159 6 6         0 / 3.2   0.00
+--- hit_amount = 2.0
+  saved res://docs/a5/captures/hit_flash_2.0.png (err 0); hit_amount after saving = 2.0 (set 2.0)
+  image 1280x720 format 4, view->image scale (1.0, 1.0)
+  px  texel      image x,y    centre          3x3 mean              predicted       max|d| centre/mean   turret a
+  P1  (99, 50)   155,590      255 0 0         255.0 0.0 0.0         none            - / -   1.00  (turret covers this pixel)
+  P2  (59, 109)  135,620      255 0 0         255.0 0.0 0.0         none            - / -   0.00
+wrote res://docs/a5/captures/hit_flash_pixels.csv (tolerance in the brief: +-2 per channel)
+capture_hit_flash exit=0
+
+================ capture_hint (windowed)
+
+QuadA_srgb: res://materials/hint_srgb.tres, use_srgb = true, mesh size (4.5, 1.5), centre_offset (0.0, 0.0, 0.0), global [X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (-2.5, 0.0, 0.0)]
+QuadB_raw: res://materials/hint_raw.tres, use_srgb = false, mesh size (4.5, 1.5), centre_offset (0.0, 0.0, 0.0), global [X: (1.0, 0.0, 0.0), Y: (0.0, 1.0, 0.0), Z: (0.0, 0.0, 1.0), O: (2.5, 0.0, 0.0)]
+--- capture
+  saved res://docs/a5/captures/hint_both.png (err 0); use_srgb after saving = true (set true)
+  use_srgb on hint_raw.tres after saving = false
+  image 1280x720 format 4, visible rect (1280.0, 720.0), view->image scale (1.0, 1.0)
+  quad        material  band file  image x,y    centre       3x3 mean           pred  max|d| centre/mean
+  QuadA_srgb  hint_srgb 0    64    264,360      64 64 64     64.0 64.0 64.0     64    0 / 0.0
+  QuadA_srgb  hint_srgb 1    128   405,360      128 128 128  128.0 128.0 128.0  128   0 / 0.0
+  QuadA_srgb  hint_srgb 2    192   546,360      192 192 192  192.0 192.0 192.0  192   0 / 0.0
+  QuadB_raw   hint_raw  0    64    733,360      137 137 137  137.0 137.0 137.0  137   0 / 0.0
+  QuadB_raw   hint_raw  1    128   874,360      188 188 188  188.0 188.0 188.0  188   0 / 0.0
+  QuadB_raw   hint_raw  2    192   1015,360     225 225 225  225.0 225.0 225.0  225   0 / 0.0
+wrote res://docs/a5/captures/hint_pixels.csv (tolerance in the brief: +-2)
+capture_hint exit=0
+
+================ capture_materials (windowed)
+
+CoverWall  surface 0: res://materials/cover_wall_intact.tres
+CoverWall2 surface 0: res://materials/cover_wall_damaged.tres
+CoverWall: sample point (-6.77, 0.75, 0.5) -> view (334.5285, 371.3542)
+CoverWall2: sample point (-11.2, 0.75, 0.5) -> view (134.6409, 371.3542)
+non-sampler uniforms in res://shaders/brick_surface.gdshader:
+  albedo_tint      vec4   min (0.0, 0.0, 0.0, 1.0)   default (1.0, 1.0, 1.0, 1.0)   max (1.0, 1.0, 1.0, 1.0)
+  brightness       float  min 0.0                    default 1.0                    max 2.0
+  roughness_scale  float  min 0.0                    default 1.0                    max 1.0
+  uv_scale         float  min 0.1                    default 0.5                    max 4.0
+box: 11x11 px mean around the projected front-face point of each wall
+--- side by side
+  saved res://docs/a5/captures/materials_side_by_side.png (err 0); brightness after saving = 1.0 (set 1.0)
+  CoverWall box @334,371 mean (73.4 54.1 37.7)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   [both walls at their saved values]
+--- sweep albedo_tint (saved (1.0, 1.0, 1.0, 1.0), source default (1.0, 1.0, 1.0, 1.0))
+  saved res://docs/a5/captures/sweep_albedo_tint_min.png (err 0); albedo_tint after saving = (0.0, 0.0, 0.0, 1.0) (set (0.0, 0.0, 0.0, 1.0))
+  CoverWall box @334,371 mean (22.1 22.1 22.1)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   [default and maximum coincide]
+  saved res://docs/a5/captures/sweep_albedo_tint_default.png (err 0); albedo_tint after saving = (1.0, 1.0, 1.0, 1.0) (set (1.0, 1.0, 1.0, 1.0))
+  CoverWall box @334,371 mean (73.4 54.1 37.7)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   [default and maximum coincide]
+  saved res://docs/a5/captures/sweep_albedo_tint_max.png (err 0); albedo_tint after saving = (1.0, 1.0, 1.0, 1.0) (set (1.0, 1.0, 1.0, 1.0))
+  CoverWall box @334,371 mean (73.4 54.1 37.7)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   [default and maximum coincide]
+  restored albedo_tint = (1.0, 1.0, 1.0, 1.0)
+--- sweep brightness (saved 1.0, source default 1.0)
+  saved res://docs/a5/captures/sweep_brightness_min.png (err 0); brightness after saving = 0.0 (set 0.0)
+  CoverWall box @334,371 mean (22.1 22.1 22.1)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   
+  saved res://docs/a5/captures/sweep_brightness_default.png (err 0); brightness after saving = 1.0 (set 1.0)
+  CoverWall box @334,371 mean (73.4 54.1 37.7)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   
+  saved res://docs/a5/captures/sweep_brightness_max.png (err 0); brightness after saving = 2.0 (set 2.0)
+  CoverWall box @334,371 mean (99.7 72.7 48.5)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   
+  restored brightness = 1.0
+--- sweep roughness_scale (saved 1.0, source default 1.0)
+  saved res://docs/a5/captures/sweep_roughness_scale_min.png (err 0); roughness_scale after saving = 0.0 (set 0.0)
+  CoverWall box @334,371 mean (68.8 47.4 26.9)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   [default and maximum coincide]
+  saved res://docs/a5/captures/sweep_roughness_scale_default.png (err 0); roughness_scale after saving = 1.0 (set 1.0)
+  CoverWall box @334,371 mean (73.4 54.1 37.7)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   [default and maximum coincide]
+  saved res://docs/a5/captures/sweep_roughness_scale_max.png (err 0); roughness_scale after saving = 1.0 (set 1.0)
+  CoverWall box @334,371 mean (73.4 54.1 37.7)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   [default and maximum coincide]
+  restored roughness_scale = 1.0
+--- sweep uv_scale (saved 0.5, source default 0.5)
+  saved res://docs/a5/captures/sweep_uv_scale_min.png (err 0); uv_scale after saving = 0.1 (set 0.1)
+  CoverWall box @334,371 mean (76.8 52.0 34.4)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   
+  saved res://docs/a5/captures/sweep_uv_scale_default.png (err 0); uv_scale after saving = 0.5 (set 0.5)
+  CoverWall box @334,371 mean (73.4 54.1 37.7)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   
+  saved res://docs/a5/captures/sweep_uv_scale_max.png (err 0); uv_scale after saving = 4.0 (set 4.0)
+  CoverWall box @334,371 mean (79.8 52.7 33.1)   CoverWall2 box @134,371 mean (49.9 36.1 27.1)   
+  restored uv_scale = 0.5
+--- material edit (damaged only)
+  saved res://docs/a5/captures/material_edit_damaged_only.png (err 0); brightness after saving = 0.5 (set 0.5)
+  CoverWall box @334,371 mean (73.4 54.1 37.7)   CoverWall2 box @134,371 mean (43.8 32.6 25.7)   [intact brightness during this capture = 1.0]
+  restored damaged brightness = 0.7
+wrote res://docs/a5/captures/materials_captures.csv
+capture_materials exit=0
+
+================ captures
+total 2364
+-rw-r--r-- 1 HP 197121  28884 Oct 27 16:53 hint_both.png
+-rw-r--r-- 1 HP 197121    872 Oct 27 16:53 hint_pixels.csv
+-rw-r--r-- 1 HP 197121 346262 Oct 27 16:53 hit_flash_0.0.png
+-rw-r--r-- 1 HP 197121 345921 Oct 27 16:53 hit_flash_0.5.png
+-rw-r--r-- 1 HP 197121 345657 Oct 27 16:53 hit_flash_1.0.png
+-rw-r--r-- 1 HP 197121 343342 Oct 27 16:53 hit_flash_2.0.png
+-rw-r--r-- 1 HP 197121    950 Oct 27 16:53 hit_flash_pixels.csv
+-rw-r--r-- 1 HP 197121  69409 Oct 27 16:53 material_edit_damaged_only.png
+-rw-r--r-- 1 HP 197121   1989 Oct 27 16:53 materials_captures.csv
+-rw-r--r-- 1 HP 197121  70087 Oct 27 16:53 materials_side_by_side.png
+-rw-r--r-- 1 HP 197121  70087 Oct 27 16:53 sweep_albedo_tint_default.png
+-rw-r--r-- 1 HP 197121  70087 Oct 27 16:53 sweep_albedo_tint_max.png
+-rw-r--r-- 1 HP 197121  56079 Oct 27 16:53 sweep_albedo_tint_min.png
+-rw-r--r-- 1 HP 197121  70087 Oct 27 16:53 sweep_brightness_default.png
+-rw-r--r-- 1 HP 197121  72573 Oct 27 16:53 sweep_brightness_max.png
+-rw-r--r-- 1 HP 197121  56079 Oct 27 16:53 sweep_brightness_min.png
+-rw-r--r-- 1 HP 197121  70087 Oct 27 16:53 sweep_roughness_scale_default.png
+-rw-r--r-- 1 HP 197121  70087 Oct 27 16:53 sweep_roughness_scale_max.png
+-rw-r--r-- 1 HP 197121  70943 Oct 27 16:53 sweep_roughness_scale_min.png
+-rw-r--r-- 1 HP 197121  70087 Oct 27 16:53 sweep_uv_scale_default.png
+-rw-r--r-- 1 HP 197121  62404 Oct 27 16:53 sweep_uv_scale_max.png
+-rw-r--r-- 1 HP 197121  70381 Oct 27 16:53 sweep_uv_scale_min.png
+================ DONE
