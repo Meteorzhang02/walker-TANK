@@ -164,4 +164,13 @@ Quad B: x = value / 255; y = 1.055 · x^(1/2.4) − 0.055 (x > 0.0031308); displ
 
 ## Revisions
 
-(none yet)
+**2026-10-27 — cover_wall has no UVs; import settings applied (written before shader 2).**
+
+`tools/inspect_cover_wall.gd` (output in `docs/a5/step3-info.txt`) shows `cover_wall.glb` has two surfaces: surface 0 `M_Brick` (24 vertices, the wall body) and surface 1 `M_BrickDark` (48 vertices, cap and base), and **neither has a UV array**. Changes to section 5:
+
+- `shaders/brick_surface.gdshader` projects the textures from **object-space position** (box projection: the largest component of the object-space normal picks the plane, X → ZY, Y → XZ, Z → XY), not from `UV`. The A3 asset stays unchanged.
+- `uv_scale` now means texture repeats per metre: `hint_range(0.1, 4.0)`, default 0.5 (one repeat every 2 m, so the 4 m wall shows two). Low values give huge bricks; high values give tiny, repetitive bricks.
+- The brick shader goes on surface 0 (`M_Brick`) only. Surface 1 (`M_BrickDark`) keeps its imported flat colour on both walls.
+- The three brick PNGs were imported as Lossless, no mipmaps, normal map Detect, `detect_3d/compress_to` = VRAM. They are now set to the section 5 values, with `detect_3d/compress_to` disabled so the editor cannot change them silently when they are used in 3D. The hint-experiment PNG needs the same: Lossless, no mipmaps, `detect_3d/compress_to` disabled, or using it in 3D would switch it to VRAM Compressed and change its grey values.
+- Two walls: `CoverWall` gets `materials/cover_wall_intact.tres` on `M_Brick` through the importer's **Use External**. A new second instance, `CoverWall2`, gets `materials/cover_wall_damaged.tres` as a surface material override on surface 0.
+
