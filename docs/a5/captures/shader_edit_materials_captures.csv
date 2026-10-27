@@ -1,0 +1,15 @@
+tag,file,material,uniform,step,value,param_after,note,wall1_x,wall1_y,wall1_mean_rgb,wall2_x,wall2_y,wall2_mean_rgb
+shader_edit,shader_edit_materials_side_by_side.png,intact,brightness,saved,1.0,1.0,both walls at their saved values,334,371,54.7 41.5 30.9,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_albedo_tint_min.png,intact,albedo_tint,min,0.000 0.000 0.000 1.000,0.000 0.000 0.000 1.000,default and maximum coincide,334,371,22.1 22.1 22.1,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_albedo_tint_default.png,intact,albedo_tint,default,1.000 1.000 1.000 1.000,1.000 1.000 1.000 1.000,default and maximum coincide,334,371,54.7 41.5 30.9,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_albedo_tint_max.png,intact,albedo_tint,max,1.000 1.000 1.000 1.000,1.000 1.000 1.000 1.000,default and maximum coincide,334,371,54.7 41.5 30.9,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_brightness_min.png,intact,brightness,min,0.0,0.0,,334,371,22.1 22.1 22.1,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_brightness_default.png,intact,brightness,default,1.0,1.0,,334,371,54.7 41.5 30.9,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_brightness_max.png,intact,brightness,max,2.0,2.0,,334,371,73.4 54.1 37.7,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_roughness_scale_min.png,intact,roughness_scale,min,0.0,0.0,default and maximum coincide,334,371,48.0 32.0 16.7,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_roughness_scale_default.png,intact,roughness_scale,default,1.0,1.0,default and maximum coincide,334,371,54.7 41.5 30.9,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_roughness_scale_max.png,intact,roughness_scale,max,1.0,1.0,default and maximum coincide,334,371,54.7 41.5 30.9,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_uv_scale_min.png,intact,uv_scale,min,0.1,0.1,,334,371,57.0 40.2 29.1,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_uv_scale_default.png,intact,uv_scale,default,0.5,0.5,,334,371,54.7 41.5 30.9,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_sweep_uv_scale_max.png,intact,uv_scale,max,4.0,4.0,,334,371,59.2 40.5 28.2,134,371,38.6 29.9 24.7
+shader_edit,shader_edit_material_edit_damaged_only.png,damaged,brightness,edit,0.5,0.5,intact brightness during this capture = 1.0,334,371,54.7 41.5 30.9,134,371,34.6 27.8 24.0

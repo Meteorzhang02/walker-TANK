@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://pc15bys00uqp"
+
+[deps]
+
+files=["res://docs/a5/captures/shader_edit_materials_captures.file.translation", "res://docs/a5/captures/shader_edit_materials_captures.material.translation", "res://docs/a5/captures/shader_edit_materials_captures.uniform.translation", "res://docs/a5/captures/shader_edit_materials_captures.step.translation", "res://docs/a5/captures/shader_edit_materials_captures.value.translation", "res://docs/a5/captures/shader_edit_materials_captures.param.translation", "res://docs/a5/captures/shader_edit_materials_captures.note.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall1.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall1.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall1.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall2.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall2.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall2.translation"]
+
+source_file="res://docs/a5/captures/shader_edit_materials_captures.csv"
+dest_files=["res://docs/a5/captures/shader_edit_materials_captures.file.translation", "res://docs/a5/captures/shader_edit_materials_captures.material.translation", "res://docs/a5/captures/shader_edit_materials_captures.uniform.translation", "res://docs/a5/captures/shader_edit_materials_captures.step.translation", "res://docs/a5/captures/shader_edit_materials_captures.value.translation", "res://docs/a5/captures/shader_edit_materials_captures.param.translation", "res://docs/a5/captures/shader_edit_materials_captures.note.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall1.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall1.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall1.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall2.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall2.translation", "res://docs/a5/captures/shader_edit_materials_captures.wall2.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
