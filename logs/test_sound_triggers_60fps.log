@@ -9,7 +9,7 @@ PASS  fatal hit -> 1 explosion, 0 hit sounds, dead
 PASS  last enemy destroyed twice -> 1 victory sound
 PASS  SFX muted -> enemy still damaged, cover still breaks
 RESULT: 0 failed
-WARNING: 18 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 22 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
-ERROR: 5 resources still in use at exit (run with --verbose for details).
+ERROR: 7 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:822)

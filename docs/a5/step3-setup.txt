@@ -1,0 +1,45 @@
+================ 1. set import settings (brief section 5)
+================ 2. reimport (headless, may take a minute)
+reimport exit=0
+================ 3. import settings after reimport
+---- assets/textures/brick/red_bricks_04_diff_1k.png.import
+compress/mode=2
+compress/normal_map=2
+mipmaps/generate=true
+detect_3d/compress_to=0
+---- assets/textures/brick/red_bricks_04_nor_gl_1k.png.import
+compress/mode=2
+compress/normal_map=1
+mipmaps/generate=true
+detect_3d/compress_to=0
+---- assets/textures/brick/red_bricks_04_rough_1k.png.import
+compress/mode=2
+compress/normal_map=2
+mipmaps/generate=true
+detect_3d/compress_to=0
+================ 4. brief revision
+revision added
+- `uv_scale` now means texture repeats per metre: `hint_range(0.1, 4.0)`, default 0.5 (one repeat every 2 m, so the 4 m wall shows two). Low values give huge bricks; high values give tiny, repetitive bricks.
+- The brick shader goes on surface 0 (`M_Brick`) only. Surface 1 (`M_BrickDark`) keeps its imported flat colour on both walls.
+- The three brick PNGs were imported as Lossless, no mipmaps, normal map Detect, `detect_3d/compress_to` = VRAM. They are now set to the section 5 values, with `detect_3d/compress_to` disabled so the editor cannot change them silently when they are used in 3D. The hint-experiment PNG needs the same: Lossless, no mipmaps, `detect_3d/compress_to` disabled, or using it in 3D would switch it to VRAM Compressed and change its grey values.
+- Two walls: `CoverWall` gets `materials/cover_wall_intact.tres` on `M_Brick` through the importer's **Use External**. A new second instance, `CoverWall2`, gets `materials/cover_wall_damaged.tres` as a surface material override on surface 0.
+
+================ 5. commit
+warning: in the working copy of 'CHANGE-BRIEF.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'assets/textures/brick/red_bricks_04_diff_1k.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'assets/textures/brick/red_bricks_04_nor_gl_1k.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'assets/textures/brick/red_bricks_04_rough_1k.png.import', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/a5/step3-info.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tools/inspect_cover_wall.gd', LF will be replaced by CRLF the next time Git touches it
+[main 9d14b83] A5 Step 3 prep: brief revision (cover_wall has no UVs -> object-space box projection; uv_scale per metre), brick import settings set and reimported
+ 7 files changed, 398 insertions(+), 1 deletion(-)
+ create mode 100644 assets/textures/brick/red_bricks_04_diff_1k.png.import
+ create mode 100644 assets/textures/brick/red_bricks_04_nor_gl_1k.png.import
+ create mode 100644 assets/textures/brick/red_bricks_04_rough_1k.png.import
+ create mode 100644 docs/a5/step3-info.txt
+ create mode 100644 logs/reimport_brick.log
+ create mode 100644 tools/inspect_cover_wall.gd
+9d14b83 A5 Step 3 prep: brief revision (cover_wall has no UVs -> object-space box projection; uv_scale per metre), brick import settings set and reimported
+9217896 A5 Step 2 evidence: test logs at 30/60/144, baseline logs, mutation logs (semicolon -> SHADER ERROR exit 1; rename -> exit 1)
+?? step3-setup.txt
+================ DONE

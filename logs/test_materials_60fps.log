@@ -1,0 +1,93 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+--- brick_surface.gdshader
+PASS  brick shader loads: res://shaders/brick_surface.gdshader
+PASS  source: shader_type spatial
+PASS  get_shader_uniform_list() is non-empty (compiled, 6 entries)
+PASS  every source uniform is in the compiled uniform list (["albedo_tex", "albedo_tint", "brightness", "roughness_tex", "roughness_scale", "uv_scale"])
+PASS  source: ALBEDO is read from a sampler (albedo_tex, line 33)
+PASS  source: ROUGHNESS is read from a sampler (roughness_tex, line 34)
+PASS  source: colour sampler albedo_tex has source_color (line 4: ["source_color", "filter_linear_mipmap", "repeat_enable"])
+PASS  source: roughness sampler roughness_tex has no source_color (line 9: ["filter_linear_mipmap", "repeat_enable"])
+PASS  source: >= 4 non-sampler uniforms (4: ["albedo_tint", "brightness", "roughness_scale", "uv_scale"])
+PASS  source: non-sampler uniforms in >= 2 group_uniforms groups (["colour", "surface"])
+PASS  source: every non-sampler uniform has a readable default
+--- brick materials
+PASS  intact loads as ShaderMaterial: res://materials/cover_wall_intact.tres
+PASS  damaged loads as ShaderMaterial: res://materials/cover_wall_damaged.tres
+PASS  both use res://shaders/brick_surface.gdshader (same Shader object)
+PASS  intact: albedo_tex bound to red_bricks_04_diff_1k.png (got res://assets/textures/brick/red_bricks_04_diff_1k.png)
+PASS  intact: roughness_tex bound to red_bricks_04_rough_1k.png (got res://assets/textures/brick/red_bricks_04_rough_1k.png)
+PASS  damaged: albedo_tex bound to red_bricks_04_diff_1k.png (got res://assets/textures/brick/red_bricks_04_diff_1k.png)
+PASS  damaged: roughness_tex bound to red_bricks_04_rough_1k.png (got res://assets/textures/brick/red_bricks_04_rough_1k.png)
+      albedo_tint      intact (1.0, 1.0, 1.0, 1.0)     damaged (0.78, 0.72, 0.66, 1.0)
+      brightness       intact 1.0                      damaged 0.7
+      roughness_scale  intact 1.0                      damaged 1.0
+      uv_scale         intact 0.5                      damaged 0.5
+PASS  intact: every non-sampler value is the shader default
+PASS  intact and damaged differ in >= 2 values (["albedo_tint", "brightness"])
+PASS  damaged: albedo_tint = Color(0.78, 0.72, 0.66, 1)
+PASS  damaged: brightness = 0.7
+PASS  damaged: every other value is the shader default
+--- brick .import settings (brief section 5 as revised)
+PASS  red_bricks_04_diff_1k.png.import readable
+PASS  red_bricks_04_diff_1k.png: compress/mode=2 normal_map=2 mipmaps=true detect_3d/compress_to=0 (want 2, 2, true, 0)
+PASS  red_bricks_04_rough_1k.png.import readable
+PASS  red_bricks_04_rough_1k.png: compress/mode=2 normal_map=2 mipmaps=true detect_3d/compress_to=0 (want 2, 2, true, 0)
+PASS  red_bricks_04_nor_gl_1k.png.import readable
+PASS  red_bricks_04_nor_gl_1k.png: compress/mode=2 normal_map=1 mipmaps=true detect_3d/compress_to=0 (want 2, 1, true, 0)
+--- hint PNG
+PASS  res://assets/hint/grey_3x1.png exists (run tools/make_hint_png.gd)
+PASS  PNG reads as an Image
+PASS  PNG is 3x1 (got 3x1)
+PASS  PNG pixels left to right are grey 64/128/192 (got [[64, 64, 64], [128, 128, 128], [192, 192, 192]])
+PASS  grey_3x1.png.import exists (PNG imported in the editor)
+PASS  grey_3x1.png: compress/mode=0 mipmaps=false detect_3d/compress_to=0 (want 0 Lossless, false, 0)
+--- hint_experiment.gdshader
+PASS  hint shader loads: res://shaders/hint_experiment.gdshader
+PASS  get_shader_uniform_list() is non-empty (compiled)
+PASS  source: shader_type spatial
+PASS  source: render_mode unshaded (["unshaded"])
+PASS  source: two samplers, one with source_color (["tex_srgb"]), one without (["tex_raw"])
+PASS  source: both samplers filter_nearest
+PASS  source: one bool uniform picks the sampler (["use_srgb"])
+--- hint materials
+PASS  hint_srgb loads as ShaderMaterial (needs the imported PNG)
+PASS  hint_raw loads as ShaderMaterial (needs the imported PNG)
+PASS  both use res://shaders/hint_experiment.gdshader (same Shader object)
+PASS  both samplers in both materials bound to res://assets/hint/grey_3x1.png
+PASS  hint_srgb: use_srgb = true
+PASS  hint_raw: use_srgb = false
+--- asset_room_3d.tscn
+PASS  asset_room_3d.tscn loads
+PASS  CoverWall exists
+PASS  CoverWall2 exists
+PASS  CoverWall2 instances cover_wall.glb
+PASS  each wall has one MeshInstance3D with 2 surfaces
+PASS  CoverWall2 surface 0 override is cover_wall_damaged.tres (got res://materials/cover_wall_damaged.tres)
+PASS  CoverWall surface 0 has no override (material comes from the import)
+PASS  CoverWall surface 0 resolves to cover_wall_intact.tres (got res://materials/cover_wall_intact.tres) [needs Use External]
+PASS  cover_wall.glb.import: M_Brick use_external/enabled, use_external/path -> res://materials/cover_wall_intact.tres (got 'res://materials/cover_wall_intact.tres')
+PASS  CoverWall surface 1 is the imported M_BrickDark (got M_BrickDark), no override
+PASS  CoverWall2 surface 1 is the imported M_BrickDark (got M_BrickDark), no override
+      CoverWall  aabb (-8.77, 0.0, -0.5) .. (-4.769968, 1.8, 0.5)
+      CoverWall2 aabb (-13.2, 0.0, -0.5) .. (-9.199967, 1.8, 0.5)
+PASS  CoverWall2 stands on the floor (lowest y 0.0000, floor y 0.0000; inside the floor's x/z)
+PASS  CoverWall2 overlaps no other node (overlaps: [])
+PASS  CoverWall fully in view of Camera3D at 1280x720 (screen x [234.06401549795, 439.094169515099])
+PASS  CoverWall2 fully in view of Camera3D at 1280x720 (screen x [29.0131541261871, 252.5074088901])
+--- hint_experiment.tscn
+PASS  hint_experiment.tscn loads (needs the imported PNG)
+PASS  one Camera3D
+PASS  one WorldEnvironment with an Environment
+PASS  tonemap Linear (0), exposure 1.0 (1.000)
+PASS  glow, fog, volumetric fog, SSAO, SSR, SDFGI, adjustments all off
+PASS  background is a colour, mid grey ((0.5, 0.5, 0.5, 1.0))
+PASS  two QuadMesh quads (2)
+PASS  left quad uses hint_srgb.tres (got res://materials/hint_srgb.tres)
+PASS  QuadA_srgb quad fully in view, each band 141 px wide at 1280x720 (want >= 50)
+PASS  QuadA_srgb has a Label3D above it naming hint_srgb
+PASS  right quad uses hint_raw.tres (got res://materials/hint_raw.tres)
+PASS  QuadB_raw quad fully in view, each band 141 px wide at 1280x720 (want >= 50)
+PASS  QuadB_raw has a Label3D above it naming hint_raw
+RESULT: 76 passed, 0 failed

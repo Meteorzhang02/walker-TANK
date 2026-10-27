@@ -1,0 +1,17 @@
+================ 1. generate the hint PNG
+
+wrote res://assets/hint/grey_3x1.png  size 3x1  format 4
+  pixel 0: (64, 64, 64)
+  pixel 1: (128, 128, 128)
+  pixel 2: (192, 192, 192)
+total 1
+-rw-r--r-- 1 HP 197121 81 Oct 27 16:36 grey_3x1.png
+================ 2. first import (creates the .import file)
+import 1 exit=0
+-rw-r--r-- 1 HP 197121 939 Oct 27 16:36 assets/hint/grey_3x1.png.import
+================ 3. set Lossless, no mipmaps, detect_3d disabled; reimport
+import 2 exit=0
+compress/mode=0
+mipmaps/generate=false
+detect_3d/compress_to=0
+================ DONE — now open the editor and set Use External on cover_wall.glb

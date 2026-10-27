@@ -1,0 +1,47 @@
+================ 0. Use External as saved by the editor
+42:_subresources={
+================ 1. tests
+test_materials.gd @ 60 fps: exit=1  PASS=75  FAIL=1  | RESULT: 75 passed, 1 failed
+test_hit_flash.gd @ 30 fps: exit=0  PASS=50  FAIL=0  | RESULT: 50 passed, 0 failed
+test_hit_flash.gd @ 60 fps: exit=0  PASS=50  FAIL=0  | RESULT: 50 passed, 0 failed
+test_hit_flash.gd @ 144 fps: exit=0  PASS=50  FAIL=0  | RESULT: 50 passed, 0 failed
+check_a3_assets.gd @ 60 fps: exit=0  PASS=18  FAIL=0  | RESULT: PASS (0 failure(s))
+test_sound_triggers.gd @ 60 fps: exit=0  PASS=8  FAIL=0  | RESULT: 0 failed
+---- FAIL lines in test_materials (should be none):
+FAIL  cover_wall.glb.import: M_Brick use_external -> res://materials/cover_wall_intact.tres (got '') [needs the human]
+================ 2. MUTATION 3: delete source_color from the colour sampler
+4:uniform sampler2D albedo_tex : filter_linear_mipmap, repeat_enable;
+33:	ALBEDO = texture(albedo_tex, uv).rgb * albedo_tint.rgb * brightness;
+mutation3 exit=1
+FAIL  source: colour sampler albedo_tex has source_color (line 4: ["filter_linear_mipmap", "repeat_enable"])
+FAIL  cover_wall.glb.import: M_Brick use_external -> res://materials/cover_wall_intact.tres (got '') [needs the human]
+RESULT: 74 passed, 2 failed
+restored, diff stat:
+warning: in the working copy of 'shaders/hint_experiment.gdshader', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shaders/hit_flash.gdshader', LF will be replaced by CRLF the next time Git touches it
+================ 3. rerun test_materials so its log is the passing run
+rerun exit=1
+RESULT: 75 passed, 1 failed
+================ 4. status
+ M assets/models/cover_wall.glb.import
+ M logs/test_hit_flash_30fps.log
+ M logs/test_hit_flash_60fps.log
+ M logs/test_sound_triggers_60fps.log
+ M scenes/asset_room_3d.tscn
+?? MATERIALS.md
+?? assets/hint/
+?? docs/a5/sessions/prompt-3.txt
+?? docs/a5/sessions/session-3.jsonl
+?? logs/mutation3_no_source_color_60fps.log
+?? logs/reimport_hint_1.log
+?? logs/reimport_hint_2.log
+?? logs/test_materials_60fps.log
+?? materials/
+?? scenes/hint_experiment.tscn
+?? step3-finish-a.txt
+?? step3-finish-b.txt
+?? step3-setup.txt
+?? tests/test_materials.gd
+?? tests/test_materials.gd.uid
+?? tools/make_hint_png.gd
+================ DONE
