@@ -67,7 +67,7 @@ PASS  each wall has one MeshInstance3D with 2 surfaces
 PASS  CoverWall2 surface 0 override is cover_wall_damaged.tres (got res://materials/cover_wall_damaged.tres)
 PASS  CoverWall surface 0 has no override (material comes from the import)
 PASS  CoverWall surface 0 resolves to cover_wall_intact.tres (got res://materials/cover_wall_intact.tres) [needs Use External]
-FAIL  cover_wall.glb.import: M_Brick use_external -> res://materials/cover_wall_intact.tres (got '') [needs the human]
+PASS  cover_wall.glb.import: M_Brick use_external/enabled, use_external/path -> res://materials/cover_wall_intact.tres (got 'res://materials/cover_wall_intact.tres')
 PASS  CoverWall surface 1 is the imported M_BrickDark (got M_BrickDark), no override
 PASS  CoverWall2 surface 1 is the imported M_BrickDark (got M_BrickDark), no override
       CoverWall  aabb (-8.77, 0.0, -0.5) .. (-4.769968, 1.8, 0.5)
@@ -90,4 +90,4 @@ PASS  QuadA_srgb has a Label3D above it naming hint_srgb
 PASS  right quad uses hint_raw.tres (got res://materials/hint_raw.tres)
 PASS  QuadB_raw quad fully in view, each band 141 px wide at 1280x720 (want >= 50)
 PASS  QuadB_raw has a Label3D above it naming hint_raw
-RESULT: 74 passed, 2 failed
+RESULT: 75 passed, 1 failed
