@@ -1,5 +1,86 @@
 # walker-TANK
 
+A tank-battle game in Godot: you drive **YunqiZ** through a ruined brick battlefield and destroy three enemy tanks.
+
+- **Starting point:** my own Assignment 2 game and Assignment 3 3D asset room in this repository (A5 baseline commit `c4a1f84`). See [SOURCES.md](SOURCES.md).
+- **Engine:** Godot 4.7.2 stable. **Renderer:** Forward+ (engine default; `project.godot` sets no renderer). 2D: 1280×720, stretch `canvas_items`, no `hdr_2d`.
+- **Film (Assignment 5):** TBD.
+
+## Assignment 5 — hit flash shader and brick surface materials
+
+### What Assignment 5 added
+
+- **Hit flash on YunqiZ (2D):** `shaders/hit_flash.gdshader` (`canvas_item`, hand-written by me) mixes the sprite colour toward red: `mix(COLOR.rgb, flash_color.rgb, hit_amount * flash_strength)`. `scripts/hit_flash_driver.gd`, attached by one line in `scripts/main.gd`, puts one shared ShaderMaterial on YunqiZ's hull and turret.
+  - On `damaged` it sets `hit_amount` to 1.0, then fades it to 0.0 over 0.5 s of game time.
+  - A new hit restarts the fade. Pause holds it. Death and respawn clear it.
+  - Enemies have no material. The existing white `_flash()` is unchanged.
+- **Brick materials (3D):** `shaders/brick_surface.gdshader` (`spatial`, hand-written by me). It projects the Poly Haven red_bricks_04 colour and roughness maps from object-space position, because `cover_wall.glb` has no UVs. Uniforms: `albedo_tint`, `brightness`, `roughness_scale`, `uv_scale`.
+  - Two materials share it: `materials/cover_wall_intact.tres` on `CoverWall` (through the importer's Use External on `M_Brick`) and `materials/cover_wall_damaged.tres` on a new `CoverWall2` (surface override).
+- **Hint experiment:** `scenes/hint_experiment.tscn` with `shaders/hint_experiment.gdshader`. It shows the same 3×1 grey PNG (64/128/192, `tools/make_hint_png.gd`) through a sampler with `source_color` (Quad A) and one without (Quad B).
+- **Generated shader for comparison:** `shaders/standard_generated.gdshader` (Godot's *Convert to ShaderMaterial* in `scenes/scratch_standard.tscn`; not used by the game).
+- **Tests:** `tests/test_hit_flash.gd`, `tests/test_materials.gd`, `tests/check_tools_parse.gd`. **Capture tools:** `tools/capture_hit_flash.gd`, `tools/capture_hint.gd`, `tools/capture_materials.gd`.
+- **Documents:** [CHANGE-BRIEF](CHANGE-BRIEF.md) (with Revisions) · [TEST-REPORT](TEST-REPORT.md) · [MATERIALS](MATERIALS.md) · [LANGUAGE-NOTES](LANGUAGE-NOTES.md) · [FRICTIONAL](FRICTIONAL.md) · [SOURCES](SOURCES.md) · [CLAUDE.md](CLAUDE.md). Evidence: `logs/`, `docs/a5/`.
+
+### Run (Windows, Git Bash, from the repo root)
+
+```bash
+GODOT="/d/CSYE7270/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe"   # as in scripts/run-test.sh line 5
+
+# Import once after cloning
+"$GODOT" --headless --path . --import
+
+# The game (main scene, scenes/main.tscn); or open the project in the editor and press F5
+"$GODOT" --path .
+
+# The 3D asset room with the two brick walls; or open the scene in the editor and press F6
+"$GODOT" --path . res://scenes/asset_room_3d.tscn
+
+# The hint experiment
+"$GODOT" --path . res://scenes/hint_experiment.tscn
+```
+
+**Tests**, always through the wrapper, one per call. The wrapper runs headless with `--fixed-fps`, a 120 s timeout, and a log in `logs/<name>_<fps>fps.log`. It exits 1 on any FAIL or on `SHADER ERROR` / `SCRIPT ERROR`.
+
+```bash
+bash scripts/run-test.sh test_hit_flash.gd 30
+bash scripts/run-test.sh test_hit_flash.gd 60
+bash scripts/run-test.sh test_hit_flash.gd 144
+bash scripts/run-test.sh test_materials.gd 60
+bash scripts/run-test.sh check_tools_parse.gd 60
+bash scripts/run-test.sh check_a3_assets.gd 60
+bash scripts/run-test.sh test_sound_triggers.gd 60
+```
+
+Results at `3d48047`: 50/50 at each rate, 76/76, 9/9, 18/18, 8/8, all exit 0 ([TEST-REPORT](TEST-REPORT.md)).
+
+**Capture tools.** These need a real window, because headless draws nothing. Output goes to `docs/a5/captures/`.
+
+```bash
+"$GODOT" --path . --resolution 1280x720 --script res://tools/capture_hit_flash.gd
+"$GODOT" --path . --resolution 1280x720 --script res://tools/capture_hint.gd
+"$GODOT" --path . --resolution 1280x720 --script res://tools/capture_materials.gd
+# optional: prefix every file, e.g. after a temporary shader edit
+"$GODOT" --path . --resolution 1280x720 --script res://tools/capture_materials.gd -- --tag=shader_edit
+```
+
+The game and the two scenes can also be opened in the editor. The command-line scene runs above follow Godot's standard CLI and were not themselves recorded in my notes.
+
+### Controls
+
+Unchanged from Assignment 2 (table below): WASD / arrows move, mouse aims, left mouse / Space fires, Esc / P pauses, M / N mute music / SFX, R restarts after victory.
+
+### Known limitations (A5, from my notes)
+
+- The existing white `_flash()` still runs (the test sees modulate 2.2), but in play it is visually masked by the red at the moment of the hit.
+- The pause rule (fade holds while paused) has only the headless check. I could not press Esc within 0.5 s.
+- `reset_full()` on a living tank mid-fade would not clear the fade. The game only calls it after death.
+- My named pixel P1 is covered by the turret. The brief's hull prediction does not apply there, and a recomputed turret value is in the brief's Revisions. P2 matched exactly.
+- No game material uses a normal map. `red_bricks_04_nor_gl_1k.png` is only in the Step 4 scratch material, so the normal-map check is not applicable.
+- The interface-sweep looks (wash-out, gloss, brick size) are recorded mostly as numbers. Several are still to confirm by eye.
+- The helper bash/python scripts I ran were written by Claude chat and are not in the repo.
+
+---
+
 ## Assignment 3
 
 Assignment 3 adds a 3D asset room to this repository; the 2D game from Assignment 2 (below) is unchanged.

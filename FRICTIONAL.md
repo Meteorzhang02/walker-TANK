@@ -1,3 +1,189 @@
+# Assignment 5 — hit flash shader and brick surface materials
+
+**How this was written.** I kept raw notes in order while working ([docs/a5/frictional-notes.md](docs/a5/frictional-notes.md), commit `3d48047`; organised from my session with Claude chat and reviewed by me). Claude Code (session 6, [docs/a5/sessions/prompt-6.txt](docs/a5/sessions/prompt-6.txt)) arranged them into the dated entries below. It added only commit hashes, file paths, log and capture names and numbers taken from those files. The wording is mine where possible. **Retrospective:** every entry was written from my notes on 2026-10-27. The 2026-10-25 setup entry was written two days after the work; the others on the same day.
+
+**Who is who:** *Me* = what I decided, typed, ran, checked or changed. *Claude chat* = Claude in claude.ai (brief drafting, the three shaders' structure, helper bash/python scripts, translation). *Claude Code* = the agent in this repo, sessions 1–6 (`docs/a5/sessions/prompt-N.txt`, `session-N.jsonl`).
+
+**Versions:** Windows 11 · Git Bash · Godot 4.7.2 stable, Forward+ · Python + PIL (helper scripts).
+
+## 2026-10-25 — setup (retrospective, written 2026-10-27)
+
+- **Tried:** the assignment's `run-test.sh`.
+- **Expected:** to use it as given.
+- **Happened:** it assumes macOS and a `godot/` folder. My `project.godot` is at the repo root and I use Windows + Git Bash.
+- **Changed:** "I wrote a Windows version with --path . and the full Godot console path" (`3402469`). "Git warned it would convert run-test.sh to CRLF and stored it as 100644." I added `.gitattributes` (`*.sh text eol=lf`) and set +x, then checked with `git ls-files -s` (100755) and `git ls-files --eol` (i/lf w/lf) (`c4a1f84`).
+- **Baseline before any A5 change:** check_a3_assets 18/18, test_sound_triggers 8/8, both exit 0. test_sound_triggers prints a pre-existing "5 resources still in use at exit" message; it is not a SHADER/SCRIPT ERROR.
+- **Also:** I archived the A3 brief to `docs/a3/` (`19aa9c1`) and added the Poly Haven red_bricks_04 maps with `ATTRIBUTION.md` (`ed1976a`).
+- **Pixel choice:** "a PIL search for flat 5x5 areas in hull_right.png found only 33 flat pixels, all olive; the white stripe is too thin. A 3x3 search found the dark track. I chose P1 (99,50) olive and P2 (59,109) track."
+- **Learned:** TBD (not in my notes).
+- **Who:** me. The PIL script was a helper script written by Claude chat.
+
+## 2026-10-27 — CHANGE-BRIEF before any shader (`1da47e9`)
+
+- **Tried:** writing the spec before any shader or agent prompt.
+- **Who:** "Drafted with Claude (claude.ai chat) from my decisions and project facts I collected with grep. Claude suggested the colour-line form, flash_strength, pure red as the flash colour and D = 0.5 s; I accepted them."
+- **Checked:** "I computed the 6 pixel predictions and the 6 hint predictions by hand with a calculator, except the worked example P1 @ 0.5 which Claude showed as the method. Claude checked them: all 12 correct; my intermediate for 128 (0.7492) was corrected to 0.7504, same final 188."
+- **Learned:** TBD (not in my notes). The hint predictions later matched 6/6 (see Use It).
+
+## 2026-10-27 — Step 1: CLAUDE.md (Claude Code session 1)
+
+- **Trace:** [prompt-1.txt](docs/a5/sessions/prompt-1.txt), [session-1.jsonl](docs/a5/sessions/session-1.jsonl) (20 turns, success, no denials). Commits `63d7ba0` (draft, unedited), `6514c32` (my review), `19c89b8` (my addendum).
+- **Tried:** having Claude Code draft CLAUDE.md, with nothing else changed.
+- **Happened:** "The draft was good but limited 3D changes to cover_wall only, which would have blocked the hint-experiment scene and the Step 4 scratch scene."
+- **Changed:** "I widened Out of scope, confirmed the renderer in Project Settings (forward_plus), and added standard_generated.gdshader and LANGUAGE-NOTES to Ownership" (`6514c32`).
+- **Mistake of mine:** "I missed the required 'Headless facts' block at first; I added it later the same day, after the mutation and Use External findings" (`19c89b8`).
+- **Learned:** TBD (not in my notes).
+- **Who:** Claude Code drafted; I reviewed, confirmed the renderer and edited.
+
+## 2026-10-27 — Step 2: hit flash shader, driver and test (Claude Code session 2)
+
+- **Trace:** [prompt-2.txt](docs/a5/sessions/prompt-2.txt), [session-2.jsonl](docs/a5/sessions/session-2.jsonl) (38 turns, success). Commits `0c20cc6` (my shader), `be94463` (driver + test), `9217896` (evidence). Output [docs/a5/step2-output.txt](docs/a5/step2-output.txt). Logs [logs/test_hit_flash_30fps.log](logs/test_hit_flash_30fps.log), [_60fps](logs/test_hit_flash_60fps.log), [_144fps](logs/test_hit_flash_144fps.log), [mutation1](logs/mutation1_semicolon_60fps.log), [mutation2](logs/mutation2_rename_60fps.log).
+- **Shader:** "I did not know GDShader syntax. Claude (chat) gave the full shader with a line-by-line explanation; I typed it in myself and checked every uniform name against the brief."
+- **Driver and test:** Claude Code wrote `scripts/hit_flash_driver.gd`, added one line to `main.gd`, and wrote `tests/test_hit_flash.gd`.
+  - Its first run gave 52 passed, 1 failed. That was a bug in the test: its number regex picked up the `4` in `vec4`. It fixed the test.
+  - Final result: 50/50 at 30, 60 and 144 fps. The fade took 0.5000 s of game time at all three rates.
+- **Friction:** "4 tool calls were denied by the allowlist: two compound test commands, one direct Godot run that bypassed the wrapper to probe a broken shader, one PowerShell delete. The probe file was left in logs/; I deleted it and added logs/.gdignore."
+- **Expected vs happened:** "The agent was unsure whether headless reports shader compile errors. Mutation 1 (delete a semicolon) settled it: SHADER ERROR: Expected a ';', exit 1. Mutation 2 (rename hit_amount) exit 1." I ran both mutations by hand and restored the file each time (restore diff empty, `step2-output.txt` 3a/3b).
+- **Editor re-save:** "asset_room_3d.tscn showed a diff after the session; it was the Godot editor re-saving in 4.7 format, not the agent; I reverted it."
+- **Known limits from the agent's report:** "reset_full() on a living tank mid-fade would not reset the value; the game only calls it after death. The uniform list reports flash_color with hint 0, so source_color is only checked from the source text."
+- **Learned:** headless does report shader parse errors (now in CLAUDE.md's Headless facts).
+- **Who:** Claude chat gave the shader and explained it; I typed it, ran the mutations and reverted the scene. Claude Code wrote the driver and test and ran the tests.
+
+## 2026-10-27 — Step 3 prep: cover_wall has no UVs (`9d14b83`)
+
+- **Trace:** `tools/inspect_cover_wall.gd`, [docs/a5/step3-info.txt](docs/a5/step3-info.txt), [docs/a5/step3-setup.txt](docs/a5/step3-setup.txt), [logs/reimport_brick.log](logs/reimport_brick.log).
+- **Expected:** the brief §5 plan, "UVs scaled by `uv_scale`".
+- **Happened:** "Before writing the shader I inspected cover_wall.glb with a Godot tool (tools/inspect_cover_wall.gd): two surfaces (M_Brick 24 verts, M_BrickDark 48 verts) and NO UVs."
+- **Changed:**
+  - "So the shader projects from object-space position (box projection), recorded as a dated revision before the shader."
+  - `uv_scale` became repeats per metre (0.1–4.0, default 0.5).
+  - "The brick PNGs had been imported Lossless, no mipmaps, normal map Detect, detect_3d compress_to VRAM. I set them to the brief's values with detect_3d disabled and reimported headless" (reimport exit 0).
+- **Learned:** TBD (not in my notes). CLAUDE.md had listed "whether the `.glb` has UVs" as unconfirmed.
+- **Who:** me (inspection, revision, import settings, via helper scripts written by Claude chat).
+
+## 2026-10-27 — Step 3: brick shader, materials, hint scene (Claude Code sessions 3 and 4)
+
+- **Trace:**
+  - Sessions: [prompt-3.txt](docs/a5/sessions/prompt-3.txt), [session-3.jsonl](docs/a5/sessions/session-3.jsonl) (41 turns), [prompt-4.txt](docs/a5/sessions/prompt-4.txt), [session-4.jsonl](docs/a5/sessions/session-4.jsonl).
+  - Commits: `fdcc415` (my two shaders), `81b364b` (agent), `08ddf87` (my editor steps), `97fdec6` (evidence).
+  - Outputs: [docs/a5/step3-finish-a.txt](docs/a5/step3-finish-a.txt), [step3-finish-b.txt](docs/a5/step3-finish-b.txt).
+  - Logs: [logs/test_materials_60fps.log](logs/test_materials_60fps.log), [logs/mutation3_no_source_color_60fps.log](logs/mutation3_no_source_color_60fps.log), [logs/reimport_hint_1.log](logs/reimport_hint_1.log), [_2](logs/reimport_hint_2.log).
+- **Shaders:** "Claude (chat) gave brick_surface.gdshader and hint_experiment.gdshader with explanations; I typed both."
+- **Agent:** session 3 made the materials, CoverWall2, the hint scene, `make_hint_png.gd`, MATERIALS.md and `test_materials.gd`.
+  - Its own run: 60 passed, 8 failed. All 8 were expected: 6 waited on the PNG, 2 on Use External.
+  - It noted that `asset_room_3d.tscn` already had uncommitted editor-save changes and left them in place. They were committed with CoverWall2 in `81b364b`.
+- **My steps:** "I ran make_hint_png.gd, imported the PNG Lossless / no mipmaps / detect_3d off, and set Use External on M_Brick in Advanced Import Settings."
+- **Expected vs happened:** "test_materials then still failed on Use External" (75 passed, 1 failed).
+- **Checked:** "I read cover_wall.glb.import: the setting was there, saved as "use_external/enabled" and "use_external/path"; the agent's test looked for a key "use_external" (it had said it did not know 4.7's format)."
+- **Changed:** "Session 4 fixed only that check: 76/76."
+- **Mutation 3:** "(delete source_color from the colour sampler): exit 1." I ran it before the session-4 fix, so its log shows 74 passed, 2 failed. The second FAIL is the then-broken Use External check. Not rerun since.
+- **Learned:** Godot 4.7.2's key names for Use External (now in CLAUDE.md's Headless facts).
+- **Who:** Claude chat gave the shaders; I typed them. Claude Code wrote the materials, scenes, tool, audit and test. I generated and imported the PNG, set Use External, found the key mismatch and asked for the one-check fix. I ran the mutation.
+
+## 2026-10-27 — Use It: windowed captures (tools by Claude Code session 5, run by me)
+
+- **Trace:**
+  - Session: [prompt-5.txt](docs/a5/sessions/prompt-5.txt), [session-5.jsonl](docs/a5/sessions/session-5.jsonl).
+  - Commits:
+    - `240d2be` and `cb6f0bd` (17:31): tools; captures and CSVs.
+    - `4721a4d` and `423c61c` (17:48): same messages, adding the files left out of the first pair (the tool test's `.uid`, the shader-edit captures, and Godot's `.import` / `.translation` files).
+    - `d9b1837`: brief revision and cleanup.
+  - Outputs: [docs/a5/captures-output.txt](docs/a5/captures-output.txt), [use-it-part2.txt](docs/a5/use-it-part2.txt), [use-it-part3.txt](docs/a5/use-it-part3.txt).
+  - CSVs: [hit_flash_pixels.csv](docs/a5/captures/hit_flash_pixels.csv), [hint_pixels.csv](docs/a5/captures/hint_pixels.csv), [materials_captures.csv](docs/a5/captures/materials_captures.csv), [shader_edit_materials_captures.csv](docs/a5/captures/shader_edit_materials_captures.csv).
+- **Tools:** Claude Code wrote three capture tools and `check_tools_parse.gd` (9/9). It could not run Godot windowed, and its PIL check was not approved. It listed "the turret may cover P1" as unconfirmed and made the tool print the turret's alpha.
+- **Hint experiment:** "all six bands exactly as predicted (A 64/128/192, B 137/188/225), difference 0."
+- **Hit flash:**
+  - "P2 matched exactly at 0.0/0.5/1.0. P1 was 21/15/8 off: the capture tool showed the turret covers that pixel."
+  - "The turret texel under it, turret_right.png (99,71), is (70,76,31); recomputing with the colour line after the observation gives (126,53,22) and (181,30,12); measured (126,53,22) and (181,31,12). Recorded as a dated revision; lesson: choose named pixels on the final drawn layer."
+- **hint_range:** "2.0 from code: both pixels (255,0,0), so hint_range does not clamp."
+- **Sweep:** "black tint or brightness 0 gives (22,22,22), not black (specular/ambient remain); brightness 2 raises the wall mean from 73 to ~100, not 146, because brightness multiplies linear colour and the output is sRGB-encoded ((73.4/255)^2.2 x 2 -> ~100.5); roughness 0 makes the wall darker; uv_scale changes brick size."
+- **One shader, two materials:** "editing the shader's ALBEDO line (x 0.5) darkened both walls (73.4 -> 54.7, 49.9 -> 38.6); setting brightness on the damaged material only changed only CoverWall2 (49.9 -> 43.8)." I made the shader edit temporarily and restored the file.
+- **OS screenshot vs engine capture:** "my first attempt captured the wrong window (850x287 terminal screenshot). The second (1920x1080, Win+PrtScn) showed all six bands at exactly the same values. I still trust the engine capture for measurement."
+- **Cleanup:** "Godot generated .import files for the captures in docs/; I added docs/.gdignore and removed them." Not noticed at the time: Godot also imported the CSVs as translations, and 32 `.translation` files are still tracked (see Unresolved).
+- **Learned:** the P1 lesson above. A value set from code is not limited by `hint_range`. Brightness in linear space does not double the displayed value.
+- **Who:** Claude Code wrote the tools. I ran them, made the shader edit, read the turret texel with PIL (helper script by Claude chat), and wrote the revision.
+
+## 2026-10-27 — Step 4: generated shader and LANGUAGE-NOTES
+
+- **Trace:** commits `91e6751` (scratch scene, `shaders/standard_generated.gdshader`), `01dc14a` ([LANGUAGE-NOTES.md](LANGUAGE-NOTES.md)).
+- **Tried:** "Converted a StandardMaterial3D (albedo, normal map, roughness) to ShaderMaterial in a scratch scene and saved shaders/standard_generated.gdshader."
+- **Mistakes:** "I first saved the scratch scene into shaders/ by mistake and moved it to scenes/. The editor had re-saved brick_surface.gdshader (line endings only); I restored it."
+- **LANGUAGE-NOTES:**
+  - "I asked Claude to write the answers; it declined because the assignment requires my own words."
+  - "My first Chinese draft was copied from Claude's explanation notes; Claude pointed that out."
+  - "I rewrote each answer briefly in my own words in Chinese; Claude translated and checked line references, and pointed out one mistake in question 4 (I had the 64/137 sampler reversed), which I accepted."
+- **Learned:** TBD (not in my notes).
+- **Who:** me (conversion, answers); Claude chat (refusal, translation, line check, the question-4 correction).
+
+## 2026-10-27 — playtest (me, in the editor)
+
+> Got hit several times by enemy shells. Each hit flashed YunqiZ red and faded quickly; a second hit during the fade restarted it. Enemies hit by my shells did not flash red (only their existing white flash and the impact effect). After being destroyed and respawning there was no red left. I did not see the existing white flash on YunqiZ: the test shows modulate still reaches 2.2, but at the same moment the red is at its strongest. I tried to pause with Esc during the fade but could not press it within 0.5 s, so rule 5 rests on the headless test only.
+
+## 2026-10-27 — documents (Claude Code session 6)
+
+- **Trace:** [prompt-6.txt](docs/a5/sessions/prompt-6.txt), `docs/a5/sessions/session-6.jsonl` (untracked at the time of writing).
+- **What happened:**
+  - Claude Code reran all seven tests through the wrapper at `3d48047`: hit_flash 50/50 at 30/60/144, test_materials 76/76, check_tools_parse 9/9, check_a3_assets 18/18, test_sound_triggers 8/8, all exit 0.
+  - It then wrote this section, the A5 parts of TEST-REPORT.md, SOURCES.md and README.md from my notes and the files, with TBD where they say nothing.
+  - It changed no shader, game script, scene, material, test or `.import` file.
+- **Noted:** test_sound_triggers' shutdown message now says 7 resources and 22 ObjectDB instances. The baseline was 5 and 18, and the change appeared between `9217896` and `97fdec6`. Cause: TBD.
+- **Not committed:** I review and commit.
+
+## Who did what (A5)
+
+- **Me:**
+  - Made every decision in the brief, and computed the predictions by hand (except the worked example).
+  - Typed all three hand-written shaders.
+  - Wrote the Windows `run-test.sh` and the line-ending fix.
+  - Chose P1/P2.
+  - Reviewed and edited CLAUDE.md.
+  - Ran the mutations.
+  - Inspected cover_wall and revised the brief.
+  - Set the import settings, generated and imported the hint PNG, and set Use External.
+  - Found the Use External key mismatch.
+  - Ran every capture tool windowed, and made the temporary shader edit.
+  - Found and recorded the turret finding.
+  - Did the Step 4 conversion.
+  - Wrote the LANGUAGE-NOTES answers in my own words.
+  - Playtested.
+  - Reverted the editor re-saves.
+- **Claude chat:**
+  - Drafted the brief from my decisions; suggested the colour line, `flash_strength`, pure red and D = 0.5 s.
+  - Checked my 12 predictions.
+  - Gave the three shaders with explanations.
+  - Wrote the helper bash/python scripts I ran.
+  - Translated and checked LANGUAGE-NOTES, and refused to write the answers.
+  - Organised my raw notes.
+- **Claude Code:**
+  - CLAUDE.md draft (session 1).
+  - Driver and hit-flash test (2).
+  - Materials, CoverWall2, hint scene, `make_hint_png.gd`, MATERIALS.md and test_materials (3).
+  - The Use External check fix (4).
+  - Capture tools and parse test (5).
+  - These documents (6).
+- **Accepted:** Claude chat's colour-line form, `flash_strength`, pure red, D = 0.5 s; the question-4 correction.
+- **Rejected or changed:**
+  - CLAUDE.md's cover_wall-only 3D limit (widened).
+  - The brief's UV plan (revised to box projection).
+  - test_materials' Use External key (fixed on my evidence).
+  - My first copied LANGUAGE-NOTES draft (rewritten).
+  - The hull prediction for P1 (revised to the turret layer, labelled as after the observation).
+
+## Unresolved (A5)
+
+- "The white _flash() is still in the code but visually masked by the red at the hit."
+- "The pause rule has no human check."
+- "reset_full() on a living tank would not clear the fade."
+- "Normal-map curl check: not applicable, no game material uses a normal map (nor_gl is only in the Step 4 scratch material)."
+- "Helper bash/python scripts I ran (setup, captures, commits) were written by Claude (chat)." They are not in the repo.
+- Mutation 3 was run before the Use External fix, so its exit 1 is not from the mutation alone; it has not been rerun.
+- 32 Godot-generated `.translation` files from the capture CSVs are still tracked in `docs/a5/captures/`.
+- test_sound_triggers' shutdown leak message grew from 5 to 7 resources; cause not investigated.
+- The look of the sweep extremes (wash-out, gloss, brick size) is described only from numbers except where my notes say; what breaks the look is not recorded.
+- Test results after a fresh clone and import: TBD (clone verification).
+
+---
+
 # Assignment 3 — Blender MCP, three 3D assets
 
 *Notes for the first session (night of 13–14 October) were written up on 15 October from my screenshots and terminal output of the session (retrospective, but every entry below is backed by a screenshot I kept).*
