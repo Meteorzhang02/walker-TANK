@@ -1,0 +1,5 @@
+(Pasted into Claude Code in auto mode in /d/CSYE7270/brutalist.art on 2026-10-28, unattended run.)
+Film: godot-gamedev walker /d/CSYE7270/assignment2/walker-TANK
+Limits: write only in brutalist.art and the new film folder; no git in walker-TANK; do not launch Godot or capture anything new (use docs/a5/captures/ PNGs/CSVs and my play recording); do not edit toolkit files; never ask, record decisions in BUILD-LOG; ~2 minutes, 8 beats.
+Beats: 1 opening/state/object; 2 what a shader does (hit_flash lines 1-8, colour line, driver, play recording); 3 predicted vs measured (P2 exact, P1 turret finding, 2.0 no clamp); 4 texture as information (hint experiment 6/6, brick lines 4 vs 9); 5 material vs shader (side by side, shader edit vs material edit, sweep strip); 6 Godot shading language (shader_type, hints, ALBEDO, generated lines 7/19 vs brick 4/9); 7 tests, mutations, what headless cannot show; 8 verdict/your turn/outro with agent mistakes caught, next step, contributions, texture source, revision.
+The full text is the one given in the Claude chat conversation; this is a faithful summary.

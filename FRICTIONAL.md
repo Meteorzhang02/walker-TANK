@@ -131,6 +131,22 @@
 - **Noted:** Recorded, not investigated: the shutdown message grew from 5 resources / 18 ObjectDB instances to 7 / 22 between `9217896` and `97fdec6`. It is not a SHADER or SCRIPT ERROR and the 8/8 result is unchanged.
 - **Not committed:** I review and commit.
 
+## 2026-10-28 — Film
+
+*Written on 2026-10-28, the same day, from the film's build log (`youtube/claude-liam-walker-tank-a5-shaders/BUILD-LOG.md`) and my notes.*
+
+- **Tried:** an unattended Claude Code run in auto mode in `brutalist.art`. Prompt: [docs/a5/sessions/film-prompt-unattended.txt](docs/a5/sessions/film-prompt-unattended.txt).
+- **Friction (from the build log):**
+  - The review cut failed on a toolkit bug: its timecode `drawtext` passes an unescaped Windows font path, so ffmpeg could not parse the filter. It was retried with the toolkit's own switch (`ART_NO_DRAWTEXT=1`) and passed. The toolkit was not edited.
+  - The type-lock gate (GATE T) misread the near-black wall in the "brightness 0.0" sweep crop as two overlapping text runs. The crop was swapped for `roughness_scale` 0.0, and the gate then passed.
+  - ffmpeg peaked at 8.4 GB during the 4K encode, but the export finished.
+  - The film is 3:05, against the ~2 minutes I asked for (cut once, from 723 to 521 words).
+  - Left alone: the extra @NikBearBrown channel-title overlay the toolkit adds under the opening beat, and the toolkit files that already had uncommitted edits before this run (`GodotDesignFigure.tsx`, `package-lock.json`).
+- **My play recording:** my first Game Bar recording had other things on screen, so I re-recorded 30 s of play.
+- **Checked:** I watched the final film in full.
+- **Skipped:** I skipped the human look checks and the "Learned" lines (see TEST-REPORT *Human items not done*).
+- **Trace:** `youtube/claude-liam-walker-tank-a5-shaders/` (BUILD-PROMPT, BUILD-LOG, FACTCHECK, beat sheet, QC files).
+
 ## Who did what (A5)
 
 - **Me:**

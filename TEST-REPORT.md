@@ -1,8 +1,8 @@
 # TEST-REPORT — Assignment 5: hit flash shader and brick surface materials
 
-## Human items pending
+## Human items not done
 
-These need my own judgement. They are listed here, not filled in.
+On 2026-10-28 I chose to skip these. The sweep looks, what breaks the look and the "Learned" lines were not checked or written by me, so the interface sweep (§7) is reported from the measured numbers only. My reason for trusting the engine capture was not written by me; the choice itself is recorded (§4). The items stay listed below as not done.
 
 1. **My reason for trusting the engine capture.** TEST-REPORT §4, bullet "Which capture I trust, and why". My notes record the choice but give no further reason.
 2. **`albedo_tint`: the look of a coloured tint.** TEST-REPORT §7, bullet `albedo_tint`. It was not captured (TBD), so it needs a capture and my reading of it.
@@ -11,8 +11,8 @@ These need my own judgement. They are listed here, not filled in.
 5. **`uv_scale`: huge bricks at 0.1, tiny repetitive bricks at 4.0?** TEST-REPORT §7, bullet `uv_scale`. *To confirm by eye.*
 6. **What breaks the look** at each end of each range, for all four uniforms. TEST-REPORT §7, bullet "What breaks the look" (TBD).
 7. **How the bricks look:** brick size, gloss, wash-out, box-projection seams on the wall's ends and top, and the shadow from CoverWall onto CoverWall2's end face. TEST-REPORT §13, bullet "How the bricks look". *To confirm by eye.*
-8. **The same sweep looks in FRICTIONAL.md:** the *Unresolved (A5)* item "The look of the sweep extremes … what breaks the look is not recorded" (FRICTIONAL.md line 182).
-9. **The same sweep looks in README.md:** the known-limitations item "Several are still to confirm by eye" (README.md line 79).
+8. **The same sweep looks in FRICTIONAL.md:** the *Unresolved (A5)* item "The look of the sweep extremes … what breaks the look is not recorded" (FRICTIONAL.md line 198).
+9. **The same sweep looks in README.md:** the known-limitations item "Several are still to confirm by eye" (README.md line 87).
 10. **"Learned" lines** in FRICTIONAL.md, all "TBD (not in my notes)":
     - 2026-10-25 setup (line 18);
     - CHANGE-BRIEF before any shader (line 26);
@@ -20,7 +20,16 @@ These need my own judgement. They are listed here, not filled in.
     - Step 3 prep: cover_wall has no UVs (line 61);
     - Step 4: generated shader and LANGUAGE-NOTES (line 117).
 
-Open TBDs that are records or runs rather than judgement, so not in this list: the OS screenshot files (§4), playtest captures or video (§5), the fresh-clone import results (§9, §13, FRICTIONAL.md line 183), the Python/PIL and Git Bash versions (SOURCES.md lines 28–29), and the A5 film (README.md line 7).
+**Observed in the film build, not investigated:** the film's build log notes that at `uv_scale` 0.1 the bricks look normal-sized (individual bricks clearly visible), not huge as the brief expected (`youtube/claude-liam-walker-tank-a5-shaders/BUILD-LOG.md`, decision 7). I have not looked into why.
+
+**The film:** I watched the final film in full on 2026-10-28 and found no problems.
+
+Open TBDs that are records or runs rather than judgement, still open and not in the list above:
+
+- the OS screenshot files (§4);
+- playtest captures or video (§5);
+- the fresh-clone import results (§9, §13, FRICTIONAL.md line 199);
+- the Python/PIL and Git Bash versions (SOURCES.md lines 28–29).
 
 | | |
 |---|---|
@@ -177,7 +186,7 @@ What changed, uniform by uniform:
 - **`albedo_tint`.** Black gives (22.1, 22.1, 22.1), **not black**. My notes: "specular/ambient remain". The default and maximum are the same value, so the sweep has only one real step. The look of a coloured tint (brief: "darker or warmer tints recolour them") was not captured: TBD.
 - **`brightness`.** 0 gives the same (22.1, 22.1, 22.1) as a black tint, again not black. At 2 the mean rises from 73.4 to 99.7 on R, not to 146. My notes: "because brightness multiplies linear colour and the output is sRGB-encoded ((73.4/255)^2.2 × 2 → ~100.5)". The brief expected 2 to "start to wash out": *to confirm by eye*.
 - **`roughness_scale`.** 0 makes the sampled front-face box **darker** (73.4 → 68.8 R, 37.7 → 26.9 B); my notes say "roughness 0 makes the wall darker". The brief expected "glossy with sharp highlights". Whether a highlight appears elsewhere on the wall: *to confirm by eye*. Default and maximum coincide.
-- **`uv_scale`.** My notes: "uv_scale changes brick size". The box mean shifts only a little (76.8 at 0.1, 79.8 at 4.0), as expected when the same bricks are averaged at a different scale. The brief expected huge bricks at the minimum and tiny, repetitive bricks at the maximum: *to confirm by eye*.
+- **`uv_scale`.** My notes: "uv_scale changes brick size". The box mean shifts only a little (76.8 at 0.1, 79.8 at 4.0), as expected when the same bricks are averaged at a different scale. The brief expected huge bricks at the minimum and tiny, repetitive bricks at the maximum: *to confirm by eye*. The film build observed normal-sized bricks at 0.1 (see *Human items not done*); not investigated.
 - **What breaks the look** at each end of each range: not in my notes, so TBD for all four uniforms.
 
 File-size note (fact, not a look): every default/max capture that equals the saved values is 70 087 bytes, the same as `materials_side_by_side.png` ([docs/a5/captures-output.txt](docs/a5/captures-output.txt) lines 138–148). This is consistent with each restore really returning to the saved values.

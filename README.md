@@ -4,7 +4,7 @@ A tank-battle game in Godot: you drive **YunqiZ** through a ruined brick battlef
 
 - **Starting point:** my own Assignment 2 game and Assignment 3 3D asset room in this repository (A5 baseline commit `c4a1f84`). See [SOURCES.md](SOURCES.md).
 - **Engine:** Godot 4.7.2 stable. **Renderer:** Forward+ (engine default; `project.godot` sets no renderer). 2D: 1280×720, stretch `canvas_items`, no `hdr_2d`.
-- **Film (Assignment 5):** TBD.
+- **Film (Assignment 5):** see [Film](#film) below.
 
 ## Assignment 5 — hit flash shader and brick surface materials
 
@@ -20,6 +20,14 @@ A tank-battle game in Godot: you drive **YunqiZ** through a ruined brick battlef
 - **Generated shader for comparison:** `shaders/standard_generated.gdshader` (Godot's *Convert to ShaderMaterial* in `scenes/scratch_standard.tscn`; not used by the game).
 - **Tests:** `tests/test_hit_flash.gd`, `tests/test_materials.gd`, `tests/check_tools_parse.gd`. **Capture tools:** `tools/capture_hit_flash.gd`, `tools/capture_hint.gd`, `tools/capture_materials.gd`.
 - **Documents:** [CHANGE-BRIEF](CHANGE-BRIEF.md) (with Revisions) · [TEST-REPORT](TEST-REPORT.md) · [MATERIALS](MATERIALS.md) · [LANGUAGE-NOTES](LANGUAGE-NOTES.md) · [FRICTIONAL](FRICTIONAL.md) · [SOURCES](SOURCES.md) · [CLAUDE.md](CLAUDE.md). Evidence: `logs/`, `docs/a5/`.
+
+### Film
+
+- **Watch:** [Google Drive](https://drive.google.com/file/d/13CpPJOGbfbvrYQpmlH9hzfpWRgdgEh8Z/view?usp=drive_link) — `claude-liam-walker-tank-a5-shaders.mp4`
+- **Length / size:** 3:05, 3840×2160 landscape
+- **SHA-256:** `0e13fc655269689d179f19adf2a869a57c950927165d3c85a1fb14206a2d2a7c`
+- **Game-source revision shown:** `561d47d`
+- The MP4 is kept out of GitHub. The film's records (build log, fact check, beat sheet, QC) are in `youtube/claude-liam-walker-tank-a5-shaders/`.
 
 ### Run (Windows, Git Bash, from the repo root)
 
