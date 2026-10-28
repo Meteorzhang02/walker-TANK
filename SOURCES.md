@@ -41,7 +41,7 @@
 | 3 | [prompt-3.txt](docs/a5/sessions/prompt-3.txt), `session-3.jsonl` | the materials (`materials/cover_wall_intact.tres`, `cover_wall_damaged.tres`, `hint_srgb.tres`, `hint_raw.tres`), `CoverWall2` in `scenes/asset_room_3d.tscn`, `scenes/hint_experiment.tscn`, `tools/make_hint_png.gd`, [MATERIALS.md](MATERIALS.md) (audit), `tests/test_materials.gd` (`81b364b`) |
 | 4 | [prompt-4.txt](docs/a5/sessions/prompt-4.txt), `session-4.jsonl` | a fix to the Use External check in `tests/test_materials.gd` only, for Godot 4.7.2's `use_external/enabled` / `use_external/path` keys (76/76) |
 | 5 | [prompt-5.txt](docs/a5/sessions/prompt-5.txt), `session-5.jsonl` | `tools/capture_hit_flash.gd`, `tools/capture_hint.gd`, `tools/capture_materials.gd`, `tests/check_tools_parse.gd` (9/9) (`240d2be`, `4721a4d`) |
-| 6 | [prompt-6.txt](docs/a5/sessions/prompt-6.txt), `session-6.jsonl` | reran the seven tests; wrote the A5 sections of TEST-REPORT.md, FRICTIONAL.md, SOURCES.md and README.md (uncommitted) |
+| 6 | [prompt-6.txt](docs/a5/sessions/prompt-6.txt), [session-6-excerpt.md](docs/a5/sessions/session-6-excerpt.md) | reran the seven tests; wrote the A5 sections of TEST-REPORT.md, FRICTIONAL.md, SOURCES.md and README.md (uncommitted) |
 
 No Claude Code session created or edited a file in `shaders/` or any `.import` file.
 

@@ -16,3 +16,4 @@ __pycache__/
 youtube/**/.remotion-*/
 *.blend1
 .claude/settings.local.json
+docs/a5/sessions/session-6.jsonl

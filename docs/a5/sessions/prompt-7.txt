@@ -1,0 +1,34 @@
+Read CLAUDE.md first. Never edit anything in shaders/, any game script, scene,
+material, test or .import file. Only edit TEST-REPORT.md, FRICTIONAL.md,
+SOURCES.md, README.md and create one new file. Do not invent results.
+
+1. Mutation 3 was rerun after the session-4 fix (commit 1718cdd). Read
+   logs/mutation3_no_source_color_60fps.log and logs/test_materials_60fps.log.
+   Wherever TEST-REPORT.md or FRICTIONAL.md says mutation 3 was not rerun or had
+   two FAILs, update it: rerun at 1718cdd, exactly 1 FAIL ("colour sampler
+   albedo_tex has source_color"), exit 1; after restoring the shader 76/76, exit 0.
+   Keep a short note that the first run (before the fix) had 2 FAILs.
+
+2. The test_sound_triggers leak message: replace its TBD with "Recorded, not
+   investigated: the shutdown message grew from 5 resources / 18 ObjectDB
+   instances to 7 / 22 between 9217896 and 97fdec6. It is not a SHADER or SCRIPT
+   ERROR and the 8/8 result is unchanged."
+
+3. The .translation files: say they were removed in 1718cdd and docs/.gdignore
+   now stops Godot importing docs/.
+
+4. docs/a5/sessions/session-6.jsonl is 1.44 MB, over the ~1 MB limit. Create
+   docs/a5/sessions/session-6-excerpt.md, labelled at the top as "Labelled excerpt
+   of session-6.jsonl (full transcript 1.44 MB, kept locally, not committed)",
+   with: the prompt file (docs/a5/sessions/prompt-6.txt), the model's final
+   "result" text copied verbatim from the last event of type "result", its
+   num_turns and duration_ms, and a list of the Bash commands it ran (from its
+   tool_use events, command text only). Then change every reference to
+   session-6.jsonl in the four documents to the excerpt.
+
+5. Collect every remaining TBD that needs my own judgement (sweep looks
+   "to confirm by eye", what breaks the look, my reason for trusting the engine
+   capture, the "Learned" lines) into one list headed "Human items pending" at
+   the top of TEST-REPORT.md, each with where it appears. Do not fill them.
+
+6. Report what you changed, file by file. Do not commit.

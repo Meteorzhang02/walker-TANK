@@ -1,8 +1,30 @@
 # TEST-REPORT — Assignment 5: hit flash shader and brick surface materials
 
+## Human items pending
+
+These need my own judgement. They are listed here, not filled in.
+
+1. **My reason for trusting the engine capture.** TEST-REPORT §4, bullet "Which capture I trust, and why". My notes record the choice but give no further reason.
+2. **`albedo_tint`: the look of a coloured tint.** TEST-REPORT §7, bullet `albedo_tint`. It was not captured (TBD), so it needs a capture and my reading of it.
+3. **`brightness`: does 2.0 "start to wash out"?** TEST-REPORT §7, bullet `brightness`. *To confirm by eye.*
+4. **`roughness_scale`: does a highlight appear elsewhere on the wall at 0?** TEST-REPORT §7, bullet `roughness_scale`. *To confirm by eye.*
+5. **`uv_scale`: huge bricks at 0.1, tiny repetitive bricks at 4.0?** TEST-REPORT §7, bullet `uv_scale`. *To confirm by eye.*
+6. **What breaks the look** at each end of each range, for all four uniforms. TEST-REPORT §7, bullet "What breaks the look" (TBD).
+7. **How the bricks look:** brick size, gloss, wash-out, box-projection seams on the wall's ends and top, and the shadow from CoverWall onto CoverWall2's end face. TEST-REPORT §13, bullet "How the bricks look". *To confirm by eye.*
+8. **The same sweep looks in FRICTIONAL.md:** the *Unresolved (A5)* item "The look of the sweep extremes … what breaks the look is not recorded" (FRICTIONAL.md line 182).
+9. **The same sweep looks in README.md:** the known-limitations item "Several are still to confirm by eye" (README.md line 79).
+10. **"Learned" lines** in FRICTIONAL.md, all "TBD (not in my notes)":
+    - 2026-10-25 setup (line 18);
+    - CHANGE-BRIEF before any shader (line 26);
+    - Step 1: CLAUDE.md (line 35);
+    - Step 3 prep: cover_wall has no UVs (line 61);
+    - Step 4: generated shader and LANGUAGE-NOTES (line 117).
+
+Open TBDs that are records or runs rather than judgement, so not in this list: the OS screenshot files (§4), playtest captures or video (§5), the fresh-clone import results (§9, §13, FRICTIONAL.md line 183), the Python/PIL and Git Bash versions (SOURCES.md lines 28–29), and the A5 film (README.md line 7).
+
 | | |
 |---|---|
-| **Source revision** | `3d48047` (`git rev-parse --short HEAD`). This report and the other A5 documents are uncommitted on top of it. The rerun below also rewrote `logs/test_hit_flash_{30,60,144}fps.log`; only the shutdown leak lines changed. |
+| **Source revision** | Tests rerun at `3d48047` (`git rev-parse --short HEAD` at the time). The rerun also rewrote `logs/test_hit_flash_{30,60,144}fps.log`; only the shutdown leak lines changed. The A5 documents were first committed in `8154536`. Mutation 3 was rerun at `1718cdd` (§9). The session-7 edits to this report are uncommitted on top of `1718cdd`. |
 | **Engine** | Godot 4.7.2 stable (`v4.7.2.stable.official.ed1daf0bf`, printed by every log) |
 | **Renderer** | Forward+ (engine default; `project.godot` has no renderer key; I checked it in Project Settings → Rendering → Renderer, value `forward_plus`) |
 | **OS / shell** | Windows 11, Git Bash. Every test runs through `scripts/run-test.sh` (headless, `--fixed-fps`, 120 s `timeout`, exits 1 if the log contains `SHADER ERROR` or `SCRIPT ERROR`) |
@@ -37,7 +59,7 @@ None of the seven logs contains `SHADER ERROR` or `SCRIPT ERROR`. At shutdown, `
 | After Step 3 (`97fdec6`, [docs/a5/step3-finish-b.txt](docs/a5/step3-finish-b.txt)) | 18/18, exit 0 | 8/8, exit 0 (log: 22 ObjectDB, 7 resources) |
 | **After A5** (this rerun at `3d48047`) | **18/18 PASS, exit 0** | **8/8 PASS, exit 0** (22 ObjectDB, 7 resources) |
 
-The pass counts are unchanged and neither test file was edited. **Finding:** the shutdown message in `test_sound_triggers` grew from 5 to 7 resources (and 18 to 22 ObjectDB instances) between `9217896` and `97fdec6`. It is still not a SHADER or SCRIPT ERROR, and the exit code is 0. Why it grew: TBD (not investigated).
+The pass counts are unchanged and neither test file was edited. **Finding:** Recorded, not investigated: the shutdown message grew from 5 resources / 18 ObjectDB instances to 7 / 22 between `9217896` and `97fdec6`. It is not a SHADER or SCRIPT ERROR and the 8/8 result is unchanged.
 
 ## 2. Shaders parse
 
@@ -183,7 +205,8 @@ File-size note (fact, not a look): every default/max capture that equals the sav
   - placement and camera framing;
   - the hint scene.
 - History: before session 4 it was **75/1**. The Use External check looked for a key `use_external`, but Godot 4.7.2 saves `"use_external/enabled"` and `"use_external/path"`. Session 4 fixed only that check ([docs/a5/step3-finish-b.txt](docs/a5/step3-finish-b.txt), `docs/a5/sessions/prompt-4.txt`, `session-4.jsonl`).
-- **Mutation 3** (delete `source_color` from `albedo_tex`, `brick_surface.gdshader` line 4; I restored it afterwards): **exit 1**. The log shows `FAIL source: colour sampler albedo_tex has source_color` and `RESULT: 74 passed, 2 failed` ([logs/mutation3_no_source_color_60fps.log](logs/mutation3_no_source_color_60fps.log)). **Caveat:** this run was made before the session-4 fix, so the second FAIL is the then-broken Use External check. The exit 1 therefore does not come from the mutation alone. The mutation's own FAIL line is present. Mutation 3 has not been rerun since the fix: TBD.
+- **Mutation 3** (delete `source_color` from `albedo_tex`, `brick_surface.gdshader` line 4; I restored it afterwards): rerun at `1718cdd`, after the session-4 fix. Exactly **1 FAIL**, `FAIL source: colour sampler albedo_tex has source_color`, `RESULT: 75 passed, 1 failed`, **exit 1** ([logs/mutation3_no_source_color_60fps.log](logs/mutation3_no_source_color_60fps.log)). After restoring the shader: **76/76, exit 0** ([logs/test_materials_60fps.log](logs/test_materials_60fps.log), `RESULT: 76 passed, 0 failed`). The exit codes are recorded in the `1718cdd` commit message; the logs do not print them. So the exit 1 now comes from the mutation alone.
+  - First run (before the session-4 fix): 2 FAILs, `RESULT: 74 passed, 2 failed`. The second FAIL was the then-broken Use External check. That log was replaced in `1718cdd`.
 - **After a fresh import** (clone, `--import`, then `test_materials`): TBD, filled at clone verification.
 
 ## 10. Texture data — not applicable
@@ -202,13 +225,14 @@ Every `.import` change in A5, and why. Enum meanings: `compress/mode` 0 Lossless
 | `assets/hint/grey_3x1.png.import` | did not exist | created by a first headless import, then set to **mode 0 (Lossless), mipmaps false, detect_3d 0** and reimported | me, by a script (written by Claude chat), after running `tools/make_hint_png.gd` | VRAM compression or a detect-3D switch would change the grey values the experiment measures | [docs/a5/step3-finish-a.txt](docs/a5/step3-finish-a.txt), [logs/reimport_hint_1.log](logs/reimport_hint_1.log), [logs/reimport_hint_2.log](logs/reimport_hint_2.log), commit `08ddf87` |
 | `assets/models/cover_wall.glb.import` | `_subresources={}` | `_subresources.materials.M_Brick` with `"use_external/enabled"` and `"use_external/path" = res://materials/cover_wall_intact.tres` | me, in the editor's Advanced Import Settings → Use External | brief §5 / Revision: CoverWall's intact material goes behind the importer's per-material setting; the `.glb` is unchanged | commit `08ddf87` (+10 / −1), [logs/test_materials_60fps.log](logs/test_materials_60fps.log) |
 | `docs/a5/captures/*.import` | Godot auto-imported the captures and CSVs | removed; empty `docs/.gdignore` added | me | captures are evidence, not game assets | commits `423c61c` (added), `d9b1837` (removed) |
+| `docs/a5/captures/*.translation` (32 files) | Godot imported the capture CSVs as translations | removed | me | same; they are generated files, not evidence | commits `423c61c` (added), `1718cdd` (removed) |
 
 **Editor re-saves that were reverted:**
 
 - After session 2, `scenes/asset_room_3d.tscn` showed a diff: `load_steps` removed, a scene `uid`, and `unique_id` on every node ([docs/a5/step2-output.txt](docs/a5/step2-output.txt) section 1). It was the Godot editor re-saving in 4.7 format, not the agent, and I reverted it. A later editor re-save of the same kind was present before session 3. The agent left it as it was ([MATERIALS.md](MATERIALS.md) §6 item 7), and it was committed together with CoverWall2 in `81b364b`.
 - In Step 4 the editor re-saved `shaders/brick_surface.gdshader` (line endings only). I restored it. I had also first saved the scratch scene into `shaders/` by mistake and moved it to `scenes/`.
 
-**Open:** Godot also imported the capture CSVs as translations. 32 `docs/a5/captures/*.translation` files were committed in `423c61c` and are still tracked; `d9b1837` removed only the `.import` files. Not cleaned up yet.
+**Translations, now removed:** Godot also imported the capture CSVs as translations. The 32 `docs/a5/captures/*.translation` files committed in `423c61c` were removed in `1718cdd` (`d9b1837` had removed only the `.import` files). `docs/.gdignore` (added in `d9b1837`) now stops Godot importing `docs/`.
 
 ## 12. Inspect-and-revise cycle: P1 is covered by the turret
 

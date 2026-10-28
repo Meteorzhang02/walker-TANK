@@ -2,7 +2,7 @@
 
 **How this was written.** I kept raw notes in order while working ([docs/a5/frictional-notes.md](docs/a5/frictional-notes.md), commit `3d48047`; organised from my session with Claude chat and reviewed by me). Claude Code (session 6, [docs/a5/sessions/prompt-6.txt](docs/a5/sessions/prompt-6.txt)) arranged them into the dated entries below. It added only commit hashes, file paths, log and capture names and numbers taken from those files. The wording is mine where possible. **Retrospective:** every entry was written from my notes on 2026-10-27. The 2026-10-25 setup entry was written two days after the work; the others on the same day.
 
-**Who is who:** *Me* = what I decided, typed, ran, checked or changed. *Claude chat* = Claude in claude.ai (brief drafting, the three shaders' structure, helper bash/python scripts, translation). *Claude Code* = the agent in this repo, sessions 1–6 (`docs/a5/sessions/prompt-N.txt`, `session-N.jsonl`).
+**Who is who:** *Me* = what I decided, typed, ran, checked or changed. *Claude chat* = Claude in claude.ai (brief drafting, the three shaders' structure, helper bash/python scripts, translation). *Claude Code* = the agent in this repo, sessions 1–6 (`docs/a5/sessions/prompt-N.txt`, `session-N.jsonl`; for session 6, [session-6-excerpt.md](docs/a5/sessions/session-6-excerpt.md)).
 
 **Versions:** Windows 11 · Git Bash · Godot 4.7.2 stable, Forward+ · Python + PIL (helper scripts).
 
@@ -76,7 +76,9 @@
 - **Expected vs happened:** "test_materials then still failed on Use External" (75 passed, 1 failed).
 - **Checked:** "I read cover_wall.glb.import: the setting was there, saved as "use_external/enabled" and "use_external/path"; the agent's test looked for a key "use_external" (it had said it did not know 4.7's format)."
 - **Changed:** "Session 4 fixed only that check: 76/76."
-- **Mutation 3:** "(delete source_color from the colour sampler): exit 1." I ran it before the session-4 fix, so its log shows 74 passed, 2 failed. The second FAIL is the then-broken Use External check. Not rerun since.
+- **Mutation 3:** "(delete source_color from the colour sampler): exit 1." My first run came before the session-4 fix, so it showed 74 passed, 2 failed. The second FAIL was the then-broken Use External check.
+  - Rerun at `1718cdd`: exactly 1 FAIL ("colour sampler albedo_tex has source_color"), 75 passed, exit 1 ([logs/mutation3_no_source_color_60fps.log](logs/mutation3_no_source_color_60fps.log)).
+  - After restoring the shader: 76/76, exit 0.
 - **Learned:** Godot 4.7.2's key names for Use External (now in CLAUDE.md's Headless facts).
 - **Who:** Claude chat gave the shaders; I typed them. Claude Code wrote the materials, scenes, tool, audit and test. I generated and imported the PNG, set Use External, found the key mismatch and asked for the one-check fix. I ran the mutation.
 
@@ -99,7 +101,7 @@
 - **Sweep:** "black tint or brightness 0 gives (22,22,22), not black (specular/ambient remain); brightness 2 raises the wall mean from 73 to ~100, not 146, because brightness multiplies linear colour and the output is sRGB-encoded ((73.4/255)^2.2 x 2 -> ~100.5); roughness 0 makes the wall darker; uv_scale changes brick size."
 - **One shader, two materials:** "editing the shader's ALBEDO line (x 0.5) darkened both walls (73.4 -> 54.7, 49.9 -> 38.6); setting brightness on the damaged material only changed only CoverWall2 (49.9 -> 43.8)." I made the shader edit temporarily and restored the file.
 - **OS screenshot vs engine capture:** "my first attempt captured the wrong window (850x287 terminal screenshot). The second (1920x1080, Win+PrtScn) showed all six bands at exactly the same values. I still trust the engine capture for measurement."
-- **Cleanup:** "Godot generated .import files for the captures in docs/; I added docs/.gdignore and removed them." Not noticed at the time: Godot also imported the CSVs as translations, and 32 `.translation` files are still tracked (see Unresolved).
+- **Cleanup:** "Godot generated .import files for the captures in docs/; I added docs/.gdignore and removed them." Not noticed at the time: Godot also imported the CSVs as translations. The 32 `.translation` files were removed in `1718cdd`, and `docs/.gdignore` now stops Godot importing `docs/`.
 - **Learned:** the P1 lesson above. A value set from code is not limited by `hint_range`. Brightness in linear space does not double the displayed value.
 - **Who:** Claude Code wrote the tools. I ran them, made the shader edit, read the turret texel with PIL (helper script by Claude chat), and wrote the revision.
 
@@ -121,12 +123,12 @@
 
 ## 2026-10-27 — documents (Claude Code session 6)
 
-- **Trace:** [prompt-6.txt](docs/a5/sessions/prompt-6.txt), `docs/a5/sessions/session-6.jsonl` (untracked at the time of writing).
+- **Trace:** [prompt-6.txt](docs/a5/sessions/prompt-6.txt), [session-6-excerpt.md](docs/a5/sessions/session-6-excerpt.md) (63 turns, success; the full 1.44 MB transcript is kept locally).
 - **What happened:**
   - Claude Code reran all seven tests through the wrapper at `3d48047`: hit_flash 50/50 at 30/60/144, test_materials 76/76, check_tools_parse 9/9, check_a3_assets 18/18, test_sound_triggers 8/8, all exit 0.
   - It then wrote this section, the A5 parts of TEST-REPORT.md, SOURCES.md and README.md from my notes and the files, with TBD where they say nothing.
   - It changed no shader, game script, scene, material, test or `.import` file.
-- **Noted:** test_sound_triggers' shutdown message now says 7 resources and 22 ObjectDB instances. The baseline was 5 and 18, and the change appeared between `9217896` and `97fdec6`. Cause: TBD.
+- **Noted:** Recorded, not investigated: the shutdown message grew from 5 resources / 18 ObjectDB instances to 7 / 22 between `9217896` and `97fdec6`. It is not a SHADER or SCRIPT ERROR and the 8/8 result is unchanged.
 - **Not committed:** I review and commit.
 
 ## Who did what (A5)
@@ -176,11 +178,14 @@
 - "reset_full() on a living tank would not clear the fade."
 - "Normal-map curl check: not applicable, no game material uses a normal map (nor_gl is only in the Step 4 scratch material)."
 - "Helper bash/python scripts I ran (setup, captures, commits) were written by Claude (chat)." They are not in the repo.
-- Mutation 3 was run before the Use External fix, so its exit 1 is not from the mutation alone; it has not been rerun.
-- 32 Godot-generated `.translation` files from the capture CSVs are still tracked in `docs/a5/captures/`.
-- test_sound_triggers' shutdown leak message grew from 5 to 7 resources; cause not investigated.
+- test_sound_triggers' shutdown message: Recorded, not investigated: the shutdown message grew from 5 resources / 18 ObjectDB instances to 7 / 22 between `9217896` and `97fdec6`. It is not a SHADER or SCRIPT ERROR and the 8/8 result is unchanged.
 - The look of the sweep extremes (wash-out, gloss, brick size) is described only from numbers except where my notes say; what breaks the look is not recorded.
 - Test results after a fresh clone and import: TBD (clone verification).
+
+Settled after session 6 (commit `1718cdd`):
+
+- Mutation 3 was rerun after the Use External fix: exactly 1 FAIL, exit 1; restored, 76/76, exit 0. The first run, before the fix, had 2 FAILs.
+- The 32 `.translation` files were removed. `docs/.gdignore` now stops Godot importing `docs/`.
 
 ---
 
