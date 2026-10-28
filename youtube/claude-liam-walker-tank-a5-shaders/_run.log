@@ -1,0 +1,30 @@
+[run] no Manim beats in this reel's beat sheet — skipping Manim stage
+[run] nothing to render — recompiling only
+[run] GATE L — beat-mix lint
+[beat-lint] clean — beat mix OK (beat_sheet.json)
+[run] GATE SHAPE — finance chart-shape enforcement
+[gate-shape] skip — not a finance reel (beat_sheet.json)
+[remotion] B00: filled already (skip)
+[remotion] B01: filled already (skip)
+[remotion] B02: filled already (skip)
+[remotion] B04: filled already (skip)
+[remotion] B05: filled already (skip)
+[remotion] B06: filled already (skip)
+[remotion] B07: filled already (skip)
+[remotion] B08: filled already (skip)
+[remotion] B09: filled already (skip)
+[remotion] B10: filled already (skip)
+[remotion] B11: filled already (skip)
+[remotion] B12: filled already (skip)
+[remotion] B13: filled already (skip)
+[remotion] done — run `bash scripts/run.sh <REEL>` to compile the cut
+[art] motion histogram: graphic:13  video:1
+[art] build stamp → beat_sheet.json (14/14 filled)
+[art] QC contact sheet → D:\CSYE7270\assignment2\walker-TANK\youtube\claude-liam-walker-tank-a5-shaders\qc-sheet.png
+[art] wrote D:\CSYE7270\assignment2\walker-TANK\youtube\claude-liam-walker-tank-a5-shaders\claude-liam-walker-tank-a5-shaders-slate.mp4  (185.4s, audio: per-beat timeline (source audio preserved), drawtext: no — PIL overlays)
+[art] slots: 14/14 filled — B00:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO B08:VIDEO B09:VIDEO B10:VIDEO B11:VIDEO B12:VIDEO B13:VIDEO
+[run] GATE V — frame-level visual QC on the compiled reel
+[gate-v] frames=28 BLOCKER=0 MAJOR=0 → D:/CSYE7270/assignment2/walker-TANK/youtube/claude-liam-walker-tank-a5-shaders\_qc\REPORT.md
+[run] done → /d/CSYE7270/assignment2/walker-TANK/youtube/claude-liam-walker-tank-a5-shaders  (QC gates: on)
+[run] REVIEW built; no final exported. Use ./art final <reel> for a verified master.
+[run] any remaining slates are YOUR slots — see /d/CSYE7270/assignment2/walker-TANK/youtube/claude-liam-walker-tank-a5-shaders/SHOTLIST.md
