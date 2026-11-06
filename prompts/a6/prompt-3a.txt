@@ -1,0 +1,37 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md is the contract for this change,
+including revisions R1 and R2. Effect A's scene is built and its
+configuration test passes (126/126). Do not change the effect's
+settings in this task, and do not edit any .gdshader file.
+
+First propose the smallest plan that meets the brief: the code that
+triggers or instances Effect A on its event (cover.gd line 40 and a new
+spawn_cover_burst(shell, fallback_pos) in main.gd, with the null-shell
+fallback from R1), how that code implements the brief's retrigger rule
+(overlap: a new instance per hit, never a reused node, added to
+World/FX), and a new state test, tests/test_cover_hit_burst_state.gd.
+Say which brief rule each assertion covers, and which rules only a
+human can check. Split the plan into numbered steps I can approve one
+at a time. Do not edit yet.
+
+Rules for the plan:
+- Presentation code may read game state; it never writes it. Do not
+  change collision, movement, input, the state machine, shell.gd or
+  the existing tests.
+- The test drives the event through the real game loop and real input,
+  never by calling the trigger function directly.
+- It asserts that the effect fires on every event the retrigger rule
+  allows and never otherwise, including on scene load, a shell hitting
+  a tank and a shell that expires, at the event's position and
+  rotation.
+- It fires two events inside one lifetime and asserts the brief's
+  retrigger rule.
+- It asserts the burst survives its shell being freed (rule 4) and
+  freezes under pause (rule 5).
+- test_sound_triggers.gd line 94 calls take_hit() with no shell; it
+  must still pass 8/8.
+- Every test runs with ./scripts/run-test.sh: the existing ones as
+  CLAUDE.md says, and the new one at 60, or in realtime if it waits on
+  audio. Say which mode the new test will use.
+- Say exactly what the test will prove and what it cannot prove
+  headlessly.
+- Do not commit.
