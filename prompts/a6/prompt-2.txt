@@ -1,0 +1,41 @@
+Read CLAUDE.md first. Effect A's intent and settings are in
+CHANGE-BRIEF.md (Effect A, plus revision R1).
+
+Build Effect A as a scene file, effects/cover_hit_burst.tscn, using
+Godot 4 class and property names for the version CLAUDE.md pins
+(the names checked by tests/probe_particle_props.gd). If you are
+unsure a property exists in this version, say so instead of guessing.
+Configure it in the scene file, not in code: a Node2D root with the
+three CPUParticles2D emitters Flash, Debris and Dust, each with every
+value in the brief's Effect A settings table, the textures in
+effects/textures/, and a CanvasItemMaterial with blend ADD on Flash.
+The root may carry a small script whose only job is to free the root
+when Dust emits finished; it sets no particle settings.
+
+Then add:
+
+- a configuration test, tests/test_cover_hit_burst_config.gd, that
+  loads the scene and reads back every setting the brief names from
+  the loaded resources, for each emitter by its path, using the
+  brief's values as the expected values. That includes gravity (0, 0)
+  on every emitter, both ends of every _min/_max pair, the curve and
+  colour-ramp points, the textures (not null, and which file), and
+  Flash's material class and blend mode. It prints PASS/FAIL lines in
+  the style of the existing tests and quits 1 on any FAIL.
+- a preview scene, previews/cover_hit_burst_preview.tscn, with its
+  script, that holds the effect at in-game camera scale (zoom 1,
+  1280 x 720) over the real ground tile with one real cover block, as
+  the brief's frame-strip section describes. It triggers the burst at
+  frame 10, and again at frame 16 when its exported `retrigger` is on
+  (off by default). It turns on use_fixed_seed with a fixed seed on
+  the preview's instance only, never in the effect scene. It changes
+  no game script.
+
+Run the configuration test with ./scripts/run-test.sh at 60 and show
+the real output. Then give me the Movie Maker capture command for the
+preview (30 fps, quit after 60 frames), written for Git Bash on
+Windows with an absolute Windows output path, and stop.
+
+Do not wire the effect into gameplay (cover.gd, main.gd and tank.gd
+stay as they are), do not edit any .gdshader file or any existing
+test, and do not commit.
