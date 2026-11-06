@@ -424,3 +424,15 @@ Up to **4** under overlap, one per tank inside 0.7 s, so the peak is 148 particl
 ## Revisions
 
 (dated revisions are added below during this assignment)
+### R1 — 2026-11-06, after reviewing the agent's CLAUDE.md (session 1)
+
+The agent's "Unconfirmed" list found four things in this brief. I checked each against the files.
+
+1. **Correction (my error).** Effect A's job says `spawn_fx` never sets gravity, so the default (0, 980) applies. That is wrong: the `"debris"` branch sets `gravity = Vector2(0, 160)` (`main.gd` line 191). The current debris still falls down the screen, at 160 px/s² instead of 980. Effect A's `gravity = (0, 0)` stands. Predicted failure 2 stands too, because an emitter that omits `gravity` gets (0, 980).
+2. **Null shell.** `tests/test_sound_triggers.gd` line 94 calls `cover2.take_hit()` with no shell, and that test must not change.
+   - `cover.gd` line 40 therefore becomes `world.spawn_cover_burst(_shell, global_position + Vector2(0, -8))`.
+   - `main.gd` `spawn_cover_burst(shell, fallback_pos)` uses `shell.global_position + shell.DRAW_OFFSET` and rotation `(-shell.dir).angle()` when `shell` is a valid instance.
+   - Otherwise it uses `fallback_pos` (the old debris point) and rotation `-PI / 2`, so chips go up the screen out of the wall's top face.
+   - Rule 1 still holds: one burst per `take_hit` that passes line 34, with or without a shell. The sound test must still pass 8/8.
+3. **Line references.** YunqiZ's respawn call is `main.gd` line 266, not 265. The cover's rectangle size is `cover.gd` line 28, not 27.
+4. **Gallery.** `scenes/gallery.tscn` builds tanks from `tank.gd` and `enemy.gd` (`gallery.gd` lines 5–6), so its tanks get the new smoke too. I accept that. Nothing else in the gallery changes; I check it once by eye.
