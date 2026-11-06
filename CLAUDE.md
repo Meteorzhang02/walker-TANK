@@ -47,6 +47,10 @@ Baseline at a9513d3 (`CHANGE-BRIEF.md` lines 11–19): 50/50/50, 76, 9, 18, 8, a
 
 - A headless run uses a dummy renderer: it draws nothing. Headless tests prove that the shaders parse, their uniforms are declared and driven, and the materials are wired; they never prove what the screen shows. Every look is a human check recorded in `TEST-REPORT.md`.
 - Headless does report shader parse errors: deleting a semicolon from `shaders/hit_flash.gdshader` printed `SHADER ERROR: Expected a ';'.` and the test exited 1 (`logs/mutation1_semicolon_60fps.log`).
+- A headless run uses a dummy renderer: it draws no particles and runs no GPU particle process. Node state
+  (emitting, one_shot, amount_ratio, visibility, instance counts) is observable; the look is not.
+- A GPU effect's headless CPU price is near zero by construction.
+- Frame strips come from a windowed Movie Maker run, which I start.
 
 ## Current change
 
@@ -66,7 +70,16 @@ Baseline at a9513d3 (`CHANGE-BRIEF.md` lines 11–19): 50/50/50, 76, 9, 18, 8, a
 - Use the `_min` / `_max` pairs: `initial_velocity_min/max`, `angular_velocity_min/max`, `damping_min/max`, `hue_variation_min/max`, and `scale_amount_min/max` (CPU) / `scale_min/max` (`ParticleProcessMaterial`). Never `initial_velocity`, `scale_amount`, or any `*_random`.
 - `CPUParticles2D` takes `Gradient` / `Curve` directly (`color_ramp`, `scale_amount_curve`) and `Vector2` `direction` / `gravity`. `ParticleProcessMaterial` takes textures (`color_ramp` as `GradientTexture1D`, `scale_curve` as `CurveTexture`) and `Vector3` `direction` / `gravity`; set `particle_flag_disable_z` for 2D.
 - Blend: `CanvasItemMaterial.blend_mode = BLEND_MODE_ADD` / `BLEND_MODE_MIX`, on the node's `material`. Emission shapes: `EMISSION_SHAPE_POINT`, `EMISSION_SHAPE_SPHERE` with `emission_sphere_radius`.
-- Not sure for 4.7.2, check the 4.7 class reference before use: whether `CPUParticles2D` has `amount_ratio`; whether `CPUParticles2D` / `GPUParticles2D` have `use_fixed_seed` and `seed`; whether `ParticleProcessMaterial`'s 2D sphere emission and `angle_min/max` units (degrees) behave as the brief assumes; the exact `turbulence_*` property names. `GPUParticles2D.amount_ratio` (4.2+) and the `finished` signal are assumed from the brief and need the same check.
+- Checked in this build by `tests/probe_particle_props.gd` (`logs/probe_particle_props_60fps.log`, 2026-11-06):
+  `CPUParticles2D` has `use_fixed_seed`, `seed`, the `finished` signal, the `_min`/`_max` pairs and `scale_amount_curve`,
+  and has **no** `amount_ratio`, `initial_velocity`, `scale_amount` or `scale_amount_random`.
+  `GPUParticles2D` has `amount_ratio`, `use_fixed_seed`, `seed`, `visibility_rect`, `preprocess` and `finished`.
+  `ParticleProcessMaterial` has the brief's `turbulence_*` names, `scale_min`/`max`, `scale_curve`, `angle_min` and
+  `particle_flag_disable_z`. The class `ParticlesMaterial` does not exist.
+- Trap: `ParticleProcessMaterial` *does* list a property called `initial_velocity` beside `initial_velocity_min`/`max`,
+  so a Godot 3 name there may not be rejected. Always set and read back the `_min`/`_max` pair.
+- Still unchecked: the unit of `angle_min`/`max` (degrees assumed) and 2D sphere emission on `ParticleProcessMaterial`;
+  the config test and the frame strip check them.
 
 ## Out of scope
 
@@ -80,11 +93,7 @@ Baseline at a9513d3 (`CHANGE-BRIEF.md` lines 11–19): 50/50/50, 76, 9, 18, 8, a
 
 ## Unconfirmed
 
-- `tests/test_sound_triggers.gd` line 94 calls `cover2.take_hit()` with no shell while `cover.world` is set (`main.gd` line 68). After the brief's line-40 change, `spawn_cover_burst(null)` would read `null.dir` and raise a `SCRIPT ERROR`, failing the run. How `spawn_cover_burst` handles a null shell is not decided by the brief; ask the human.
-- The brief says `spawn_fx` "never sets gravity" (brief line 41), but the `"debris"` branch sets `p.gravity = Vector2(0, 160)` (`main.gd` line 191). The chips fall, just slower than (0, 980).
-- Brief line numbers checked against the files: `main.gd` respawn call is line 266, not 265 (brief lines 202, 298); `cover.gd` rectangle size is line 28, not 27. All other cited lines match.
-- `scenes/gallery.tscn` will also show the new smoke on its tanks; the brief does not mention the gallery, and I did not read `gallery.gd` beyond its preloads.
-- The property names and availability listed as unsure under *Godot 4 names*.
+- Resolved in `CHANGE-BRIEF.md` revision R1 (2026-11-06): the shell-less `take_hit()` in `test_sound_triggers.gd` line 94 (fallback position and rotation), the debris gravity (0, 160) at `main.gd` line 191, the two line references, and the gallery smoke. Property names: see *Godot 4 names*.
 - Whether a `GPUParticles2D` under a PAUSABLE parent stays visible and frozen when paused, and what headless reports for it, is the brief's prediction, not yet observed.
 - `scripts/audio.gd` and `tests/test_hit_flash.gd`, `test_materials.gd`, `check_tools_parse.gd`, `check_a3_assets.gd` were read only for their headers, `quit()` lines and scene loads.
 - The test commands assume Git Bash with GNU `timeout` and the Godot path in `run-test.sh` line 7.

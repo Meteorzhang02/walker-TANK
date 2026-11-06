@@ -1,0 +1,38 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PROBE CPUParticles2D.amount_ratio: NO
+PROBE CPUParticles2D.use_fixed_seed: yes
+PROBE CPUParticles2D.seed: yes
+PROBE CPUParticles2D.initial_velocity_min: yes
+PROBE CPUParticles2D.scale_amount_min: yes
+PROBE CPUParticles2D.scale_amount_curve: yes
+PROBE CPUParticles2D.damping_min: yes
+PROBE CPUParticles2D.gravity: yes
+PROBE CPUParticles2D.initial_velocity: NO
+PROBE CPUParticles2D.scale_amount: NO
+PROBE CPUParticles2D.scale_amount_random: NO
+PROBE GPUParticles2D.amount_ratio: yes
+PROBE GPUParticles2D.use_fixed_seed: yes
+PROBE GPUParticles2D.seed: yes
+PROBE GPUParticles2D.visibility_rect: yes
+PROBE GPUParticles2D.preprocess: yes
+PROBE GPUParticles2D.local_coords: yes
+PROBE GPUParticles2D.process_material: yes
+PROBE GPUParticles2D.texture: yes
+PROBE ParticleProcessMaterial.turbulence_enabled: yes
+PROBE ParticleProcessMaterial.turbulence_noise_strength: yes
+PROBE ParticleProcessMaterial.turbulence_noise_scale: yes
+PROBE ParticleProcessMaterial.turbulence_influence_min: yes
+PROBE ParticleProcessMaterial.turbulence_influence_max: yes
+PROBE ParticleProcessMaterial.scale_min: yes
+PROBE ParticleProcessMaterial.scale_curve: yes
+PROBE ParticleProcessMaterial.color_ramp: yes
+PROBE ParticleProcessMaterial.angle_min: yes
+PROBE ParticleProcessMaterial.damping_min: yes
+PROBE ParticleProcessMaterial.gravity: yes
+PROBE ParticleProcessMaterial.particle_flag_disable_z: yes
+PROBE ParticleProcessMaterial.initial_velocity_min: yes
+PROBE ParticleProcessMaterial.initial_velocity: yes
+PROBE CPUParticles2D signal finished: yes
+PROBE GPUParticles2D signal finished: yes
+PROBE ParticlesMaterial class exists: NO
