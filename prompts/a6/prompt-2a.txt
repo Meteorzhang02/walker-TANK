@@ -1,0 +1,24 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md names two code-made textures for
+the effects: chip_6.png and soft_dot_32.png.
+
+Write tools/make_particle_textures.gd, an `extends SceneTree` script
+that I run headless with --script. It draws both textures with Image
+(no external files, no randomness, so a rerun gives identical files)
+and saves them as PNG in res://effects/textures/, creating the folder
+if needed:
+
+- chip_6.png: 6 x 6 px, RGBA8. White RGB everywhere; alpha 1 inside a
+  fixed lopsided pentagon (an irregular brick chip) and 0 outside.
+  White, so the emitters' color_ramp sets the colour.
+- soft_dot_32.png: 32 x 32 px, RGBA8. White RGB; alpha falls from 1 at
+  the centre to 0 at radius 16 with a smoothstep falloff.
+
+It prints the path and size of each saved file, quits 0 on success,
+and quits 1 if any save fails. Start it with a short header comment
+saying it is the source of those two PNGs and that they are generated
+by code, not sourced or AI-generated.
+
+Do not run it. Do not create or edit any other file, scene, script or
+test. Do not commit. Finish by giving me the exact command to run it
+from the repository root in Git Bash, using the Godot path in
+scripts/run-test.sh line 7, then the command to import the project.
