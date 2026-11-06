@@ -213,6 +213,19 @@ func spawn_fx(kind: String, pos: Vector2) -> void:
 	get_tree().create_timer(p.lifetime + 0.5).timeout.connect(p.queue_free)
 
 
+## Effect A (CHANGE-BRIEF.md): a new burst per cover hit, never reused, parented to World/FX.
+## R1: take_hit() without a shell uses the old debris point, aimed up out of the wall's top face.
+func spawn_cover_burst(shell: Node, fallback_pos: Vector2) -> void:
+	var b: Node2D = preload("res://effects/cover_hit_burst.tscn").instantiate()
+	if is_instance_valid(shell):
+		b.position = shell.global_position + shell.DRAW_OFFSET
+		b.rotation = (-shell.dir).angle()
+	else:
+		b.position = fallback_pos
+		b.rotation = -PI / 2
+	fx_layer.add_child(b)
+
+
 func shake(amount: float) -> void:
 	_shake = maxf(_shake, amount)
 
