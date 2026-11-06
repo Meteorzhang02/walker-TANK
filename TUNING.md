@@ -20,3 +20,11 @@ Each revision below records five things:
 > 闪光看得见，正好。砖块主要往左侧飞，也不错。看得清，大小合适。大概一两秒没有了。
 
 (English: The flash is visible and about right. The chips fly mainly to the left, which is good. It is readable and the size is right. It is gone after about one or two seconds.)
+
+**My second look** (preview window, after viewing my own strip, before any Claude reading):
+
+> 看得清。
+
+(English: The chips are readable against the ground.)
+
+Checked against the strip: the burst is gone by frame 50 (1.33 s) and only faint dust is left at frame 30 (0.67 s), so my "one or two seconds" overestimated the duration (brief R2.4).

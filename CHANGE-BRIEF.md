@@ -436,3 +436,13 @@ The agent's "Unconfirmed" list found four things in this brief. I checked each a
    - Rule 1 still holds: one burst per `take_hit` that passes line 34, with or without a shell. The sound test must still pass 8/8.
 3. **Line references.** YunqiZ's respawn call is `main.gd` line 266, not 265. The cover's rectangle size is `cover.gd` line 28, not 27.
 4. **Gallery.** `scenes/gallery.tscn` builds tanks from `tank.gd` and `enemy.gd` (`gallery.gd` lines 5–6), so its tanks get the new smoke too. I accept that. Nothing else in the gallery changes; I check it once by eye.
+
+### R2 — 2026-11-06, after strip r0 and my first look
+
+1. **Fan width.** In Godot, `spread` is the half-angle on each side of `direction` (pointed out by the agent, session 2). So `spread = 60` gives a 120° fan. I keep 60: in the preview and in r0 frames 12–15 the chips go mainly left in a wide fan, which I judged good. Wherever this brief says "a 60° fan" (Effect A variation; the frame-strip table, frame 12), read "a 120° fan (60° each side)".
+2. **Contrast, corrected.** In r0 the ground tile is dark brown, and the brick cover is the *lighter*, redder surface. So the darkest stretch the effect appears on is the open ground, and the lightest is the brick face — the opposite of what Effect A's contrast paragraph says.
+   - The flash and dust carry the first frames over the brick (frames 10–12).
+   - The chips must read against the dark ground, where their last colour stop, #5A3A2E, is close in value to the ground.
+   - In the preview I judged the chips readable on the ground. I check this again in the running game.
+3. **Flash size.** On frame 10 the visible flash is about 45 px across, about 1.4 hull widths, not 1. The agent predicted 51–102 px for the full sprite; the soft edge makes the visible part smaller. I judged it right, so Flash's scale stays.
+4. **Duration.** In r0 the dust is very faint by frame 30 (0.67 s) and gone by frame 50. My first impression, "one or two seconds", overestimated it.
