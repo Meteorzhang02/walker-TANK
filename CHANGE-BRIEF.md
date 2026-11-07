@@ -446,3 +446,19 @@ The agent's "Unconfirmed" list found four things in this brief. I checked each a
    - In the preview I judged the chips readable on the ground. I check this again in the running game.
 3. **Flash size.** On frame 10 the visible flash is about 45 px across, about 1.4 hull widths, not 1. The agent predicted 51–102 px for the full sprite; the soft edge makes the visible part smaller. I judged it right, so Flash's scale stays.
 4. **Duration.** In r0 the dust is very faint by frame 30 (0.67 s) and gone by frame 50. My first impression, "one or two seconds", overestimated it.
+
+### R3 — 2026-11-06, Effect A tuning r1 (from Claude's reading of the r0 strip, approved by me)
+
+**Change.** Debris `color_ramp`:
+- was: `#E8D8B0 a1 @0 → #B5523A a1 @0.3 → #5A3A2E a0 @1`
+- now: `#E8D8B0 a1 @0 → #B5523A a1 @0.3 → #8E5040 a1 @0.6 → #8E5040 a0 @1`
+
+The chips' change over life now reads: pale dust-yellow → brick red → dull brick brown, opaque until 0.6 of life, then fade.
+
+**Reason.** In r0 the chips are almost invisible by frame 20 (0.33 s), for two reasons:
+- the last stop, #5A3A2E, is close to the ground's value (R2.2);
+- the fade starts at 0.3 of life, which falls inside the outward phase rather than in dissipation.
+
+**How r1 is checked.** Against the frame-20 row of the strip table, which stands as written. Nothing else in Effect A changes.
+
+**If I reject r1** in the running game, this revision is withdrawn by a later one and the r0 ramp returns.

@@ -1,0 +1,19 @@
+Read CLAUDE.md first. Effect A's intent block is in CHANGE-BRIEF.md
+(with revisions R1 and R2). The r0 strip is a fixture capture of the
+preview scene with a fixed seed:
+captures/cover_hit_burst/r0/frame00000010.png, frame00000012.png,
+frame00000015.png, frame00000020.png, frame00000030.png and
+frame00000050.png (trigger at frame 10, 30 fps). My verdicts from the
+preview and from the running game are in TUNING.md: I found nothing
+I want changed.
+
+Open and look at each frame. Describe what each frame shows, then
+compare it with the intent block: timing phases, contrast against the
+real background, scale against the character, change over life,
+variation and layering. List every difference you see, and say which
+one matters most for the effect's job.
+
+Then propose ONE setting change that addresses that difference, and
+predict how the new strip will differ, frame by frame. Name the brief
+values the change would replace. Do not edit anything and do not
+commit.
