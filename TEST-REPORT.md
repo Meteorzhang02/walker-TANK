@@ -224,7 +224,7 @@ I also opened the Visual Profiler in the editor's Debugger. One reading shows "R
 
 The windowed process time is about 8 ms, close to 1/144 s, because it includes waiting for the next frame. So it is not used as a CPU price; the headless medians are.
 
-**FPS with vsync off:** F9 in the price scene toggles vsync (`previews/price_scene.gd`). The comparison is **not done** (or: fill in mode-0 and mode-3 FPS here if I do it).
+**FPS with vsync off:** F9 in the price scene toggles vsync (`previews/price_scene.gd`). I ran the price scene, pressed F9 and read the FPS label in mode 0 and in mode 3: **143 in both**, the same as with vsync on. FPS never rose above the 144 Hz refresh rate, so the comparison is **capped** (most likely the Windows compositor; the internal display is driven by the Iris Xe) and shows nothing about the effects. GPU time is the price that counts.
 
 ## The process shader
 

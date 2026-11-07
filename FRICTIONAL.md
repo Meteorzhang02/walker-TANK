@@ -86,7 +86,7 @@
 - The leak counts at exit vary.
 - In the game I did not check A's direction back to the shooter, rapid repeats from several tanks in normal play, or B over brick.
 - My one-word pause verdict covers both effects.
-- The FPS comparison with vsync off was not done unless TEST-REPORT says otherwise.
+- The FPS comparison with vsync off is capped: F9 gave 143 FPS in mode 0 and in mode 3. I did not find what caps it.
 
 ---
 

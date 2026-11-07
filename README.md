@@ -59,6 +59,7 @@ As before: WASD / arrows move, mouse aims, left mouse / Space fires, Esc / P pau
 - Not checked by eye: A's direction back to the shooter, rapid repeats from several tanks in normal play, and B over brick.
 - The GPU prices come from RenderingServer's measured GPU time in a windowed script run. I took only one Visual Profiler reading, without noting the mode.
 - The leak messages at exit vary from run to run.
+- With vsync off (F9) the window still shows 143 FPS in every mode, so an FPS comparison is capped on this laptop.
 
 ### Film (A6)
 
