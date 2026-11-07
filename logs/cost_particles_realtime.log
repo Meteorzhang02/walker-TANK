@@ -1,0 +1,37 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+cost_particles: 3 rounds x (120 warm-up + 600 measured frames) per condition
+--- round 1
+RUN a_control round 1 process 0.1091 sd 0.0307 physics 6.0945 sd 10.7091 frame (capped) 7.3705 sd 5.5638
+RUN b_game_idle round 1 process 9.9169 sd 25.5217 physics 0.3214 sd 0.1264 frame (capped) 7.7853 sd 7.7168
+RUN c_effect_a_peak round 1 process 0.5530 sd 0.4418 physics 0.4393 sd 0.4158 frame (capped) 7.8098 sd 7.7219
+      bursts alive over the measured frames: min 4, mean 4.33, max 6
+      smoke emitting at amount_ratio 1.0 on 4 of 4 tanks
+RUN d_effect_b_peak round 1 process 3.2190 sd 6.1707 physics 0.2591 sd 0.1344 frame (capped) 7.8058 sd 7.7475
+--- round 2
+RUN a_control round 2 process 2.4758 sd 5.5909 physics 0.1457 sd 0.1218 frame (capped) 6.9000 sd 0.0558
+RUN b_game_idle round 2 process 3.6845 sd 7.9962 physics 0.2320 sd 0.0786 frame (capped) 6.8999 sd 0.1411
+RUN c_effect_a_peak round 2 process 0.5090 sd 0.3023 physics 0.3829 sd 0.1708 frame (capped) 7.5466 sd 6.5196
+      bursts alive over the measured frames: min 4, mean 4.35, max 6
+      smoke emitting at amount_ratio 1.0 on 4 of 4 tanks
+RUN d_effect_b_peak round 2 process 1.9265 sd 4.5257 physics 0.3822 sd 0.0645 frame (capped) 7.5528 sd 6.5668
+--- round 3
+RUN a_control round 3 process 0.1717 sd 0.0796 physics 0.1330 sd 0.0564 frame (capped) 7.8227 sd 7.7916
+RUN b_game_idle round 3 process 3.0783 sd 7.1901 physics 0.3621 sd 0.1686 frame (capped) 7.8188 sd 7.7612
+RUN c_effect_a_peak round 3 process 0.4122 sd 0.1300 physics 0.4396 sd 0.2355 frame (capped) 7.5949 sd 6.7840
+      bursts alive over the measured frames: min 4, mean 4.34, max 6
+      smoke emitting at amount_ratio 1.0 on 4 of 4 tanks
+RUN d_effect_b_peak round 3 process 0.2592 sd 0.1530 physics 0.5488 sd 0.4426 frame (capped) 7.7965 sd 7.7434
+--- results (ms per frame, 1800 frames per condition)
+COST a_control process 0.9189 sd 3.4093 physics 2.1244 sd 6.7880
+COST b_game_idle process 5.5599 sd 16.2769 physics 0.3052 sd 0.1407
+COST c_effect_a_peak process 0.4914 sd 0.3233 physics 0.4206 sd 0.2941
+COST d_effect_b_peak process 1.8016 sd 4.5798 physics 0.3967 sd 0.2945
+COST diff b-a process 4.6410 (per round 9.8078, 1.2086, 2.9065) physics -1.8193 (per round -5.7731, 0.0862, 0.2291)
+COST diff c-b process -5.0685 (per round -9.3640, -3.1755, -2.6660) physics 0.1154 (per round 0.1178, 0.1509, 0.0775)
+COST diff d-b process -3.7583 (per round -6.6979, -1.7580, -2.8191) physics 0.0915 (per round -0.0624, 0.1502, 0.1867)
+--- frame time, capped at the display rate (wait included), so flat across conditions
+FRAME a_control mean 7.3644 sd 5.5375
+FRAME b_game_idle mean 7.5013 sd 6.3302
+FRAME c_effect_a_peak mean 7.6504 sd 7.0245
+FRAME d_effect_b_peak mean 7.7184 sd 7.3704

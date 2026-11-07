@@ -1,0 +1,35 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md, "Price predictions and budget",
+names the two instruments and my predictions. Write two things. Do not
+change any effect, any game script, any existing test or any .gdshader
+file.
+
+1. tests/cost_particles.gd, an `extends SceneTree` script that I run
+   with: ./scripts/run-test.sh cost_particles.gd realtime 300
+   It measures the frame time in ms (mean and standard deviation) over
+   600 frames after 120 warm-up frames, repeated 3 times, for:
+   (a) control: an empty scene;
+   (b) the game scene res://scenes/main.tscn with both effects idle,
+       as on load;
+   (c) the game scene with Effect A at its peak: 4 bursts alive at
+       once, kept up by calling main.spawn_cover_burst() every 0.35 s
+       at 4 fixed cover positions;
+   (d) the game scene with Effect B at its peak: the smoke on all 4
+       tanks emitting at amount_ratio 1.0, set through follow().
+   The calls in (c) and (d) are cost-only setup, not gameplay tests;
+   label them so in comments. Freeze the enemy AI the same way in (b),
+   (c) and (d), so the only difference is the effect. Stop all effects
+   between conditions. Print one line per condition, in the form
+   COST <name> mean <ms> sd <ms>, then the differences (b-a), (c-b)
+   and (d-b). It is not a PASS/FAIL test: it quits 0, and 1 only on a
+   script error.
+
+2. previews/price_scene.tscn with its script, for my GPU-time reading
+   in the editor's Visual Profiler. It loads the game scene with the
+   enemy AI frozen in the same way. Keys: 0 = both effects off,
+   1 = Effect A at its peak as in (c), 2 = Effect B at its peak as in
+   (d), 3 = both. A Label on screen shows the current mode and
+   Engine.get_frames_per_second().
+
+Run the cost script once with
+./scripts/run-test.sh cost_particles.gd realtime 300 as a plain
+command, show the real COST lines, and stop. Do not commit.
