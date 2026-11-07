@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+      aim up: mouse (global) (150.0, 299.15), aim_angle -1.5708
+PASS  mouse motion aims YunqiZ up (aim_angle -1.5708, want -1.5708 +- 0.01)
+      aim right: mouse (global) (649.9999, 599.15), aim_angle 0.0000
+PASS  mouse motion aims YunqiZ right (aim_angle 0.0000, want 0.0000 +- 0.01)
+PASS  Space key event reaches the fire action
+PASS  fire action released
+PASS  one press -> exactly 1 fired signal (got 1)
+PASS  one press -> exactly 1 new shell in World/FX (got 1)
+      shell dir (1.0, 0.0), angle 0.0000; shooter is YunqiZ: true
+PASS  shell dir matches the aim (angle 0.0000, want 0.0 +- 0.01)
+PASS  shell shooter is YunqiZ
+RESULT: 8 passed, 0 failed
