@@ -80,3 +80,21 @@ One setting; the particle count and the cost are unchanged. Config test 128/128 
 (English: Keep it; everything works. This isn't a full 3D game, so the current state doesn't need more fussing.)
 
 **Decision:** r1 is kept and R3 stands. I chose not to take the next lever (chip size).
+
+## 2026-11-06 — Effect B, r0 (first strip, before any tuning)
+
+**Strip:** `captures/damage_smoke/r0/` — frames 10, 25, 58, 90, 112, 140, 165 (fixture).
+- The preview drives `follow()`: h = 0.5 at frame 10, h = 0.1 at frame 60 (ratio 0.875), h = 1.0 at frame 110.
+- Capture log: `logs/capture_damage_smoke_r0.log`.
+
+**My first look** (preview window, 1280 × 720, before any Claude read the strip), in my own words:
+
+> 变浓了，是从炮塔冒出来的，看得清，大小可以，慢慢散。
+
+(English: It gets denser, it comes out of the turret, it reads clearly, the size is fine, and it disperses slowly.)
+
+These are four of the brief's checks, each judged by eye in the preview:
+- **Density step** (rules 1–2): denser after h drops to 0.1.
+- **Origin** (`TURRET_OFFSET`): it comes out of the turret.
+- **Contrast and scale:** it reads clearly, and the size is fine.
+- **Stop:** it is not cut off; the column disperses slowly.
