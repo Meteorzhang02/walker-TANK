@@ -42,3 +42,41 @@ Checked against the strip: the burst is gone by frame 50 (1.33 s) and only faint
   (English: Everything works in the game. There is nothing I want changed.)
 
 So **no revision of Effect A is driven by something I observed in the running game**. The revision below (r1) comes from Claude's reading of the r0 strip. My verdict in the running game decides whether it is kept or rejected.
+
+## 2026-11-06 — Effect A, r1 (Debris color_ramp; brief R3) — kept
+
+**Driven by:** Claude's reading of the r0 strip, not by something I saw in the running game. In the game I found nothing I wanted changed (r0, above).
+
+**Claude's reading of r0** (session 4a, read-only). Its crop-and-enlarge script was denied, so every size and colour below is an estimate by eye.
+- Frames 10–15 match the intent.
+- At frame 20 (0.33 s) the chips have almost vanished. The last ramp stop, #5A3A2E, has about the same value as the ground, and the fade starts at 0.3 of life, inside the outward phase.
+- It named this the difference that matters most: the chips are the only layer that shows the wall losing material, and in which direction.
+
+**Change** (proposed by Claude, approved by me; brief R3; session 4b). Debris `color_ramp`:
+- from `#E8D8B0 a1 @0 → #B5523A a1 @0.3 → #5A3A2E a0 @1`
+- to `#E8D8B0 a1 @0 → #B5523A a1 @0.3 → #8E5040 a1 @0.6 → #8E5040 a0 @1`
+
+One setting; the particle count and the cost are unchanged. Config test 128/128 and state test 82/82, both rerun by me.
+
+**Claude's prediction:**
+- frames 10, 12, 15, 30 and 50 unchanged;
+- frame 20: about 20 opaque red-brown chips, 50–60 px out.
+
+**r1 strip:** `captures/cover_hit_burst/r1/` (fixture, same seed and frames as r0).
+
+**Claude's comparison** (session 4c):
+- Held for frames 10, 12, 15, 30 and 50.
+- Partly held at frame 20. The chips are now visible, red-brown and smaller, but fainter and sparser than predicted (it was sure of 10–15, not 20).
+- They reach about 80 px, not 50–60. Those far chips were already there in r0 but invisible, so its r0 reach of about 50 px was a limit of visibility, not of travel.
+- Frame 20 now matches the brief's frame-20 row on everything a still frame can show, but weakly.
+- It named chip size as the next lever (the Debris `scale_amount_curve` end, 0.4).
+
+**My check of r1 frame 20:** small red-brown chips are visible to the left of the wall, faint, where r0 showed almost nothing.
+
+**My verdict in the running game:**
+
+> 保留就行，一切正常。因为不是纯 3D 游戏，目前状态不用纠结。
+
+(English: Keep it; everything works. This isn't a full 3D game, so the current state doesn't need more fussing.)
+
+**Decision:** r1 is kept and R3 stands. I chose not to take the next lever (chip size).
