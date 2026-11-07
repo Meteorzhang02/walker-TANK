@@ -28,3 +28,17 @@ Each revision below records five things:
 (English: The chips are readable against the ground.)
 
 Checked against the strip: the burst is gone by frame 50 (1.33 s) and only faint dust is left at frame 30 (0.67 s), so my "one or two seconds" overestimated the duration (brief R2.4).
+
+**In the running game** (main scene, 1280 × 720, NVIDIA RTX 3060, 2026-11-06; Effect A wired in at d2d50fc). I played for a few minutes and shot at cover.
+
+- **Four hits on one wall until it broke** — checked. Every hit was visible.
+- **Firing while moving** — checked. The chips read against the ground.
+- **Chips go back toward the shooter** — not checked separately.
+- **Pause right after a hit** — not checked here (to be checked with Effect B's edge checks).
+- **My verdict:**
+
+  > 游戏一切都正常。真的没有想改的地方。
+
+  (English: Everything works in the game. There is nothing I want changed.)
+
+So **no revision of Effect A is driven by something I observed in the running game**. The revision below (r1) comes from Claude's reading of the r0 strip. My verdict in the running game decides whether it is kept or rejected.
