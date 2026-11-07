@@ -19,7 +19,7 @@ PASS  @CharacterBody2D@51: smoke amount 48, local_coords false
 PASS  rule 7: no smoke emitting on any of the first 30 physics frames (0 tank-frames emitting)
 PASS  rule 7: every tank at full health after load
 --- S1: enemy 0 (max_health 75) hit by YunqiZ's real shells
-      enemy 0 moved from (1119.137, 140.785); YunqiZ fired 3 shells
+      enemy 0 moved from (1118.916, 140.4314); YunqiZ fired 3 shells
 PASS  S1: enemy 0 destroyed by YunqiZ's shells
 PASS  S1: 3 hits on enemy 0 (got 3 events)
 PASS  rule 1 (h 0.667, none): enemy 0 health 50 after the hit (want 50)

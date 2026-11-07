@@ -2,6 +2,73 @@
 
 A tank-battle game in Godot: you drive **YunqiZ** through a ruined brick battlefield and destroy three enemy tanks.
 
+- **Starting point:** my own Assignment 2–5 game in this repository (A6 starts from tag a5, `b4fe9d8`).
+- **Engine:** Godot 4.7.2 stable. **Renderer:** Forward+ (engine default). 2D: 1280×720, stretch `canvas_items`.
+
+## Assignment 6 — particle effects
+
+### What Assignment 6 added
+
+- **Effect A, cover hit burst:** `effects/cover_hit_burst.tscn` — three CPUParticles2D (Flash, Debris, Dust).
+  - It fires on every cover hit at the shell's contact point (`cover.gd` line 40 → `main.gd` `spawn_cover_burst()`).
+  - Each hit makes a new instance in `World/FX` (overlap rule).
+  - It replaces the old debris, which appeared at the cover's centre and fell down the screen.
+- **Effect B, damage smoke:** `effects/damage_smoke.tscn` — one GPUParticles2D with turbulence.
+  - `amount_ratio` follows health from 60 % down, and a wreck smokes at 1.0 (`effects/damage_smoke.gd` `follow()`, called from `tank.gd`).
+  - It replaces the old untextured smoke.
+- **Tuning:** Effect A r1 (Debris colour ramp) and Effect B r1 (initial velocity), both kept. See [TUNING.md](TUNING.md).
+- **Tests:** config and state tests for both effects; `tests/probe_particle_props.gd`; `tests/price_measure.gd` (prices). The generated process shader is `shaders/particles_generated.gdshader`.
+- **Documents:** [CHANGE-BRIEF](CHANGE-BRIEF.md) · [TUNING](TUNING.md) · [TEST-REPORT](TEST-REPORT.md) · [LANGUAGE-NOTES](LANGUAGE-NOTES.md) · [FRICTIONAL](FRICTIONAL.md) · [SOURCES](SOURCES.md) · [CLAUDE.md](CLAUDE.md) · texture credits [effects/textures/CREDITS.md](effects/textures/CREDITS.md). Prompts and transcripts: `prompts/a6/`. Strips: `captures/`.
+
+### Run (Windows, Git Bash, repo root)
+
+```bash
+GODOT="/d/CSYE7270/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe"
+"$GODOT" --headless --path . --import          # once after cloning
+"$GODOT" --path .                              # the game
+"$GODOT" --path . res://previews/cover_hit_burst_preview.tscn
+"$GODOT" --path . res://previews/damage_smoke_preview.tscn
+"$GODOT" --path . res://previews/price_scene.tscn   # keys 0-3 modes, F9 vsync
+```
+
+**Tests**, run through the wrapper one per call (`scripts/run-test.sh <file> <fps|realtime> [timeout]`):
+
+```bash
+bash scripts/run-test.sh test_hit_flash.gd 30      # also 60, 144: 50 each
+bash scripts/run-test.sh test_materials.gd 60      # 76
+bash scripts/run-test.sh check_tools_parse.gd 60   # 9
+bash scripts/run-test.sh check_a3_assets.gd 60     # 18
+bash scripts/run-test.sh test_sound_triggers.gd 60 # 8
+bash scripts/run-test.sh test_cover_hit_burst_config.gd 60   # 128
+bash scripts/run-test.sh test_cover_hit_burst_state.gd 60    # 82 (also 30, 144)
+bash scripts/run-test.sh test_damage_smoke_config.gd 60      # 76
+bash scripts/run-test.sh test_damage_smoke_state.gd 60       # 81 (also 30, 144)
+bash scripts/run-test.sh price_measure.gd realtime 300       # prices (headless CPU)
+```
+
+### Controls
+
+As before: WASD / arrows move, mouse aims, left mouse / Space fires, Esc / P pauses, M / N mute music / SFX, R restarts after victory.
+
+**Vsync debug key: F9**, in `previews/price_scene.tscn` only. It is used for the FPS comparison; the game itself has no such key. Keys 0–3 switch that scene's price modes.
+
+### Known limitations (A6)
+
+- Effect B's dark base colour has about the ground's value, so its dark-to-light change cannot be seen.
+- In still frames, B's smoke stays compact. Turbulence turns the velocity every step (generated shader, line 447), and this was not tuned further.
+- Not checked by eye: A's direction back to the shooter, rapid repeats from several tanks in normal play, and B over brick.
+- The GPU prices come from RenderingServer's measured GPU time in a windowed script run. I took only one Visual Profiler reading, without noting the mode.
+- The leak messages at exit vary from run to run.
+
+### Film (A6)
+
+To be added.
+
+---
+
+
+A tank-battle game in Godot: you drive **YunqiZ** through a ruined brick battlefield and destroy three enemy tanks.
+
 - **Starting point:** my own Assignment 2 game and Assignment 3 3D asset room in this repository (A5 baseline commit `c4a1f84`). See [SOURCES.md](SOURCES.md).
 - **Engine:** Godot 4.7.2 stable. **Renderer:** Forward+ (engine default; `project.godot` sets no renderer). 2D: 1280×720, stretch `canvas_items`, no `hdr_2d`.
 - **Film (Assignment 5):** see [Film](#film) below.
@@ -19,7 +86,7 @@ A tank-battle game in Godot: you drive **YunqiZ** through a ruined brick battlef
 - **Hint experiment:** `scenes/hint_experiment.tscn` with `shaders/hint_experiment.gdshader`. It shows the same 3×1 grey PNG (64/128/192, `tools/make_hint_png.gd`) through a sampler with `source_color` (Quad A) and one without (Quad B).
 - **Generated shader for comparison:** `shaders/standard_generated.gdshader` (Godot's *Convert to ShaderMaterial* in `scenes/scratch_standard.tscn`; not used by the game).
 - **Tests:** `tests/test_hit_flash.gd`, `tests/test_materials.gd`, `tests/check_tools_parse.gd`. **Capture tools:** `tools/capture_hit_flash.gd`, `tools/capture_hint.gd`, `tools/capture_materials.gd`.
-- **Documents:** [CHANGE-BRIEF](CHANGE-BRIEF.md) (with Revisions) · [TEST-REPORT](TEST-REPORT.md) · [MATERIALS](MATERIALS.md) · [LANGUAGE-NOTES](LANGUAGE-NOTES.md) · [FRICTIONAL](FRICTIONAL.md) · [SOURCES](SOURCES.md) · [CLAUDE.md](CLAUDE.md). Evidence: `logs/`, `docs/a5/`.
+- **Documents:** [CHANGE-BRIEF](CHANGE-BRIEF.md) (with Revisions) · [TEST-REPORT](docs/a5/TEST-REPORT.md) · [MATERIALS](MATERIALS.md) · [LANGUAGE-NOTES](LANGUAGE-NOTES.md) · [FRICTIONAL](FRICTIONAL.md) · [SOURCES](SOURCES.md) · [CLAUDE.md](CLAUDE.md). Evidence: `logs/`, `docs/a5/`.
 
 ### Film
 
@@ -59,7 +126,7 @@ bash scripts/run-test.sh check_a3_assets.gd 60
 bash scripts/run-test.sh test_sound_triggers.gd 60
 ```
 
-Results at `3d48047`: 50/50 at each rate, 76/76, 9/9, 18/18, 8/8, all exit 0 ([TEST-REPORT](TEST-REPORT.md)).
+Results at `3d48047`: 50/50 at each rate, 76/76, 9/9, 18/18, 8/8, all exit 0 ([TEST-REPORT](docs/a5/TEST-REPORT.md)).
 
 **Capture tools.** These need a real window, because headless draws nothing. Output goes to `docs/a5/captures/`.
 
@@ -134,7 +201,7 @@ timeout 120 "$GODOT" --headless --path . --script res://tests/check_a3_assets.gd
 - The film shows my Blender session as my own screenshots (stills), not a screen recording, and the Godot scene with a static camera.
 - The film shows Claude's plan and report but not the text of my prompt (my screenshots do not include it). In its last second the toolkit's locked outro mascot overlaps the @NikBearBrown handle.
 
-Full details: [TEST-REPORT](TEST-REPORT.md) · [BLENDER-NOTES](BLENDER-NOTES.md) · [CHANGE-BRIEF](CHANGE-BRIEF.md) · [FRICTIONAL](FRICTIONAL.md) · [SOURCES](SOURCES.md). The Assignment 2 test report is in [docs/a2/TEST-REPORT.md](docs/a2/TEST-REPORT.md).
+Full details: [TEST-REPORT](docs/a5/TEST-REPORT.md) · [BLENDER-NOTES](BLENDER-NOTES.md) · [CHANGE-BRIEF](CHANGE-BRIEF.md) · [FRICTIONAL](FRICTIONAL.md) · [SOURCES](SOURCES.md). The Assignment 2 test report is in [docs/a2/TEST-REPORT.md](docs/a2/TEST-REPORT.md).
 
 ---
 

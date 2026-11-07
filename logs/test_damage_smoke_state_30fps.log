@@ -90,3 +90,7 @@ PASS  G: tank at (370.0, 175.0) (health 0) smoke emitting true, ratio 1.0000 (wa
 PASS  G: tank at (480.0, 175.0) (health 100) smoke emitting false, ratio 1.0000 (want false, -)
 PASS  G: the 8 facing tanks are not smoking
 RESULT: 81 passed, 0 failed
+WARNING: 16 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 5 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

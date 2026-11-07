@@ -1,3 +1,95 @@
+# Assignment 6 — particle effects
+
+**How this was written.** These entries were written on 2026-11-06, the same day as the work, by Claude (claude.ai chat). It worked from our chat (my commands, my pasted output, my answers) and the commit messages. Where I said something in Chinese, it is quoted as I said it, with a translation. Anything that is not from that record is marked. Tuning details are **not** copied here; they are in [TUNING.md](TUNING.md).
+
+**Who is who:**
+- *Me*: what I decided, ran, looked at and judged.
+- *Claude chat*: the brief draft, the helper commands, the probe and price scripts, and these documents.
+- *Claude Code*: the agent in this repo. Its prompts and transcripts are in `prompts/a6/`.
+
+## Setup and brief
+
+- **Tried:** to do A6 in one day, aiming at full marks.
+- **Happened:**
+  - The course wrapper uses `godot` on PATH, so I added my Godot path as its default (`a9513d3`). The baseline was unchanged: 50/50/50, 76, 9, 18, 8.
+  - Claude chat drafted CHANGE-BRIEF.md from grep output I collected (cover hits in `cover.gd`, the smoke in `tank.gd`, the pause, the window size). It proposed both effects; I accepted them and committed the brief before the first prompt.
+- **What this showed:** the old code effects had real problems: debris at the cover's centre, and smoke with no texture.
+
+## Step 1: CLAUDE.md (session 1)
+
+- **Happened.** The agent's Unconfirmed list found:
+  - that `test_sound_triggers.gd` line 94 calls `take_hit()` with no shell, so the planned line 40 would have crashed it;
+  - **an error in my brief:** the old debris has gravity (0, 160), not the default.
+- **Changed:**
+  - brief R1;
+  - a probe run in this Godot build (`tests/probe_particle_props.gd`). It showed that CPUParticles2D has no `amount_ratio`, and that ParticleProcessMaterial still lists `initial_velocity`.
+  - my CLAUDE.md review (`29db80e`).
+
+## Effect A: build, first look, mutations (sessions 2a, 2)
+
+- **Happened:**
+  - The config test passed 126/126 on my own rerun.
+  - The agent had 5 commands refused by the allow list (compound commands, a direct Godot call). None of them hid a result.
+  - It pointed out that `spread` is a half-angle, so 60 gives a 120° fan.
+  - It wanted captures stored outside the repo. I kept them in the repo with a `.gdignore` instead.
+- **My first look:** "闪光看得见，正好。砖块主要往左侧飞，也不错。看得清，大小合适。大概一两秒没有了。" (The flash is visible and about right; the chips fly mainly left; readable; the size is right; gone in about one or two seconds.)
+- **Claude chat then pointed out,** from my uploaded frames, that the ground is darker than the brick and that the chips almost vanish by frame 20. Brief R2 corrected the contrast paragraph. My second look: "看得清" (readable).
+- **Mutations:** both exit 1 (TEST-REPORT). Godot gave no warning for the Godot 3 name.
+- **Not done:** watching the effect with mutation 1 in place.
+
+## Effect A: wiring and state test (sessions 3a–3e)
+
+- **Happened.** The plan was approved step by step. Along the way:
+  - The agent could not see exit codes, so I reran every suite myself.
+  - The headless window turned out to be 64 × 64, so its first aim check failed 5/3. It fixed the test's coordinate helper only.
+  - Frozen enemies had no bodies (`disable_mode` REMOVE), so a shell flew through one. It fixed this in the test only, and noted that my A5 `test_hit_flash.gd` has the same gap.
+- **Result:** state 82/82 at 30, 60 and 144.
+
+## Effect A in the game and its tuning
+
+- **Checked in the game:** four hits on one wall, and readability while moving.
+- **Not checked:** the direction back toward the shooter, and the pause look.
+- **My verdict:** "游戏一切都正常。真的没有想改的地方。" (Everything works; nothing I want changed.)
+- **So** A's revision r1 comes from Claude Code's strip reading, not from me. I kept it and declined the next lever. See TUNING.md, Effect A r1.
+
+## Effect B: build, wiring, game check, tuning (sessions 5, 6a–6c, 7a–7c)
+
+- **Build:** the agent found that my frame-strip number 0.94 contradicts my own formula (0.875). That became brief R4.
+- **State test:** it first failed 62/6 because frozen enemies' invulnerability timers stopped. It was fixed in the test, and ended at 81/81 at 30, 60 and 144.
+- **In the game:** my 7 answers are in TUNING.md. Standing still, the smoke was "一团" (a lump). This drove B's tuning.
+- **Tuning:**
+  - The agent's prediction for r1 failed in the stills, but in the game I saw it rise and kept it.
+  - The agent also wrongly said R5 was uncommitted.
+  - See TUNING.md, Effect B r1.
+
+## Step 6: the process shader
+
+- **Happened.** It took three tries in the editor:
+  1. I first used *Save As* on the ShaderMaterial itself, and got "扩展名无效" (invalid extension), because a material only saves as `.tres`.
+  2. Then I picked "new ShaderMaterial" instead of *Convert*, which gave an empty shader. I closed the scene without saving.
+  3. The third time I used *Convert to ShaderMaterial* and saved the shader. `git status` showed that the scene was untouched.
+- **Who:** the LANGUAGE-NOTES A6 section and the TEST-REPORT shader answer were drafted by Claude chat from the lines I printed, at my request. I read lines 412, 425, 447, 455 and 456 myself.
+- **What this showed:** line 447 turns the velocity toward the noise direction 10–20 % every step, which explains B's lump.
+
+## Step 7: prices
+
+- **Happened:**
+  - The agent's first cost script read 6.90 ms for every case, the empty scene included. It said itself that this is 1/144 s: the script was measuring the frame pacing. This is the mistake the assignment warns about, and the control caught it.
+  - Its second try, with process-time means, was swamped by spike frames (negative differences).
+  - I found the Visual Profiler confusing ("我搞不懂怎么操作乱七八糟的", I can't work out how to operate it, it's a mess). I took one reading, without noting the mode.
+  - Claude chat then wrote `tests/price_measure.gd`: medians, real key presses, and GPU time from RenderingServer. I ran it headless and windowed.
+- **Result:** A and B are both inside prediction and budget (TEST-REPORT).
+
+## Unresolved (A6)
+
+- Turbulence is confirmed as B's cause only from the code, not with a turbulence-off strip.
+- The leak counts at exit vary.
+- In the game I did not check A's direction back to the shooter, rapid repeats from several tanks in normal play, or B over brick.
+- My one-word pause verdict covers both effects.
+- The FPS comparison with vsync off was not done unless TEST-REPORT says otherwise.
+
+---
+
 # Assignment 5 — hit flash shader and brick surface materials
 
 **How this was written.** I kept raw notes in order while working ([docs/a5/frictional-notes.md](docs/a5/frictional-notes.md), commit `3d48047`; organised from my session with Claude chat and reviewed by me). Claude Code (session 6, [docs/a5/sessions/prompt-6.txt](docs/a5/sessions/prompt-6.txt)) arranged them into the dated entries below. It added only commit hashes, file paths, log and capture names and numbers taken from those files. The wording is mine where possible. **Retrospective:** every entry was written from my notes on 2026-10-27. The 2026-10-25 setup entry was written two days after the work; the others on the same day.

@@ -1,0 +1,26 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PRICE cpu: 12th Gen Intel(R) Core(TM) i7-12700H
+PRICE gpu:  / 
+PRICE display server: headless
+PRICE warm 180 frames, sample 720 frames per phase
+PRICE control_empty | process median 0.0570 mean 0.1058 p95 0.2470 | physics median 0.0250 mean 0.0807 p95 0.4100 | render_cpu median 0.0000 mean 0.0000 p95 0.0000 | render_gpu median 0.0000 mean 0.0000 p95 0.0000 | fps 145
+PRICE mode0_off label: Price mode 0: both effects off
+PRICE mode0_off | process median 0.1850 mean 2.7103 p95 1.2300 | physics median 0.1720 mean 0.1903 p95 0.2620 | render_cpu median 0.0000 mean 0.0000 p95 0.0000 | render_gpu median 0.0000 mean 0.0000 p95 0.0000 | fps 145
+PRICE mode1_A_peak label: Price mode 1: Effect A peak (about 4 bursts)
+PRICE mode1_A_peak | process median 0.3080 mean 0.3313 p95 0.5150 | physics median 0.1620 mean 0.1827 p95 0.2620 | render_cpu median 0.0000 mean 0.0000 p95 0.0000 | render_gpu median 0.0000 mean 0.0000 p95 0.0000 | fps 145
+PRICE mode2_B_peak label: Price mode 2: Effect B peak (4 tanks, ratio 1.0)
+PRICE mode2_B_peak | process median 0.2630 mean 0.3495 p95 0.9880 | physics median 0.2210 mean 0.2055 p95 0.2220 | render_cpu median 0.0000 mean 0.0000 p95 0.0000 | render_gpu median 0.0000 mean 0.0000 p95 0.0000 | fps 145
+PRICE mode3_both label: Price mode 3: both
+PRICE mode3_both | process median 0.2440 mean 0.5453 p95 2.3690 | physics median 0.1790 mean 0.4392 p95 1.5090 | render_cpu median 0.0000 mean 0.0000 p95 0.0000 | render_gpu median 0.0000 mean 0.0000 p95 0.0000 | fps 145
+PRICE mode0_off_again label: Price mode 0: both effects off
+PRICE mode0_off_again | process median 0.1020 mean 0.1988 p95 0.2260 | physics median 0.2510 mean 0.2687 p95 0.4190 | render_cpu median 0.0000 mean 0.0000 p95 0.0000 | render_gpu median 0.0000 mean 0.0000 p95 0.0000 | fps 145
+PRICE diff mode0_off - control_empty (medians) | process +0.1280 | physics +0.1470 | render_cpu +0.0000 | render_gpu +0.0000
+PRICE diff mode1_A_peak - mode0_off (medians) | process +0.1230 | physics -0.0100 | render_cpu +0.0000 | render_gpu +0.0000
+PRICE diff mode2_B_peak - mode0_off (medians) | process +0.0780 | physics +0.0490 | render_cpu +0.0000 | render_gpu +0.0000
+PRICE diff mode3_both - mode0_off (medians) | process +0.0590 | physics +0.0070 | render_cpu +0.0000 | render_gpu +0.0000
+PRICE diff mode0_off_again - mode0_off (medians) | process -0.0830 | physics +0.0790 | render_cpu +0.0000 | render_gpu +0.0000
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

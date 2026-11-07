@@ -88,7 +88,7 @@ PASS  R1: burst at cover + (0, -8) = (1040.0, 362.0) (got (1040.0, 362.0), off 0
 PASS  R1: burst rotation -1.5708 == -PI/2 (tol 0.01)
 PASS  R1: burst under World/FX
 RESULT: 82 passed, 0 failed
-WARNING: 22 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 17 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 5 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:822)

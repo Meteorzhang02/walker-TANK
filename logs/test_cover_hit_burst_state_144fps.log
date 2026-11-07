@@ -55,7 +55,7 @@ PASS  rule 2: burst 6 rotation -0.0000 == (-shell.dir).angle() -0.0000 (tol 0.01
 PASS  P3: the second shell (main.spawn_shell) hits the same block -> 2nd burst
 PASS  rule 3: the hits are 0.317 s apart, inside one lifetime (< 0.7 s)
 PASS  rule 3: 2 bursts alive at once
-PASS  rule 3: 2 different instances (ids 61337503418, 62562240199)
+PASS  rule 3: 2 different instances (ids 61891151548, 63115888329)
 PASS  rule 3: both under World/FX
 PASS  rule 3: the first burst is still emitting when the second arrives
 PASS  rule 4: burst 6 (P3) still in World/FX and emitting after its shell was freed
@@ -88,7 +88,7 @@ PASS  R1: burst at cover + (0, -8) = (1040.0, 362.0) (got (1040.0, 362.0), off 0
 PASS  R1: burst rotation -1.5708 == -PI/2 (tol 0.01)
 PASS  R1: burst under World/FX
 RESULT: 82 passed, 0 failed
-WARNING: 17 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 19 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 5 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:822)

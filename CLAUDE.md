@@ -43,6 +43,8 @@ bash scripts/run-test.sh <test>.gd realtime 180
 
 Baseline at a9513d3 (`CHANGE-BRIEF.md` lines 11–19): 50/50/50, 76, 9, 18, 8, all exit 0. All five tests are `extends SceneTree` and `quit(1)` on any FAIL (`test_hit_flash.gd` lines 1, 60; `test_materials.gd` 1, 51; `check_tools_parse.gd` 1, 26; `check_a3_assets.gd` 1, 93; `test_sound_triggers.gd` 1, 101). `test_hit_flash.gd` and `test_sound_triggers.gd` load `res://scenes/main.tscn` (lines 198, 20). A "5 resources still in use at exit" message is pre-existing, not a failure.
 
+A6 suites (2026-11-06): `test_cover_hit_burst_config.gd` 60 (128), `test_cover_hit_burst_state.gd` 30/60/144 (82), `test_damage_smoke_config.gd` 60 (76), `test_damage_smoke_state.gd` 30/60/144 (81). Prices: `tests/price_measure.gd` (headless via `run-test.sh price_measure.gd realtime 300`, and windowed).
+
 ## Headless facts
 
 - A headless run uses a dummy renderer: it draws nothing. Headless tests prove that the shaders parse, their uniforms are declared and driven, and the materials are wired; they never prove what the screen shows. Every look is a human check recorded in `TEST-REPORT.md`.
@@ -51,6 +53,10 @@ Baseline at a9513d3 (`CHANGE-BRIEF.md` lines 11–19): 50/50/50, 76, 9, 18, 8, a
   (emitting, one_shot, amount_ratio, visibility, instance counts) is observable; the look is not.
 - A GPU effect's headless CPU price is near zero by construction.
 - Frame strips come from a windowed Movie Maker run, which I start.
+- The headless window is 64 x 64; with stretch `canvas_items`, mouse positions need `get_final_transform()` (`tests/test_cover_hit_burst_state.gd`).
+- `process_mode = DISABLED` also removes a body from physics (`disable_mode` REMOVE) and stops its `invuln_left` timer. The A6 state tests use KEEP_ACTIVE, or `target = null` + INHERIT.
+- Headless `realtime` runs are paced at about 1/144 s, so frame time prices nothing (6.90 ms for every case). Per-frame `Performance.TIME_PROCESS` medians do (`tests/price_measure.gd`). GPU render time reads 0 headless.
+- Exit messages (ObjectDB instances leaked, resources in use) vary from run to run; they are not failures.
 
 ## Current change
 

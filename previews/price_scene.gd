@@ -47,6 +47,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			KEY_1, KEY_KP_1: _set_mode(1)
 			KEY_2, KEY_KP_2: _set_mode(2)
 			KEY_3, KEY_KP_3: _set_mode(3)
+			KEY_F9: _toggle_vsync()
 
 
 func _set_mode(m: int) -> void:
@@ -68,3 +69,11 @@ func _process(delta: float) -> void:
 				main.spawn_cover_burst(null, BURST_POINTS[_spawn_index % BURST_POINTS.size()])
 				_spawn_index += 1
 	label.text = "Price mode %s\nFPS %d" % [MODE_NAMES[mode], Engine.get_frames_per_second()]
+
+
+## Debug key for the FPS comparison only (A6 Use It): F9 toggles vsync in this window.
+## Not a project-setting change; the game itself has no such key.
+func _toggle_vsync() -> void:
+	var off := DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_DISABLED
+	DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED if off else DisplayServer.VSYNC_DISABLED)
+	print("PRICE vsync now: %s" % ("on" if off else "off"))
