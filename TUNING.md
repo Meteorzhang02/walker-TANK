@@ -98,3 +98,17 @@ These are four of the brief's checks, each judged by eye in the preview:
 - **Origin** (`TURRET_OFFSET`): it comes out of the turret.
 - **Contrast and scale:** it reads clearly, and the size is fine.
 - **Stop:** it is not cut off; the column disperses slowly.
+
+**Effect B in the running game** (main scene, 1280 × 720; Godot's startup line: "Using Device #0: NVIDIA - NVIDIA GeForce RTX 3060 Laptop GPU"; 2026-11-06, Effect B wired in at 7009248). I took hits until I was smoking, then checked each item. My answers, one word each, as I gave them:
+
+| Check | My answer | What it shows |
+|---|---|---|
+| 1. Scene load: is any tank smoking? | 没有冒烟 (no smoke) | rule 7 |
+| 2. Standing still: a rising column or a lump on the turret? | **一团 (a lump)** | **differs from the intent: a column about 2–3 hull lengths tall** |
+| 3. Another hit, down to 25: denser? | 有 (yes) | rules 1–2 |
+| 4. Driving while smoking: a trail behind? | 拖烟条 (it leaves a trail of smoke) | `local_coords` false |
+| 5. Driving to the screen edge: does the smoke vanish all at once? | 不会 (no) | `visibility_rect` is large enough |
+| 6. Pause while smoking (and Effect A's chips right after a hit) | 对 (yes) | rule 5 for B. My one-word answer covers both parts of the question. |
+| 7. A destroyed enemy: does the wreck keep smoking? | 会 (yes) | rule 4 |
+
+**Observation that drives Effect B's tuning (from check 2):** standing still, the smoke sits on the turret as a lump instead of rising into a column. My preview look said "大小可以" (the size is fine). In the running game I saw that it does not rise.
