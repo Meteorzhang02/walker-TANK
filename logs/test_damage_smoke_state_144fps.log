@@ -1,0 +1,92 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS  @CharacterBody2D@36: smoke is a GPUParticles2D instance of res://effects/damage_smoke.tscn (got GPUParticles2D, res://effects/damage_smoke.tscn)
+PASS  @CharacterBody2D@36: smoke is the tank's child at TURRET_OFFSET (0.0, -10.85) (got (0.0, -10.85))
+PASS  @CharacterBody2D@36: one GPUParticles2D (smoke) and one CPUParticles2D (flames) under the tank (got 1, 1)
+PASS  @CharacterBody2D@36: smoke amount 48, local_coords false
+PASS  @CharacterBody2D@41: smoke is a GPUParticles2D instance of res://effects/damage_smoke.tscn (got GPUParticles2D, res://effects/damage_smoke.tscn)
+PASS  @CharacterBody2D@41: smoke is the tank's child at TURRET_OFFSET (0.0, -10.85) (got (0.0, -10.85))
+PASS  @CharacterBody2D@41: one GPUParticles2D (smoke) and one CPUParticles2D (flames) under the tank (got 1, 1)
+PASS  @CharacterBody2D@41: smoke amount 48, local_coords false
+PASS  @CharacterBody2D@46: smoke is a GPUParticles2D instance of res://effects/damage_smoke.tscn (got GPUParticles2D, res://effects/damage_smoke.tscn)
+PASS  @CharacterBody2D@46: smoke is the tank's child at TURRET_OFFSET (0.0, -10.85) (got (0.0, -10.85))
+PASS  @CharacterBody2D@46: one GPUParticles2D (smoke) and one CPUParticles2D (flames) under the tank (got 1, 1)
+PASS  @CharacterBody2D@46: smoke amount 48, local_coords false
+PASS  @CharacterBody2D@51: smoke is a GPUParticles2D instance of res://effects/damage_smoke.tscn (got GPUParticles2D, res://effects/damage_smoke.tscn)
+PASS  @CharacterBody2D@51: smoke is the tank's child at TURRET_OFFSET (0.0, -10.85) (got (0.0, -10.85))
+PASS  @CharacterBody2D@51: one GPUParticles2D (smoke) and one CPUParticles2D (flames) under the tank (got 1, 1)
+PASS  @CharacterBody2D@51: smoke amount 48, local_coords false
+PASS  rule 7: no smoke emitting on any of the first 30 physics frames (0 tank-frames emitting)
+PASS  rule 7: every tank at full health after load
+--- S1: enemy 0 (max_health 75) hit by YunqiZ's real shells
+      enemy 0 moved from (1119.137, 140.785); YunqiZ fired 3 shells
+PASS  S1: enemy 0 destroyed by YunqiZ's shells
+PASS  S1: 3 hits on enemy 0 (got 3 events)
+PASS  rule 1 (h 0.667, none): enemy 0 health 50 after the hit (want 50)
+PASS  rule 1 (h 0.667, none): enemy 0 smoke emitting false on return from the hit (want false)
+PASS  rule 2: enemy 0 amount still 48 at the hit (got 48)
+PASS  rule 1 (h 0.333): enemy 0 health 25 after the hit (want 25)
+PASS  rule 1 (h 0.333): enemy 0 smoke emitting true on return from the hit (want true)
+PASS  rule 1 (h 0.333): enemy 0 amount_ratio 0.5833 (want 0.5833 +- 0.001)
+PASS  rule 2: enemy 0 amount still 48 at the hit (got 48)
+PASS  rule 3: enemy 0 smoke was not emitting the frame before the threshold hit
+PASS  S1: the fatal hit is the destroyed signal
+PASS  rule 1 (dead): enemy 0 (wreck) health 0 after the hit (want 0)
+PASS  rule 1 (dead): enemy 0 (wreck) smoke emitting true on return from the hit (want true)
+PASS  rule 1 (dead): enemy 0 (wreck) amount_ratio 1.0000 (want 1.0000 +- 0.001)
+PASS  rule 2: enemy 0 (wreck) amount still 48 at the hit (got 48)
+PASS  rule 3: enemy 0 smoke still emitting on the next frame
+--- S2: YunqiZ (max_health 100) hit by enemy shells
+PASS  rule 1 (h 0.75, none): YunqiZ health 75 after the hit (want 75)
+PASS  rule 1 (h 0.75, none): YunqiZ smoke emitting false on return from the hit (want false)
+PASS  rule 2: YunqiZ amount still 48 at the hit (got 48)
+PASS  rule 1 (h 0.5): YunqiZ health 50 after the hit (want 50)
+PASS  rule 1 (h 0.5): YunqiZ smoke emitting true on return from the hit (want true)
+PASS  rule 1 (h 0.5): YunqiZ amount_ratio 0.3750 (want 0.3750 +- 0.001)
+PASS  rule 2: YunqiZ amount still 48 at the hit (got 48)
+PASS  rule 3: YunqiZ smoke was not emitting the frame before the threshold hit
+PASS  rule 3: YunqiZ smoke still emitting on the next frame
+--- S3: YunqiZ's smoke hidden
+PASS  rule 6: hiding changes neither emitting nor amount_ratio (true, 0.3750 -> true, 0.3750)
+PASS  rule 6: still unchanged 5 frames later
+PASS  rule 6: smoke still hidden at the hit
+PASS  rule 6 + rule 1 (h 0.25): YunqiZ (smoke hidden) health 25 after the hit (want 25)
+PASS  rule 6 + rule 1 (h 0.25): YunqiZ (smoke hidden) smoke emitting true on return from the hit (want true)
+PASS  rule 6 + rule 1 (h 0.25): YunqiZ (smoke hidden) amount_ratio 0.6875 (want 0.6875 +- 0.001)
+PASS  rule 2: YunqiZ (smoke hidden) amount still 48 at the hit (got 48)
+PASS  rule 6: showing again changes neither emitting nor amount_ratio
+--- S4: Esc pause with YunqiZ at 25 HP and enemy 0 a wreck
+PASS  rule 5 precondition: YunqiZ's and the wreck's smoke can_process() before pause
+PASS  rule 5: Esc pauses the tree (tree paused true, main.paused true)
+PASS  rule 5: YunqiZ's smoke can_process() false under pause
+PASS  rule 5: the wreck's smoke can_process() false under pause
+PASS  rule 5: emitting, amount_ratio, amount and health unchanged on all 4 tanks over 1.00 s paused
+PASS  rule 5: Esc again unpauses
+PASS  rule 5: smoke can_process() again after unpause, still emitting
+--- S5: fatal hit on YunqiZ, then the real respawn
+PASS  S5: the fatal hit is the destroyed signal
+PASS  rule 1 (dead): YunqiZ (dead) health 0 after the hit (want 0)
+PASS  rule 1 (dead): YunqiZ (dead) smoke emitting true on return from the hit (want true)
+PASS  rule 1 (dead): YunqiZ (dead) amount_ratio 1.0000 (want 1.0000 +- 0.001)
+PASS  rule 2: YunqiZ (dead) amount still 48 at the hit (got 48)
+PASS  S5: YunqiZ respawned by main.gd 2.02 s after death (want about 2.0)
+PASS  rule 1: YunqiZ's smoke emitting on every dead frame (0 of 121 not emitting)
+PASS  rule 4: emitting false on the first frame after the respawn
+PASS  rule 4: same smoke node, still in the tree and visible (left to fade, not freed or replaced)
+PASS  S5: respawn restored health 100 (read, not written)
+NOTE  after respawn amount_ratio is 1.0000 (R4.2: left as it was; not asserted)
+PASS  rule 4: YunqiZ's smoke still off 10 frames after the respawn
+PASS  rule 4: the wreck keeps smoking after YunqiZ's respawn (emitting true, ratio 1.0000)
+PASS  rules 1, 7: enemies 1 and 2 untouched, not smoking
+PASS  rule 2: amount 48 and the same smoke node on all 4 tanks for all 428 frames
+PASS  health only changed by the shells: YunqiZ [75, 50, 25, 0] (want [75, 50, 25, 0]), enemy 0 [50, 25, 0] (want [50, 25, 0])
+--- G: scenes/gallery.tscn
+PASS  G: gallery loaded with 13 tanks (got 13)
+PASS  G: every gallery tank has a damage_smoke instance
+PASS  G: tank at (40.0, 175.0) (health 100) smoke emitting false, ratio 1.0000 (want false, -)
+PASS  G: tank at (150.0, 175.0) (health 55) smoke emitting true, ratio 0.3125 (want true, 0.3125)
+PASS  G: tank at (260.0, 175.0) (health 20) smoke emitting true, ratio 0.7500 (want true, 0.7500)
+PASS  G: tank at (370.0, 175.0) (health 0) smoke emitting true, ratio 1.0000 (want true, 1.0000)
+PASS  G: tank at (480.0, 175.0) (health 100) smoke emitting false, ratio 1.0000 (want false, -)
+PASS  G: the 8 facing tanks are not smoking
+RESULT: 81 passed, 0 failed
