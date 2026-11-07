@@ -57,3 +57,55 @@ The GPU computes pixels in parallel, with no order between them, and each call i
 
 **8. Two things the Godot shading language provides that plain GLSL does not.**
 One is uniform hints, for example `hint_range` (`hit_flash.gdshader` line 3), which automatically creates a slider in the Inspector. The other is built-in outputs such as `ALBEDO` and `ROUGHNESS` (`brick_surface.gdshader` lines 33–34), which Godot connects to its PBR lighting automatically.
+
+---
+
+## Assignment 6 — reading the generated particle shader
+
+**Source:** `shaders/particles_generated.gdshader` (490 lines). I saved it from Godot 4.7.2's *Convert to ShaderMaterial* on Effect B's `ParticleProcessMaterial` (`effects/damage_smoke.tscn`) and did not save the scene, so the effect still uses the `ParticleProcessMaterial`.
+
+All line numbers below refer to this file. `start()` begins on line 323 and `process()` on line 378. `process()` runs once per particle per process step.
+
+### Where velocity is updated each frame
+
+- **Velocity is not the built-in `VELOCITY`.** Line 4 sets `render_mode disable_velocity;`, so Godot does not move the particle for me. The shader keeps the particle's physical velocity in `USERDATA1.xyz` and moves the particle itself.
+- **The starting speed** is picked once per particle on line 232, between `initial_linear_velocity_min` and `_max` (in Effect B, 50 and 80 px/s after R5). `start()` uses it to set the first velocity along `direction` within `spread`.
+- **Each step:**
+  - line 425: `USERDATA1.xyz += force * DELTA;` adds the forces;
+  - lines 429–436: damping, with line 431 `v -= physics_params.damping * DELTA;`, lowers the speed by a constant amount per second and keeps the direction. So `damping` is a deceleration in px/s².
+  - line 447: turbulence turns the velocity (see below).
+  - line 451 adds the orbit and radial displacement: `final_velocity = controlled_displacement + USERDATA1.xyz;`
+  - line 453 zeroes z, for 2D.
+  - line 455 copies the result to `VELOCITY`.
+- **Line 456 is where the particle actually moves:** `TRANSFORM[3].xyz += final_velocity * DELTA;`
+
+### Where gravity is applied
+
+- Line 412: `force = gravity;` starts the force sum from the `gravity` uniform (declared on line 44; Effect B uses (0, −15, 0), a buoyancy pulling up the screen).
+- Lines 414–422 add linear, radial, tangential and attractor accelerations. All of them are zero in Effect B except attractors, and there are none.
+- Line 425 applies the sum to the velocity: `USERDATA1.xyz += force * DELTA;`
+- So gravity changes the velocity, and the velocity changes the position on line 456. Gravity never moves the particle directly.
+
+### Where colour over lifetime is read
+
+- Line 249: `params.color = color_value;` sets the base colour.
+- Line 255, inside `process_display_param()`: `parameters.color *= texture(color_ramp, vec2(lifetime));`
+  - It samples the `color_ramp` texture (the `GradientTexture1D`, declared on line 45) at the particle's lifetime fraction, from 0 at birth to 1 at death.
+  - It multiplies the result into the colour. That is how Effect B's alpha rises 0 → 0.7 by 0.15 of life and then falls to 0.
+- Line 458 calls it each step with `lifetime_percent` (computed on lines 395–397).
+- Line 463, `COLOR = params.color;`, writes the result out.
+
+### What turbulence does (and why Effect B's smoke would not rise)
+
+- Line 443: `noise_direction = get_noise_direction(TRANSFORM[3].xyz);` takes a direction from 3D noise at the particle's position. The noise is sampled at `pos * turbulence_noise_scale` (line 133).
+- Line 446: `vel_infl` is the particle's `turb_influence`, picked on line 236 between `turbulence_influence_min` and `_max` (0.1–0.2 in Effect B).
+- Line 447: `USERDATA1.xyz = mix(USERDATA1.xyz, normalize(noise_direction) * vel_mag * (...), vel_infl);`
+  - **Every process step**, the velocity is blended 10–20 % toward the noise direction.
+  - The speed stays about the same; only the direction turns.
+- **What that means for Effect B.** GPU particles process at 30 steps per second by default, and `damage_smoke.tscn` sets no `fixed_fps`. With an influence of 0.15, the share of the original upward heading left after n steps is about 0.85ⁿ:
+  - about 0.38 after 0.2 s;
+  - under 0.01 after 1 s.
+- Gravity's upward pull is added on line 425 **before** line 447, so it is turned toward the noise too.
+- So each puff does a random walk around the turret instead of rising. That is the lump I saw in the running game.
+- This confirms, from the code, the explanation Claude gave in session 7c, where it said it could not confirm it without this file. It also explains why R5 (speed × 2.2) barely changed the strip: a faster random walk still stays near its start.
+- I kept r1 anyway, because in the running game the smoke now visibly rises and wavers (TUNING.md). The next lever, if I tune again, is the turbulence influence, not the speed.
