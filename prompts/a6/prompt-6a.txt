@@ -1,0 +1,38 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md is the contract for this change,
+including revisions R1 to R4. Effect B's scene and its follow() method
+are built, and its configuration test passes (76/76). Do not change
+the effect's settings, effects/damage_smoke.gd or any .gdshader file.
+
+First propose the smallest plan that meets the brief: the tank.gd
+changes the brief allows (the smoke variable's type on line 35, the
+smoke instance at TURRET_OFFSET on line 61 instead of _make_trail,
+_update_damage_look() and die() calling smoke.follow(), and what
+reset_full() does with the smoke; say which), and a new state test,
+tests/test_damage_smoke_state.gd. Say which brief rule each assertion
+covers, and which rules only a human can check. Split the plan into
+numbered steps I can approve one at a time. Do not edit yet.
+
+Rules for the plan:
+- Presentation code may read game state; it never writes it. health,
+  damage, invulnerability, every timing, modulate and the flames
+  emitter stay exactly as they are.
+- The test drives health through the real game loop: real shells
+  (real fire input, or main.spawn_shell() as the game does) hitting
+  real tanks, and the real respawn path. It never calls follow() and
+  never sets health directly.
+- It asserts rule 1 for YunqiZ at 50 HP (0.375) and 25 HP (0.6875),
+  and 1.0 on a destroyed enemy (a wreck); rule 2 (amount stays 48 on
+  every tank throughout); rule 3 (start on the threshold hit); rule 4
+  (stop on YunqiZ's respawn; the wreck keeps smoking); rule 5 (under
+  pause the smoke stops processing and emitting is unchanged); rule 6
+  (setting visible = false, a labelled test-only write, changes neither
+  emitting nor amount_ratio); rule 7 (no smoke emitting after load).
+- scenes/gallery.tscn must still load without errors.
+- Every existing test, and Effect A's config and state tests, must
+  still pass at their counts. Every test runs with
+  ./scripts/run-test.sh as a plain command; the new one at 60, and in
+  the final step also at 30 and 144.
+- Say exactly what the test will prove and what it cannot prove
+  headlessly, given that the dummy renderer runs no GPU particle
+  process.
+- Do not commit.
