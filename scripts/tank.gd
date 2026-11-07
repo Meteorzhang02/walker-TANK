@@ -32,7 +32,7 @@ var move_dir := Vector2.ZERO
 var recoil := 0.0
 var hull: Sprite2D
 var turret: Sprite2D
-var smoke: CPUParticles2D
+var smoke: GPUParticles2D
 var flames: CPUParticles2D
 var _t := 0.0
 var _hull_tex := {}
@@ -58,7 +58,9 @@ func _ready() -> void:
 	turret.scale = Vector2(0.5, 0.5)
 	turret.position = TURRET_OFFSET
 	add_child(turret)
-	smoke = _make_trail(Color(0.42, 0.42, 0.42, 0.75), Color(0.2, 0.2, 0.2, 0.0), 16, 1.6, -40.0)
+	smoke = preload("res://effects/damage_smoke.tscn").instantiate()
+	smoke.position = TURRET_OFFSET
+	add_child(smoke)
 	flames = _make_trail(Color(1.0, 0.6, 0.15, 0.95), Color(0.7, 0.1, 0.0, 0.0), 20, 0.5, -70.0)
 	modulate = tint
 	_set_sprite(hull, _hull_tex, _slot_for(Vector2.RIGHT.rotated(aim_angle)))
@@ -185,6 +187,7 @@ func die() -> void:
 	modulate = Color(0.32, 0.3, 0.28)
 	flames.emitting = false
 	smoke.emitting = true
+	smoke.follow(0.0, true)
 	if world:
 		world.spawn_fx("explosion", global_position + TURRET_OFFSET)
 		world.shake(6.0)
@@ -194,7 +197,7 @@ func die() -> void:
 
 func _update_damage_look() -> void:
 	var r := float(health) / float(max_health)
-	smoke.emitting = r <= 0.6
+	smoke.follow(r, is_dead)
 	flames.emitting = r <= 0.3
 
 
