@@ -1,0 +1,51 @@
+Read CLAUDE.md first. Effect B's intent and settings are in
+CHANGE-BRIEF.md (Effect B, plus the dated revisions).
+
+Build Effect B as a scene file, effects/damage_smoke.tscn: one
+GPUParticles2D with a ParticleProcessMaterial, using Godot 4 class and
+property names for the version CLAUDE.md pins (see the probe results
+and the initial_velocity trap in CLAUDE.md). If you are unsure a
+property exists in this version, say so instead of guessing. Configure
+it in the scene file, not in code: every value in the brief's Effect B
+settings table, including the turbulence values, visibility_rect,
+local_coords false, preprocess 0, emitting false and amount_ratio 1.0
+in the file, particle_flag_disable_z, the texture
+effects/textures/soft_dot_32.png and a CanvasItemMaterial with blend
+MIX. Use Vector3 direction and gravity, a GradientTexture1D for
+color_ramp and a CurveTexture for scale_curve, as CLAUDE.md says.
+
+Put the brief's health -> amount_ratio mapping (Effect B, observable
+rule 1) in a script on the effect's root, effects/damage_smoke.gd, as
+one method: follow(health_ratio: float, dead: bool). It sets only
+emitting and amount_ratio, never amount or any other particle setting.
+The preview uses it now; tank.gd will call it later.
+
+Then add:
+
+- a configuration test, tests/test_damage_smoke_config.gd, that loads
+  the scene and reads back every setting the brief names from the
+  loaded resources, using the brief's values as the expected values:
+  both ends of every _min/_max pair, the Vector3 direction and gravity,
+  the curve and colour-ramp points, the turbulence values, the
+  texture, the material class and blend mode, visibility_rect,
+  local_coords, preprocess, one_shot, explosiveness, emitting and
+  amount_ratio. It also calls follow() for h = 1.0, 0.6, 0.5, 0.3, 0.1
+  and dead, and checks emitting and amount_ratio against rule 1 and
+  that amount stays 48. PASS/FAIL lines in the style of the existing
+  tests; quit 1 on any FAIL.
+- a preview scene, previews/damage_smoke_preview.tscn, with its
+  script, as the brief's Effect B frame-strip section describes: a
+  standing YunqiZ (its real hull and turret sprites at scale 0.5, as
+  tank.gd draws them) on the real ground tile beside one real cover
+  block, camera at in-game scale (zoom 1, 1280 x 720), the smoke at
+  TURRET_OFFSET. It drives the smoke only through follow(): h = 0.5 at
+  frame 10, h = 0.1 at frame 60, h = 1.0 at frame 110. It turns on
+  use_fixed_seed with a fixed seed on the preview's instance only. It
+  changes no game script.
+
+Run the configuration test with ./scripts/run-test.sh at 60 as a plain
+command and show the real output, then stop.
+
+Do not wire the effect into gameplay (tank.gd, main.gd and cover.gd
+stay as they are), do not edit any .gdshader file or any existing
+test, and do not commit.
