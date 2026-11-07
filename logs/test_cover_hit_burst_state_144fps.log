@@ -1,0 +1,94 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS  covers (620, 610), (320, 480), (1040, 370) found, all intact
+PASS  rule 1: no burst on scene load (30 physics frames, got 0)
+      aim up: mouse (global) (150.0, 299.15), aim_angle -1.5708
+PASS  mouse motion aims YunqiZ up (aim_angle -1.5708, want -1.5708 +- 0.01)
+      aim right: mouse (global) (649.9999, 599.15), aim_angle 0.0000
+PASS  mouse motion aims YunqiZ right (aim_angle 0.0000, want 0.0000 +- 0.01)
+PASS  Space key event reaches the fire action
+PASS  fire action released
+PASS  one press -> exactly 1 fired signal (got 1)
+PASS  one press -> exactly 1 new shell in World/FX (got 1)
+      shell dir (1.0, 0.0), angle 0.0000; shooter is YunqiZ: true
+PASS  shell dir matches the aim (angle 0.0000, want 0.0 +- 0.01)
+PASS  shell shooter is YunqiZ
+PASS  rule 2: burst 1 (P1) has exactly 1 hit shell at creation (got 1)
+PASS  rule 2: burst 1 at the shell's drawn contact point (581.3999, 599.15) (got (581.3999, 599.15), off 0.000 px, tol 2.0)
+PASS  rule 2: burst 1 rotation -3.1416 == (-shell.dir).angle() -3.1416 (tol 0.01)
+PASS  P1: the input-check shell hits cover (620, 610) (hits 1, bursts 1)
+PASS  rule 4: burst 1 (P1) still in World/FX and emitting after its shell was freed
+PASS  rule 2: burst 2 (P1) has exactly 1 hit shell at creation (got 1)
+PASS  rule 2: burst 2 at the shell's drawn contact point (581.3999, 599.15) (got (581.3999, 599.15), off 0.000 px, tol 2.0)
+PASS  rule 2: burst 2 rotation -3.1416 == (-shell.dir).angle() -3.1416 (tol 0.01)
+PASS  rule 4: burst 2 (P1) still in World/FX and emitting after its shell was freed
+PASS  rule 2: burst 3 (P1) has exactly 1 hit shell at creation (got 1)
+PASS  rule 2: burst 3 at the shell's drawn contact point (581.3999, 599.15) (got (581.3999, 599.15), off 0.000 px, tol 2.0)
+PASS  rule 2: burst 3 rotation -3.1416 == (-shell.dir).angle() -3.1416 (tol 0.01)
+PASS  rule 4: burst 3 (P1) still in World/FX and emitting after its shell was freed
+PASS  P1: holding Space fires 4 more shells (5 in total, got 5)
+PASS  rule 2: burst 4 (P1) has exactly 1 hit shell at creation (got 1)
+PASS  rule 2: burst 4 at the shell's drawn contact point (581.3999, 599.15) (got (581.3999, 599.15), off 0.000 px, tol 2.0)
+PASS  rule 2: burst 4 rotation -3.1416 == (-shell.dir).angle() -3.1416 (tol 0.01)
+PASS  rule 4: burst 4 (P1) still in World/FX and emitting after its shell was freed
+      shell 5 path cast from (412.7332, 610.0) along (697.6667, 0.0): [1.0, 1.0]
+PASS  P1 precondition: with the block broken, shell 5's remaining path is clear
+PASS  P1: 4 hits on cover (620, 610), stage 2 (hits 4, stage 2)
+PASS  rule 1: four hits on one block -> 4 bursts (got 4)
+PASS  P1: the precondition check ran
+PASS  rule 1: shell 5 expired without hitting anything (has_hit false, freed after 121 frames, want 118-123)
+PASS  rule 1: no burst from the expired shell or the broken block (bursts still 4)
+PASS  burst 1 (P1) freed itself 0.767 s after it appeared (want 0.65-0.85)
+PASS  burst 2 (P1) freed itself 0.767 s after it appeared (want 0.65-0.85)
+PASS  burst 3 (P1) freed itself 0.767 s after it appeared (want 0.65-0.85)
+PASS  burst 4 (P1) freed itself 0.767 s after it appeared (want 0.65-0.85)
+PASS  P2: YunqiZ's shell hit enemy 0 (health 75 -> 50)
+PASS  rule 1: no burst when a shell hits a tank (bursts 4 -> 4)
+PASS  rule 2: burst 5 (P3) has exactly 1 hit shell at creation (got 1)
+PASS  rule 2: burst 5 at the shell's drawn contact point (307.4241, 478.7671) (got (307.4241, 478.7671), off 0.000 px, tol 2.0)
+PASS  rule 2: burst 5 rotation 2.4887 == (-shell.dir).angle() 2.4887 (tol 0.01)
+PASS  P3: YunqiZ's diagonal shell hits cover (320, 480) -> 1 burst
+PASS  rule 4: burst 5 (P3) still in World/FX and emitting after its shell was freed
+PASS  rule 2: burst 6 (P3) has exactly 1 hit shell at creation (got 1)
+PASS  rule 2: burst 6 at the shell's drawn contact point (351.6335, 469.15) (got (351.6335, 469.15), off 0.000 px, tol 2.0)
+PASS  rule 2: burst 6 rotation -0.0000 == (-shell.dir).angle() -0.0000 (tol 0.01)
+PASS  P3: the second shell (main.spawn_shell) hits the same block -> 2nd burst
+PASS  rule 3: the hits are 0.317 s apart, inside one lifetime (< 0.7 s)
+PASS  rule 3: 2 bursts alive at once
+PASS  rule 3: 2 different instances (ids 61337503418, 62562240199)
+PASS  rule 3: both under World/FX
+PASS  rule 3: the first burst is still emitting when the second arrives
+PASS  rule 4: burst 6 (P3) still in World/FX and emitting after its shell was freed
+PASS  burst 5 (P3) freed itself 0.767 s after it appeared (want 0.65-0.85)
+PASS  burst 6 (P3) freed itself 0.767 s after it appeared (want 0.65-0.85)
+PASS  rule 3: first burst not restarted: freed 0.450 s after the 2nd hit (a restart would be >= 0.65 s)
+PASS  P3: cover (320, 480) took 2 hits and cracked (hits 2, stage 1)
+PASS  rule 2: burst 7 (P4) has exactly 1 hit shell at creation (got 1)
+PASS  rule 2: burst 7 at the shell's drawn contact point (307.4241, 478.7671) (got (307.4241, 478.7671), off 0.000 px, tol 2.0)
+PASS  rule 2: burst 7 rotation 2.4887 == (-shell.dir).angle() 2.4887 (tol 0.01)
+PASS  P4: third hit on cover (320, 480) -> 1 burst
+PASS  rule 4: burst 7 (P4) still in World/FX and emitting after its shell was freed
+PASS  rule 5: Esc pauses the tree (tree paused true, main.paused true)
+PASS  rule 5: burst root and its 3 emitters can_process() false under pause
+PASS  rule 5: after 1.00 s paused (longer than the 0.7 s life) the burst is still there and Dust still emitting
+PASS  rule 5: Esc again unpauses
+PASS  rule 5: resumed where it was: 0.233 s before pause + 0.533 s after = 0.767 s (want 0.65-0.85)
+PASS  rule 5: not restarted on unpause (0.533 s after unpause < 0.65 s)
+PASS  P4: cover (320, 480) took its 3rd hit (hits 3)
+PASS  rule 1: 7 bursts in total == cover hits past line 34 (4 + 3), want 7
+PASS  rule 1: cover_hit sounds over the run == bursts (7 == 7)
+PASS  rule 3: every burst a different instance (7 unique ids)
+PASS  rule 2: placement checked on every burst
+PASS  rule 4: freed-parent check ran on every burst
+PASS  every burst has freed itself
+--- R1 fallback check: direct call, not a gameplay event
+PASS  R1: cover (1040, 370) untouched by every earlier phase (hits 0)
+PASS  R1: take_hit() with no shell -> 1 burst
+PASS  R1: burst at cover + (0, -8) = (1040.0, 362.0) (got (1040.0, 362.0), off 0.000 px, tol 2.0)
+PASS  R1: burst rotation -1.5708 == -PI/2 (tol 0.01)
+PASS  R1: burst under World/FX
+RESULT: 82 passed, 0 failed
+WARNING: 17 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 5 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
