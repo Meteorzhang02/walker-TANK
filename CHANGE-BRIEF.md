@@ -462,3 +462,8 @@ The chips' change over life now reads: pale dust-yellow → brick red → dull b
 **How r1 is checked.** Against the frame-20 row of the strip table, which stands as written. Nothing else in Effect A changes.
 
 **If I reject r1** in the running game, this revision is withdrawn by a later one and the r0 ramp returns.
+
+### R4 — 2026-11-06, Effect B frame-strip numbers (found by the agent, session 5)
+
+1. **A number that contradicts my own formula.** My Effect B frame-strip section gives h = 0.1 → amount_ratio "≈ 0.94". Rule 1's formula gives 0.25 + 0.75 × (0.6 − 0.1) / 0.6 = **0.875**. The formula is the contract. At frame 60 the preview drives h = 0.1, so the ratio is 0.875; read frame 90's row as "(0.875)".
+2. **Above the threshold.** For h > 0.6, `follow()` sets `emitting = false` and leaves `amount_ratio` as it was. Rule 1 only says `emitting = false` there, so I accept this.
