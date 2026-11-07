@@ -1,0 +1,22 @@
+Read CLAUDE.md first. Effect B's intent block is in CHANGE-BRIEF.md
+(with revisions R1 to R4). The r0 strip is a fixture capture of the
+preview scene with a fixed seed: captures/damage_smoke/r0/
+frame00000010.png, frame00000025.png, frame00000058.png,
+frame00000090.png, frame00000112.png, frame00000140.png and
+frame00000165.png (30 fps; follow() sets h = 0.5 at frame 10, h = 0.1
+at frame 60, h = 1.0 at frame 110). My verdicts from the preview and
+from the running game are in TUNING.md. In the running game I saw
+this: standing still, the smoke sits on the turret as a lump instead
+of rising into a column.
+
+Open and look at each frame. Describe what each frame shows, then
+compare it with the intent block: timing phases, contrast against the
+real background, scale against the character, change over life,
+variation and layering. List every difference you see, and say which
+settings could cause the lump I saw, with your reasoning from the
+values in effects/damage_smoke.tscn.
+
+Then propose ONE setting change that addresses what I saw, and predict
+how the new strip will differ, frame by frame. Name the brief value
+the change would replace, and say whether it changes the cost. Do not
+edit anything and do not commit.

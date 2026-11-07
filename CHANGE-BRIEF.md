@@ -467,3 +467,18 @@ The chips' change over life now reads: pale dust-yellow → brick red → dull b
 
 1. **A number that contradicts my own formula.** My Effect B frame-strip section gives h = 0.1 → amount_ratio "≈ 0.94". Rule 1's formula gives 0.25 + 0.75 × (0.6 − 0.1) / 0.6 = **0.875**. The formula is the contract. At frame 60 the preview drives h = 0.1, so the ratio is 0.875; read frame 90's row as "(0.875)".
 2. **Above the threshold.** For h > 0.6, `follow()` sets `emitting = false` and leaves `amount_ratio` as it was. Rule 1 only says `emitting = false` there, so I accept this.
+
+### R5 — 2026-11-06, Effect B tuning r1 (driven by what I saw in the running game; Claude's proposal, approved by me)
+
+**What I saw.** In the running game, standing still, the smoke sits on the turret as a lump instead of rising into a column.
+
+**Claude's reading of r0** (session 7a). These settings cannot make the column the intent asks for:
+- speed 20–40 px/s, gravity (0, −15) and damping 5–8 carry a mean puff only about 59 px over its 1.6 s life;
+- the alpha falls from 0.15 of life, so only about the first 35 px are visible;
+- the puffs grow faster than they rise.
+
+So my intent ("a column about 2–3 hull lengths tall") and my own settings disagreed. It also showed that the base colour #4A4A48 has about the value of the dark ground (see R2.2).
+
+**Change.** `initial_velocity_min / max`: was 20 / 40 px/s, now **50 / 80 px/s**. The Variation line is now "speed varies 50–80 px/s". Nothing else in Effect B changes. Particle count, lifetime and cost are unchanged.
+
+**How r1 is checked.** Against the Effect B frame-strip rows, and my verdict in the running game. If I reject r1, this revision is withdrawn by a later one.
