@@ -1,0 +1,38 @@
+Film: godot-gamedev walker /d/CSYE7270/assignment2/walker-TANK
+Slug: claude-liam-walker-tank-a6-particles
+
+Read the installed godot-gamedev skill instructions and follow them, with the walker modifier, its native 4K landscape rendering and its quality checks. This is an unattended run: never ask me anything; record every decision in BUILD-LOG.md.
+
+Limits:
+- Write only inside /d/CSYE7270/brutalist.art and the new film folder. Do not edit toolkit files. Do not change anything in walker-TANK, and run no git command there except a read-only `git -C /d/CSYE7270/assignment2/walker-TANK archive 41a6b8b` into a scratch copy outside the repo, for captures.
+- Captures: you may run Godot 4.7.2 (/d/CSYE7270/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64.exe) with Movie Maker on that scratch copy only (a 4K window override in the copy's project.godot is fine). Capture only these scenes, and label every one of them on screen as a FIXTURE:
+  - res://previews/cover_hit_burst_preview.tscn (with `retrigger` on for an overlap shot, if you can set it in the copy);
+  - res://previews/damage_smoke_preview.tscn;
+  - res://previews/price_scene.tscn in mode 1 (Effect A peak, 4-6 bursts, cost-only spawns) and in mode 3 (both). Switch modes with key events.
+- If /d/CSYE7270/a6-play.mp4 exists, it is my own play recording. Use it for "the effect in play" and label it "my play recording".
+- The frame strips in walker-TANK/captures/ (cover_hit_burst r0, r1; damage_smoke r0, r1) are fixture captures. Show them as they are and label them.
+- Never present a reconstruction as a screenshot. Hold frames and scripted-input captures are labelled as such.
+- Local Kokoro voice only (am_onyx, as in my A5 film). No paid TTS or media generation. No YouTube upload.
+- About 3 minutes.
+
+Sources of truth (fact-check every number against them): TEST-REPORT.md, TUNING.md, CHANGE-BRIEF.md (with revisions R1-R5), LANGUAGE-NOTES.md (A6 section), FRICTIONAL.md (A6 section), SOURCES.md (A6 section), effects/cover_hit_burst.tscn, effects/damage_smoke.tscn, shaders/particles_generated.gdshader, logs/price_measure_realtime.log, logs/price_measure_windowed.log.
+
+Beats:
+1. Walker opening. Game walker-TANK. Effect A, cover hit burst (3 x CPUParticles2D: Flash, Debris, Dust): job "your shell landed on that wall, right there"; event: cover.gd take_hit(), line 40. Effect B, damage smoke (GPUParticles2D + ParticleProcessMaterial): job "this tank is badly hurt, and how badly"; condition health/max_health <= 0.6, amount_ratio follows health, a wreck smokes at 1.0.
+2. The three parts of a particle system, each with one real line: emission (damage_smoke.tscn `amount = 48`, `lifetime = 1.6`), process (`initial_velocity_min = 50.0` / `gravity = Vector3(0, -15, 0)`, which become shader lines 232 and 412/425), draw (`texture = soft_dot_32.png`, CanvasItemMaterial blend MIX, `visibility_rect`). Why a GPU effect's headless price is near zero: the dummy renderer runs no GPU particle process (headless B process diff -0.009 ms; headless GPU render time 0.000).
+3. Effect A: the intent block; r0 strip (frames 10/12/15/20/30/50); my first look; the tuning: Claude's reading (chips gone by frame 20, last stop #5A3A2E about the ground's value), the change (R3, Debris color_ramp), the prediction, r0 vs r1 frame 20 side by side, Claude's comparison (partly held), my verdict (kept; next lever declined). Say plainly that A's revision was strip-driven, because in the game I found nothing to change. Then the effect in play, including rapid repeats.
+4. Effect B: the intent block; the feature A doesn't use (turbulence); r0 strip; my in-game observation "a lump on the turret"; Claude's reading (the brief's own values carry a puff only ~59 px); the change (R5, initial velocity 20/40 -> 50/80); the prediction; r0 vs r1 frames 58 and 140; Claude's comparison: "prediction failed"; my verdict in the game: it rises, keep. Present this as the point where I overruled Claude's strip reading. Start, stop and pause: the state-test results and my game checks.
+5. Two annotated lines of the generated process shader beside the brief settings they implement: line 232 (initial_velocity_min/max 50/80) and line 447 (turbulence influence 0.1-0.2: every step the velocity is blended 10-20% toward the noise direction, which explains the lump).
+6. What the tests proved: config 128 and 76; mutations (Godot 3 name `initial_velocity` -> exit 1, silently ignored by Godot; damping 400->300 -> exit 1); state 82 and 81 at 30/60/144, including two hits inside one lifetime (0.317 s apart, the first not restarted). What no headless run can show: anything drawn.
+7. Prices against the budget: headless CPU A +0.074 ms (budget 0.5), B about 0; GPU on the RTX 3060: A +0.023 ms (budget 0.2), B +0.077 ms (budget 0.3); drift 0.020 / 0.005. The agent's first cost script read 6.90 ms for every case, the empty scene included (1/144 s): it was measuring itself, and the control caught it. FPS 143-144 in every mode, and still 143 with vsync off (capped).
+8. Verdict -> Your Turn -> regular outro. State:
+   - agent mistakes I caught: the cost script measuring itself; claiming R5 was uncommitted; exit codes it could only infer; test setups that froze enemies (no bodies, stopped timers), fixed in tests only;
+   - what the agent caught in my brief: the old debris gravity (0,160), the null-shell test break, 0.94 vs 0.875;
+   - the strip reading I overruled: B r1;
+   - what remains uncertain: turbulence as the cause is confirmed from the code, not by a turbulence-off strip; the exit leak counts vary;
+   - one next step: lower B's turbulence influence or lighten its base colour;
+   - contributions: Claude Code built the effects, tests and previews; Claude chat drafted the brief, the helper and price scripts and the documents; I approved every step, ran every test and capture, and made every verdict;
+   - texture sources: chip_6.png and soft_dot_32.png drawn by code (tools/make_particle_textures.gd), no downloaded or AI textures;
+   - revision shown: repo 41a6b8b, game source last changed at 96d38be.
+
+When finished, write a short STATUS.md in the film folder with the final MP4 path, its length, its SHA-256 and the result of every quality check.
