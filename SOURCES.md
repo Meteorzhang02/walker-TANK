@@ -50,7 +50,14 @@
 
 **Collaborators and playtesters:** none besides me.
 
-**Film:** to be added (Brutalist `godot-gamedev`, walker).
+**Film:** `claude-liam-walker-tank-a6-particles.mp4` on [Google Drive](https://drive.google.com/file/d/17FPpv-BgvUWHX_sF8Ta0uIyBvPPly2C4/view?usp=drive_link) (not in Git), SHA-256 `42e9e907…70d4`.
+- Made by **Claude Code in auto mode** (unattended run in `/d/CSYE7270/brutalist.art`, 179 turns; prompt `prompts/a6/film-prompt.txt`, written with Claude chat) with the course-provided **Brutalist** toolkit, `godot-gamedev` skill, walker modifier. Local Kokoro voice `am_onyx`; no paid TTS or media generation. Its tools are named in `youtube/claude-liam-walker-tank-a6-particles/BUILD-LOG.md`.
+- **Pictures:**
+  - my committed fixture strips;
+  - its own Movie Maker captures of the two preview scenes and the price scene. These come from a `git archive` copy of `41a6b8b`, with a 4K window override, a 30 fps setting and a small autoload for scripted key events, all labelled "FIXTURE" or "scripted key events";
+  - my own play recording (`/d/CSYE7270/a6-play.mp4`, made with Xbox Game Bar), labelled "MY PLAY RECORDING" in the film.
+- **Decisions it recorded:** 3:30 instead of about 3:00; the price scene's "FPS 1" label (offline rendering) covered by a labelled patch.
+- **My part:** I wrote the requirements with Claude chat, and watched the final film in full: "视频没有问题" (the video has no problems).
 
 ---
 

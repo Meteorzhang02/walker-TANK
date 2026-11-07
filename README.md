@@ -2,6 +2,7 @@
 
 A tank-battle game in Godot: you drive **YunqiZ** through a ruined brick battlefield and destroy three enemy tanks.
 
+- **Film (Assignment 6):** see [Film (A6)](#film-a6) below.
 - **Starting point:** my own Assignment 2–5 game in this repository (A6 starts from tag a5, `b4fe9d8`).
 - **Engine:** Godot 4.7.2 stable. **Renderer:** Forward+ (engine default). 2D: 1280×720, stretch `canvas_items`.
 
@@ -63,7 +64,11 @@ As before: WASD / arrows move, mouse aims, left mouse / Space fires, Esc / P pau
 
 ### Film (A6)
 
-To be added.
+- **Watch:** [Google Drive](https://drive.google.com/file/d/17FPpv-BgvUWHX_sF8Ta0uIyBvPPly2C4/view?usp=drive_link) — `claude-liam-walker-tank-a6-particles.mp4`
+- **Length / size:** 3:30 (210.33 s), 3840×2160 landscape, 30 fps
+- **SHA-256:** `42e9e9074983ac15453db15f2a8d15047bc123ff0d8e859f3c1aad371a2670d4`
+- **Revision shown:** repo `41a6b8b` (game source last changed at `96d38be`). The final submission commit adds only film records and docs.
+- The MP4 is kept out of GitHub. The film's records (BUILD-LOG, FACTCHECK, beat sheet, QC, evidence) are in `youtube/claude-liam-walker-tank-a6-particles/`; the prompt is `prompts/a6/film-prompt.txt`, and a labelled transcript excerpt is `prompts/a6/film-session.excerpt.jsonl`.
 
 ---
 

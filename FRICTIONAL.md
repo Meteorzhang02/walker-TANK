@@ -80,6 +80,20 @@
   - Claude chat then wrote `tests/price_measure.gd`: medians, real key presses, and GPU time from RenderingServer. I ran it headless and windowed.
 - **Result:** A and B are both inside prediction and budget (TEST-REPORT).
 
+## The film
+
+- **Tried:** an unattended Brutalist run overnight (Claude Code, auto mode, 179 turns), with limits in `prompts/a6/film-prompt.txt`.
+- **Happened:**
+  - a 3:30 4K film, with all its quality checks passing (its STATUS.md);
+  - its type check failed once on two over-long code lines, which it shortened;
+  - it changed only a scratch copy of `41a6b8b`;
+  - the price scene's FPS label read "FPS 1" under Movie Maker, so it covered the label with a labelled patch.
+- **Checked:** I watched the whole film: "视频没有问题" (the video has no problems). I uploaded it to Google Drive and opened the link in a private window.
+- **Transcripts:**
+  - four session transcripts (4a, 4c, 7a, 7c; 4.5–5.4 MB, because of the frames Claude read) and the 36 MB film transcript are over the ~1 MB limit;
+  - the repo has labelled excerpts made by `prompts/a6/make_excerpts.py` (images removed, long strings truncated);
+  - the four originals were committed earlier and stay in git history; I removed them from the tip.
+
 ## Unresolved (A6)
 
 - Turbulence is confirmed as B's cause only from the code, not with a turbulence-off strip.

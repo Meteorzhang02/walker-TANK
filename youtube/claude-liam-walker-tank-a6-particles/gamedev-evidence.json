@@ -1,0 +1,2833 @@
+{
+ "schema_version": 1,
+ "teaching_contract": "code-then-result-v1",
+ "game_revision": "41a6b8b",
+ "game_source_revision": "96d38be",
+ "scope_note": "Assignment-focused film: only Assignment 6 files are explained; other files are excluded with reasons. --game is the git archive of 41a6b8b in _scratch/src (LF line endings, as committed). The play recording and the film's own fixture captures live outside the game (SOURCES.md).",
+ "files": [
+  {
+   "path": "CHANGE-BRIEF.md",
+   "sha256": "9a6bb8d3f6983a8cc692b103b3c2d877a8bef671c509eccc96f43dfd22222a80",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-record"
+   ]
+  },
+  {
+   "path": "CLAUDE.md",
+   "sha256": "3167189388cf1fc7ff09259662e64e4fd806461193063f6c3c99aed4dc20fd0c",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-record"
+   ]
+  },
+  {
+   "path": "FRICTIONAL.md",
+   "sha256": "c7cf73093cdd92569b0ef51fd388cbe0301a73bb6575893879d81f49c3bc8871",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-record"
+   ]
+  },
+  {
+   "path": "LANGUAGE-NOTES.md",
+   "sha256": "9573e9d5e570bee4507635e14c1c17474e09de4a96a2513852454bf8f29ba435",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-process-shader"
+   ]
+  },
+  {
+   "path": "README.md",
+   "sha256": "f7e78741ea34b904ea6997e15cb54cd66429552dcf48bba684e9c74e02e26c6c",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-record"
+   ]
+  },
+  {
+   "path": "SOURCES.md",
+   "sha256": "4027f985dc6bf88718d4b213beb6e92813bdefdd6d750e99f62ffa919ee2b5c8",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-record"
+   ]
+  },
+  {
+   "path": "TEST-REPORT.md",
+   "sha256": "f8a5bf826b81fc097850808be485c8828a4354d5e0331476b18d7b51c5eb75aa",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests",
+    "a6-prices"
+   ]
+  },
+  {
+   "path": "TUNING.md",
+   "sha256": "7417b4541c33c1ffde4077279288e30296aee7005b2028d6b5e00cf67ab8ac85",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a",
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r0/frame00000010.png",
+   "sha256": "9885d01bde884c1d510d4908030595da69fda0923c0c7e22c447e778eed666cd",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r0/frame00000012.png",
+   "sha256": "4c8b0c53920730874cb2589fd97579c2dde93b748d5a763dcc5782483a210791",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r0/frame00000015.png",
+   "sha256": "6c253e2577e8ee382439032ae95366a9869c391232e9a52806b8e5b98e7f3d17",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r0/frame00000020.png",
+   "sha256": "b59a1d7de6dc895490b556ee07a49a2689734392a4099014ec209183a7666975",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r0/frame00000030.png",
+   "sha256": "725f395d9ea470fb3b7d94ddffa3603e3eab280123eea4682edd9b1084f704ea",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r0/frame00000050.png",
+   "sha256": "b504f653689340d442ffb5cc0ddf81bc8501e2676656410734cb2dd0ddf76c1a",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r1/frame00000010.png",
+   "sha256": "9885d01bde884c1d510d4908030595da69fda0923c0c7e22c447e778eed666cd",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r1/frame00000012.png",
+   "sha256": "4c8b0c53920730874cb2589fd97579c2dde93b748d5a763dcc5782483a210791",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r1/frame00000015.png",
+   "sha256": "6c253e2577e8ee382439032ae95366a9869c391232e9a52806b8e5b98e7f3d17",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r1/frame00000020.png",
+   "sha256": "53cb771f331df9338629b247b01b8b9bfca0229c97f7e092408f7a78d6094a3d",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r1/frame00000030.png",
+   "sha256": "725f395d9ea470fb3b7d94ddffa3603e3eab280123eea4682edd9b1084f704ea",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/cover_hit_burst/r1/frame00000050.png",
+   "sha256": "b504f653689340d442ffb5cc0ddf81bc8501e2676656410734cb2dd0ddf76c1a",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r0/frame00000010.png",
+   "sha256": "12c3e791716160ad10beb8940d9758ea9f44978886df05ea2f272460c048b893",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r0/frame00000025.png",
+   "sha256": "437e60e78c0f0b0d6093d4d49902df3715190ceaf323a5b8f621583a31894946",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r0/frame00000058.png",
+   "sha256": "7d621f314f421e2f8820d101c4da689ce8cffbb2ccc35a29621c774de78da18c",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r0/frame00000090.png",
+   "sha256": "0de468f7342dd63be83b33dd3a5ddbe91dca0b88fbcc24b74f6d3b853c9e5966",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r0/frame00000112.png",
+   "sha256": "4caa1b7495420179a5d4e2fa3dfd43d4d48b86a334cf8680aa878183b850433b",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r0/frame00000140.png",
+   "sha256": "8f052b2a126c317741ff42d8c8adfeebef29f826e460f41f04139d94f9096d6f",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r0/frame00000165.png",
+   "sha256": "12c3e791716160ad10beb8940d9758ea9f44978886df05ea2f272460c048b893",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r1/frame00000010.png",
+   "sha256": "12c3e791716160ad10beb8940d9758ea9f44978886df05ea2f272460c048b893",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r1/frame00000025.png",
+   "sha256": "93752edf0e4279471eb691da9fda7dfb4b6112d33297c59d0c891c7f1bf20b9d",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r1/frame00000058.png",
+   "sha256": "d1ae93b8e9362a27821d666b3b44dcd169fed56a989d1314783cc8edc4b2fee9",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r1/frame00000090.png",
+   "sha256": "2ea59188dd14f1b2d77ec4e6cece30b529ad98af77c35f2558167bb420b6a306",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r1/frame00000112.png",
+   "sha256": "c08cd9d553b0c5811e6d8a7f6267372055bd2524121a3540b2a2788b105e480e",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r1/frame00000140.png",
+   "sha256": "9295ca7c17e519a112865024b4faaa0f2cdd69e72dcdb0be5468f0b9c5f55e90",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "captures/damage_smoke/r1/frame00000165.png",
+   "sha256": "12c3e791716160ad10beb8940d9758ea9f44978886df05ea2f272460c048b893",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "effects/cover_hit_burst.gd",
+   "sha256": "ce1c9bbeb592660e8ac2ae314b3935c8abe8484187ecedbbf30043117727abc4",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "effects/cover_hit_burst.tscn",
+   "sha256": "49c38fc59fafc9de51e0ed714a747143affe668a96b90d72722fce2c04e619ce",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "effects/damage_smoke.gd",
+   "sha256": "b805ea92460c63ce22a2250d31be3dcf855ca551f5a38c3ade65913be12a059c",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "effects/damage_smoke.tscn",
+   "sha256": "62750b1f0cc9cecabf3078bca57ca61ce9f292a3a90d2d085e6550587c1fbe56",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b",
+    "a6-process-shader"
+   ]
+  },
+  {
+   "path": "effects/textures/CREDITS.md",
+   "sha256": "d292bd5db1d49fc3ffe0ad4fc39ef9b4779866492820877206e15cad0235f229",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-textures"
+   ]
+  },
+  {
+   "path": "effects/textures/chip_6.png",
+   "sha256": "3a0e76b73eb0171336b6482ac2b0b3db54c38eddda3bc467621aaeb3eaaac207",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-textures"
+   ]
+  },
+  {
+   "path": "effects/textures/chip_6.png.import",
+   "sha256": "f2f63fe9d238b27a3f1648f3512bbe2bef84b1057b8f08621807923c46123c65",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-textures"
+   ]
+  },
+  {
+   "path": "effects/textures/soft_dot_32.png",
+   "sha256": "45bb6fe0af6d8d38124da1656534097024b7fed5bc9de5ceb667d3f3b16e4418",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-textures"
+   ]
+  },
+  {
+   "path": "effects/textures/soft_dot_32.png.import",
+   "sha256": "09e2a48d77a1e8a28e4ddc78dfdb8bca883dc846d7e53e2e85941e079014062d",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-textures"
+   ]
+  },
+  {
+   "path": "logs/a6_mutation1_godot3_name_60fps.log",
+   "sha256": "cfb2de400546df20bbbb4e670e859a46f23c10befdb5162e69fcfd6a5f9e9743",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/a6_mutation2_value_drift_60fps.log",
+   "sha256": "e4bc7fb702ba1c0da267c58c13f801373089b161f6581b0906c66f61153f4aff",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/capture_cover_hit_burst_r0.log",
+   "sha256": "680def13f28d87d95da241075208bced49e785e3507854dd596c9b6b8970ff77",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "logs/capture_cover_hit_burst_r1.log",
+   "sha256": "b8a6fe7029a54d2968d658e6c0fa8e774743f49099987ae8424961216ba6cbce",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "logs/capture_damage_smoke_r0.log",
+   "sha256": "67d403d9d9d9f09090d8343cd874643be9ca4760e577aecd78fd31342e979ce5",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "logs/capture_damage_smoke_r1.log",
+   "sha256": "681f41f6eb780f9618837abcb56535ebbc40f472a5292587308dbc416a9830d4",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "logs/cost_particles_realtime.log",
+   "sha256": "e4d3be8950692cf581264b39425c41fad4e7373a5b51f2db997cc0b6e67b7ce7",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-prices"
+   ]
+  },
+  {
+   "path": "logs/price_measure_after_f9.log",
+   "sha256": "fe66816cf63e36c14c38a185f67601de821b88d38bff962e02073d0ad1ba9b9f",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-prices"
+   ]
+  },
+  {
+   "path": "logs/price_measure_realtime.log",
+   "sha256": "252ab72eb1c30d0b274ed1bc61ccea1f3fbf3c5daa228fcf3b7c7fcc1a79f3dd",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-prices"
+   ]
+  },
+  {
+   "path": "logs/price_measure_windowed.log",
+   "sha256": "1bf4c815ec938ff89704fd2f5ee32bf41655c2646fb76fc2ba271e88dcf169f9",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-prices"
+   ]
+  },
+  {
+   "path": "logs/probe_particle_props_60fps.log",
+   "sha256": "3ed8995391645855b4d4931945ea76b6a0b34190efc6fe871b3f233e779e79c7",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/test_cover_hit_burst_config_60fps.log",
+   "sha256": "1c7fbf4b605afb8407edc1ed372abd66faf52afd1eb330e978fa76824802b8be",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/test_cover_hit_burst_state_144fps.log",
+   "sha256": "8692e5770161cb4ffc52a6258ca9b3788f8346b00f0d746e6b113c4730994f73",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/test_cover_hit_burst_state_30fps.log",
+   "sha256": "c98c2fa98c345527ed5c14a9758144ad186d770058f40f6502f4075df51164cc",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/test_cover_hit_burst_state_60fps.log",
+   "sha256": "5675baf8adc55705b575c17edf8561e85980310eddde01d649c779e402271498",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/test_damage_smoke_config_60fps.log",
+   "sha256": "5ed0ade6f85043a31928ffbf0c0487953071072985d5f505795dcfe6d7a215ba",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/test_damage_smoke_state_144fps.log",
+   "sha256": "dc9a5d8e7335853ef22793113b45bc0ecadabe04cda771ccb4ca9a83105ae20a",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/test_damage_smoke_state_30fps.log",
+   "sha256": "0983db1ea6d7bf4a22636feff5a39164a86544bed9bd9f4bca4b04c93c108838",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "logs/test_damage_smoke_state_60fps.log",
+   "sha256": "1660ec965a3b82557458187c0ff6c1f329ed5aa5ab4bf4c67f364e880d484133",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "previews/cover_hit_burst_preview.gd",
+   "sha256": "81a53200c118b49b1079b210ee90e9efd52a3e2661d8c52a5d9a607a5f089164",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "previews/cover_hit_burst_preview.tscn",
+   "sha256": "5a7dd9719e418f35ac056e7df601aeacd59a8acd3a5bbae9e13f4f6ca641b3c9",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "previews/damage_smoke_preview.gd",
+   "sha256": "34d07f3800759a76e297978908e08fe3f4f2496a01c85dc136d99da8837c3f86",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "previews/damage_smoke_preview.tscn",
+   "sha256": "9455fdff35e756ae2d58895b722e1426c19c64dc4b1ca4fcbc427c564cc21b50",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "previews/price_scene.gd",
+   "sha256": "aac0c88ec37d54e8d378fb7c475ca8f2d3a3952e225a27abd9d8fa3766269f38",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-prices"
+   ]
+  },
+  {
+   "path": "previews/price_scene.tscn",
+   "sha256": "cd4979c69f059fc2846429196b7bdddff9c989637926d9121228893dce08cac4",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-prices"
+   ]
+  },
+  {
+   "path": "project.godot",
+   "sha256": "c660e0746aaedd4f46f205772a5743e983fcf24683ef4df2956b7bea449ec5e1",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-record"
+   ]
+  },
+  {
+   "path": "scripts/cover.gd",
+   "sha256": "8acef9da882f0e2da1cda6459dc643d781899740ddd87db7315102906ac247b2",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "scripts/main.gd",
+   "sha256": "3464cea7965ffae95bf7ffced4bddeeccb4d64279c69758d1a752663cf6791c7",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-a"
+   ]
+  },
+  {
+   "path": "scripts/run-test.sh",
+   "sha256": "13d96937b76fd051c9ea1752d887f7a2a778f3d6bd21657bb635f91dbd3de40a",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "scripts/tank.gd",
+   "sha256": "c878d58341357c0bcc7793c40b550c2dc806a15acbf86406f74a0f6dd3f9c602",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-effect-b"
+   ]
+  },
+  {
+   "path": "shaders/particles_generated.gdshader",
+   "sha256": "ed5afccee66f94951c3b5f018f59b7570c85a9c09960624abc5917ea1b4fed7f",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-process-shader"
+   ]
+  },
+  {
+   "path": "tests/cost_particles.gd",
+   "sha256": "84dd987203116ab6e96c70943a3a39b67b97ed5f88c2fcf15b7304074d315347",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-prices"
+   ]
+  },
+  {
+   "path": "tests/price_measure.gd",
+   "sha256": "3913b769b0e12c4b93f58e31e0b83c0f73cc9207d3c202a0edd06e6e41b44fda",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-prices"
+   ]
+  },
+  {
+   "path": "tests/probe_particle_props.gd",
+   "sha256": "048ebfe28780edd3fc80c2cd89348af736432746c2d47c41c1540fb757b927fc",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "tests/test_cover_hit_burst_config.gd",
+   "sha256": "5b280aeacfc807aefdb3bcf9724828e7f2279126446bbd8a290cdad4a6339b75",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "tests/test_cover_hit_burst_state.gd",
+   "sha256": "8344c75ad8640dfa335aa92c443ed2207792dfb0853b8c0ca9128c639a6331fb",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "tests/test_damage_smoke_config.gd",
+   "sha256": "89e2ffeb4938e507357b956b2221c441dc4a0bbcdbde9369d00196ea699d18d4",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "tests/test_damage_smoke_state.gd",
+   "sha256": "1c7ebbc339996d2de863a8f1800d0c3d1788120ed7290f85aab580f9e4b20612",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-tests"
+   ]
+  },
+  {
+   "path": "tools/make_particle_textures.gd",
+   "sha256": "072e15d7365f547127d98d34f3078758cdd61f4d9a756fc3eaa634265e05f2f6",
+   "role": "A6 source or evidence",
+   "component_ids": [
+    "a6-textures"
+   ]
+  }
+ ],
+ "components": [
+  {
+   "id": "a6-effect-a",
+   "explanation": "Effect A, cover hit burst: 3 x CPUParticles2D (Flash, Debris, Dust) under one Node2D that frees itself on Dust.finished; fired from cover.gd take_hit() line 40 via main.gd spawn_cover_burst(); the intent block, r0/r1 fixture strips, R3 (Debris colour_ramp, strip-driven), Claude's reading/prediction/comparison, the student's verdict, the retrigger preview and the student's play recording.",
+   "beat_ids": [
+    "B02",
+    "B05",
+    "B06",
+    "B07",
+    "B08"
+   ],
+   "files": [
+    "effects/cover_hit_burst.tscn",
+    "effects/cover_hit_burst.gd",
+    "scripts/cover.gd",
+    "scripts/main.gd",
+    "previews/cover_hit_burst_preview.gd",
+    "previews/cover_hit_burst_preview.tscn",
+    "logs/capture_cover_hit_burst_r0.log",
+    "logs/capture_cover_hit_burst_r1.log",
+    "TUNING.md",
+    "captures/cover_hit_burst/r0/frame00000010.png",
+    "captures/cover_hit_burst/r0/frame00000012.png",
+    "captures/cover_hit_burst/r0/frame00000015.png",
+    "captures/cover_hit_burst/r0/frame00000020.png",
+    "captures/cover_hit_burst/r0/frame00000030.png",
+    "captures/cover_hit_burst/r0/frame00000050.png",
+    "captures/cover_hit_burst/r1/frame00000010.png",
+    "captures/cover_hit_burst/r1/frame00000012.png",
+    "captures/cover_hit_burst/r1/frame00000015.png",
+    "captures/cover_hit_burst/r1/frame00000020.png",
+    "captures/cover_hit_burst/r1/frame00000030.png",
+    "captures/cover_hit_burst/r1/frame00000050.png"
+   ]
+  },
+  {
+   "id": "a6-effect-b",
+   "explanation": "Effect B, damage smoke: GPUParticles2D + ParticleProcessMaterial; follow() maps health/max_health to emitting and amount_ratio (on at <= 0.6, wreck 1.0), called from tank.gd; emission/process/draw settings; turbulence; r0/r1 strips; R5 (initial velocity 20/40 -> 50/80) driven by the in-game lump; the strip reading the student overruled; start/stop/pause.",
+   "beat_ids": [
+    "B02",
+    "B03",
+    "B04",
+    "B09",
+    "B10",
+    "B11",
+    "B12"
+   ],
+   "files": [
+    "effects/damage_smoke.tscn",
+    "effects/damage_smoke.gd",
+    "scripts/tank.gd",
+    "previews/damage_smoke_preview.gd",
+    "previews/damage_smoke_preview.tscn",
+    "logs/capture_damage_smoke_r0.log",
+    "logs/capture_damage_smoke_r1.log",
+    "TUNING.md",
+    "captures/damage_smoke/r0/frame00000010.png",
+    "captures/damage_smoke/r0/frame00000025.png",
+    "captures/damage_smoke/r0/frame00000058.png",
+    "captures/damage_smoke/r0/frame00000090.png",
+    "captures/damage_smoke/r0/frame00000112.png",
+    "captures/damage_smoke/r0/frame00000140.png",
+    "captures/damage_smoke/r0/frame00000165.png",
+    "captures/damage_smoke/r1/frame00000010.png",
+    "captures/damage_smoke/r1/frame00000025.png",
+    "captures/damage_smoke/r1/frame00000058.png",
+    "captures/damage_smoke/r1/frame00000090.png",
+    "captures/damage_smoke/r1/frame00000112.png",
+    "captures/damage_smoke/r1/frame00000140.png",
+    "captures/damage_smoke/r1/frame00000165.png"
+   ]
+  },
+  {
+   "id": "a6-textures",
+   "explanation": "The two particle textures, drawn by code (tools/make_particle_textures.gd): chip_6.png and soft_dot_32.png, with their import settings and credits; no downloaded or AI textures.",
+   "beat_ids": [
+    "B03",
+    "B18"
+   ],
+   "files": [
+    "effects/textures/chip_6.png",
+    "effects/textures/chip_6.png.import",
+    "effects/textures/soft_dot_32.png",
+    "effects/textures/soft_dot_32.png.import",
+    "effects/textures/CREDITS.md",
+    "tools/make_particle_textures.gd"
+   ]
+  },
+  {
+   "id": "a6-process-shader",
+   "explanation": "Godot's generated process shader from B's ParticleProcessMaterial: line 232 (start speed between initial_velocity_min/max = 50/80) and line 447 (turbulence blends velocity 10-20 % toward the noise direction every step), which explains the lump; LANGUAGE-NOTES A6.",
+   "beat_ids": [
+    "B03",
+    "B13",
+    "B14"
+   ],
+   "files": [
+    "shaders/particles_generated.gdshader",
+    "LANGUAGE-NOTES.md",
+    "effects/damage_smoke.tscn"
+   ]
+  },
+  {
+   "id": "a6-tests",
+   "explanation": "Headless tests and their limits: config 128/128 and 76/76; two mutations, each exit 1 (Godot 3 name ignored silently); state 82 and 81 at 30/60/144 incl. two hits 0.317 s apart; the property probe; nothing drawn is proven headless.",
+   "beat_ids": [
+    "B12",
+    "B15"
+   ],
+   "files": [
+    "tests/test_cover_hit_burst_config.gd",
+    "tests/test_cover_hit_burst_state.gd",
+    "tests/test_damage_smoke_config.gd",
+    "tests/test_damage_smoke_state.gd",
+    "tests/probe_particle_props.gd",
+    "scripts/run-test.sh",
+    "TEST-REPORT.md",
+    "logs/test_cover_hit_burst_config_60fps.log",
+    "logs/test_damage_smoke_config_60fps.log",
+    "logs/test_cover_hit_burst_state_30fps.log",
+    "logs/test_cover_hit_burst_state_60fps.log",
+    "logs/test_cover_hit_burst_state_144fps.log",
+    "logs/test_damage_smoke_state_30fps.log",
+    "logs/test_damage_smoke_state_60fps.log",
+    "logs/test_damage_smoke_state_144fps.log",
+    "logs/a6_mutation1_godot3_name_60fps.log",
+    "logs/a6_mutation2_value_drift_60fps.log",
+    "logs/probe_particle_props_60fps.log"
+   ]
+  },
+  {
+   "id": "a6-prices",
+   "explanation": "Prices against the budget: price_measure.gd medians headless (A +0.074 ms, B -0.009) and windowed GPU on the RTX 3060 (A +0.023, B +0.077), drift 0.020/0.005; the agent's cost_particles.gd reading 6.90 ms everywhere (1/144 s); the price scene (keys 0-3, F9 vsync); FPS 143-144, capped.",
+   "beat_ids": [
+    "B04",
+    "B16",
+    "B17"
+   ],
+   "files": [
+    "tests/price_measure.gd",
+    "tests/cost_particles.gd",
+    "previews/price_scene.gd",
+    "previews/price_scene.tscn",
+    "logs/price_measure_realtime.log",
+    "logs/price_measure_windowed.log",
+    "logs/price_measure_after_f9.log",
+    "logs/cost_particles_realtime.log",
+    "TEST-REPORT.md"
+   ]
+  },
+  {
+   "id": "a6-record",
+   "explanation": "The record: the brief and revisions R1-R5, agent mistakes the student caught, problems the agent caught in the brief, contributions, the source revision.",
+   "beat_ids": [
+    "B00",
+    "B18"
+   ],
+   "files": [
+    "CHANGE-BRIEF.md",
+    "FRICTIONAL.md",
+    "SOURCES.md",
+    "README.md",
+    "CLAUDE.md",
+    "project.godot"
+   ]
+  }
+ ],
+ "excerpts": [
+  {
+   "beat_id": "B03",
+   "path": "effects/damage_smoke.tscn",
+   "start_line": 47,
+   "end_line": 58,
+   "text": "[node name=\"DamageSmoke\" type=\"GPUParticles2D\"]\nmaterial = SubResource(\"CanvasItemMaterial_smoke\")\nemitting = false\namount = 48\namount_ratio = 1.0\nprocess_material = SubResource(\"ParticleProcessMaterial_smoke\")\ntexture = ExtResource(\"2_dot\")\nlifetime = 1.6\none_shot = false\npreprocess = 0.0\nexplosiveness = 0.0\nvisibility_rect = Rect2(-200, -220, 400, 420)"
+  },
+  {
+   "beat_id": "B06",
+   "path": "effects/cover_hit_burst.tscn",
+   "start_line": 24,
+   "end_line": 26,
+   "text": "[sub_resource type=\"Gradient\" id=\"Gradient_debris\"]\noffsets = PackedFloat32Array(0, 0.3, 0.6, 1)\ncolors = PackedColorArray(0.909804, 0.847059, 0.690196, 1, 0.709804, 0.321569, 0.227451, 1, 0.556863, 0.313726, 0.25098, 1, 0.556863, 0.313726, 0.25098, 0)"
+  },
+  {
+   "beat_id": "B10",
+   "path": "effects/damage_smoke.tscn",
+   "start_line": 28,
+   "end_line": 34,
+   "text": "direction = Vector3(0, -1, 0)\nspread = 20.0\ninitial_velocity_min = 50.0\ninitial_velocity_max = 80.0\ngravity = Vector3(0, -15, 0)\ndamping_min = 5.0\ndamping_max = 8.0"
+  },
+  {
+   "beat_id": "B13",
+   "path": "shaders/particles_generated.gdshader",
+   "start_line": 443,
+   "end_line": 447,
+   "text": "\tvec3 noise_direction = get_noise_direction(TRANSFORM[3].xyz);\n\t{\n\t\tfloat vel_mag = length(USERDATA1.xyz);\n\t\tfloat vel_infl = clamp(dynamic_params.turb_influence * turbulence_influence, 0.0, 1.0) * (DELTA <= 0.0 ? 0.0 : 1.0);\n\t\tUSERDATA1.xyz = mix(USERDATA1.xyz, normalize(noise_direction) * vel_mag * (1.0 + (1.0 - vel_infl) * 0.2), vel_infl);"
+  }
+ ],
+ "exclusions": [
+  {
+   "path": ".claude/settings.json",
+   "reason": "Local Claude Code settings; not read for the film."
+  },
+  {
+   "path": ".gitattributes",
+   "reason": "Assignment 2/3/5 documents and settings unchanged by A6 and covered by the earlier films."
+  },
+  {
+   "path": ".gitignore",
+   "reason": "Assignment 2/3/5 documents and settings unchanged by A6 and covered by the earlier films."
+  },
+  {
+   "path": "ASSET-LOG.md",
+   "reason": "Assignment 2/3/5 documents and settings unchanged by A6 and covered by the earlier films."
+  },
+  {
+   "path": "BLENDER-NOTES.md",
+   "reason": "Assignment 2/3/5 documents and settings unchanged by A6 and covered by the earlier films."
+  },
+  {
+   "path": "CHARACTER-SHEET.md",
+   "reason": "Assignment 2/3/5 documents and settings unchanged by A6 and covered by the earlier films."
+  },
+  {
+   "path": "CONCEPT.md",
+   "reason": "Assignment 2/3/5 documents and settings unchanged by A6 and covered by the earlier films."
+  },
+  {
+   "path": "MATERIALS.md",
+   "reason": "Assignment 2/3/5 documents and settings unchanged by A6 and covered by the earlier films."
+  },
+  {
+   "path": "STORYBOARD.md",
+   "reason": "Assignment 2/3/5 documents and settings unchanged by A6 and covered by the earlier films."
+  },
+  {
+   "path": "assets/audio/music/MUS-battle-loop.ogg",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/music/MUS-battle-loop.ogg.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/music/MUS-battle-loop_3x_preview.ogg",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/music/MUS-battle-loop_3x_preview.ogg.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-cover-hit.wav",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-cover-hit.wav.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-explode.wav",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-explode.wav.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-fire.wav",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-fire.wav.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-player-hit.wav",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-player-hit.wav.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-victory.wav",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/audio/sfx/SFX-victory.wav.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/env/cover_broken.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/env/cover_broken.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/env/cover_cracked.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/env/cover_cracked.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/env/cover_intact.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/env/cover_intact.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/env/ground_tile.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/env/ground_tile.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_down.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_down.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_down_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_down_right.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_right.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_up.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_up.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_up_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/hull_up_right.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_down.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_down.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_down_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_down_right.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_right.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_up.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_up.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_up_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/game/yunqiz/turret_up_right.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/hint/grey_3x1.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/hint/grey_3x1.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/models/ammo_crate.glb",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/models/ammo_crate.glb.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/models/cover_wall.glb",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/models/cover_wall.glb.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/models/tank_hedgehog.glb",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/models/tank_hedgehog.glb.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/.gdignore",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/audio/MUS-battle-loop_00001.flac",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/audio/SFX-cover-hit_00001.flac",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/audio/SFX-explode_00001.flac",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/audio/SFX-fire_00002.flac",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/audio/SFX-fire_00003.flac",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/audio/SFX-player-hit_00001.flac",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/audio/SFX-victory_00001.flac",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/env/ENV-cover_broken_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/env/ENV-cover_cracked_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/env/ENV-cover_intact_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/env/ENV-ground_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/hull/CHAR-hull_down_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/hull/CHAR-hull_down_right_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/hull/CHAR-hull_right_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/hull/CHAR-hull_up_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/hull/CHAR-hull_up_right_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/turret/CHAR-turret_down_00009_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/turret/CHAR-turret_down_right_00001_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/turret/CHAR-turret_right_00003_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/turret/CHAR-turret_up_00002_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/raw/turret/CHAR-turret_up_right_00008_.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/.gdignore",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/env/ENV-cover_broken.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/env/ENV-cover_cracked.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/env/ENV-cover_intact.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/env/ENV-ground_tile.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/hull/CHAR-hull_down.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/hull/CHAR-hull_down_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/hull/CHAR-hull_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/hull/CHAR-hull_up.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/hull/CHAR-hull_up_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/turret/CHAR-turret_down.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/turret/CHAR-turret_down_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/turret/CHAR-turret_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/turret/CHAR-turret_up.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/sprites/yunqiz/turret/CHAR-turret_up_right.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/textures/brick/ATTRIBUTION.md",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/textures/brick/red_bricks_04_diff_1k.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/textures/brick/red_bricks_04_diff_1k.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/textures/brick/red_bricks_04_nor_gl_1k.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/textures/brick/red_bricks_04_nor_gl_1k.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/textures/brick/red_bricks_04_rough_1k.png",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "assets/textures/brick/red_bricks_04_rough_1k.png.import",
+   "reason": "A2/A3/A5 art and audio; the effects play over the A2 ground and cover but these files are unchanged."
+  },
+  {
+   "path": "captures/.gdignore",
+   "reason": "Assignment 2/3/5 documents and settings unchanged by A6 and covered by the earlier films."
+  },
+  {
+   "path": "design/.gdignore",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/audio/MUS-battle-loop_seam.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/audio/SFX-fire_waveforms.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/audio/SFX_all_waveforms.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/check_final_8dir.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/check_hull_v2.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/check_stripe_before_after.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/check_turret_v3.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/env/check_scene_v1.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/env/check_scene_v2.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-01_CHAR-hull_right_v1_d055.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-02_CHAR-hull_right_v1_d070.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-03_CHAR-hull_right_v1_d080.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-04_CHAR-hull_right_v2_d065.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-05_CHAR-turret_right_v2_d055_square-barrel.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-06_CHAR-turret_down-right_v2_d055_superseded.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-07_CHAR-turret_right_v3_d055_weak-hatch.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-08_CHAR-turret_down-right_v3_d075_no-stripe.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-09_CHAR-turret_down_v3_d060_no-cupola_barrel-clamp.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-10_CHAR-turret_down_v31_d060_no-cupola.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/REJ-11_CHAR-turret_down_v31_d060_random-seed_light-barrel.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/rejected_contact_sheet.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/asset-log/rejected/rejected_turret_contact_sheet.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/blender/ammo_crate.blend",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/blender/blender-window.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/blender/cover_wall.blend",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/blender/tank_hedgehog.blend",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/character/collision.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/character/draw_sketches.py",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/character/silhouette.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/character/turnaround.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/godot/asset_room_3d.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/cover/draw_guides_cover.py",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/cover/guide_cover_broken.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/cover/guide_cover_cracked.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/cover/guide_cover_intact.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/cover/preview_cover.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/draw_guides.py",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_hull_down-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_hull_down.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_hull_right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_hull_up-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_hull_up.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_turret_down-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_turret_down.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_turret_right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_turret_up-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/guide_turret_up.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/preview.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/stripe-mask/stripe_mask_down-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/stripe-mask/stripe_mask_down.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/stripe-mask/stripe_mask_right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/stripe-mask/stripe_mask_up-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/stripe-mask/stripe_mask_up.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/draw_guides_v2.py",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_hull_down-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_hull_down.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_hull_right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_hull_up-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_hull_up.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_turret_down-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_turret_down.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_turret_right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_turret_up-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/guide2_turret_up.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/preview2.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v2/texture_guides_v2.py",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3.1/draw_guides_v31.py",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3.1/guide31_turret_down-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3.1/guide31_turret_down.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3.1/guide31_turret_right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3.1/guide31_turret_up-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3.1/guide31_turret_up.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3.1/preview31.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3/draw_guides_v3.py",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3/guide3_turret_down-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3/guide3_turret_down.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3/guide3_turret_right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3/guide3_turret_up-right.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3/guide3_turret_up.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/guides/v3/preview3.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/storyboard/01-opening.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/storyboard/02-fire-from-cover.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/storyboard/03-cover-breaking.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/storyboard/04-enemy-destroyed.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/storyboard/05-damage.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/storyboard/06-failure.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/storyboard/07-respawn.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/storyboard/08-victory.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/storyboard/draw_storyboard.py",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/automated-test-result.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/gallery-yunqiz.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/gallery-yunqiz_v1-turret-bug.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/play-01-normal-combat.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/play-02-cover-destroyed-victory.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/play-03-victory-player-burning.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/play-04-paused.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/play-05-muted.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/play-06-destroyed.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "design/test/play-07-respawn.png",
+   "reason": "A2 design material, outside this A6 film."
+  },
+  {
+   "path": "docs/.gdignore",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a2/CHANGE-BRIEF.md",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a2/TEST-REPORT.md",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a3/CHANGE-BRIEF.md",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/TEST-REPORT.md",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures-output.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/hint_both.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/hint_pixels.csv",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/hit_flash_0.0.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/hit_flash_0.5.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/hit_flash_1.0.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/hit_flash_2.0.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/hit_flash_pixels.csv",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/material_edit_damaged_only.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/materials_captures.csv",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/materials_side_by_side.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_material_edit_damaged_only.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_materials_captures.csv",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_materials_side_by_side.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_albedo_tint_default.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_albedo_tint_max.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_albedo_tint_min.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_brightness_default.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_brightness_max.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_brightness_min.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_roughness_scale_default.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_roughness_scale_max.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_roughness_scale_min.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_uv_scale_default.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_uv_scale_max.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/shader_edit_sweep_uv_scale_min.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_albedo_tint_default.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_albedo_tint_max.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_albedo_tint_min.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_brightness_default.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_brightness_max.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_brightness_min.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_roughness_scale_default.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_roughness_scale_max.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_roughness_scale_min.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_uv_scale_default.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_uv_scale_max.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/captures/sweep_uv_scale_min.png",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/frictional-notes.md",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/film-prompt-unattended.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/prompt-1.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/prompt-2.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/prompt-3.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/prompt-4.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/prompt-5.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/prompt-6.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/prompt-7.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/prompt-8.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/session-1.jsonl",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/session-2.jsonl",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/session-3.jsonl",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/session-4.jsonl",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/session-5.jsonl",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/session-6-excerpt.md",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/session-7.jsonl",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/sessions/session-8.jsonl",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/step2-output.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/step3-finish-a.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/step3-finish-b.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/step3-info.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/step3-setup.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/use-it-part2.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "docs/a5/use-it-part3.txt",
+   "reason": "Earlier assignments' documents (A5 report and captures), outside this A6 film."
+  },
+  {
+   "path": "logs/.gdignore",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/check_a3_assets_60fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/check_tools_parse_60fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/mutation1_semicolon_60fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/mutation2_rename_60fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/mutation3_no_source_color_60fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/reimport_brick.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/reimport_hint_1.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/reimport_hint_2.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/test_hit_flash_144fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/test_hit_flash_30fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/test_hit_flash_60fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/test_materials_60fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "logs/test_sound_triggers_60fps.log",
+   "reason": "Other run logs (A5 suites, reimports, tool parse check): baselines only, not shown in this film."
+  },
+  {
+   "path": "materials/cover_wall_damaged.tres",
+   "reason": "A5 materials, unchanged by A6."
+  },
+  {
+   "path": "materials/cover_wall_intact.tres",
+   "reason": "A5 materials, unchanged by A6."
+  },
+  {
+   "path": "materials/hint_raw.tres",
+   "reason": "A5 materials, unchanged by A6."
+  },
+  {
+   "path": "materials/hint_srgb.tres",
+   "reason": "A5 materials, unchanged by A6."
+  },
+  {
+   "path": "prompts/a6/prompt-1.txt",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/prompt-2.txt",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/prompt-2a.txt",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/prompt-3a.txt",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/prompt-4a.txt",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/prompt-5.txt",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/prompt-6a.txt",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/prompt-7a.txt",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/prompt-8.txt",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/review_claude_md.py",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-1.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-2.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-2a.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-3a.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-3b.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-3c.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-3d.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-3e.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-4a.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-4b.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-4c.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-5.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-6a.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-6b.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-6c.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-7a.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-7b.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-7c.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-8.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "prompts/a6/session-8b.jsonl",
+   "reason": "Claude Code prompts for A6 (and earlier); cited through FRICTIONAL.md and SOURCES.md, not shown."
+  },
+  {
+   "path": "scenes/asset_room_3d.tscn",
+   "reason": "Game scenes, unchanged by A6 (the effects are instanced from code)."
+  },
+  {
+   "path": "scenes/gallery.tscn",
+   "reason": "Game scenes, unchanged by A6 (the effects are instanced from code)."
+  },
+  {
+   "path": "scenes/hint_experiment.tscn",
+   "reason": "Game scenes, unchanged by A6 (the effects are instanced from code)."
+  },
+  {
+   "path": "scenes/main.tscn",
+   "reason": "Game scenes, unchanged by A6 (the effects are instanced from code)."
+  },
+  {
+   "path": "scenes/scratch_standard.tscn",
+   "reason": "Game scenes, unchanged by A6 (the effects are instanced from code)."
+  },
+  {
+   "path": "scripts/audio.gd",
+   "reason": "Game scripts A6 does not change (player, enemy, shell, audio, gallery, hit flash driver)."
+  },
+  {
+   "path": "scripts/enemy.gd",
+   "reason": "Game scripts A6 does not change (player, enemy, shell, audio, gallery, hit flash driver)."
+  },
+  {
+   "path": "scripts/gallery.gd",
+   "reason": "Game scripts A6 does not change (player, enemy, shell, audio, gallery, hit flash driver)."
+  },
+  {
+   "path": "scripts/hit_flash_driver.gd",
+   "reason": "Game scripts A6 does not change (player, enemy, shell, audio, gallery, hit flash driver)."
+  },
+  {
+   "path": "scripts/player.gd",
+   "reason": "Game scripts A6 does not change (player, enemy, shell, audio, gallery, hit flash driver)."
+  },
+  {
+   "path": "scripts/shell.gd",
+   "reason": "Game scripts A6 does not change (player, enemy, shell, audio, gallery, hit flash driver)."
+  },
+  {
+   "path": "shaders/brick_surface.gdshader",
+   "reason": "A5 shaders, unchanged by A6."
+  },
+  {
+   "path": "shaders/hint_experiment.gdshader",
+   "reason": "A5 shaders, unchanged by A6."
+  },
+  {
+   "path": "shaders/hit_flash.gdshader",
+   "reason": "A5 shaders, unchanged by A6."
+  },
+  {
+   "path": "shaders/standard_generated.gdshader",
+   "reason": "A5 shaders, unchanged by A6."
+  },
+  {
+   "path": "tests/check_a3_assets.gd",
+   "reason": "Earlier suites (A5, A2/A3 checks), reported only as unchanged baselines in TEST-REPORT.md."
+  },
+  {
+   "path": "tests/check_tools_parse.gd",
+   "reason": "Earlier suites (A5, A2/A3 checks), reported only as unchanged baselines in TEST-REPORT.md."
+  },
+  {
+   "path": "tests/test_hit_flash.gd",
+   "reason": "Earlier suites (A5, A2/A3 checks), reported only as unchanged baselines in TEST-REPORT.md."
+  },
+  {
+   "path": "tests/test_materials.gd",
+   "reason": "Earlier suites (A5, A2/A3 checks), reported only as unchanged baselines in TEST-REPORT.md."
+  },
+  {
+   "path": "tests/test_sound_triggers.gd",
+   "reason": "Earlier suites (A5, A2/A3 checks), reported only as unchanged baselines in TEST-REPORT.md."
+  },
+  {
+   "path": "tools/.gdignore",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/analyze_sfx.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/blender/build_ammo_crate.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/blender/build_cover_wall.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/blender/build_tank_hedgehog.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/blender/export_glb.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/calm_ground.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/capture_hint.gd",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/capture_hit_flash.gd",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/capture_materials.gd",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/cutout_hull.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/inspect_cover_wall.gd",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/make_hint_png.gd",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/make_loop.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/make_tile.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/prepare_game_assets.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/process_sfx.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/process_sprites.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "tools/stripe_mask.py",
+   "reason": "Other tools (A2/A3/A5 asset processing and capture), not part of A6."
+  },
+  {
+   "path": "youtube/.gdignore",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/.gdignore",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/BUILD-LOG.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/BUILD-PROMPT.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/CHECKS-REPORT.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/COMPONENTS.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/FACTCHECK.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/PROMPTS.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/RIFF.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/SHOTLIST.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/SOURCES.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/TYPECHECK.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/_final.log",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/_qc/GATE-V-attempt1.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/_qc/REPORT.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/_render.log",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/beat_sheet.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/build-state.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/capture/capture-project.godot",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/capture/check-stdout.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/capture/import-stdout.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/capture/project.godot.original",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/capture/room-stdout.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/evidence/_room-frame.png",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/evidence/ev-blender-mcp.png",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/evidence/ev-claude-wrong.png",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/evidence/ev-game-brief.png",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/evidence/ev-hand-edit.png",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/evidence/ev-headless.png",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/evidence/ev-prompt-built.png",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/gamedev-evidence.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/scripts/bind_cues.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/scripts/build_evidence.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/scripts/make_b07.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/scripts/make_evidence.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/scripts/make_sheet.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/scripts/pad_audio.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a3-assets/scripts/remotion_win.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/BUILD-LOG.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/BUILD-PROMPT.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/CHECKS-REPORT.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/COMPONENTS.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/FACTCHECK.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/PROMPTS.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/RIFF.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/SHOTLIST.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/SOURCES.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/STATUS.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/TYPECHECK.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/ToDo.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/_final.log",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/_qc/REPORT.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/_qc/TYPECHECK-attempt1.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/_qc/final-attempt1.log",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/_qc/memory-monitor.log",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/_qc/run-attempt1.log",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/_run.log",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/beat_sheet.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/build-state.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/capture/litwall-means.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/clips/_work/audio.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/clips/_work/resolved-sheet.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/clips/concat.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/clips/manifest.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/gamedev-evidence.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/mp3/timings.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/scripts/bind_cues.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/scripts/build_evidence.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/scripts/make_b03.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/scripts/make_evidence.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/scripts/make_sheet.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/scripts/pad_audio.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/scripts/remotion_win.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-a5-shaders/todo.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/BUILD-LOG.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/BUILD-PROMPT.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/CAPTURE.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/COMPONENTS.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/FACTCHECK.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/PROMPTS.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/RIFF.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/SHOTLIST.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/SOURCES.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/TYPECHECK.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/_final.log",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/_qc/REPORT.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/_qc/master/starts.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/_qc/pre/regions.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/beat_sheet.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/build-state.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/_failed/attempt-4k-interrupted/run-01-inputs.jsonl",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/_failed/attempt-4k-interrupted/run-01-started.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/_failed/attempt-4k-interrupted/run-01-stdout.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/_failed/attempt-720p-inputs.jsonl",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/_failed/attempt-720p-stdout.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/_parts/B04-game.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/_parts/B04.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/driver/capture-project.godot",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/driver/capture_driver.gd",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/run-01-inputs.jsonl",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/run-01-started.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/run-01-stdout.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/capture/source-manifest.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/clips.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/clips/_work/audio.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/clips/_work/resolved-sheet.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/clips/concat.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/clips/manifest.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/coverage.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/evidence/raw-output-metadata.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/gamedev-evidence.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/mp3/timings.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/qc-regions.json",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/scripts/beats.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/scripts/bind_cues.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/scripts/build_evidence.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/scripts/cut_clips.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/scripts/make_evidence.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/scripts/make_sheet.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/scripts/pad_audio.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/scripts/remotion_win.py",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/tests/test-run-01-stdout.txt",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  },
+  {
+   "path": "youtube/claude-liam-walker-tank-gamedev/tests/test-run-01.md",
+   "reason": "Earlier films' reel folders (A2, A3, A5), preserved and not part of this A6 film."
+  }
+ ],
+ "code_result_pairs": [
+  {
+   "code_beat": "B03",
+   "result_beat": "B04",
+   "observation": "The GPUParticles2D node whose emission (amount 48, lifetime 1.6), process material and draw settings (soft_dot_32.png, MIX, visibility_rect) were just read runs on the RTX 3060 in the 4K fixture: a column of soft grey puffs from the turret, emitting from frame 10; beside it the recorded headless price (B -0.009 ms, render_gpu 0.000).",
+   "media": {
+    "path": "media/B04.mp4",
+    "sha256": "c2d7cb98f471853eb1608e93fdf3126d2bdfa092d70221c2cc7ff953fbff13bf"
+   }
+  },
+  {
+   "code_beat": "B06",
+   "result_beat": "B07",
+   "observation": "Frame 20 of the student's r0 and r1 fixture strips (same seed): with the R3 stop (#8E5040 opaque at 0.6) faint red-brown chips are visible left of the wall where r0 shows almost none; Claude: partly held; the student kept r1.",
+   "media": {
+    "path": "evidence/ev-a-frame20.png",
+    "sha256": "049c40c840f9fd212779b520275904dada0b76b2e5b6c2d83ac02b0177ad2c58"
+   }
+  },
+  {
+   "code_beat": "B10",
+   "result_beat": "B11",
+   "observation": "After R5 (initial velocity 50/80) the r1 stills at frames 58 and 140 still show a compact lump only slightly higher than r0 (Claude: prediction failed), while the student's play recording from 29 s shows the smoke rising from YunqiZ as a column: the reading the student overruled.",
+   "media": {
+    "path": "media/B11.mp4",
+    "sha256": "e36ccde7e9b93704a1218058595cc174a430aa0456d7c55c1d0f382fa0c40ceb"
+   }
+  },
+  {
+   "code_beat": "B13",
+   "result_beat": "B14",
+   "observation": "In the 4K fixture, enlarged on the turret, the puffs drift around the turret rather than climbing away, consistent with line 447 turning each velocity 10-20 % toward the noise every step (confirmed from the code, not by a turbulence-off strip).",
+   "media": {
+    "path": "media/B14.mp4",
+    "sha256": "42dfe1c4357f2c287447d33005d1a36a7cde1932c779ec13c7b46d26822841c9"
+   }
+  }
+ ]
+}

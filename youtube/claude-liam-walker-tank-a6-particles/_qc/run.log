@@ -1,0 +1,52 @@
+[run] no Manim beats in this reel's beat sheet — skipping Manim stage
+[run] nothing to render — recompiling only
+[run] GATE L — beat-mix lint
+[beat-lint] clean — beat mix OK (beat_sheet.json)
+[run] GATE SHAPE — finance chart-shape enforcement
+[gate-shape] skip — not a finance reel (beat_sheet.json)
+[remotion] B00: filled already (skip)
+[remotion] B01: filled already (skip)
+[remotion] B03: filled already (skip)
+[remotion] B05: filled already (skip)
+[remotion] B06: filled already (skip)
+[remotion] B07: filled already (skip)
+[remotion] B09: filled already (skip)
+[remotion] B10: filled already (skip)
+[remotion] B13: filled already (skip)
+[remotion] B15: filled already (skip)
+[remotion] B16: filled already (skip)
+[remotion] B18: filled already (skip)
+[remotion] B19: filled already (skip)
+[remotion] B20: filled already (skip)
+[remotion] done — run `bash scripts/run.sh <REEL>` to compile the cut
+[art] compiled B00  VIDEO     8.0s  ← B00.mp4
+[art] compiled B01  VIDEO     7.2s  ← B01.mp4
+[art] compiled B02  VIDEO    11.0s  ← B02.mp4
+[art] compiled B03  VIDEO    11.7s  ← B03.mp4
+[art] compiled B04  VIDEO     8.2s  ← B04.mp4
+[art] compiled B05  VIDEO     9.1s  ← B05.mp4
+[art] compiled B06  VIDEO    11.7s  ← B06.mp4
+[art] compiled B07  VIDEO     7.9s  ← B07.mp4
+[art] compiled B08  VIDEO     9.4s  ← B08.mp4
+[art] compiled B09  VIDEO     9.2s  ← B09.mp4
+[art] compiled B10  VIDEO    10.5s  ← B10.mp4
+[art] compiled B11  VIDEO     9.2s  ← B11.mp4
+[art] compiled B12  VIDEO     9.0s  ← B12.mp4
+[art] compiled B13  VIDEO    11.8s  ← B13.mp4
+[art] compiled B14  VIDEO     6.6s  ← B14.mp4
+[art] compiled B15  VIDEO    11.9s  ← B15.mp4
+[art] compiled B16  VIDEO    13.8s  ← B16.mp4
+[art] compiled B17  VIDEO    12.6s  ← B17.mp4
+[art] compiled B18  VIDEO    17.1s  ← B18.mp4
+[art] compiled B19  VIDEO     9.9s  ← B19.mp4
+[art] compiled B20  VIDEO     5.2s  ← B20.mp4
+[art] motion histogram: graphic:14  video:7
+[art] build stamp → beat_sheet.json (21/21 filled)
+[art] QC contact sheet → D:\CSYE7270\assignment2\claude-liam-walker-tank-a6-particles\qc-sheet.png
+[art] wrote D:\CSYE7270\assignment2\claude-liam-walker-tank-a6-particles\claude-liam-walker-tank-a6-particles-slate.mp4  (210.7s, audio: per-beat timeline (source audio preserved), drawtext: no — PIL overlays)
+[art] slots: 21/21 filled — B00:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO B08:VIDEO B09:VIDEO B10:VIDEO B11:VIDEO B12:VIDEO B13:VIDEO B14:VIDEO B15:VIDEO B16:VIDEO B17:VIDEO B18:VIDEO B19:VIDEO B20:VIDEO
+[run] GATE V — frame-level visual QC on the compiled reel
+[gate-v] frames=42 BLOCKER=0 MAJOR=0 → D:/CSYE7270/assignment2/claude-liam-walker-tank-a6-particles\_qc\REPORT.md
+[run] done → /d/CSYE7270/assignment2/claude-liam-walker-tank-a6-particles  (QC gates: on)
+[run] REVIEW built; no final exported. Use ./art final <reel> for a verified master.
+[run] any remaining slates are YOUR slots — see /d/CSYE7270/assignment2/claude-liam-walker-tank-a6-particles/SHOTLIST.md
