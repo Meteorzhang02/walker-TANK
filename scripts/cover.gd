@@ -37,7 +37,7 @@ func take_hit(_shell: Node = null) -> void:
 	var new_stage := 2 if hits >= HITS_TO_BREAK else (1 if hits >= HITS_TO_CRACK else 0)
 	if world:
 		world.audio.play("cover_hit")
-		world.spawn_fx("debris", global_position + Vector2(0, -8))
+		world.spawn_cover_burst(_shell, global_position + Vector2(0, -8))
 	if new_stage != stage:
 		stage = new_stage
 		sprite.texture = _tex[stage]
