@@ -30,7 +30,7 @@ var MAT_EXPECTED := {
 	"particle_flag_disable_z": true,
 	"emission_shape": ParticleProcessMaterial.EMISSION_SHAPE_SPHERE, "emission_sphere_radius": 6.0,
 	"direction": Vector3(0, -1, 0), "spread": 20.0,
-	"initial_velocity_min": 20.0, "initial_velocity_max": 40.0,
+	"initial_velocity_min": 50.0, "initial_velocity_max": 80.0,  # R5
 	"gravity": Vector3(0, -15, 0),
 	"damping_min": 5.0, "damping_max": 8.0,
 	"angle_min": 0.0, "angle_max": 360.0,
