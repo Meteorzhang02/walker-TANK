@@ -46,7 +46,7 @@ var EXPECTED := {
 		"hue_variation_min": -0.03, "hue_variation_max": 0.03,
 		"local_coords": false,
 		"curve": [[0.0, 1.0], [1.0, 0.4]],
-		"ramp": [[0.0, "#E8D8B0", 1.0], [0.3, "#B5523A", 1.0], [1.0, "#5A3A2E", 0.0]],
+		"ramp": [[0.0, "#E8D8B0", 1.0], [0.3, "#B5523A", 1.0], [0.6, "#8E5040", 1.0], [1.0, "#8E5040", 0.0]],
 		"texture": CHIP,
 		"blend": null,
 	},

@@ -74,13 +74,15 @@ PASS  Debris.scale_amount_curve point 1 == (1.0, 0.4) (got (1.0, 0.4))
 PASS  Debris.scale_amount_curve.sample(1.0) == 0.40000000596046 (got 0.40000000596046)
 PASS  Debris.scale_amount_curve is linear: sample(0.5) == 0.7 (got 0.69999998807907)
 PASS  Debris.color_ramp not null
-PASS  Debris.color_ramp has 3 points (got 3)
+PASS  Debris.color_ramp has 4 points (got 4)
 PASS  Debris.color_ramp point 0 offset == 0.0 (got 0.0)
 PASS  Debris.color_ramp point 0 == #E8D8B0 a1.0 (got (0.9098, 0.8471, 0.6902, 1.0))
 PASS  Debris.color_ramp point 1 offset == 0.3 (got 0.30000001192093)
 PASS  Debris.color_ramp point 1 == #B5523A a1.0 (got (0.7098, 0.3216, 0.2275, 1.0))
-PASS  Debris.color_ramp point 2 offset == 1.0 (got 1.0)
-PASS  Debris.color_ramp point 2 == #5A3A2E a0.0 (got (0.3529, 0.2275, 0.1804, 0.0))
+PASS  Debris.color_ramp point 2 offset == 0.6 (got 0.60000002384186)
+PASS  Debris.color_ramp point 2 == #8E5040 a1.0 (got (0.5569, 0.3137, 0.251, 1.0))
+PASS  Debris.color_ramp point 3 offset == 1.0 (got 1.0)
+PASS  Debris.color_ramp point 3 == #8E5040 a0.0 (got (0.5569, 0.3137, 0.251, 0.0))
 PASS  Debris.texture not null
 PASS  Debris.texture is res://effects/textures/chip_6.png (got res://effects/textures/chip_6.png)
 PASS  Debris.material is null (mix) (got <Object#null>)
@@ -126,4 +128,4 @@ PASS  Dust.material is null (mix) (got <Object#null>)
 PASS  burst root still in the tree at 0.6 s
 PASS  burst root freed itself after Dust finished (at 0.783 s, 47 frames)
 PASS  burst root freed no earlier than Dust's lifetime 0.7 s (at 0.783 s)
-RESULT: 126 passed, 0 failed
+RESULT: 128 passed, 0 failed

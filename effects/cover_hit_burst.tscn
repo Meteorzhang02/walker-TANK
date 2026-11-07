@@ -22,8 +22,8 @@ _data = [Vector2(0, 1), 0.0, -0.6, 0, 1, Vector2(1, 0.4), -0.6, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_debris"]
-offsets = PackedFloat32Array(0, 0.3, 1)
-colors = PackedColorArray(0.909804, 0.847059, 0.690196, 1, 0.709804, 0.321569, 0.227451, 1, 0.352941, 0.227451, 0.180392, 0)
+offsets = PackedFloat32Array(0, 0.3, 0.6, 1)
+colors = PackedColorArray(0.909804, 0.847059, 0.690196, 1, 0.709804, 0.321569, 0.227451, 1, 0.556863, 0.313726, 0.25098, 1, 0.556863, 0.313726, 0.25098, 0)
 
 [sub_resource type="Curve" id="Curve_dust"]
 max_value = 2.0
