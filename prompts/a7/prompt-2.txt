@@ -1,0 +1,34 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md is the contract for this change.
+project.godot is at the repository root.
+
+Task: pin what the game does NOW, before any clip is wired. Create one new
+file, tests/test_pins.gd, and change no other file.
+
+The pins must pass on the current code. Drive the real game: load
+res://scenes/main.tscn, run it through the real game loop, and inject input
+only with Input.parse_input_event (InputEventAction for "move_right",
+"fire" and so on). Never call _think(), try_fire() or any transition
+function directly. Keep the three enemies from moving or firing in a way
+that does not remove the player from physics (CLAUDE.md, Headless facts:
+use target = null, not process_mode DISABLED).
+
+Pin at least, counting physics ticks from the tick "fire" is injected:
+1. One scripted run: drive right for 30 ticks, release, wait 10 ticks,
+   press and hold "fire" for 120 ticks, release. Log every tick on which
+   move_dir changes between zero and non-zero, and every tick a shell
+   appears. Assert the sequence.
+2. The tick the first shell appears, relative to the press tick (today 0).
+   This pin is predicted to change by the brief (+2 ticks); name it so.
+3. The reload interval: ticks between the first and second shell while
+   fire is held (reload_time 0.8 s at 60 ticks/s).
+4. The tick the fire sound is requested, relative to the press tick, if
+   you can observe it without editing any script; otherwise say why not.
+
+Print one line per pin with the measured value and the expectation, and
+end with "RESULT: N passed, M failed", then quit(1) if any failed, like
+the existing tests.
+
+Run it with exactly this command and no other shell command:
+bash scripts/run-test.sh test_pins.gd 60
+Show the real output. Say what the pins prove and what they cannot prove
+headlessly. Do not commit.
