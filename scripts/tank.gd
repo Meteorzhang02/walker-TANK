@@ -51,13 +51,42 @@ func _ready() -> void:
 	for d in ["right", "down_right", "down", "up", "up_right"]:
 		_hull_tex[d] = load("res://assets/game/yunqiz/hull_%s.png" % d)
 		_turret_tex[d] = load("res://assets/game/yunqiz/turret_%s.png" % d)
+	# A7 clip nodes. DustMount is added before Suspension, so it draws under the hull by tree
+	# order (same z_index, earlier sibling first). z_index -1 is avoided: it could sink the dust
+	# below the arena ground, which draws at z 0.
+	var dust_mount := Node2D.new()
+	dust_mount.name = "DustMount"
+	dust_mount.visible = false
+	add_child(dust_mount)
+	var dust := Sprite2D.new()
+	dust.name = "Dust"
+	dust.texture = load("res://assets/game/fx/track_dust_sheet.png")
+	dust.hframes = 4
+	dust.vframes = 1
+	dust.frame = 0
+	dust_mount.add_child(dust)
+	var suspension := Node2D.new()
+	suspension.name = "Suspension"
+	add_child(suspension)
 	hull = Sprite2D.new()
 	hull.scale = Vector2(0.5, 0.5)
-	add_child(hull)
+	suspension.add_child(hull)
 	turret = Sprite2D.new()
 	turret.scale = Vector2(0.5, 0.5)
 	turret.position = TURRET_OFFSET
-	add_child(turret)
+	suspension.add_child(turret)
+	var motion_anim := AnimationPlayer.new()
+	motion_anim.name = "MotionAnim"
+	motion_anim.root_node = NodePath("..")
+	motion_anim.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
+	motion_anim.add_animation_library("", load("res://animations/motion_clips.tres"))
+	add_child(motion_anim)
+	var fire_anim := AnimationPlayer.new()
+	fire_anim.name = "FireAnim"
+	fire_anim.root_node = NodePath("..")
+	fire_anim.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS
+	fire_anim.add_animation_library("", load("res://animations/fire_clips.tres"))
+	add_child(fire_anim)
 	smoke = preload("res://effects/damage_smoke.tscn").instantiate()
 	smoke.position = TURRET_OFFSET
 	add_child(smoke)

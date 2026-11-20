@@ -1,0 +1,52 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS  tank.gd loads
+PASS  MotionAnim is an AnimationPlayer
+PASS  FireAnim is an AnimationPlayer
+PASS  MotionAnim: every track resolves (0 problems)
+PASS  MotionAnim: callback_mode_process is PHYSICS
+PASS  MotionAnim: autoplay empty
+PASS  FireAnim: every track resolves (0 problems)
+PASS  FireAnim: callback_mode_process is PHYSICS
+PASS  FireAnim: autoplay empty
+PASS  DustMount/Dust is a Sprite2D
+PASS  dust sheet loaded
+PASS  dust sliced 4x1
+PASS  track_dust exists
+PASS  track_dust loops LINEAR
+PASS  track_dust step = 0.1
+PASS  track_dust length = 0.4
+PASS  track_dust has 1 track
+PASS  track_dust track is a value track
+PASS  track_dust discrete
+PASS  track_dust key count = 4
+PASS  track_dust key 0 at 0.0 s
+PASS  track_dust key 0 = cell 0
+PASS  track_dust key 0 inside the sheet
+PASS  track_dust key 1 at 0.1 s
+PASS  track_dust key 1 = cell 1
+PASS  track_dust key 1 inside the sheet
+PASS  track_dust key 2 at 0.2 s
+PASS  track_dust key 2 = cell 2
+PASS  track_dust key 2 inside the sheet
+PASS  track_dust key 3 at 0.3 s
+PASS  track_dust key 3 = cell 3
+PASS  track_dust key 3 inside the sheet
+PASS  seam: no duplicate across the wrap
+PASS  seam: last key to length = one interval
+PASS  shoot exists
+PASS  shoot does not loop
+PASS  shoot step = 1/30
+PASS  shoot length = frame 5
+PASS  shoot has 2 tracks
+PASS  shoot track 0 is on Suspension
+PASS  shoot position key count = 3
+PASS  shoot position key on frame 0
+PASS  shoot position key on frame 1
+PASS  shoot position key on frame 5
+PASS  shoot track 1 is on Suspension
+PASS  shoot scale key count = 3
+PASS  shoot scale key on frame 0
+PASS  shoot scale key on frame 1
+PASS  shoot scale key on frame 2
+readback: 49 passed, 0 failed
