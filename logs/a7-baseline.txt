@@ -1,0 +1,67 @@
+======== test_hit_flash.gd 30
+ERROR: 5 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+exit=0
+======== test_hit_flash.gd 60
+ERROR: 5 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+exit=0
+======== test_hit_flash.gd 144
+      frame period 0.00694 s, 933 samples
+RESULT: 50 passed, 0 failed
+exit=0
+======== test_materials.gd 60
+PASS  QuadB_raw has a Label3D above it naming hint_raw
+RESULT: 76 passed, 0 failed
+exit=0
+======== check_tools_parse.gd 60
+PASS  res://tools/capture_materials.gd extends SceneTree (base SceneTree)
+RESULT: 9 passed, 0 failed
+exit=0
+======== check_a3_assets.gd 60
+PASS  tank_hedgehog height (1.400 m) is on axis ["y"] (want y)
+RESULT: PASS (0 failure(s))
+exit=0
+======== test_sound_triggers.gd 60
+ERROR: 7 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+exit=0
+======== test_cover_hit_burst_config.gd 60
+PASS  burst root freed no earlier than Dust's lifetime 0.7 s (at 0.783 s)
+RESULT: 128 passed, 0 failed
+exit=0
+======== test_cover_hit_burst_state.gd 30
+ERROR: 5 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+exit=0
+======== test_cover_hit_burst_state.gd 60
+ERROR: 5 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+exit=0
+======== test_cover_hit_burst_state.gd 144
+ERROR: 5 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+exit=0
+======== test_damage_smoke_config.gd 60
+PASS  follow() changed no stored property besides emitting / amount_ratio (141 compared; changed: [])
+RESULT: 76 passed, 0 failed
+exit=0
+======== test_damage_smoke_state.gd 30
+PASS  G: the 8 facing tanks are not smoking
+RESULT: 81 passed, 0 failed
+exit=0
+======== test_damage_smoke_state.gd 60
+PASS  G: the 8 facing tanks are not smoking
+RESULT: 81 passed, 0 failed
+exit=0
+======== test_damage_smoke_state.gd 144
+ERROR: 5 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
+exit=0
+logs/test_hit_flash_30fps.log: RESULT: 50 passed, 0 failed
+logs/test_hit_flash_60fps.log: RESULT: 50 passed, 0 failed
+logs/test_sound_triggers_60fps.log: RESULT: 0 failed
+logs/test_cover_hit_burst_state_30fps.log: RESULT: 82 passed, 0 failed
+logs/test_cover_hit_burst_state_60fps.log: RESULT: 82 passed, 0 failed
+logs/test_cover_hit_burst_state_144fps.log: RESULT: 82 passed, 0 failed
+logs/test_damage_smoke_state_144fps.log: RESULT: 81 passed, 0 failed
