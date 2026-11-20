@@ -1,0 +1,33 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md is the contract for this change.
+project.godot is at the repository root.
+
+The sprite sheet assets/game/fx/track_dust_sheet.png (made by
+tools/make_dust_sheet.gd) and the clip libraries animations/motion_clips.tres
+and animations/fire_clips.tres (made by tools/bake_tank_clips.gd) already
+exist. Do not edit them, the tools, or any file in shaders/.
+
+Task: set up the nodes the clips play on, in scripts/tank.gd _ready() only,
+using Godot 4.7 names. Do not change any other function and do not call
+play() anywhere: wiring is a later step.
+
+1. Create a Node2D named "Suspension" as a child of the tank, and make
+   hull and turret children of Suspension instead of the tank. Keep their
+   scale, position and everything else as they are now.
+2. Create a Node2D named "DustMount" (visible = false) with a Sprite2D child
+   named "Dust": texture = the dust sheet, hframes = 4, vframes = 1,
+   frame = 0, drawn under the hull (z_index -1 or added before Suspension;
+   say which and why).
+3. Create two AnimationPlayers named "MotionAnim" and "FireAnim" as
+   children of the tank, root_node "..", autoplay empty,
+   callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS.
+   Add the library with add_animation_library("", load(...)):
+   motion_clips.tres on MotionAnim, fire_clips.tres on FireAnim.
+4. Before editing, search every script and test for anything that finds
+   hull or turret by node path, or assumes they are direct children of
+   the tank (for example the A5 hit-flash driver or the A6 effects).
+   List what you find. If reparenting would break any of it, say so and
+   stop.
+
+Then run, through ./scripts/run-test.sh, tests/test_clip_readback.gd at 60
+and every existing test at its pinned mode from CLAUDE.md. Show the real
+output and the pass/fail counts. Do not commit.
