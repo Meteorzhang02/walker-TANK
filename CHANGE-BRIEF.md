@@ -1,484 +1,170 @@
-# CHANGE-BRIEF — Assignment 6: particle effects
+# CHANGE-BRIEF — Assignment 7: Animation (walker-TANK)
 
-**Project.** walker-TANK · Godot 4.7.2 stable (`ed1daf0bf`) · Forward+ (engine default; `project.godot` has no renderer key) · Windows 11, Git Bash.
+Date: 2026-11-20 · Godot 4.7.2 · repository `walker-TANK`
 
-**Layout.** `project.godot` is at the repository root, so effects go in `effects/`, previews in `previews/` and tests in `tests/`.
+This replaces the A6 brief (kept at tag `a6`). Later changes go in *Revisions* at the end, dated.
 
-**Window.** 1280 × 720 viewport, stretch `canvas_items` (`project.godot` lines 23–25). The camera is fixed at (640, 360) (`main.gd` line 62).
+Project note: `project.godot` is at the repository root, so the assignment's `godot/` paths map to the root (`godot/tests/` → `tests/`, `godot/animations/` → `animations/`, `godot/shaders/` → `shaders/`). All tests run through `scripts/run-test.sh`.
 
-**Display and GPU.** The laptop has an NVIDIA GeForce RTX 3060 Laptop GPU and an Intel Iris Xe. The internal display runs at 144 Hz through the Iris Xe. GPU prices are read with Godot running on the RTX 3060.
+## Facts this brief is built on
 
-**Baseline before this change** (commit a9513d3, all exit 0):
+- Every tank (player and enemies) runs `scripts/tank.gd`; `scripts/player.gd` and `scripts/enemy.gd` extend it.
+- `tank.gd` `_ready()` builds the tank's nodes in code: `hull` and `turret` (Sprite2D, scale 0.5).
+- Facing is shown by swapping textures, not by rotation: `_set_sprite()` writes `texture` and `flip_h` from `_slot_for()` (8 slots, 5 textures, 3 mirrored).
+- Every physics tick `_physics_process()` writes `hull.position` and `turret.position` (idle shake, moving wobble, recoil kick).
+- `player.gd` `_think()` polls `Input.is_action_pressed("fire")` and calls `try_fire()`, inside `_physics_process()`.
+- `try_fire()` today spawns the shell, the muzzle FX and the fire sound on the press tick; `reload_time` is 0.8 s.
+- A2 made no track-rolling frames (TEST-REPORT, "Character against the sheet").
 
-| Test | fps | PASS |
+## The two clips
+
+### Clip 1 — `track_dust` (the cycle)
+
+- **Communicates:** the tank is driving. The hull art has no track frames, so a moving tank only wobbles; dust kicked up behind the tracks says "moving" at a glance, and stops when the tank stops.
+- **Plays on:** `Dust` (Sprite2D) under `DustMount` (Node2D), children of every tank, built in `tank.gd` `_ready()`.
+- **Route:** Sprite2D with an AnimationPlayer frame track.
+- **Why this route:** the AnimationPlayer read-back sees the frame track, and one AnimationPlayer owns the sprite.
+- **Authority:** `MotionAnim` (AnimationPlayer, child of the tank), played only by `tank.gd` on entering motion state `MOVING`.
+
+### Clip 2 — `shoot` (the committing action)
+
+- **Communicates:** the tank fired. The whole tank sits down on its suspension and springs back, so the shot has weight in every one of the 8 facings.
+- **Plays on:** cutout rig: `Suspension` (Node2D pivot, child of the tank) with `hull` and `turret` (Sprite2D) as its parts.
+- **Route:** cutout rig, baked from code — `tools/bake_tank_clips.gd` builds the clip and saves it with `ResourceSaver.save()` to the committed `animations/fire_clips.tres`.
+- **Why this route:** the motion is a move of parts, not a frame swap; a vertical dip reads the same in every facing, so it needs no per-direction keys.
+- **Authority:** `FireAnim` (AnimationPlayer, child of the tank), played only by `tank.gd` on entering weapon state `FIRING`.
+
+### One authority per animated node
+
+| Node | Property | Only writer |
 |---|---|---|
-| `test_hit_flash.gd` | 30 / 60 / 144 | 50 / 50 / 50 |
-| `test_materials.gd` | 60 | 76 |
-| `check_tools_parse.gd` | 60 | 9 |
-| `check_a3_assets.gd` | 60 | 18 |
-| `test_sound_triggers.gd` | 60 | 8 |
+| `Dust` | `frame` | `MotionAnim` |
+| `DustMount` | `position`, `visible` | `tank.gd` (behind the tank; visible only while `MOVING`) |
+| `Suspension` | `position`, `scale` | `FireAnim` |
+| `hull`, `turret` | `texture`, `flip_h`, `position` | `tank.gd` (unchanged A2 code) |
+| `MotionAnim`, `FireAnim` | which clip plays | `tank.gd` state machine; `autoplay` stays empty |
 
-The Assignment 5 brief is in history at tag a5. Revisions to this brief go, dated, under *Revisions* at the bottom.
+Two AnimationPlayers, because one AnimationPlayer plays one clip at a time: firing while driving must not stop the dust.
 
-| | Effect A — cover hit burst | Effect B — damage smoke |
-|---|---|---|
-| Job | a one-shot burst on a repeating event | a feedback loop that follows a game value |
-| Scene | `effects/cover_hit_burst.tscn` | `effects/damage_smoke.tscn` |
-| Node | 3 × `CPUParticles2D` under one `Node2D` root | 1 × `GPUParticles2D` + `ParticleProcessMaterial` |
-| Replaces | the code-made `"debris"` call in `cover.gd` line 40 | the code-made `smoke` trail in `tank.gd` line 61 |
+## The sheet
 
----
-
-## Effect A — cover hit burst
-
-### The job
-
-It tells the player: **"your shell landed on that wall, right there, and the wall took damage."** Cover breaks in stages (intact → cracked after 2 hits → broken after 4; `cover.gd` lines 2–6), so the player is counting hits. Each hit has to register at the point the shell struck, readable with sound muted (A2's muted-readability rule).
-
-The current cover debris (`cover.gd` line 40 → `main.gd` `spawn_fx("debris")`) fails at both:
-
-- It is spawned at the **cover's centre** (`global_position + (0, -8)`), not where the shell struck.
-- `spawn_fx` never sets `gravity` (`main.gd` lines 161–168), so as far as lines 161–190 show, CPUParticles2D's default (0, 980) applies. In a top-down game the chips fall down the screen.
-
-**Event.** `cover.gd` `take_hit(_shell)` (line 33) gets past `if stage >= 2: return` (line 34) and plays `cover_hit` (line 39). That is the same point the existing sound test counts.
-
-**Position and direction.**
-- Position: the shell's drawn position at contact, `_shell.global_position + _shell.DRAW_OFFSET`. That is the same point `shell.gd` line 50 uses for `"impact"`.
-- Direction: back out of the wall, `-_shell.dir` (`shell.gd` line 9).
-
-**Who triggers it.**
-- `cover.gd` line 40 changes from `world.spawn_fx("debris", …)` to `world.spawn_cover_burst(_shell)`. That is the only line of `cover.gd` that changes.
-- `main.gd` gains `spawn_cover_burst(shell)`, which instances the scene into `fx_layer` (`World/FX`, `main.gd` lines 57–60). It sets the position and the rotation `(-shell.dir).angle()`.
-- Both only read game state.
-
-**What stays as it is.**
-- The shell's own small `"impact"` spark (`shell.gd` line 50) is a separate existing effect on every shell hit, tanks included. It stays unchanged.
-- The `"debris"` branch of `spawn_fx` stays in the file.
-
-### The intent block
-
-**Timing phases** (whole burst ≈ 0.7 s):
-
-| Time | Frames at 30 fps | Phase | What happens |
-|---|---|---|---|
-| 0–0.07 s | 0–2 | impact | A pale flash, brightest on frame one; chips already leaving the point. |
-| 0.07–0.3 s | 2–9 | outward | Brick chips fly back out of the wall in a fan, fast at first, braking hard; a dust puff swells. |
-| 0.3–0.7 s | 9–21 | dissipation | Chips stop, shrink and darken to the wall's own brown, then fade; the dust thins. |
-
-It is gone by 0.7 s, so on one wall each hit reads as its own event. YunqiZ's reload is about 0.8 s and the enemies' is 1.8 s (`main.gd` line 87).
-
-**Contrast against the real background.** The level is one ground tile repeated (`assets/game/env/ground_tile.png`, laid by `_build_ground()` in `main.gd`) plus brick cover (`cover_intact.png`, `cover_cracked.png`, `cover_broken.png`).
-- **Darkest stretch:** the red-brown brick face of intact or cracked cover. That is where every burst starts.
-- **Lightest stretch:** the open ground tile the chips fly out over.
-- Brick-red chips on red brick have almost no value contrast. So in the first 0.3 s the read comes from the **flash** (near-white, additive) and the **dust** (light sand), and the chips only need to read once they are over the ground.
-- Checked by eye in the running game on both, never over the editor grey.
-
-**Scale against the character.** YunqiZ's hull is about 33 display px wide (`RADIUS := 16.6`, half the hull width, `tank.gd`), and a cover block is 72.6 × 22 px (`cover.gd` line 27).
-
-| Layer | Size |
+| Field | Value |
 |---|---|
-| Flash | about 1 hull width across |
-| Chips | reach about 2 hull widths (≈ 60 px) from the impact point |
-| Dust | ends about 1.5 hull widths across |
+| Source | written by code: `tools/make_dust_sheet.gd` (Claude, reviewed by me) |
+| Author | me, with Claude |
+| Licence | my own work; no third-party art; allows a public repository and a published film |
+| Date checked | 2026-11-20 |
+| File | `assets/game/fx/track_dust_sheet.png` (the generator output, committed with its generator) |
+| Credits file | `assets/game/fx/ATTRIBUTION.md` |
+| Cell size | 16 × 16 px |
+| Grid | hframes = 4, vframes = 1 |
+| Frame order for `track_dust` | cells 0, 1, 2, 3 |
 
-The whole burst stays smaller than one cover block plus a hull on each side. It is judged at 1280 × 720.
+## Cycle spec — `track_dust`
 
-**Change over life.**
-- Chips: pale dust-yellow → brick red → dark brown, shrinking to 40 %.
-- Flash: grows to 160 % while it fades.
-- Dust: grows from 60 % to 180 % while it fades.
-- No layer fades in alpha alone.
+- Frame count: 4. Frame rate: 10 fps → key interval 0.1 s. Length 0.4 s.
+- `Animation.step` = 0.1 s.
+- Loop mode: `Animation.LOOP_LINEAR`. Update mode: `Animation.UPDATE_DISCRETE`.
+- **Seam rule (frame track):** no duplicate across the wrap (last key cell 3, first key cell 0), and the gap from the last key (0.3 s) to `length` (0.4 s) equals the key interval (0.1 s).
+- Each cell holds four puffs at four life stages, one stage apart, so cell 3 → cell 0 continues the emission instead of restarting it.
 
-**Variation.** This matters most here, because a wall takes four hits.
-- Chips vary in speed (180–320 px/s), size (0.6–1.2), spin (±720 °/s) and hue (±0.03), within a 60° fan.
-- Repeats on the same wall must not look stamped.
+## Phase table — `shoot`
 
-**Layering.** Three emitters under one root `Node2D`:
+Frame rate: 30 fps. `Animation.step` = 1/30 s. Length 5/30 = 0.1667 s. Loop mode: `Animation.LOOP_NONE`. At 60 physics ticks per second, one frame = 2 ticks.
 
-| Emitter | Job |
-|---|---|
-| `Flash` | the instant of impact |
-| `Debris` | direction and force, aimed back along the shell's path |
-| `Dust` | the wall giving way, and the part that lingers |
+| Phase | Frames | Begins on frame | Key time | What the player may do | What the game reads |
+|---|---|---|---|---|---|
+| Startup | 1 | 0 | 0.0000 s | move and aim; "fire" ignored | reload starts (0.8 s); recoil kick starts; no shell yet |
+| Active | 1 | 1 | 0.0333 s | move and aim; "fire" ignored | shell, muzzle FX and fire sound spawn (physics tick 2 after the press) |
+| Recovery | 3 | 2 | 0.0667 s | move and aim; "fire" ignored | nothing new |
+| (end) | — | 5 | 0.1667 s = length | weapon back to `READY`; "fire" still waits for reload | — |
 
-### The settings
+Keys: `Suspension:position` (0, 0) on frame 0 → (0, 2) on frame 1 → (0, 0) on frame 5, ease-out from frame 1 (settles through recovery). `Suspension:scale` (1, 1) on frame 0 → (1.04, 0.96) on frame 1 → (1, 1) on frame 2.
 
-**Node type: CPUParticles2D.**
-- No GPU-only feature is needed: no turbulence, collision, attractor, sub-emitter or trail.
-- A burst is ≤ 37 particles.
-- A CPU node gives Effect A a headless CPU price that is not near zero, so it is compared on **both** prices.
+Reference: the current game, played by me. Firing should feel crisp: the shell leaves almost as soon as I press fire, so startup gets one frame. Playing the A6 build, I cannot feel any recoil when the tank fires (the code kick is 3 px and fades in about 0.15 s), so the weight of the shot has to come from this clip: the tank sits down on frame 1 and settles over three recovery frames. I did not measure external footage; the frame counts are my design, to be checked in the frame strip and in play.
 
-The root is rotated so that the emitters' `direction = (1, 0)` points back out of the wall.
+## State machine
 
-| Setting | Flash | Debris | Dust |
+Owner: `scripts/tank.gd`. No AnimationTree. Three state variables, each changed only in `tank.gd`.
+
+| Machine | State | Clip | Transition → | Condition |
+|---|---|---|---|---|
+| Motion | `IDLE` | none (`MotionAnim` stopped, `DustMount` hidden) | `MOVING` | `move_dir != Vector2.ZERO` on a physics tick |
+| Motion | `MOVING` | `track_dust` | `IDLE` | `move_dir == Vector2.ZERO`, or the tank dies |
+| Weapon | `READY` | none | `FIRING` | `try_fire()` succeeds (alive, reload 0) |
+| Weapon | `FIRING` | `shoot` | `READY` | physics tick 10 after the press (frame 5) |
+| Health (A2, unchanged) | alive → hit → destroyed | none new | — | `take_damage()`, `die()`, `reset_full()` |
+
+Interrupts during `FIRING`:
+
+| Event | Startup | Active | Recovery |
 |---|---|---|---|
-| amount | 3 | 24 | 10 |
-| one_shot | true | true | true |
-| explosiveness | 1.0 | 1.0 | 0.9 |
-| lifetime | 0.12 s | 0.6 s | 0.7 s |
-| emission_shape | point | sphere, radius 4 px | sphere, radius 8 px |
-| direction / spread | (1, 0) / 180° | (1, 0) / 60° | (1, 0) / 180° |
-| initial_velocity_min / max | 0 / 0 | 180 / 320 px/s | 30 / 70 px/s |
-| gravity | (0, 0) | (0, 0) | (0, 0) |
-| damping_min / max | 0 / 0 | 400 / 600 | 60 / 90 |
-| angular_velocity_min / max | 0 / 0 | −720 / 720 | −60 / 60 |
-| scale_amount_min / max | 1.6 / 2.0 | 0.6 / 1.2 | 1.0 / 1.4 |
-| scale_amount_curve | 1.0 → 1.6 | 1.0 → 0.4 | 0.6 → 1.8 |
-| color_ramp | #FFF4D0 a1 → #FFF4D0 a0 | #E8D8B0 a1 @0 → #B5523A a1 @0.3 → #5A3A2E a0 @1 | #CFC2A8 a0.6 → #CFC2A8 a0 |
-| hue_variation_min / max | 0 / 0 | −0.03 / 0.03 | 0 / 0 |
-| texture | `soft_dot_32.png` | `chip_6.png` | `soft_dot_32.png` |
-| material | CanvasItemMaterial, blend **ADD** | none (mix) | none (mix) |
-| local_coords | false | false | false |
+| Tank is hit | shot continues | shot continues | shot continues |
+| Tank is destroyed | shot continues; the shell still spawns on frame 1 | shot continues | shot continues |
+| "fire" pressed again | ignored | ignored | ignored |
 
-- **Gravity (0, 0) is deliberate.** Top-down: chips brake, they don't fall. The slow-down is damping. The config test must read gravity back, because the default is (0, 980).
-- **local_coords false.** Particles stay where they were emitted. `World/FX` never moves, and `shake()` moves the camera, not the layer.
-- **Textures** are written by code in `tools/make_particle_textures.gd` (run by me, code and PNGs committed): `chip_6.png` is a 6 px irregular chip, `soft_dot_32.png` a 32 px radial falloff. There are no sourced or generated textures.
-- **No visibility_rect** (CPU node). **No preprocess** (a one-shot on an event).
-- **The root frees itself** when `Dust` emits `finished`.
+The weapon tick runs before the `is_dead` early return in `_physics_process()`, so a shot already committed finishes after death. A dead tank cannot start a new one (`try_fire()` checks `is_dead`).
 
-### Observable rules
+## The two clocks
 
-1. **Fires exactly when it should.** Effect A fires once for every `take_hit` that passes line 34, and never otherwise:
-   - not on scene load;
-   - not when a shell hits a tank;
-   - not when a shell expires without hitting anything (`shell.gd` line 31).
-
-   Four hits on one block give four bursts.
-2. **At the event's place.** It appears at the shell's drawn contact point, within 2 px, rotated to `(-shell.dir).angle()`.
-3. **Retrigger rule: overlap.** Each hit instances a new burst. Bursts never share a node, so a second hit inside 0.7 s neither restarts nor drops the first.
-   - Most bursts alive at once: **4**. YunqiZ plus three enemies can each land at most one shell inside 0.7 s, given their reloads.
-4. **Freed parent.** The shell frees itself right after `take_hit` (`shell.gd` line 51), and the burst must survive that. So the burst is added to `World/FX`, never to the shell or the cover. The cover itself is not freed when it breaks; its shape is disabled (`cover.gd` lines 44–45). Even so, the burst is not parented to it.
-5. **Paused tree.** `World` is `PROCESS_MODE_PAUSABLE` (`main.gd` line 50), so a burst alive at pause freezes and resumes where it was.
-
-### The evidence split
-
-| Rule | Checked by | How |
-|---|---|---|
-| Every setting above | headless config test | `test_cover_hit_burst_config.gd` reads each value back from the loaded scene, by emitter path |
-| 1 fires on every hit, never otherwise | headless state test | the real game loop and real fire input; counts burst instances over load, cover hits, a tank hit and an expired shell |
-| 2 position and rotation | headless state test | burst `global_position` and `rotation` against the shell at contact |
-| 3 overlap | headless state test | two hits inside one lifetime (one from YunqiZ by real input, one from a second shell through `main.gd` `spawn_shell()`) → 2 bursts alive, the first not restarted |
-| 4 freed parent | headless state test | the burst is still in the tree and emitting after the shell is freed |
-| 5 paused | headless state test + eyes | `can_process()` false under pause; the frozen look by eye |
-| Timing phases, layering, change over life | frame strip (fixture) | frames 10, 12, 15, 20, 30, 50 |
-| Contrast and scale | eyes in the running game | on the brick face and the open ground, at 1280 × 720 |
-| Repeats don't look stamped | eyes in the running game | four hits on one wall, and rapid hits from several tanks |
-
-### The frame strip
-
-- **Preview:** `previews/cover_hit_burst_preview.tscn`. A cover block on the real ground tile, camera at in-game scale (zoom 1, 1280 × 720). The burst is placed on the block's face, aimed as a shell from the left would be.
-- **Trigger:** frame 10. When the preview's `retrigger` export is on, it triggers again at frame 16, 0.2 s later, inside one lifetime.
-- **Fixture:** the preview's instance uses a fixed seed if 4.7's CPUParticles2D has `use_fixed_seed`; the effect scene never does.
-- **Capture:** 30 fps, `--quit-after 60`. Read frames **10, 12, 15, 20, 30, 50**:
-
-| Frame | Time after trigger | What it should show |
-|---|---|---|
-| 10 | 0 s | the flash at full brightness; chips just leaving the point |
-| 12 | 0.07 s | the flash fading; chips in a 60° fan back out of the wall, pale |
-| 15 | 0.17 s | chips about 1.5 hull widths out, turning brick red; dust swelling |
-| 20 | 0.33 s | chips almost stopped, about 2 hull widths out, red-brown and smaller |
-| 30 | 0.67 s | the last dust, nearly transparent; chips gone |
-| 50 | 1.33 s | nothing left |
-
-The shell's own `"impact"` spark is not in the preview, because the preview triggers Effect A alone. It is seen together with Effect A in the running game.
-
----
-
-## Effect B — damage smoke
-
-### The job
-
-It tells the player: **"this tank is badly hurt — and how badly."** It works for YunqiZ and for each enemy at a glance, without the health bar. After death the same smoke marks a wreck.
-
-The current smoke (`tank.gd` line 61, `_make_trail(...)`) is a CPUParticles2D with **no texture** (`_make_trail`, lines 68–90). It draws as grey squares scaled 3–6 px, at one fixed density whatever the damage.
-
-- **Job:** a feedback loop that follows a game value.
-- **Game value:** `health / max_health` (`tank.gd` lines 19, 26).
-  - YunqiZ: `max_health` 100.
-  - Enemies: `max_health` 75 (`main.gd` line 85).
-- **Where state changes:**
-  - `take_damage()` lines 163–175 calls `_update_damage_look()`;
-  - `die()` lines 179–192 sets `smoke.emitting = true` on line 187;
-  - `reset_full()` lines 206–214 sets it false on line 213.
-- **Feature Effect A doesn't use:** **turbulence** (process, GPU-only). B also uses a value-driven `amount_ratio`, a real texture on a GPU node, and world-space trailing behind a moving node.
-
-**What changes in `tank.gd`** (presentation lines only):
-- line 35: `var smoke: GPUParticles2D`;
-- line 61: `smoke` becomes an instance of `effects/damage_smoke.tscn` at `TURRET_OFFSET`;
-- `_update_damage_look()` (line 195): also sets `smoke.amount_ratio` from the mapping below;
-- `die()`: also sets `smoke.amount_ratio = 1.0` beside line 187.
-
-No health, damage, invulnerability, timing or `modulate` line changes. `flames` stays as it is.
-
-### The intent block
-
-**Timing phases:**
-
-| Phase | Time | What happens |
-|---|---|---|
-| Start | 0–0.3 s after the threshold hit | first wisps rise from the engine deck |
-| Build | 0.3–1.6 s | the column fills to its full length over one lifetime |
-| Steady | | a continuous, wavering column, denser after each further hit |
-| Stop | ≤ 1.6 s (respawn only) | emission ends; the column already in the air drifts off and fades, never cut off |
-
-**Contrast.** Grey smoke over the ground tile is a value problem: mid-grey on mid-grey.
-- So the smoke is born **darker than the ground** (#4A4A48) and turns **lighter as it thins** (#8A8A86). It reads against the open ground tile (the lightest stretch) by being dark at its base, and against brick cover (the darkest) by being light at its top.
-- Checked by eye, driving a smoking tank over both.
-
-**Scale.**
-- A puff is born about ½ hull width across and grows to about 1.5 hull widths.
-- A standing tank's column is about 2–3 hull lengths tall.
-- A moving tank leaves a trail behind it.
-
-**Change over life.**
-- Alpha rises 0 → 0.7 in the first 15 % of life, then falls to 0.
-- Size grows 0.5 → 2.0.
-- Colour goes dark → light grey.
-
-**Variation.** Turbulence makes each puff waver. Speed varies 20–40 px/s, scale 0.8–1.2, and the angle is random.
-
-**Layering.** One emitter, the smoke column. The ≤ 30 % flames are the existing separate emitter (`tank.gd` line 62).
-
-### The settings
-
-**Node type: GPUParticles2D.** It needs turbulence, which is GPU-only, and `amount_ratio`, which on GPU nodes in 4.2+ changes how many allocated particles emit without restarting the system. Being a GPU node, it is compared on **GPU time**: its headless CPU price is near zero by construction.
-
-| Group | Setting | Value |
-|---|---|---|
-| emission | amount | 48 |
-| | amount_ratio | set by `tank.gd`, 0.25 … 1.0 (mapping below); 1.0 in the scene file |
-| | one_shot | false |
-| | emitting | false in the scene file |
-| | explosiveness | 0.0 |
-| | lifetime | 1.6 s |
-| | preprocess | 0 s (see below) |
-| | emission_shape | sphere, radius 6 px |
-| process | direction / spread | (0, −1) / 20° |
-| | initial_velocity_min / max | 20 / 40 px/s |
-| | gravity | (0, −15) — buoyancy up the screen |
-| | damping_min / max | 5 / 8 |
-| | angle_min / max | 0 / 360 |
-| | scale_min / max | 0.8 / 1.2 |
-| | scale_curve | 0.5 → 2.0 |
-| | color_ramp | #4A4A48 a0 @0 → #4A4A48 a0.7 @0.15 → #8A8A86 a0 @1 |
-| | turbulence_enabled | true |
-| | turbulence_noise_strength | 2.0 |
-| | turbulence_noise_scale | 4.0 |
-| | turbulence_influence_min / max | 0.1 / 0.2 |
-| draw | texture | `soft_dot_32.png` |
-| | material | CanvasItemMaterial, blend MIX |
-| | local_coords | **false** — smoke stays where it was emitted, so a moving tank leaves a trail |
-| | visibility_rect | **set and checked:** Rect2(−200, −220, 400, 420) |
-
-**Why preprocess is 0.** The condition always starts mid-game, on a hit. A preprocessed column would appear fully grown on the frame of the hit. On scene load every tank is at full health, so there is nothing to preprocess.
-
-**Why visibility_rect is set by hand.** With `local_coords` false, the column trails behind a moving tank. YunqiZ moves at 110 px/s (`tank.gd` line 20) and enemies at 70 (`main.gd` line 86). Over one 1.6 s lifetime the oldest smoke can be ≈ 176 px behind the node and ≈ 80 px above it. The rect covers ± 200 px around the node, and I check it by eye at the screen edge.
-
-### Observable rules
-
-1. **Mapping**, with h = health / max_health:
-   - h > 0.6 and alive: `emitting = false`.
-   - 0 < h ≤ 0.6: `emitting = true`, and `amount_ratio = 0.25 + 0.75 × (0.6 − h) / 0.6`. That is 0.25 at 60 %, 0.625 at 30 % and 1.0 at 0 %.
-   - Dead (a wreck): `emitting = true` and `amount_ratio = 1.0`.
-
-   With 25-damage shells (`shell.gd` line 11):
-
-   | Tank | Health after hits | Smoke |
-   |---|---|---|
-   | YunqiZ | 75 | none |
-   | | 50 | ratio 0.375 |
-   | | 25 | ratio 0.6875 |
-   | | dead | 1.0 |
-   | Enemy | 50 | none |
-   | | 25 | ratio ≈ 0.583 |
-   | | dead | 1.0 |
-
-2. **Only `amount_ratio` changes, never `amount`.** `amount` stays 48: changing it would reallocate the buffer and restart the system, so the column would pop on every hit.
-3. **Start.** Emission starts on the hit that takes h to ≤ 0.6, the first frame after `take_damage()` returns.
-4. **Stop.** Emission stops on `reset_full()` (YunqiZ's respawn, `main.gd` line 265). The column already in the air is left to fade. A destroyed enemy is not freed and keeps smoking as a wreck at 1.0, the same as today (line 187).
-5. **Paused tree.** Tanks are under `World` (PAUSABLE), so the smoke freezes in place, stays visible, emits nothing new during the pause, and resumes on unpause.
-6. **Hidden node.** Nothing is drawn. `emitting` and `amount_ratio` still follow health, so the smoke is right the moment it is shown again. Tanks are never hidden in normal play; this rule is checked by setting `visible = false` in the test.
-7. **Scene load.** No tank is smoking on the first frames, because all are at full health.
-
-### The evidence split
-
-| Rule | Checked by | How |
-|---|---|---|
-| Every setting, including turbulence | headless config test | `test_damage_smoke_config.gd` |
-| 1, 2 mapping; `amount` never changes | headless state test | real shells through the real loop bring YunqiZ to 50 and 25 HP; assert `amount_ratio` 0.375 and 0.6875 (±0.001) and `amount` still 48 |
-| 3, 4 start, stop, wreck | headless state test | `emitting` before and after the threshold hit; after `reset_full()`; on a destroyed enemy |
-| 5 paused | headless state test + eyes | `can_process()` false and `emitting` unchanged under `get_tree().paused`; the frozen look by eye |
-| 6 hidden | headless state test + eyes | `visible = false` doesn't change `emitting` or `amount_ratio`; nothing drawn, by eye |
-| 7 scene load | headless state test + eyes | no smoke node emitting after load; the first frames by eye |
-| Column look, waver, density step, stop | frame strip (fixture) | frames below |
-| Contrast, scale, trail while moving, edge of screen | eyes in the running game | drive a smoking YunqiZ over ground and cover, and to the screen edge |
-
-### The frame strip
-
-- **Preview:** `previews/damage_smoke_preview.tscn`. A standing tank on the real ground tile beside a cover block, camera at in-game scale.
-- **Driving the value:** the preview drives h through the same mapping code the tank uses:
-
-| Frame | h | amount_ratio | Event |
-|---|---|---|---|
-| 10 | 0.5 | 0.375 | condition starts |
-| 60 | 0.1 | ≈ 0.94 | heavier damage |
-| 110 | 1.0 | — | condition ends, as on respawn |
-
-- **Capture:** 30 fps, `--quit-after 170`. The preview's instance uses `use_fixed_seed` if 4.7's GPUParticles2D has it. Read frames **10, 25, 58, 90, 112, 140, 165**:
-
-| Frame | What it should show |
-|---|---|
-| 10 | the condition starts: nothing yet, or one faint wisp |
-| 25 | a short, thin column (half a lifetime) |
-| 58 | a full, thin column at steady state (0.375) |
-| 90 | a full, dense column at steady state (0.94); no gap or pop after frame 60 |
-| 112 | just after the stop: the column still all there, nothing new at the base |
-| 140 | the column detached from the tank, thinner, higher |
-| 165 | empty |
-
----
+- `MotionAnim.callback_mode_process` = `AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS`.
+- `FireAnim.callback_mode_process` = `AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS`.
+- No AnimatedSprite2D is used.
+- Gameplay reads the active window on the physics tick: the shell spawns from a physics-tick counter in `_physics_process()`, not from the clip.
+- Largest disagreement: predicted ≤ 1 physics tick (0.0167 s), from whether the AnimationPlayer advances before or after `tank.gd` on the press tick. Measured: <测出来填>
+- No method track is used.
 
 ## Boundaries
 
-**Allowed code changes, and nothing else:**
+Unchanged: collision, movement, input, `reload_time`, the recoil kick, existing tests, `shaders/` (A5, hand-written), the A6 effects, `enemy.gd` AI, every other object. Presentation code may read game state; it never writes it.
 
-| File | Change |
-|---|---|
-| `cover.gd` | line 40 |
-| `main.gd` | one new function, `spawn_cover_burst()` |
-| `tank.gd` | the smoke lines 35, 61, `_update_damage_look()`, and one added line in `die()` |
+Changes this brief makes:
 
-**New files:** `effects/`, `previews/`, `tools/make_particle_textures.gd` and its PNGs, the new tests, the cost script, and `shaders/particles_generated.gdshader` (saved by me in Step 6).
+- `tank.gd` `_ready()`: adds `Suspension` (parent of `hull` and `turret`), `DustMount`/`Dust`, `MotionAnim`, `FireAnim`.
+- `tank.gd`: motion and weapon states; the shell, muzzle FX and fire sound move from the press tick to frame 1 (2 physics ticks later).
+- Enemies get the same clips, because they run `tank.gd`.
 
-**Unchanged:**
-- collision, movement, input, the enemy AI;
-- reload, damage, invulnerability and every timing;
-- cover stages;
-- the shells (`shell.gd` untouched, including its `"impact"` spark);
-- the A5 hit flash and its driver;
-- flames, HUD, audio, pause handling;
-- the existing tests and their expectations;
-- the Assignment 5 shaders in `shaders/`;
-- every source texture;
-- `project.godot`.
+Pins expected to change: any pin that reads the shell or fire sound on the press tick now sees it 2 physics ticks (1/30 s) later. Nothing else.
 
-Presentation code reads game state; it never writes it.
+## Evidence split
 
----
+| Rule | Checked by | How |
+|---|---|---|
+| Every track resolves | read-back | `track_problems()` empty for both players |
+| Key times, step, loop mode, discrete, frame range, seam | read-back | tolerance half a frame period |
+| Callback mode physics, autoplay empty | read-back | asserted on both players |
+| State table | structure test | every clip a state requests exists; transitions driven by `Input.parse_input_event` |
+| Shell on frame 1, interrupts | edge tests | input one tick before, on, after each boundary |
+| Existing behaviour | pins | Step 2 pins before and after |
+| Phases read as distinct | frame strip + my eyes in play | Movie Maker at 30 fps; play at normal speed and `--time-scale 0.25` |
+| Dust seam, registration | my eyes, ≥ 5 wraps; strip of the cycle | |
+| Over dark and light ground | my eyes | darkest and lightest ground the tank can reach |
+
+## Frame strip
+
+- Preview scene: `res://previews/shoot_preview.tscn` — YunqiZ on a representative stretch of the real arena ground, facing right.
+- Capture at 30 fps. Trigger frame N = the frame "fire" is injected on.
+  - N (startup): tank at rest, no shell
+  - N + 1 (active opens): tank fully down and squashed, muzzle flash, shell at the muzzle
+  - N + 2 (recovery begins): squash gone, tank rising, shell clear of the muzzle
+  - N + 5 (end): tank at rest
 
 ## Predicted failures
 
-| # | Failure | Check that catches it |
-|---|---|---|
-| 1 | **Godot 3 names.** `initial_velocity`, `scale_amount_random`, `ParticlesMaterial` load silently and leave defaults. | config tests read every value back; Effect A mutation 1 |
-| 2 | **Default gravity (0, 980) on CPUParticles2D.** The agent omits `gravity`, as `spawn_fx` does today, and chips fall down the screen. | config test reads gravity == (0, 0) per emitter; frames 15–20 show a fan, not a downward streak |
-| 3 | **Freed parent.** The burst is parented to the shell (freed on line 51 right after `take_hit`), so it never appears. | state test rule 4; frame 12 |
-| 4 | **Dropped retrigger.** A single reused one-shot node per cover silently drops the second hit. | state test rule 3: two hits inside 0.7 s → 2 bursts |
-| 5 | **Popping feedback loop.** `tank.gd` sets `amount` instead of `amount_ratio`, and the column vanishes and re-emits on every hit. | state test asserts `amount` stays 48; strip frames 58 → 90 show no gap |
-| 6 | **Visibility rect too small** for world-space smoke behind a moving tank, so the column pops out at the screen edge. | human edge-of-screen check while driving |
-| 7 | **The look the old smoke has today.** Null texture, or ADD set without a CanvasItemMaterial: grey squares, no glow. | config tests: texture not null, material class and blend mode; strip frames 10 (A) and 58 (B) |
-| 8 | **No value contrast.** Red chips on red brick; grey smoke on grey ground. | strips plus the human check over the brick face and the open ground |
-
-## Price predictions and budget
-
-**Instruments:**
-- **Headless CPU:** the cost script, mean ± spread of frame time at 60 fps. It runs an empty-scene control, the game scene with both effects off, Effect A at 4 bursts and Effect B on 4 tanks.
-- **On screen:** the Visual Profiler's GPU time, effect off and then on at its heaviest. Godot has to be on the **NVIDIA GeForce RTX 3060 Laptop GPU**: set it to High performance in Windows Graphics settings, and confirm it in the GPU line Godot prints at startup.
-
-| | Peak particles | Predicted headless CPU (over the game, effects off) | Predicted GPU time (over effect off) | Budget | Compared on |
-|---|---|---|---|---|---|
-| A | 4 bursts × 37 = **148** | +0.05 – 0.15 ms | +0.01 – 0.03 ms | CPU ≤ 0.5 ms **and** GPU ≤ 0.2 ms | both (CPU node) |
-| B | 4 tanks × 48 = **192** | ≈ 0 (≤ 0.02 ms, the CPU's share only) | +0.03 – 0.08 ms | GPU ≤ 0.3 ms | GPU time (GPU node) |
+1. **The agent writes the Godot 3 `loop = true`, so `track_dust` plays once and stops.** The property loads without complaint and `loop_mode` stays `LOOP_NONE`. Caught by the read-back assertion "track_dust loops LINEAR", and confirmed by mutation 2 (flip the cycle's loop mode).
+2. **The dust disappears on light ground.** The dust colour sits between the mud and the broken brick, so on the lightest stretch of the arena it may not separate. Caught by my human check "against the background": drive over the darkest and the lightest ground and look.
+3. **The dip is too small to see in play.** 2 px down and a 4 % squash for one frame may be lost at game size and normal speed. Caught by the frame strip (frame N + 1 against N) and by playing at normal speed and at `--time-scale 0.25`. If it does not read, I change the phase table or the key values in a tuning revision, not the gameplay timing.
 
 ## Answers
 
-**Which node type does each effect use, and which features does it lack?**
-- A is CPUParticles2D. Compared with GPUParticles2D it lacks turbulence, attractors, collision, sub-emitters and trails. A uses none of them.
-- Whether 4.7's CPUParticles2D has `amount_ratio` and `use_fixed_seed` I check in the 4.7 class reference while reviewing CLAUDE.md. It doesn't affect B, which is a GPU node.
-- B is GPUParticles2D with a ParticleProcessMaterial. That has the two things B needs: turbulence and `amount_ratio`.
+*Provenance: Claude explained each concept in chat; I restated questions 1–5 in my own notes (Chinese), and Claude wrote them up in English with question 6. I reviewed every answer and agree with it. See FRICTIONAL.md.*
 
-**With local_coords false, what does A do if its parent moves after the event?**
-Nothing. The particles stay at the impact point in world space. Its parent, `World/FX`, never moves anyway; camera shake moves the camera.
-
-**How many A bursts can be alive at once, and what peak count does that give?**
-Up to **4** under overlap, one per tank inside 0.7 s, so the peak is 148 particles. Normal play is 1–2.
-
-**What will a headless run report as the cost of a GPU effect, and why? What does FPS read with vsync on?**
-- Headless: almost nothing. The dummy renderer runs no GPU particle process and draws nothing; all that remains is the node's CPU bookkeeping.
-- With vsync on, FPS reads **144** (the display's refresh rate) both with B off and with B on, because B costs far less than one 6.9 ms frame. FPS hides the cost; only GPU time shows it.
-
-**What does B show on the first frame after its scene loads? Paused? Hidden?**
-- **In the game:** nothing, with or without preprocess, because no tank is damaged at load.
-- **In a scene where the condition is already true at load** (the preview, if it started at frame 0): without preprocess it starts empty and fills over 1.6 s; with preprocess 1.6 s the column is already full.
-- **Paused:** frozen and visible.
-- **Hidden:** not drawn, but still following health.
-
-**Which settings belong to emission, which to process, and which to draw?**
-- **Emission:** amount, amount_ratio, one_shot, emitting, explosiveness, lifetime, preprocess, emission_shape.
-- **Process:** direction, spread, initial velocity, gravity, damping, angle and angular velocity, scale and the scale curve, color_ramp, hue variation, turbulence.
-- **Draw:** texture, the CanvasItemMaterial and its blend mode, visibility_rect, and the FX layer's z_index.
-- `local_coords` chooses the space the process step runs in, which in turn decides where the particles are drawn.
-
----
+1. **Routes, and what each read-back sees.** Both clips are on AnimationPlayers (`MotionAnim` frame track, `FireAnim` baked cutout rig), so the AnimationPlayer read-back checks every track of both. If the dust used an AnimatedSprite2D instead, it would sit outside any AnimationPlayer: this read-back would never see it, and I would need a separate check against its SpriteFrames.
+2. **Frame track left on continuous updates.** `frame` is an integer, and continuous updates interpolate between keys. The worst place is the wrap: going from the last key (cell 3) back to the first (cell 0) it interpolates through 2 and 1, so the dust flashes backwards once per loop. Discrete updates jump straight to each key's cell.
+3. **Animation.step.** `shoot` is at 30 fps, so its step is 1/30 s, which is also the default. `track_dust` is at 10 fps, so its step is 0.1 s. Left at the default 1/30, its keys would still land (0.1 s is 3 × 1/30), but the editor would snap edits to 1/30 s points that are not dust frames, so a hand-edited key could fall between two frames. The read-back asserts step = 0.1 s.
+4. **The one authority.** `Dust.frame` is written only by `MotionAnim`; `Suspension.position` and `.scale` only by `FireAnim`; `hull` and `turret` only by `tank.gd`. The likeliest second writer is the per-tick position code in `tank.gd` `_physics_process()`: if it were pointed at `Suspension` instead of `hull`/`turret`, two writers would fight over one node and the one that runs last in the tick would win.
+5. **The two clocks.** Both AnimationPlayers advance on the physics tick (`ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS`), and gameplay reads the active window on the physics tick (the shell spawns from a tick counter in `_physics_process()`). The largest disagreement I expect is one physics tick, 1/60 s ≈ 0.017 s, from which of them updates first on the press tick; I will measure it.
+6. **Seam rule for the cycle.** No cell repeats across the wrap, and the gap from the last key to `length` equals one key interval (0.1 s). A duplicated frame (0, 1, 2, 3, 0 with another 0 at the start) would show cell 0 for two intervals, so the dust would hitch once every 0.4 s.
+7. **Imported rig loop mode.** Not applicable: the rig is not imported. Its clip is baked from code into `animations/fire_clips.tres`, so there is no importer to overwrite it on reimport.
 
 ## Revisions
-
-(dated revisions are added below during this assignment)
-### R1 — 2026-11-06, after reviewing the agent's CLAUDE.md (session 1)
-
-The agent's "Unconfirmed" list found four things in this brief. I checked each against the files.
-
-1. **Correction (my error).** Effect A's job says `spawn_fx` never sets gravity, so the default (0, 980) applies. That is wrong: the `"debris"` branch sets `gravity = Vector2(0, 160)` (`main.gd` line 191). The current debris still falls down the screen, at 160 px/s² instead of 980. Effect A's `gravity = (0, 0)` stands. Predicted failure 2 stands too, because an emitter that omits `gravity` gets (0, 980).
-2. **Null shell.** `tests/test_sound_triggers.gd` line 94 calls `cover2.take_hit()` with no shell, and that test must not change.
-   - `cover.gd` line 40 therefore becomes `world.spawn_cover_burst(_shell, global_position + Vector2(0, -8))`.
-   - `main.gd` `spawn_cover_burst(shell, fallback_pos)` uses `shell.global_position + shell.DRAW_OFFSET` and rotation `(-shell.dir).angle()` when `shell` is a valid instance.
-   - Otherwise it uses `fallback_pos` (the old debris point) and rotation `-PI / 2`, so chips go up the screen out of the wall's top face.
-   - Rule 1 still holds: one burst per `take_hit` that passes line 34, with or without a shell. The sound test must still pass 8/8.
-3. **Line references.** YunqiZ's respawn call is `main.gd` line 266, not 265. The cover's rectangle size is `cover.gd` line 28, not 27.
-4. **Gallery.** `scenes/gallery.tscn` builds tanks from `tank.gd` and `enemy.gd` (`gallery.gd` lines 5–6), so its tanks get the new smoke too. I accept that. Nothing else in the gallery changes; I check it once by eye.
-
-### R2 — 2026-11-06, after strip r0 and my first look
-
-1. **Fan width.** In Godot, `spread` is the half-angle on each side of `direction` (pointed out by the agent, session 2). So `spread = 60` gives a 120° fan. I keep 60: in the preview and in r0 frames 12–15 the chips go mainly left in a wide fan, which I judged good. Wherever this brief says "a 60° fan" (Effect A variation; the frame-strip table, frame 12), read "a 120° fan (60° each side)".
-2. **Contrast, corrected.** In r0 the ground tile is dark brown, and the brick cover is the *lighter*, redder surface. So the darkest stretch the effect appears on is the open ground, and the lightest is the brick face — the opposite of what Effect A's contrast paragraph says.
-   - The flash and dust carry the first frames over the brick (frames 10–12).
-   - The chips must read against the dark ground, where their last colour stop, #5A3A2E, is close in value to the ground.
-   - In the preview I judged the chips readable on the ground. I check this again in the running game.
-3. **Flash size.** On frame 10 the visible flash is about 45 px across, about 1.4 hull widths, not 1. The agent predicted 51–102 px for the full sprite; the soft edge makes the visible part smaller. I judged it right, so Flash's scale stays.
-4. **Duration.** In r0 the dust is very faint by frame 30 (0.67 s) and gone by frame 50. My first impression, "one or two seconds", overestimated it.
-
-### R3 — 2026-11-06, Effect A tuning r1 (from Claude's reading of the r0 strip, approved by me)
-
-**Change.** Debris `color_ramp`:
-- was: `#E8D8B0 a1 @0 → #B5523A a1 @0.3 → #5A3A2E a0 @1`
-- now: `#E8D8B0 a1 @0 → #B5523A a1 @0.3 → #8E5040 a1 @0.6 → #8E5040 a0 @1`
-
-The chips' change over life now reads: pale dust-yellow → brick red → dull brick brown, opaque until 0.6 of life, then fade.
-
-**Reason.** In r0 the chips are almost invisible by frame 20 (0.33 s), for two reasons:
-- the last stop, #5A3A2E, is close to the ground's value (R2.2);
-- the fade starts at 0.3 of life, which falls inside the outward phase rather than in dissipation.
-
-**How r1 is checked.** Against the frame-20 row of the strip table, which stands as written. Nothing else in Effect A changes.
-
-**If I reject r1** in the running game, this revision is withdrawn by a later one and the r0 ramp returns.
-
-### R4 — 2026-11-06, Effect B frame-strip numbers (found by the agent, session 5)
-
-1. **A number that contradicts my own formula.** My Effect B frame-strip section gives h = 0.1 → amount_ratio "≈ 0.94". Rule 1's formula gives 0.25 + 0.75 × (0.6 − 0.1) / 0.6 = **0.875**. The formula is the contract. At frame 60 the preview drives h = 0.1, so the ratio is 0.875; read frame 90's row as "(0.875)".
-2. **Above the threshold.** For h > 0.6, `follow()` sets `emitting = false` and leaves `amount_ratio` as it was. Rule 1 only says `emitting = false` there, so I accept this.
-
-### R5 — 2026-11-06, Effect B tuning r1 (driven by what I saw in the running game; Claude's proposal, approved by me)
-
-**What I saw.** In the running game, standing still, the smoke sits on the turret as a lump instead of rising into a column.
-
-**Claude's reading of r0** (session 7a). These settings cannot make the column the intent asks for:
-- speed 20–40 px/s, gravity (0, −15) and damping 5–8 carry a mean puff only about 59 px over its 1.6 s life;
-- the alpha falls from 0.15 of life, so only about the first 35 px are visible;
-- the puffs grow faster than they rise.
-
-So my intent ("a column about 2–3 hull lengths tall") and my own settings disagreed. It also showed that the base colour #4A4A48 has about the value of the dark ground (see R2.2).
-
-**Change.** `initial_velocity_min / max`: was 20 / 40 px/s, now **50 / 80 px/s**. The Variation line is now "speed varies 50–80 px/s". Nothing else in Effect B changes. Particle count, lifetime and cost are unchanged.
-
-**How r1 is checked.** Against the Effect B frame-strip rows, and my verdict in the running game. If I reject r1, this revision is withdrawn by a later one.
