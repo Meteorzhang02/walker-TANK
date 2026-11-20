@@ -14,14 +14,15 @@ No `AGENTS.md` exists in the repository, so there is no `@AGENTS.md` line.
 - **Tank code today (nothing of A7 exists yet):** `tank.gd` `_ready()` (line 42) adds `hull` (lines 54–56) and `turret` (lines 57–60) as direct children, plus `smoke` (line 61) and `flames` (line 64). `_physics_process()` is line 116; it returns on `is_dead` at lines 120–121, then calls `_think()`. It writes `hull.position` and `turret.position` at lines 132–133. `try_fire()` is line 143; it spawns the shell, muzzle FX and fire sound on the press tick (lines 148–151).
 - **Tank classes:** `scripts/player.gd` (YunqiZ) and `scripts/enemy.gd` extend `tank.gd` (line 1 of each). `player.gd` `_think()` (line 7) polls `Input.is_action_pressed("fire")` (line 13) and calls `try_fire()`. `enemy.gd` calls `try_fire()` at line 32. `move_dir` is set in `_think()` (`player.gd` line 11, `enemy.gd` line 27).
 - **Scenes the clips appear in:** `scenes/main.tscn` — `main.gd` builds the player (lines 71–76) and three enemies (lines 80–93) under `World/Actors` (lines 53–56). `scenes/gallery.tscn` — `scripts/gallery.gd` preloads `tank.gd` and `enemy.gd` (lines 5–6) and builds tanks with them. Previews (`previews/`, `effects/`) hold A6 files only.
+- **A5/A6 code on the tank:** `scripts/hit_flash_driver.gd` is attached to YunqiZ only (`main.gd` line 79) and drives the ShaderMaterial shared by `hull` and `turret`. `tank.gd` instances `effects/damage_smoke.tscn` as `smoke` (A6). `smoke` and `flames` stay direct children of the tank; only `hull` and `turret` move under `Suspension`.
 - **Tests, always through the wrapper.** Usage is `scripts/run-test.sh <file-in-tests/> <fps|realtime> [timeout-seconds]` (line 2). It runs `--headless --path . --script res://tests/<file>`. A number adds `--fixed-fps <n>` and logs to `logs/<name>_<n>fps.log`. `realtime` adds no fps flag and logs to `logs/<name>_realtime.log` (lines 8–13). The timeout is the third argument, default 120 s (line 14). The exit status is Godot's, forced to 1 if the log has `SHADER ERROR`, `SCRIPT ERROR` or `Failed loading resource` (line 16). `GODOT=` overrides the exe path (line 7). Git Bash, repo root:
 
 ```bash
 bash scripts/run-test.sh test_hit_flash.gd 30      # also 60, 144   (50 passed)
 bash scripts/run-test.sh test_materials.gd 60                      # 76
 bash scripts/run-test.sh check_tools_parse.gd 60                   # 9
-bash scripts/run-test.sh check_a3_assets.gd 60
-bash scripts/run-test.sh test_sound_triggers.gd 60
+bash scripts/run-test.sh check_a3_assets.gd 60                    # PASS (0 failures)
+bash scripts/run-test.sh test_sound_triggers.gd 60                 # RESULT: 0 failed
 bash scripts/run-test.sh test_cover_hit_burst_config.gd 60         # 128
 bash scripts/run-test.sh test_cover_hit_burst_state.gd 30          # also 60, 144 (82)
 bash scripts/run-test.sh test_damage_smoke_config.gd 60            # 76
@@ -30,7 +31,12 @@ bash scripts/run-test.sh <test>.gd realtime 180                    # realtime mo
 ```
 
 - Baseline: `logs/a7-baseline.txt` (all runs exit 0, counts as above). "N resources still in use at exit" is not a failure. Every test is `extends SceneTree` and `quit(1)` on a failure (e.g. `test_hit_flash.gd` line 60).
-- Headless uses a dummy renderer: it draws nothing. Tests prove node state, properties and timing, never what the screen shows. Looks are human checks (frame strip from a windowed Movie Maker run the human starts).
+
+## Headless facts
+
+- A headless run uses a dummy renderer: it draws nothing. Tests prove node state, properties and timing, never what the screen shows. Every look is a human check recorded in `TEST-REPORT.md`.
+- Headless does report shader parse errors: a deleted semicolon in `shaders/hit_flash.gdshader` printed `SHADER ERROR` and exited 1 (`logs/mutation1_semicolon_60fps.log`).
+- Headless `realtime` runs are paced at about 1/144 s, so frame time prices nothing; GPU render time reads 0 headless (`tests/price_measure.gd`).
 - Headless window is 64×64, so mouse positions need `get_final_transform()`. `process_mode = DISABLED` removes a body from physics; use KEEP_ACTIVE.
 
 ## Current change
@@ -61,7 +67,8 @@ Exactly one node writes each animated property (brief lines 38–45). Never add 
 - Speed is `AnimationPlayer.speed_scale`, never `playback_speed`. Frame length is `Animation.step` and `Animation.length`.
 - Callback clock: `callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS` (brief lines 110–111). Update mode `Animation.UPDATE_DISCRETE` for the frame track.
 - Particle names from A6 still apply: `CPUParticles2D`, `GPUParticles2D`, `ParticleProcessMaterial`, the `_min` / `_max` pairs, never Godot 3 `Particles2D` / `ParticlesMaterial`.
-- Not checked in this build: the property and method names above beyond `AnimationPlayer.callback_mode_process`'s value in the brief; the exact name of the read-back helper `track_problems()`; `autoplay` as a property name. Verify with a probe (like `tests/probe_particle_props.gd`) or say so; do not guess.
+- `track_problems()` is a helper in `tests/test_clip_readback.gd`, taken from the assignment; it is not an engine name.
+- Not yet checked in this build: `AnimationPlayer.autoplay`, `AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS`, `Animation.step`, `value_track_set_update_mode()`. `tests/test_clip_readback.gd` reads each one back; until it passes, say so instead of guessing.
 
 ## Out of scope
 
@@ -73,8 +80,7 @@ Exactly one node writes each animated property (brief lines 38–45). Never add 
 
 ## Unconfirmed
 
-- Whether `smoke` and `flames` (`tank.gd` lines 61–64, children of the tank at `TURRET_OFFSET`) move under `Suspension` or stay outside it. The brief names only `hull` and `turret`.
 - Whether `test_hit_flash.gd` (line 239) and `test_sound_triggers.gd` (lines 32, 36) still pass with the shell and sound two ticks late. The brief expects pin changes (line 127); I did not read those tests in full.
 - The clock disagreement is unmeasured: the brief has a placeholder (line 114).
-- The brief says the weapon tick runs before the `is_dead` return; today the return is at `tank.gd` lines 120–121 and there is no weapon tick.
+- The weapon tick that runs before the `is_dead` return (brief) does not exist yet; it is added in the wiring step. Today the return is at `tank.gd` lines 120–121.
 - `scripts/audio.gd` and the older tests were read only for headers, `quit()` lines and scene loads. Test commands assume Git Bash with GNU `timeout`.
