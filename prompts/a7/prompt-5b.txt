@@ -1,0 +1,34 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md is the contract for this change.
+Your plan from the planning session is the final result in
+prompts/a7/session-5a.jsonl. I approve steps 1 to 8, with these decisions:
+
+1. Add a FIRING guard: try_fire() returns false while _weapon == FIRING,
+   because the brief says a second "fire" during FIRING is ignored.
+   It keeps reload, recoil and fired.emit on the press tick as planned.
+2. tests/test_sound_triggers.gd: make the smallest edit so it matches the
+   brief's predicted change. Wait for the active tick before counting a
+   fire sound, and wait for FIRING to end before the second try_fire().
+   Change nothing else in that file. In your reply, list every changed
+   line and why.
+3. The shell and muzzle FX use muzzle_position() and aim_vec() read on the
+   active tick.
+4. In tests/test_anim_states.gd you may call take_damage() for the hit and
+   death cases, as test_hit_flash.gd does. Moving and firing go through
+   Input.parse_input_event only.
+
+Files you may change: scripts/tank.gd, tests/test_anim_states.gd (new),
+tests/test_sound_triggers.gd (decision 2 only). Do not edit
+tests/test_pins.gd, any clip, the brief, or any file in shaders/.
+
+Run with these commands only:
+bash scripts/run-test.sh test_anim_states.gd 30
+bash scripts/run-test.sh test_anim_states.gd 60
+bash scripts/run-test.sh test_anim_states.gd 144
+bash scripts/run-test.sh test_clip_readback.gd 60
+bash scripts/run-test.sh test_sound_triggers.gd 60
+bash scripts/run-test.sh test_pins.gd 60
+
+test_pins.gd PIN-2 and PIN-4 are predicted to fail by +2 ticks; report
+their measured values and do not change the file. Report the two-clocks
+measurement from step 7 at 30, 60 and 144. Show the real output of every
+run. Do not commit.

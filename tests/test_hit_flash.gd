@@ -236,10 +236,15 @@ func _run() -> void:
 	e0.global_position = p.global_position + Vector2(110, 0)
 	e0.aim_angle = PI
 	e0.reload_left = 0.0
+	# A7: the shell now leaves on e0's own physics tick, 2 ticks after the press, so e0 runs for
+	# this shot. target = null keeps it still (test_pins PIN-6); it is frozen again after the hit.
+	e0.target = null
+	e0.process_mode = Node.PROCESS_MODE_INHERIT
 	_check("enemy try_fire() spawns a shell toward YunqiZ", e0.try_fire())
 	var t0 := _now_t()
 	while events.is_empty() and _now_t() - t0 < 1.0:
 		await process_frame
+	e0.process_mode = Node.PROCESS_MODE_DISABLED
 	_check("the shell hits YunqiZ (damaged emitted, health 75)", events.size() == 1 and p.health == 75)
 	if events.is_empty():
 		await _finish()

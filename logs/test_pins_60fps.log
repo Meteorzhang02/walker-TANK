@@ -4,25 +4,25 @@ INFO  start: player at (150.0, 610.0), reload_left=0.0, move_dir=(0.0, 0.0), fir
 ---- measured sequence (tick relative to the fire press; move ticks are negative) ----
   tick  -40  move_start
   tick  -10  move_stop
-  tick    0  shell
-  tick   48  shell
-  tick   96  shell
-INFO  fire sound ticks: [0, 48, 96]
-INFO  Engine.get_physics_frames at press injection=48, when first shell was seen=50
+  tick    2  shell
+  tick   50  shell
+  tick   98  shell
+INFO  fire sound ticks: [2, 50, 98]
+INFO  Engine.get_physics_frames at press injection=48, when first shell was seen=52
 INFO  nominal reload: 0.8 s * 60 = 48 ticks; arithmetic of the code (float, delta=1/60) gives 48
 ---- pins ----
 PASS  PIN-0 input latency: ticks from injecting move_right (tick 0) to the tick the game acts on it | measured=1 expected=1
 PASS  PIN-0b Input.is_action_pressed is still false right after parse_input_event (buffered) | measured=false expected=false
-PASS  PIN-1 sequence of move_dir changes and shells | measured=[[-40, "move_start"], [-10, "move_stop"], [0, "shell"], [48, "shell"], [96, "shell"]] expected=[[-40, "move_start"], [-10, "move_stop"], [0, "shell"], [48, "shell"], [96, "shell"]]
-PASS  PIN-2 first shell tick vs press [PREDICTED TO CHANGE by A7 brief: +2 ticks] | measured=0 expected=0
+FAIL  PIN-1 sequence of move_dir changes and shells | measured=[[-40, "move_start"], [-10, "move_stop"], [2, "shell"], [50, "shell"], [98, "shell"]] expected=[[-40, "move_start"], [-10, "move_stop"], [0, "shell"], [48, "shell"], [96, "shell"]]
+FAIL  PIN-2 first shell tick vs press [PREDICTED TO CHANGE by A7 brief: +2 ticks] | measured=2 expected=0
 PASS  PIN-3 reload interval, ticks between shell 1 and 2 while fire held | measured=48 expected=48
 PASS  PIN-3b shells during the 120-tick hold | measured=3 expected=3
-PASS  PIN-4 fire sound tick vs press [PREDICTED TO CHANGE by A7 brief: +2 ticks]; observed through audio.count("fire"), no script edited | measured=0 expected=0
+FAIL  PIN-4 fire sound tick vs press [PREDICTED TO CHANGE by A7 brief: +2 ticks]; observed through audio.count("fire"), no script edited | measured=2 expected=0
 PASS  PIN-4b fire sound requests over the run (one per shell) | measured=3 expected=3
 PASS  PIN-5 every shell belongs to the player | measured=true expected=true
 PASS  PIN-6 enemies did not move (target = null) | measured=true expected=true
 PASS  PIN-7 player stayed alive | measured=false expected=false
-RESULT: 11 passed, 0 failed
+RESULT: 8 passed, 3 failed
 WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 3 resources still in use at exit (run with --verbose for details).

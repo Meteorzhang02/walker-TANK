@@ -15,6 +15,14 @@ const RADIUS := 16.6             # collision circle: half the hull width
 const SLOT_TEX := ["right", "down_right", "down", "down_right", "right", "up_right", "up", "up_right"]
 const SLOT_FLIP := [false, false, false, true, true, true, false, false]
 
+enum Motion { IDLE, MOVING }
+enum Weapon { READY, FIRING }
+# Phase table of the `shoot` clip (brief): 30 fps, shell on frame 1, weapon READY again at frame 5.
+const SHOOT_FPS := 30.0
+const SHOOT_ACTIVE_FRAME := 1
+const SHOOT_END_FRAME := 5
+const DUST_BEHIND := 14.0        # display px behind the tank; a guess, human check
+
 @export var team := "player"
 @export var max_health := 100
 @export var speed := 110.0
@@ -35,6 +43,12 @@ var turret: Sprite2D
 var smoke: GPUParticles2D
 var flames: CPUParticles2D
 var _t := 0.0
+# A7 state machine. Only tank.gd writes these three.
+var _motion := Motion.IDLE
+var _weapon := Weapon.READY
+var _fire_ticks := 0             # physics ticks since the press tick (press tick = 0)
+var _shot_pos := Vector2.ZERO    # muzzle position captured on the press tick
+var _shot_dir := Vector2.ZERO    # aim captured on the press tick
 var _hull_tex := {}
 var _turret_tex := {}
 
@@ -146,9 +160,13 @@ func _physics_process(delta: float) -> void:
 	_t += delta
 	reload_left = maxf(0.0, reload_left - delta)
 	invuln_left = maxf(0.0, invuln_left - delta)
+	# Runs before the death return: a shot already committed finishes after death.
+	_weapon_tick()
 	if is_dead:
+		_update_motion()
 		return
 	_think(delta)
+	_update_motion()
 	velocity = move_dir * speed
 	move_and_slide()
 	if move_dir != Vector2.ZERO:
@@ -162,6 +180,43 @@ func _physics_process(delta: float) -> void:
 	turret.position = TURRET_OFFSET + wobble + kick
 
 
+func _ticks_for_frame(frame: int) -> int:
+	return int(round(frame * Engine.physics_ticks_per_second / SHOOT_FPS))
+
+
+## Motion machine: IDLE <-> MOVING. Starts and stops MotionAnim; owns DustMount position/visible.
+func _update_motion() -> void:
+	var moving := not is_dead and move_dir != Vector2.ZERO
+	var mount: Node2D = get_node("DustMount")
+	if moving:
+		var behind := -move_dir.normalized() * DUST_BEHIND
+		mount.position = Vector2(behind.x, behind.y * SIN_E)
+	if moving and _motion == Motion.IDLE:
+		_motion = Motion.MOVING
+		mount.visible = true
+		get_node("MotionAnim").play("track_dust")
+	elif not moving and _motion == Motion.MOVING:
+		_motion = Motion.IDLE
+		mount.visible = false
+		get_node("MotionAnim").stop()
+
+
+## Weapon machine: FIRING -> READY. The shell, muzzle FX and fire sound come out on the active
+## tick (frame 1), read from a tick counter and not from the clip.
+func _weapon_tick() -> void:
+	if _weapon != Weapon.FIRING:
+		return
+	_fire_ticks += 1
+	if _fire_ticks == _ticks_for_frame(SHOOT_ACTIVE_FRAME) and world != null:
+		var pos := _shot_pos
+		world.spawn_shell(self, pos, _shot_dir)
+		world.spawn_fx("muzzle", pos + TURRET_OFFSET)
+		_play_fire_sound()
+		fired.emit(self)
+	if _fire_ticks >= _ticks_for_frame(SHOOT_END_FRAME):
+		_weapon = Weapon.READY
+
+
 ## Overridden by the player (input) and the enemies (AI).
 func _think(_delta: float) -> void:
 	pass
@@ -170,15 +225,15 @@ func _think(_delta: float) -> void:
 ## Fires if the reload timer allows it. The reload check is what stops double triggers:
 ## no shell and no sound while reloading.
 func try_fire() -> bool:
-	if is_dead or reload_left > 0.0 or world == null:
+	if is_dead or _weapon == Weapon.FIRING or reload_left > 0.0 or world == null:
 		return false
 	reload_left = reload_time
 	recoil = 3.0
-	var pos := muzzle_position()
-	world.spawn_shell(self, pos, aim_vec())
-	world.spawn_fx("muzzle", pos + TURRET_OFFSET)
-	_play_fire_sound()
-	fired.emit(self)
+	_weapon = Weapon.FIRING
+	_fire_ticks = 0
+	_shot_pos = muzzle_position()
+	_shot_dir = aim_vec()
+	get_node("FireAnim").play("shoot")
 	return true
 
 

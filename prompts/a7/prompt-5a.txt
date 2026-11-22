@@ -1,0 +1,43 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md is the contract for this change.
+Both clips are set up, the nodes exist in tank.gd _ready(), and
+tests/test_clip_readback.gd and tests/test_pins.gd pass. Do not change any
+clip's keys in this task, and do not edit any file in shaders/.
+
+This is a PLANNING session: read only, edit nothing.
+
+Propose the smallest plan that meets the brief, as numbered steps I can
+approve one at a time:
+- the motion states (IDLE, MOVING) and weapon states (READY, FIRING) in
+  scripts/tank.gd, and where each transition happens;
+- the code that plays each clip: MotionAnim "track_dust" on entering
+  MOVING and stopped on IDLE or death; FireAnim "shoot" from its start on
+  entering FIRING;
+- DustMount position (behind the tank, from move_dir) and visibility,
+  written only by tank.gd;
+- the weapon tick: a physics-tick counter, run BEFORE the is_dead return in
+  _physics_process(), that spawns the shell, muzzle FX and fire sound on
+  the active frame (frame 1 at 30 fps, from Engine.physics_ticks_per_second)
+  and returns to READY at frame 5; derive the tick numbers from the phase
+  table constants, not hard-coded 2 and 10;
+- what stays in try_fire() (the reload check, reload_left, recoil kick)
+  so reload timing does not change;
+- which node is the one authority over each animated node, checked
+  against the brief's table;
+- a structure test tests/test_anim_states.gd that drives the player
+  through main.tscn with Input.parse_input_event only (mind the 1-tick
+  input latency pinned in test_pins.gd), reads current_animation on each
+  AnimationPlayer, and asserts: every clip a state requests exists; each
+  transition in the brief happens; the shell appears on the active tick;
+  a second "fire" during FIRING is ignored; a hit and a death during
+  FIRING do not stop the shot;
+- how to measure the two-clocks disagreement: on which tick FireAnim's
+  current_animation_position first reaches the frame-1 key, against the
+  tick the shell spawns.
+
+Rules: presentation code may read game state, never write it. Do not
+change collision, movement, input, reload_time, the recoil kick, or the
+existing tests and pins. If the brief's authority conflicts with
+something already in the code, say so and stop.
+
+For each step say which brief rule it covers and which rules only a human
+can check. Then stop and wait. Do not edit anything.

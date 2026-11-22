@@ -31,9 +31,13 @@ func _run() -> void:
 	for i in 10:
 		if p.try_fire():
 			shots += 1
+	while p._weapon == p.Weapon.FIRING:  # A7: the fire sound comes on the active tick, not the press
+		await physics_frame
 	_check("10 fire presses in one frame -> 1 shell, 1 fire sound", shots == 1 and a.count("fire") - f0 == 1)
 	p.reload_left = 0.0
 	p.try_fire()
+	while p._weapon == p.Weapon.FIRING:  # A7: wait for the shot to end, then count
+		await physics_frame
 	_check("fire again after reload -> 2nd fire sound", a.count("fire") - f0 == 2)
 
 	# 2. One shell touching the same cover twice gives one hit and one sound.

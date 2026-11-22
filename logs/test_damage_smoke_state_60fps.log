@@ -78,7 +78,7 @@ NOTE  after respawn amount_ratio is 1.0000 (R4.2: left as it was; not asserted)
 PASS  rule 4: YunqiZ's smoke still off 10 frames after the respawn
 PASS  rule 4: the wreck keeps smoking after YunqiZ's respawn (emitting true, ratio 1.0000)
 PASS  rules 1, 7: enemies 1 and 2 untouched, not smoking
-PASS  rule 2: amount 48 and the same smoke node on all 4 tanks for all 428 frames
+PASS  rule 2: amount 48 and the same smoke node on all 4 tanks for all 430 frames
 PASS  health only changed by the shells: YunqiZ [75, 50, 25, 0] (want [75, 50, 25, 0]), enemy 0 [50, 25, 0] (want [50, 25, 0])
 --- G: scenes/gallery.tscn
 PASS  G: gallery loaded with 13 tanks (got 13)
@@ -90,7 +90,3 @@ PASS  G: tank at (370.0, 175.0) (health 0) smoke emitting true, ratio 1.0000 (wa
 PASS  G: tank at (480.0, 175.0) (health 100) smoke emitting false, ratio 1.0000 (want false, -)
 PASS  G: the 8 facing tanks are not smoking
 RESULT: 81 passed, 0 failed
-WARNING: 16 ObjectDB instances were leaked at exit (run with `--verbose` for details).
-   at: cleanup (core/object/object.cpp:2536)
-ERROR: 5 resources still in use at exit (run with --verbose for details).
-   at: clear (core/io/resource.cpp:822)

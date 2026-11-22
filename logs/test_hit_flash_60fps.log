@@ -53,9 +53,9 @@ PASS  rule 2/3 (full fade from retrigger): reaches 0.0 after 0.5000 s game time 
 PASS  rule 2/3 (full fade from retrigger): stays 0.0 for 24 frames after
 PASS  rule 7: enemy sprites still have no material at the end
 PASS  rule 7: hull and turret still share one material
-      frame period 0.01667 s, 397 samples
+      frame period 0.01667 s, 399 samples
 RESULT: 50 passed, 0 failed
-WARNING: 13 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+WARNING: 16 ObjectDB instances were leaked at exit (run with `--verbose` for details).
    at: cleanup (core/object/object.cpp:2536)
 ERROR: 5 resources still in use at exit (run with --verbose for details).
    at: clear (core/io/resource.cpp:822)

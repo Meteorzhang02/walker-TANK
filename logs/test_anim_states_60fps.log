@@ -1,0 +1,65 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+INFO  physics ticks per second = 60, max_fps = 0
+PASS  S1 player and 3 enemies have Suspension, DustMount/Dust, both players with their clip, autoplay empty, idle at start
+PASS  S1b hull and turret are children of Suspension
+INFO    scenario ["move"]: press tick P seen 1 tick(s) after the injection
+PASS  M1 IDLE at rest before the press (every tick before move_dir turns non-zero)
+PASS  M2 MOVING on the same tick move_dir turns non-zero  | motion=2 move_dir=2
+PASS  M3 while MOVING: track_dust playing every tick and dust visible
+PASS  M4 back to IDLE on the same tick move_dir returns to zero (release injected at resume 20)  | motion=22 move_dir=22
+PASS  M5 after release: MotionAnim stopped, dust hidden
+PASS  M6 FireAnim never ran during a pure move
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+PASS  W1 press tick (first FIRING): reload starts on it (0.8 s) and not before; shoot starts on it  | reload first=0 shoot first=0
+PASS  W2 no shell, muzzle FX or fire sound on ticks 0 and 1
+PASS  W3 shell appears on tick 2 and only once  | [2]
+PASS  W4 fire sound appears on tick 2, once  | [2]
+PASS  W5 muzzle FX appears on tick 2  | [2]
+PASS  W6 weapon FIRING through tick 9
+PASS  W7 weapon back to READY on tick 10  | first=10
+PASS  W8 FireAnim plays shoot on ticks 0-8
+PASS  W9 FireAnim finished by tick 11
+PASS  W10 MotionAnim idle and dust hidden the whole time (no movement)
+PASS  W11 no second shell while held through the 48-tick reload (only the held-fire ticks seen)  | [2]
+INFO    scenario ["fire", "force_reload0"]: press tick P seen 1 tick(s) after the injection
+PASS  G1 reload at 0 every tick: shells on ticks [2, 12] only (a press during FIRING is ignored, the second shot starts on READY)  | [2, 12]
+PASS  G2 shoot never restarted during FIRING (position non-decreasing on ticks 0-8)
+PASS  G3 weapon FIRING on every tick 0-19 (back-to-back shots)
+INFO    scenario ["fire", "move"]: press tick P seen 1 tick(s) after the injection
+PASS  F1 firing while driving: track_dust keeps playing and the dust stays visible
+PASS  F2 shell still on tick 2 while moving  | [2]
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+PASS  H-startup hit on tick 1: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[2] ready=10
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+PASS  D-startup death on tick 1: shell still on tick 2 (once), sound once, FIRING to tick 9, READY tick 10  | dead=true shells=[2] sounds=[2] ready=10
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+PASS  H-active hit on tick 2: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[2] ready=10
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+PASS  D-active death on tick 2: shell still on tick 2 (once), sound once, FIRING to tick 9, READY tick 10  | dead=true shells=[2] sounds=[2] ready=10
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+PASS  H-recovery hit on tick 5: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[2] ready=10
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+PASS  D-recovery death on tick 5: shell still on tick 2 (once), sound once, FIRING to tick 9, READY tick 10  | dead=true shells=[2] sounds=[2] ready=10
+INFO    scenario ["move"]: press tick P seen 1 tick(s) after the injection
+PASS  X1 before the kill: MOVING, dust visible, track_dust playing
+PASS  X2 on the tick of death: IDLE, dust hidden, MotionAnim stopped, stays so (move_right still held)
+INFO  two-clocks: FireAnim.current_animation_position after each tick, press tick = rel 0; frame 1 = 0.0333 s
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+INFO  run 0: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+INFO  run 1: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+INFO  run 2: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+INFO  run 3: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
+INFO    scenario ["fire"]: press tick P seen 1 tick(s) after the injection
+INFO  run 4: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
+INFO  CLOCKS physics_ticks_per_second=60: largest |shell tick - animation frame-1 tick| over 5 runs = 1 tick(s) = 0.0167 s; per run [-1, -1, -1, -1, -1]
+PASS  C1 two-clocks disagreement <= 1 physics tick (brief prediction)  | worst=1
+PASS  C2 the same number in every run  | [-1, -1, -1, -1, -1]
+RESULT: 34 passed, 0 failed
+WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 3 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
