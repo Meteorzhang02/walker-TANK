@@ -1,0 +1,42 @@
+[typecheck] wrote D:\CSYE7270\assignment2\walker-TANK\youtube\claude-liam-walker-tank-a7-animation\TYPECHECK.md
+[typecheck] §8.10 B00: SKIP
+[typecheck] §8.10 B01: SKIP
+[typecheck] §8.10 B02: SKIP
+[typecheck] §8.10 B03: SKIP
+[typecheck] §8.10 B04: SKIP
+[typecheck] §8.10 B05: SKIP
+[typecheck] §8.10 B06: SKIP
+[typecheck] §8.10 B07: SKIP
+[typecheck] §8.10 B08: SKIP
+[typecheck] §8.10 B09: SKIP
+[typecheck] §8.10 B10: SKIP
+[typecheck] §8.10 B11: SKIP
+[typecheck] §8.10 B12: SKIP
+[typecheck] §8.10 B13: SKIP
+[typecheck] §8.10 B14: SKIP
+[typecheck] §8.10 B15: 0.26
+[typecheck] §8.10 B16: SKIP
+[typecheck] §8.10 B17: SKIP
+[typecheck] GATE T: PASS
+[art] compiled B00  VIDEO     8.2s  ← B00.mp4
+[art] compiled B01  VIDEO     8.9s  ← B01.mp4
+[art] compiled B02  VIDEO    13.6s  ← B02.mp4
+[art] compiled B03  VIDEO    10.4s  ← B03.mp4
+[art] compiled B04  VIDEO    12.5s  ← B04.mp4
+[art] compiled B05  VIDEO    15.6s  ← B05.mp4
+[art] compiled B06  VIDEO    16.1s  ← B06.mp4
+[art] compiled B07  VIDEO    12.3s  ← B07.mp4
+[art] compiled B08  VIDEO    11.2s  ← B08.mp4
+[art] compiled B09  VIDEO    13.3s  ← B09.mp4
+[art] compiled B10  VIDEO    10.7s  ← B10.mp4
+[art] compiled B11  VIDEO     7.2s  ← B11.mp4
+[art] compiled B12  VIDEO    17.0s  ← B12.mp4
+[art] compiled B13  VIDEO    19.1s  ← B13.mp4
+[art] compiled B14  VIDEO    16.4s  ← B14.mp4
+[art] compiled B15  VIDEO    22.3s  ← B15.mp4
+[art] compiled B16  VIDEO    10.5s  ← B16.mp4
+[art] compiled B17  VIDEO     5.4s  ← B17.mp4
+[art] motion histogram: graphic:13  video:5
+[art] build stamp → beat_sheet.json (18/18 filled)
+[art] wrote D:\CSYE7270\assignment2\walker-TANK\youtube\claude-liam-walker-tank-a7-animation\exports\landscape\claude-liam-walker-tank-a7-animation.mp4  (230.9s, audio: per-beat timeline (source audio preserved), drawtext: no — PIL overlays)
+[art] slots: 18/18 filled — B00:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:VIDEO B05:VIDEO B06:VIDEO B07:VIDEO B08:VIDEO B09:VIDEO B10:VIDEO B11:VIDEO B12:VIDEO B13:VIDEO B14:VIDEO B15:VIDEO B16:VIDEO B17:VIDEO

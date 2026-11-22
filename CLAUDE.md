@@ -38,6 +38,11 @@ bash scripts/run-test.sh <test>.gd realtime 180                    # realtime mo
 - Headless does report shader parse errors: a deleted semicolon in `shaders/hit_flash.gdshader` printed `SHADER ERROR` and exited 1 (`logs/mutation1_semicolon_60fps.log`).
 - Headless `realtime` runs are paced at about 1/144 s, so frame time prices nothing; GPU render time reads 0 headless (`tests/price_measure.gd`).
 - Headless window is 64×64, so mouse positions need `get_final_transform()`. `process_mode = DISABLED` removes a body from physics; use KEEP_ACTIVE.
+- A headless run advances clips and reads their structure (tracks, keys, `step`, `loop_mode`, `current_animation`); it draws nothing, so it never shows whether motion reads.
+- Key times are saved as 32-bit floats (`0.033333335` in `animations/fire_clips.tres`): compare with half a frame period, never `==`.
+- `value_track_get_update_mode()` is asked only of value tracks (`tests/test_clip_readback.gd`).
+- `Input.parse_input_event` is buffered: the game sees an injected action 1 tick later at 60/144 and 2 ticks later at `--fixed-fps 30` (`tests/test_pins.gd` PIN-0, `tests/test_anim_states.gd`).
+- Frame strips come from a windowed Movie Maker run of `previews/shoot_preview.tscn`, which I start; it moves the real mouse.
 
 ## Current change
 

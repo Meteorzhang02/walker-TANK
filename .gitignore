@@ -17,3 +17,15 @@ youtube/**/.remotion-*/
 *.blend1
 .claude/settings.local.json
 docs/a5/sessions/session-6.jsonl
+
+# A7: raw capture sequences and film build media stay out of Git
+captures/shoot/
+captures/shoot_v2/
+captures/shoot_v3/
+youtube/*/exports/
+youtube/*/capture/
+youtube/*/_scratch/
+youtube/*/media/
+youtube/*/node_modules/
+*.mp4
+*.mp3

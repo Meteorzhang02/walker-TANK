@@ -264,3 +264,22 @@ Music and sound are also toggled with the buttons at the top right.
 ## Documents
 
 [CONCEPT](CONCEPT.md) · [STORYBOARD](STORYBOARD.md) · [CHARACTER-SHEET](CHARACTER-SHEET.md) · [CHANGE-BRIEF](CHANGE-BRIEF.md) · [ASSET-LOG](ASSET-LOG.md) · [TEST-REPORT](docs/a2/TEST-REPORT.md) · [SOURCES](SOURCES.md) · [FRICTIONAL](FRICTIONAL.md)
+
+## Assignment 7 — animation
+
+- **Added:** two animation clips on every tank, each driven by `scripts/tank.gd`'s state machine.
+  - `track_dust`, the **cycle**: a 4-cell dust sheet (`assets/game/fx/track_dust_sheet.png`, made by `tools/make_dust_sheet.gd`) on a Sprite2D frame track in `animations/motion_clips.tres`, played by `MotionAnim` while the tank moves; 10 fps, looping.
+  - `shoot`, the **committing action**: a cutout rig (`Suspension`, the new parent of hull and turret) baked by `tools/bake_tank_clips.gd` into `animations/fire_clips.tres`, played by `FireAnim` on each shot; 30 fps, startup 1 / active 1 / recovery 3 frames. The shell, muzzle flash and fire sound now come on frame 1 (2 physics ticks after the press), with the aim captured on the press.
+- **Preview:** `previews/shoot_preview.tscn` (4× zoom, scripted input) for Movie Maker frame strips.
+- **Run:** open the project in Godot 4.7.2 and press F5, or `"$GODOT" --path .`. Controls are unchanged (move with the movement keys, aim with the mouse, fire with Space).
+- **Tests (Git Bash, repository root):** `bash scripts/run-test.sh <test> <fps>` for `test_clip_readback.gd 60`, `test_anim_states.gd 30|60|144`, `test_anim_edges.gd 30|60|144`, `test_pins.gd 60`, and every earlier suite in its mode (CLAUDE.md). Results: `TEST-REPORT.md`; tuning: `TUNING.md`.
+- **Known limitations:** with the reload forced to 0 (tests only), a shot starting as the previous one ends does not replay `shoot`; unreachable in play (reload 48 ticks, clip 10). The shell leaves 1 physics tick before the clip reaches its frame-1 dip (not visible at 30 fps). Interrupts per phase are covered by the edge tests and the film's scripted captures, not by hand-timed play.
+
+### Film (A7)
+
+- **Watch:** [Google Drive](https://drive.google.com/file/d/19WqKPNIB_HFk-KyG_Up_NBsERS6Orczf/view?usp=sharing) — `claude-liam-walker-tank-a7-animation.mp4`
+- **Length / size:** 3:51 (230.87 s), 3840×2160 landscape, 30 fps, 40,340,374 bytes
+- **SHA-256:** `11ec29ec023f1a55cd9971c324626f799d5395058627cfe2d8bac223bdaa026a`
+- **Revision shown:** `4f88f1b`. Later commits add documentation and film records only.
+- Records (no media): `youtube/claude-liam-walker-tank-a7-animation/`; prompt: `prompts/a7/film-prompt.txt`.
+- **My check:** I watched the whole final film and listened to the narration: "视频没有问题" (the video has no problems).

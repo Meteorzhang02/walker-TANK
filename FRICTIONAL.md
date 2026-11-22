@@ -533,3 +533,17 @@ How the design went, in order. **Retrospective note:** this log was put together
 - **Got:** a 4K film. Its own QC also pointed out that my committed ASSET-LOG was out of date (missing the environment rows), the HUD text has low contrast, and the mute and restart keys are not shown. I updated the documents afterwards; the film shows the commit it was built from.
 - **Human / Claude / model:** Claude Code built the film end to end. I supplied the project and the requirements, made the battery, memory and toolkit decisions above, and watched and listened to the final film myself before accepting it. I watched and listened to the whole film and found no problems.
 - **Trace:** `youtube/claude-liam-walker-tank-gamedev/` (BUILD-PROMPT, beat sheet, evidence, QC files).
+
+## Assignment 7 — animation
+
+- **Login and account.** Step 1's first session failed before any work (`OAuth session expired`); I logged in again and reran it as session-1b. The first Step 5 run hit an individual spend limit after 22 turns because I was on the wrong account; I switched to my Northeastern account and reran the same prompt, which overwrote that log, and the rerun picked up the half-finished edits.
+- **Permissions.** Several sessions had a Bash command refused because it did not match the allowed pattern; in Step 3 that meant the agent ran no tests and wrote an unrequested `logs/_run_all.sh`, which I deleted and ran the suites myself.
+- **The agent did not run the suites it called safe.** Its plan said `test_hit_flash` and `test_cover_hit_burst_state` would survive; my full run found both failing. Fixes in TEST-REPORT.md.
+- **A suggestion from Claude chat was wrong.** Reading the aim on frame 1 let the enemy AI re-aim during startup; reversed to capture the aim on the press tick.
+- **Input latency.** `Input.parse_input_event` is buffered: 1 tick at 60/144, 2 ticks at `--fixed-fps 30`. The first pin run failed 4 of 10 and the first 30 fps state run failed 20 of 34 until the tests took the press tick from the game.
+- **Floats and defaults.** Saved key times are 32-bit floats (`0.033333335`); `step` and `loop_mode` at their defaults are not written to the `.tres` at all.
+- **A check that checked nothing.** I asked for `check_tools_parse.gd` to check the preview; it only loads three fixed tool scripts, and the agent said so.
+- **My own quick answers.** I first said the dust was visible and the squash slight; looking again, the dust was not visible and the squash was clear. TUNING.md records both turns.
+- **The dust fix nearly missed the film.** I launched the film at `392d1c4` before committing `DUST_BEHIND = 34`; `git status` showed the uncommitted file, I committed it and told the running film to switch to `4f88f1b` and redo its captures. Only one capture had started, and it had failed.
+- **Film memory.** The 4K export peaked at 8.2 GB for ffmpeg, free RAM fell to 16 MB for a few seconds, and it still finished.
+- **Changed games since Assignment 2:** no.
