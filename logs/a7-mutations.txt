@@ -114,3 +114,19 @@ FAIL  PIN-2 first shell tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks
 FAIL  PIN-4 fire sound tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks]; observed through audio.count("fire"), no script edited | measured=4 expected=2
 RESULT: 8 passed, 3 failed
 VERDICT: caught
+======== M5: OFFICIAL 1: track subname renamed (property frame -> frames)
+file: animations/motion_clips.tres | lines changed: 1 | control exit=0 | mutated exit=1
+-tracks/0/path = NodePath("DustMount/Dust:frame")
++tracks/0/path = NodePath("DustMount/Dust:frames")
+FAIL  MotionAnim: every track resolves (1 problems)
+readback: 48 passed, 1 failed
+======== M6: OFFICIAL 3: last key set to cell 4 = hframes * vframes, past the sheet
+file: animations/motion_clips.tres | lines changed: 1 | control exit=0 | mutated exit=1
+-"values": [0, 1, 2, 3]
++"values": [0, 1, 2, 4]
+FAIL  track_dust key 3 = cell 3
+FAIL  track_dust key 3 inside the sheet
+readback: 47 passed, 2 failed
+======== M7: OFFICIAL 4: rig from an empty cache (fresh worktree: no .godot, --import, read-back). Expected to PASS: the rig is baked to a committed .tres, no importer holds its loop mode
+file:  | lines changed: 0 | control exit=0 | mutated exit=0
+readback: 49 passed, 0 failed
