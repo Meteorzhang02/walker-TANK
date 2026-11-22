@@ -16,6 +16,9 @@ const TAIL_TICKS := 12
 # on tick i+1 (measured, PIN-0). "Press tick" below means the tick the game first sees the press,
 # i.e. FIRE_TICK + INPUT_LATENCY, which is the tick try_fire() runs on.
 const INPUT_LATENCY := 1
+# A7 re-pin: the brief's phase table puts the shell, muzzle FX and fire sound on frame 1 at
+# 30 fps = 2 physics ticks at 60 Hz. Before A7 this was 0 (the first pins commit).
+const SHOT_DELAY_TICKS := 2
 
 var passed := 0
 var failed := 0
@@ -151,18 +154,18 @@ func _run() -> void:
 	var expected_events := [
 		[-FIRE_TICK, "move_start"],
 		[-(FIRE_TICK - MOVE_TICKS), "move_stop"],
-		[0, "shell"],
-		[expected_reload, "shell"],
-		[2 * expected_reload, "shell"],
+		[SHOT_DELAY_TICKS, "shell"],
+		[SHOT_DELAY_TICKS + expected_reload, "shell"],
+		[SHOT_DELAY_TICKS + 2 * expected_reload, "shell"],
 	]
 	_pin("PIN-1 sequence of move_dir changes and shells", str(events), str(expected_events))
-	_pin("PIN-2 first shell tick vs press [PREDICTED TO CHANGE by A7 brief: +2 ticks]",
-		shell_ticks[0] if shell_ticks.size() > 0 else -999, 0)
+	_pin("PIN-2 first shell tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks]",
+		shell_ticks[0] if shell_ticks.size() > 0 else -999, SHOT_DELAY_TICKS)
 	var interval: int = (shell_ticks[1] - shell_ticks[0]) if shell_ticks.size() > 1 else -999
 	_pin("PIN-3 reload interval, ticks between shell 1 and 2 while fire held", interval, expected_reload)
 	_pin("PIN-3b shells during the 120-tick hold", shell_ticks.size(), 3)
-	_pin("PIN-4 fire sound tick vs press [PREDICTED TO CHANGE by A7 brief: +2 ticks]; observed through audio.count(\"fire\"), no script edited",
-		sound_ticks[0] if sound_ticks.size() > 0 else -999, 0)
+	_pin("PIN-4 fire sound tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks]; observed through audio.count(\"fire\"), no script edited",
+		sound_ticks[0] if sound_ticks.size() > 0 else -999, SHOT_DELAY_TICKS)
 	_pin("PIN-4b fire sound requests over the run (one per shell)", sound_ticks.size(), shell_ticks.size())
 	_pin("PIN-5 every shell belongs to the player", all_from_player, true)
 	var enemies_still := true
