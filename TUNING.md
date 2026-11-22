@@ -22,4 +22,4 @@
 
 **Prediction, written before the change:** pale puffs appear just behind the rear of the hull in every frame of the dust strip (left of the hull while driving right), and in play I can see the dust at normal speed. Every test passes unchanged.
 
-**Result:** <after v3>
+**Result (v3, `captures/dust_strip_v3.png`):** my look: much more obvious; pale puffs sit just behind the rear of the hull in all 6 frames and change from frame to frame, and in play I can see the dust at normal speed. As predicted. I then drove in all 8 facings (right, left, up, down and the four diagonals): the dust is behind the rear of the hull in every one. All tests unchanged: readback 49/0, anim_states 34/0, pins 11/0.

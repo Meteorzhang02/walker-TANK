@@ -21,7 +21,7 @@ enum Weapon { READY, FIRING }
 const SHOOT_FPS := 30.0
 const SHOOT_ACTIVE_FRAME := 1
 const SHOOT_END_FRAME := 5
-const DUST_BEHIND := 14.0        # display px behind the tank; a guess, human check
+const DUST_BEHIND := 34.0        # display px behind the tank; a guess, human check
 
 @export var team := "player"
 @export var max_health := 100
