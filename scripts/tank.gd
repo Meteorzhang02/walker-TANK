@@ -78,6 +78,7 @@ func _ready() -> void:
 	dust.hframes = 4
 	dust.vframes = 1
 	dust.frame = 0
+	dust.scale = Vector2(2, 2)   # TUNING revision 1: set once, not animated
 	dust_mount.add_child(dust)
 	var suspension := Node2D.new()
 	suspension.name = "Suspension"

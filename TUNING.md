@@ -12,4 +12,14 @@
 
 **The shot:** on a second, careful look at strip v1 the squash on N+1 reads clearly, so `shoot` is not changed.
 
-**Result:** <after v2>
+**Result (v2, `captures/dust_strip_v2.png`):** my look: not very obvious, but I think I can see it. Claude then measured the strip: no pale-sand pixel in any of the 6 frames (only a few hull highlights), while the ground moves between frames, so the tank is driving and the clip is playing. The colour and size change did not fix it. Revision 2 tests why.
+
+## Revision 2 — `track_dust` moved out from under the hull (2026-11-21)
+
+**Cause, from the v2 measurement:** `DUST_BEHIND` is 14 px (the agent's guess, marked as a human check). The hull is about 50 px long at game size, so its rear is about 25 px behind the centre. `DustMount` is drawn before `Suspension`, under the hull, so dust centred 14 px back sits entirely under the hull.
+
+**Change:** `scripts/tank.gd` `DUST_BEHIND` 14.0 → 34.0, so the dust's centre is about 9 px behind the rear of the hull and its front edge tucks just under the tracks. Colour and size stay as revision 1.
+
+**Prediction, written before the change:** pale puffs appear just behind the rear of the hull in every frame of the dust strip (left of the hull while driving right), and in play I can see the dust at normal speed. Every test passes unchanged.
+
+**Result:** <after v3>

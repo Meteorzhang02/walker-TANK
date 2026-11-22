@@ -8,7 +8,7 @@ extends SceneTree
 const OUT := "res://assets/game/fx/track_dust_sheet.png"
 const CELL := 16
 const FRAMES := 4
-const DUST := Color(0.48, 0.42, 0.34)   # muddy brown, between ground and broken brick
+const DUST := Color(0.86, 0.80, 0.66)   # muddy brown, between ground and broken brick
 # Where each puff is born inside the cell, and which way it drifts (cell px).
 const BIRTH: Array[Vector2] = [Vector2(4, 12), Vector2(9, 13), Vector2(12, 11), Vector2(7, 10)]
 const DRIFT := Vector2(0.5, -1.5)
@@ -27,7 +27,7 @@ func _init() -> void:
 					var r := 1.5 + life * 3.5
 					var d := Vector2(x + 0.5, y + 0.5).distance_to(c)
 					if d < r:
-						a = maxf(a, (1.0 - d / r) * 0.85 * (1.0 - life))
+						a = maxf(a, (1.0 - d / r) * 1.0 * (1.0 - life))
 				if a > 0.0:
 					img.set_pixel(f * CELL + x, y, Color(DUST.r, DUST.g, DUST.b, a))
 	DirAccess.make_dir_recursive_absolute("res://assets/game/fx")
