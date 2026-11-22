@@ -1,0 +1,25 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md is the contract (see "Frame strip").
+
+Create previews/shoot_preview.tscn and previews/shoot_preview.gd, and change
+no other file. The preview is for a windowed Movie Maker capture at 30 fps
+that I run myself; you do not run it.
+
+The scene instances res://scenes/main.tscn as a child and drives it:
+- Every enemy gets target = null and stays in physics, as in test_pins.gd,
+  so none moves or fires.
+- YunqiZ stands still on a representative stretch of the real arena ground,
+  facing right (aim to the right), away from cover.
+- Zoom the view 4x on YunqiZ for this preview only (set the main camera's
+  zoom and offset from the preview script; do not edit main.gd).
+- On rendered frame 30 (counted with Engine.get_frames_drawn() from the
+  preview's first frame), press "fire" through Input.action_press for one
+  frame, then release. Print one line: "TRIGGER frame N" with the exact
+  frame number.
+- From frame 60, drive right with "move_right" for 40 frames, then release,
+  so the same capture also shows the dust cycle. Print "MOVE frames A-B".
+- Quit on frame 110.
+
+Then run only this check, which parses the scene without a window:
+bash scripts/run-test.sh check_tools_parse.gd 60
+and show the output. Give me the exact Movie Maker command to run it,
+writing PNG frames to captures/shoot/ at --fixed-fps 30. Do not commit.
