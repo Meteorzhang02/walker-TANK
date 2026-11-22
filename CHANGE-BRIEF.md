@@ -168,3 +168,7 @@ Pins expected to change: any pin that reads the shell or fire sound on the press
 7. **Imported rig loop mode.** Not applicable: the rig is not imported. Its clip is baked from code into `animations/fire_clips.tres`, so there is no importer to overwrite it on reimport.
 
 ## Revisions
+
+- **2026-11-21 — two clocks measured.** Shell on P+2; `FireAnim` first reaches the frame-1 key on P+3 (position 0.0000, 0.0000, 0.0167, 0.0333 on P+0..P+3). Largest disagreement 1 physics tick (0.0167 s), the same at `--fixed-fps` 30, 60 and 144 and over 5 runs each (`tests/test_anim_states.gd`, check C1). Within the prediction. The shell leaves one tick before the dip shows.
+- **2026-11-21 — shot captured on the press tick.** The muzzle position and aim are read on the press tick and the shell uses them on frame 1, so the shell goes where the tank aimed when "fire" was pressed. `fired` is now emitted on frame 1 with the shell, not on the press. Aiming during startup no longer changes the shot. Found by `test_hit_flash.gd` (the enemy AI re-aimed during startup) and `test_cover_hit_burst_state.gd` (`fired` arrived before its shell).
+- **2026-11-21 — FIRING guard.** `try_fire()` returns false while the weapon is `FIRING`, so a second "fire" in startup, active or recovery is ignored even with the reload at 0 (`test_anim_states.gd` G1 sets `reload_left = 0.0` each tick to reach it; the test writes state only there).
