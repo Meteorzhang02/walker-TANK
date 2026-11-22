@@ -1,0 +1,37 @@
+Please read skills/make/godot-gamedev/SKILL.md and every file it tells you to read, then make the film with:
+
+godot-gamedev walker /d/CSYE7270/assignment2/walker-TANK
+
+LIMITS (firm, you are in auto mode and I am not watching):
+- Write only inside /d/CSYE7270/brutalist.art and the NEW folder walker-TANK/youtube/claude-liam-walker-tank-a7-animation/. Do not touch earlier film folders or any other file in walker-TANK.
+- Capture from a git archive copy of revision 392d1c4, never from the working tree. Do not run git add/commit/push/checkout/reset/stash in walker-TANK. Do not push the toolkit. Do not publish anywhere.
+- If you need to edit a toolkit file, write why in BUILD-LOG.md and keep the edit minimal.
+- Do not stop to ask me before the final render: render, run the skill's QC, and finish.
+- Machine: Windows 11, Chinese locale, Git Bash, PYTHONUTF8=1 set; python3 may need a shim to python. Earlier exports were killed by low memory, once by an orphaned ffmpeg holding 8 GB: check for leftover ffmpeg first, run the final export in the foreground and watch memory.
+- Godot console exe: /d/CSYE7270/Godot_v4.7.2-stable_win64.exe/Godot_v4.7.2-stable_win64_console.exe
+
+DEADLINE: due tomorrow. SHORT and plain, about 3-4 minutes. Correctness over polish. Label every preview-scene capture FIXTURE, every scripted-input capture "scripted input", every held frame and reconstructed editor view as such. Never show a headless log as the visible result.
+
+This is my CSYE7270 Assignment 7 explainer (animation) for walker-TANK, a 2D top-down tank game, Godot 4.7.2, Forward+. Revision shown: 392d1c4; say it on screen. The film must:
+
+1. Identify the game and both clips:
+   - track_dust, the CYCLE: Sprite2D frame track on AnimationPlayer MotionAnim, animations/motion_clips.tres. 4 cells at 10 fps, LOOP_LINEAR, discrete, step 0.1 s, keys 0/0.1/0.2/0.3, length 0.4 s.
+   - shoot, the COMMITTING action: cutout rig baked from code (tools/bake_tank_clips.gd -> animations/fire_clips.tres) on AnimationPlayer FireAnim. Suspension (Node2D, parent of hull and turret) dips 2 px and squashes on frame 1. 30 fps, step 1/30, LOOP_NONE.
+2. Answer the four questions, each pointing at a line of my own files:
+   - What a clip is: an Animation resource of keyed tracks (the .tres files above).
+   - One authority: CHANGE-BRIEF.md "One authority per animated node" table. Dust.frame only MotionAnim; Suspension only FireAnim; hull/turret position only tank.gd, which is why Suspension was added above them.
+   - The two clocks: both AnimationPlayers use ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS; the shell comes from a physics-tick counter in tank.gd _weapon_tick(). Measured: shell on P+2, clip reaches frame 1 on P+3, 1 tick = 0.0167 s (tests/test_anim_states.gd check C1; CHANGE-BRIEF.md Revisions).
+   - Feel in frames: the phase table, startup 1 / active 1 / recovery 3 frames at 30 fps; startup is 1 frame because I wanted firing crisp.
+3. Show the sheet assets/game/fx/track_dust_sheet.png (64x16, hframes 4, vframes 1) and the frame track that reads it.
+4. Show the phase table beside the baked key times, and the frame strip captures/shoot_strip_v1.png (FIXTURE) at each boundary: dip and squash peak on N+1 with the shell and muzzle flash, back at rest by N+5.
+5. Show the state machine in real play (scripted input, labelled): dust while driving and gone when stopped; firing; and an interrupt in each phase of shoot: a hit and a death in startup, active and recovery do not stop the shot; a second "fire" during FIRING is ignored.
+6. Show what the read-backs proved: test_clip_readback 49 checks; test_anim_states 34 checks at 30/60/144; pins 11 checks, where PIN-1/2/4 were re-pinned +2 ticks (the only pins that changed, as the brief predicted). The assignment's mutations, each in a git worktree: subname frame->frames caught; loop mode flipped caught; key on cell 4 caught; empty-cache reimport passed as expected because the rig is a baked .tres with no importer. Extra: continuous frame track caught; shell moved to frame 2 caught. Blind spot: check C1 compares |shell - clip| only, so the sign flip passed. No headless run can show whether the motion reads (logs/a7-mutations.txt, TEST-REPORT.md if present).
+7. State:
+   - Agent mistakes I caught: the planning agent said test_hit_flash and test_cover_hit_burst_state would survive and did not run them; my full run found both failing, fixed by emitting fired with the shell, capturing aim on the press tick, and letting the frozen enemy run in that test. The agent wrote an unrequested logs/_run_all.sh (deleted). Its DUST_BEHIND guess of 14 px hid the dust under the hull. It ran check_tools_parse to "check" the preview, but that test never loads it.
+   - Strip readings: Claude measured the v1 squash as about 5 % and slight; on a careful look I judged it clearly visible and kept it. For the dust I said v2 was faintly visible; Claude found no dust pixels; v3 (DUST_BEHIND 34) fixed it (TUNING.md revisions 1 and 2, captures/dust_strip_v1..v3.png).
+   - Uncertain: the dust in all 8 facings is not yet checked by eye. Next step: drive in all 8 facings and adjust DUST_BEHIND per facing if needed.
+   - Contributions: I made the design decisions, ran every test and capture, and did every human check; Claude Code wrote CLAUDE.md, the pins, the node setup, the wiring and the preview; Claude chat wrote the sheet generator, the bake tool, the read-back and the mutation and fix scripts, and helped me word the brief.
+   - Sheet source and licence: generated by code (tools/make_dust_sheet.gd), my own work, no third-party art.
+   - Revision shown: 392d1c4.
+
+Use the Walker opening and summary, then Verdict -> Your Turn -> regular outro. Follow the skill's native 4K landscape rendering and QC. Write BUILD-LOG.md, the beat sheet, FACTCHECK and QC records into the film folder. End by telling me the MP4 path, its duration and its SHA-256.
