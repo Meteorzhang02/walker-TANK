@@ -1,0 +1,38 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+INFO  physics ticks per second = 60, max_fps = 0; SHOOT_FPS=30.0 ACTIVE_FRAME=1 END_FRAME=5
+INFO  boundaries: startup->active P+2, active->recovery P+4, recovery->end P+10
+PASS  a-hit   startup->active  injected P+1  | hit seen rel 1, shells [2], READY rel 10, health 100->75 | expect shell [2] once, READY 10, health lower
+PASS  a-hit   startup->active  injected P+2  | hit seen rel 2, shells [2], READY rel 10, health 100->75 | expect shell [2] once, READY 10, health lower
+PASS  a-hit   startup->active  injected P+3  | hit seen rel 3, shells [2], READY rel 10, health 100->75 | expect shell [2] once, READY 10, health lower
+PASS  a-hit   active->recovery injected P+3  | hit seen rel 3, shells [2], READY rel 10, health 100->75 | expect shell [2] once, READY 10, health lower
+PASS  a-hit   active->recovery injected P+4  | hit seen rel 4, shells [2], READY rel 10, health 100->75 | expect shell [2] once, READY 10, health lower
+PASS  a-hit   active->recovery injected P+5  | hit seen rel 5, shells [2], READY rel 10, health 100->75 | expect shell [2] once, READY 10, health lower
+PASS  a-hit   recovery->end    injected P+9  | hit seen rel 9, shells [2], READY rel 10, health 100->75 | expect shell [2] once, READY 10, health lower
+PASS  a-hit   recovery->end    injected P+10 | hit seen rel 10, shells [2], READY rel 10, health 100->75 | expect shell [2] once, READY 10, health lower
+PASS  a-hit   recovery->end    injected P+11 | hit seen rel 11, shells [2], READY rel 10, health 100->75 | expect shell [2] once, READY 10, health lower
+PASS  b-death startup->active  injected P+1  | dead seen rel 1, shells [2], sounds [2], READY rel 10, starts [0] | expect shell [2] once, READY 10 and stays, no new start (fire held, reload 0)
+PASS  b-death startup->active  injected P+2  | dead seen rel 2, shells [2], sounds [2], READY rel 10, starts [0] | expect shell [2] once, READY 10 and stays, no new start (fire held, reload 0)
+PASS  b-death startup->active  injected P+3  | dead seen rel 3, shells [2], sounds [2], READY rel 10, starts [0] | expect shell [2] once, READY 10 and stays, no new start (fire held, reload 0)
+PASS  b-death active->recovery injected P+3  | dead seen rel 3, shells [2], sounds [2], READY rel 10, starts [0] | expect shell [2] once, READY 10 and stays, no new start (fire held, reload 0)
+PASS  b-death active->recovery injected P+4  | dead seen rel 4, shells [2], sounds [2], READY rel 10, starts [0] | expect shell [2] once, READY 10 and stays, no new start (fire held, reload 0)
+PASS  b-death active->recovery injected P+5  | dead seen rel 5, shells [2], sounds [2], READY rel 10, starts [0] | expect shell [2] once, READY 10 and stays, no new start (fire held, reload 0)
+PASS  b-death recovery->end    injected P+9  | dead seen rel 9, shells [2], sounds [2], READY rel 10, starts [0] | expect shell [2] once, READY 10 and stays, no new start (fire held, reload 0)
+PASS  b-death recovery->end    injected P+10 | dead seen rel 10, shells [2], sounds [2], READY rel 10, starts [0] | expect shell [2] once, READY 10 and stays, no new start (fire held, reload 0)
+PASS  b-death recovery->end    injected P+11 | dead seen rel 11, shells [2], sounds [2], READY rel 10, starts [0] | expect shell [2] once, READY 10 and stays, no new start (fire held, reload 0)
+PASS  c-fire  startup->active  injected P+1  | seen rel 0 (held rels [0, 1]), shells [2], starts [0], first shot ends rel 10, READY rel 10 | expect (merged with the first press) shells [2], starts [0], first shot ends 10
+PASS  c-fire  startup->active  injected P+2  | seen rel 1 (held rels [0, 1]), shells [2], starts [0], first shot ends rel 10, READY rel 10 | expect (in FIRING: no shell, no restart) shells [2], starts [0], first shot ends 10
+PASS  c-fire  startup->active  injected P+3  | seen rel 2 (held rels [0, 1, 2, 3]), shells [2], starts [0], first shot ends rel 10, READY rel 10 | expect (in FIRING: no shell, no restart) shells [2], starts [0], first shot ends 10
+PASS  c-fire  active->recovery injected P+3  | seen rel 2 (held rels [0, 1, 2, 3]), shells [2], starts [0], first shot ends rel 10, READY rel 10 | expect (in FIRING: no shell, no restart) shells [2], starts [0], first shot ends 10
+PASS  c-fire  active->recovery injected P+4  | seen rel 4 (held rels [0, 1, 4, 5]), shells [2], starts [0], first shot ends rel 10, READY rel 10 | expect (in FIRING: no shell, no restart) shells [2], starts [0], first shot ends 10
+PASS  c-fire  active->recovery injected P+5  | seen rel 4 (held rels [0, 1, 4, 5]), shells [2], starts [0], first shot ends rel 10, READY rel 10 | expect (in FIRING: no shell, no restart) shells [2], starts [0], first shot ends 10
+PASS  c-fire  recovery->end    injected P+9  | seen rel 8 (held rels [0, 1, 8, 9]), shells [2], starts [0], first shot ends rel 10, READY rel 10 | expect (in FIRING: no shell, no restart) shells [2], starts [0], first shot ends 10
+PASS  c-fire  recovery->end    injected P+10 | seen rel 10 (held rels [0, 1, 10, 11]), shells [2, 12], starts [0, 10], first shot ends rel 10, READY rel 20 | expect (seen on/after end: new shot) shells [2, 12], starts [0, 10], first shot ends 10
+INFO    FireAnim position around the second start: rel9=0.1333 rel10=0.1500 rel11=-1.0000 rel12=-1.0000
+PASS  c-fire  recovery->end    injected P+11 | seen rel 10 (held rels [0, 1, 10, 11]), shells [2, 12], starts [0, 10], first shot ends rel 10, READY rel 20 | expect (seen on/after end: new shot) shells [2, 12], starts [0, 10], first shot ends 10
+INFO    FireAnim position around the second start: rel9=0.1333 rel10=0.1500 rel11=-1.0000 rel12=-1.0000
+RESULT: 27 passed, 0 failed
+WARNING: 7 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 3 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

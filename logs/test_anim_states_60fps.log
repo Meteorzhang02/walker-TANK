@@ -59,7 +59,3 @@ INFO  CLOCKS physics_ticks_per_second=60: largest |shell tick - animation frame-
 PASS  C1 two-clocks disagreement <= 1 physics tick (brief prediction)  | worst=1
 PASS  C2 the same number in every run  | [-1, -1, -1, -1, -1]
 RESULT: 34 passed, 0 failed
-WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).
-   at: cleanup (core/object/object.cpp:2536)
-ERROR: 3 resources still in use at exit (run with --verbose for details).
-   at: clear (core/io/resource.cpp:822)

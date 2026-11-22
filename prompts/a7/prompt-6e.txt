@@ -1,0 +1,39 @@
+Read CLAUDE.md first. CHANGE-BRIEF.md is the contract: phase table, interrupts
+table and the 2026-11-21 Revisions (shot captured on the press tick, FIRING
+guard).
+
+Create ONE new file, tests/test_anim_edges.gd, and change no other file. Do
+not edit any game script, clip, existing test or the brief.
+
+Edges at every phase boundary of `shoot`, at 60 physics ticks per second,
+counting ticks from the press tick P (the first tick the weapon is FIRING,
+detected from the game as tests/test_anim_states.gd does, because the input
+latency differs between --fixed-fps values):
+- startup -> active at P+2, active -> recovery at P+4, recovery -> end at P+10.
+  Derive these from tank.gd's SHOOT_FPS, SHOOT_ACTIVE_FRAME and SHOOT_END_FRAME
+  and Engine.physics_ticks_per_second; do not hard-code 2, 4 or 10.
+- For each boundary B, inject each interrupt one tick before B, on B and one
+  tick after B (P+1/2/3, P+3/4/5, P+9/10/11):
+  a) a hit (take_damage with a non-fatal amount, as test_hit_flash.gd does):
+     the shell still appears exactly once on P+2, the weapon is READY again on
+     P+10, health dropped;
+  b) a death (fatal take_damage): the shell still appears exactly once on P+2
+     if the death is on or before P+2, and still once on P+2 if after; the
+     weapon is READY on P+10; a dead tank cannot start a new shot;
+  c) a second "fire" press via Input.parse_input_event, with reload_left held
+     at 0.0 each tick so only the FIRING guard decides (as test_anim_states.gd
+     G1 does): a press on P+1..P+9 adds no shell and does not restart shoot;
+     a press seen on P+10 or later starts a new shot.
+- Moving and firing go through Input.parse_input_event only; take_damage and
+  the reload_left write are the only direct calls, as in test_anim_states.gd.
+
+Print one line per case with the injected tick, the measured shell ticks,
+the READY tick and the expectation, end with "RESULT: N passed, M failed",
+quit(1) on any failure. If a result contradicts the brief, report it and do
+not change the game.
+
+Run only these:
+bash scripts/run-test.sh test_anim_edges.gd 30
+bash scripts/run-test.sh test_anim_edges.gd 60
+bash scripts/run-test.sh test_anim_edges.gd 144
+Show the real output. Do not commit.
