@@ -1,0 +1,116 @@
+======== M1: track_dust track path points at a node that does not exist
+file: animations/motion_clips.tres | lines changed: 1 | control exit=0 | mutated exit=1
+-tracks/0/path = NodePath("DustMount/Dust:frame")
++tracks/0/path = NodePath("DustMount/Dustt:frame")
+-PASS  MotionAnim: every track resolves (0 problems)
++      track_dust track 0: no node at DustMount/Dustt:frame
++FAIL  MotionAnim: every track resolves (1 problems)
+-readback: 49 passed, 0 failed
++readback: 48 passed, 1 failed
+FAIL  MotionAnim: every track resolves (1 problems)
+readback: 48 passed, 1 failed
+VERDICT: caught
+======== M2: track_dust loop mode flipped to LOOP_NONE (brief prediction 1)
+file: animations/motion_clips.tres | lines changed: 1 | control exit=0 | mutated exit=1
+-loop_mode = 1
++loop_mode = 0
+-PASS  track_dust loops LINEAR
++FAIL  track_dust loops LINEAR
+-readback: 49 passed, 0 failed
++readback: 48 passed, 1 failed
+FAIL  track_dust loops LINEAR
+readback: 48 passed, 1 failed
+VERDICT: caught
+======== M3: track_dust frame track set to continuous updates
+file: animations/motion_clips.tres | lines changed: 1 | control exit=0 | mutated exit=1
+-"update": 1,
++"update": 0,
+-PASS  track_dust discrete
++FAIL  track_dust discrete
+-readback: 49 passed, 0 failed
++readback: 48 passed, 1 failed
+FAIL  track_dust discrete
+readback: 48 passed, 1 failed
+VERDICT: caught
+======== M4: shell moved from frame 1 to frame 2
+file: scripts/tank.gd | lines changed: 1 | control exit=0 | mutated exit=1
+-PASS  W3 shell appears on tick 2 and only once  | [2]
+-PASS  W4 fire sound appears on tick 2, once  | [2]
+-PASS  W5 muzzle FX appears on tick 2  | [2]
++FAIL  W3 shell appears on tick 2 and only once  | [4]
++FAIL  W4 fire sound appears on tick 2, once  | [4]
++FAIL  W5 muzzle FX appears on tick 2  | [4]
+-PASS  W11 no second shell while held through the 48-tick reload (only the held-fire ticks seen)  | [2]
++PASS  W11 no second shell while held through the 48-tick reload (only the held-fire ticks seen)  | [4]
+-PASS  G1 reload at 0 every tick: shells on ticks [2, 12] only (a press during FIRING is ignored, the second shot starts on READY)  | [2, 12]
++FAIL  G1 reload at 0 every tick: shells on ticks [2, 12] only (a press during FIRING is ignored, the second shot starts on READY)  | [4, 14]
+-PASS  F2 shell still on tick 2 while moving  | [2]
++FAIL  F2 shell still on tick 2 while moving  | [4]
+-PASS  H-startup hit on tick 1: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[2] ready=10
++FAIL  H-startup hit on tick 1: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[4] ready=10
+-PASS  D-startup death on tick 1: shell still on tick 2 (once), sound once, FIRING to tick 9, READY tick 10  | dead=true shells=[2] sounds=[2] ready=10
++FAIL  D-startup death on tick 1: shell still on tick 2 (once), sound once, FIRING to tick 9, READY tick 10  | dead=true shells=[4] sounds=[4] ready=10
+-PASS  H-active hit on tick 2: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[2] ready=10
++FAIL  H-active hit on tick 2: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[4] ready=10
+-PASS  D-active death on tick 2: shell still on tick 2 (once), sound once, FIRING to tick 9, READY tick 10  | dead=true shells=[2] sounds=[2] ready=10
++FAIL  D-active death on tick 2: shell still on tick 2 (once), sound once, FIRING to tick 9, READY tick 10  | dead=true shells=[4] sounds=[4] ready=10
+-PASS  H-recovery hit on tick 5: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[2] ready=10
++FAIL  H-recovery hit on tick 5: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[4] ready=10
+-PASS  D-recovery death on tick 5: shell still on tick 2 (once), sound once, FIRING to tick 9, READY tick 10  | dead=true shells=[2] sounds=[2] ready=10
++FAIL  D-recovery death on tick 5: shell still on tick 2 (once), sound once, FIRING to tick 9, READY tick 10  | dead=true shells=[4] sounds=[4] ready=10
+-INFO  run 0: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
++INFO  run 0: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 4, shell - anim = 1 tick(s)
+-INFO  run 1: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
++INFO  run 1: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 4, shell - anim = 1 tick(s)
+-INFO  run 2: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
++INFO  run 2: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 4, shell - anim = 1 tick(s)
+-INFO  run 3: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
++INFO  run 3: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 4, shell - anim = 1 tick(s)
+-INFO  run 4: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 2, shell - anim = -1 tick(s)
+-INFO  CLOCKS physics_ticks_per_second=60: largest |shell tick - animation frame-1 tick| over 5 runs = 1 tick(s) = 0.0167 s; per run [-1, -1, -1, -1, -1]
++INFO  run 4: rel0=0.0000 rel1=0.0000 rel2=0.0167 rel3=0.0333 rel4=0.0500 rel5=0.0667 rel6=0.0833 | animation reaches frame 1 at rel 3, shell at rel 4, shell - anim = 1 tick(s)
++INFO  CLOCKS physics_ticks_per_second=60: largest |shell tick - animation frame-1 tick| over 5 runs = 1 tick(s) = 0.0167 s; per run [1, 1, 1, 1, 1]
+-PASS  C2 the same number in every run  | [-1, -1, -1, -1, -1]
+-RESULT: 34 passed, 0 failed
+-WARNING: 6 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+-   at: cleanup (core/object/object.cpp:2536)
+-ERROR: 3 resources still in use at exit (run with --verbose for details).
+-   at: clear (core/io/resource.cpp:822)
++PASS  C2 the same number in every run  | [1, 1, 1, 1, 1]
++RESULT: 23 passed, 11 failed
+-const SHOOT_ACTIVE_FRAME := 1
++const SHOOT_ACTIVE_FRAME := 2
+FAIL  W3 shell appears on tick 2 and only once  | [4]
+FAIL  W4 fire sound appears on tick 2, once  | [4]
+FAIL  W5 muzzle FX appears on tick 2  | [4]
+FAIL  G1 reload at 0 every tick: shells on ticks [2, 12] only (a press during FIRING is ignored, the second shot starts on READY)  | [4, 14]
+FAIL  F2 shell still on tick 2 while moving  | [4]
+FAIL  H-startup hit on tick 1: shot continues (shell tick 2, FIRING to tick 9, READY tick 10)  | health 100->90 shells=[4] ready=10
+VERDICT: caught
+======== M4b: same mutation, against the pins
+file: scripts/tank.gd | lines changed: 1 | control exit=0 | mutated exit=1
+-  tick    2  shell
+-  tick   50  shell
+-  tick   98  shell
+-INFO  fire sound ticks: [2, 50, 98]
+-INFO  Engine.get_physics_frames at press injection=48, when first shell was seen=52
++  tick    4  shell
++  tick   52  shell
++  tick  100  shell
++INFO  fire sound ticks: [4, 52, 100]
++INFO  Engine.get_physics_frames at press injection=48, when first shell was seen=54
+-PASS  PIN-1 sequence of move_dir changes and shells | measured=[[-40, "move_start"], [-10, "move_stop"], [2, "shell"], [50, "shell"], [98, "shell"]] expected=[[-40, "move_start"], [-10, "move_stop"], [2, "shell"], [50, "shell"], [98, "shell"]]
+-PASS  PIN-2 first shell tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks] | measured=2 expected=2
++FAIL  PIN-1 sequence of move_dir changes and shells | measured=[[-40, "move_start"], [-10, "move_stop"], [4, "shell"], [52, "shell"], [100, "shell"]] expected=[[-40, "move_start"], [-10, "move_stop"], [2, "shell"], [50, "shell"], [98, "shell"]]
++FAIL  PIN-2 first shell tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks] | measured=4 expected=2
+-PASS  PIN-4 fire sound tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks]; observed through audio.count("fire"), no script edited | measured=2 expected=2
++FAIL  PIN-4 fire sound tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks]; observed through audio.count("fire"), no script edited | measured=4 expected=2
+-RESULT: 11 passed, 0 failed
++RESULT: 8 passed, 3 failed
+-const SHOOT_ACTIVE_FRAME := 1
++const SHOOT_ACTIVE_FRAME := 2
+FAIL  PIN-1 sequence of move_dir changes and shells | measured=[[-40, "move_start"], [-10, "move_stop"], [4, "shell"], [52, "shell"], [100, "shell"]] expected=[[-40, "move_start"], [-10, "move_stop"], [2, "shell"], [50, "shell"], [98, "shell"]]
+FAIL  PIN-2 first shell tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks] | measured=4 expected=2
+FAIL  PIN-4 fire sound tick vs press [RE-PINNED A7: shell on frame 1 = +2 ticks]; observed through audio.count("fire"), no script edited | measured=4 expected=2
+RESULT: 8 passed, 3 failed
+VERDICT: caught
