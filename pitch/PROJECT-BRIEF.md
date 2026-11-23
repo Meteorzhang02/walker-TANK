@@ -2,7 +2,6 @@
 
 CSYE 7270 · Assignment 8 · Final project pitch
 Stack: Godot 4.7.2 stable · GDScript · Forward+ · export target: **Windows desktop** · built with Claude Code on Windows 11.
-Lines marked [CHECK] must be confirmed or deleted before submitting.
 
 ## 1. What is it?
 
@@ -13,7 +12,7 @@ When the final project is done, it will be **a Windows desktop build of one fini
 
 It gives a player who likes simple 2D tank games a battlefield that shows what is happening in it.
 In *全民坦克大战*, a 2D browser tank game on 7k7k that I played, as I remember it, cover could not be destroyed, firing had no effect, and a destroyed tank did not smoke.
-In walker-TANK, which already exists at tag a7, cover breaks where the shell hits, a hit tank flashes red, a badly hurt tank smokes more as its health drops, and each shot plays a firing animation [CHECK: confirm the fire clip plays in the main game, not only in previews/shoot_preview.tscn].
+In walker-TANK, which already exists at tag a7, cover breaks where the shell hits, a hit tank flashes red, and a badly hurt tank smokes more as its health drops.
 I make no claim about players, sales or the market; I have not playtested with anyone but myself.
 
 ## 3. Who opens it, and what do they do?
@@ -47,7 +46,7 @@ I am not choosing a web export, because it runs only on the Compatibility render
 ## 7. Why this project?
 
 It is a mix of showing off and learning.
-**Shown, with evidence:** shaders, particles, animation, profiling and testing, all learned in this course and visible at tags a5, a6 and a7 [CHECK: say if any of these you knew before the course].
+**Shown, with evidence:** shaders, particles, animation, profiling and testing, all learned in this course and visible at tags a5, a6 and a7.
 **New to me:** exporting a Godot game, making it run on a machine I do not control, and finishing a game from title screen to end screen.
 I picked it because the parts exist one by one, and a recruiter cannot judge parts; they can judge a finished level.
 
@@ -65,7 +64,7 @@ I picked it because the parts exist one by one, and a recruiter cannot judge par
 
 ## Will exist
 
-- Title screen and win/lose screens [CHECK: delete if the game already has them, and move them to Exists today with a tag]
+- Title screen and win/lose screens
 - One level playable from start to end
 - Windows desktop export, run on a second machine
 - One-command test runner and a TEST-REPORT a stranger can rerun
