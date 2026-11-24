@@ -13,3 +13,4 @@
 - 4K final rendered with every gate passing after scene fixes for Gate V and Gate T (see GATE-REPORT.md). No gate was waived; B01 and B04 were declared full-frame gameplay.
 - I watched the whole film: no problems. Audio is quiet (−24.8 LUFS); left as is and noted in README.
 - Film uploaded to Google Drive, shared as anyone with the link can view.
+- The 4K capture showed only YunqiZ flashes red; enemy tanks flash white. The brief said "a hit tank flashes red"; I corrected the brief and the narration. The corrected brief first missed tag a8 (an old copy was committed); fixed and the tag moved.
