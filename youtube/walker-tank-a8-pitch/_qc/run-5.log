@@ -1,0 +1,1450 @@
+[run] skip B03_FromMemory — B03 already filled
+[run] skip B05_FirstMinute — B05 already filled
+[run] skip B07_InOut — B07 already filled
+[run] skip B08_FirstStep — B08 already filled
+[run] skip B09_Risk — B09 already filled
+[run] skip B10_Fallback — B10 already filled
+[run] skip B11_Why — B11 already filled
+[run] skip B12_Close — B12 already filled
+[run] skip BOUT_Title — BOUT already filled
+[run] GATE L — beat-mix lint
+[beat-lint] clean — beat mix OK (beat_sheet.json)
+[run] GATE SHAPE — finance chart-shape enforcement
+[gate-shape] skip — not a finance reel (beat_sheet.json)
+[run] GATE A — static pre-flight
+
+[static-check] 1 scene(s): 1 clean · 0 warn · 0 error
+[run] GATE W — WCAG contrast + margins + text-overlap (independent second check)
+[gateW] B02_FinishedForm clean
+[run] rendering B02_FinishedForm
+Manim Community v0.18.1
+
+[11/24/26 09:45:31] WARNING  Font EB Garamond not in        text_mobject.py:461
+                             ['Agency FB', 'Algerian',                         
+                             'Arial', 'Arial Black', 'Arial                    
+                             Narrow', 'Arial Rounded MT                        
+                             Bold', 'Bahnschrift',                             
+                             'Bahnschrift Condensed',                          
+                             'Bahnschrift Light',                              
+                             'Bahnschrift Light Condensed',                    
+                             'Bahnschrift Light                                
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiBold', 'Bahnschrift                           
+                             SemiBold Condensed',                              
+                             'Bahnschrift SemiBold                             
+                             SemiConden', 'Bahnschrift                         
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiLight', 'Bahnschrift                          
+                             SemiLight Condensed',                             
+                             'Bahnschrift SemiLight                            
+                             SemiConde', 'Baskerville Old                      
+                             Face', 'Bauhaus 93', 'Bell                        
+                             MT', 'Berlin Sans FB', 'Berlin                    
+                             Sans FB Demi', 'Bernard MT                        
+                             Condensed', 'Blackadder ITC',                     
+                             'Bodoni MT', 'Bodoni MT                           
+                             Black', 'Bodoni MT Condensed',                    
+                             'Bodoni MT Poster Compressed',                    
+                             'Book Antiqua', 'Bookman Old                      
+                             Style', 'Bradley Hand ITC',                       
+                             'Britannic Bold', 'Broadway',                     
+                             'Brush Script MT', 'Calibri',                     
+                             'Calibri Light', 'Californian                     
+                             FB', 'Calisto MT', 'Cambria',                     
+                             'Cambria Math', 'Candara',                        
+                             'Candara Light', 'Cascadia                        
+                             Code', 'Cascadia Code                             
+                             ExtraLight', 'Cascadia Code                       
+                             Light', 'Cascadia Code                            
+                             SemiBold', 'Cascadia Code                         
+                             SemiLight', 'Cascadia Mono',                      
+                             'Cascadia Mono ExtraLight',                       
+                             'Cascadia Mono Light',                            
+                             'Cascadia Mono SemiBold',                         
+                             'Cascadia Mono SemiLight',                        
+                             'Castellar', 'Centaur',                           
+                             'Century', 'Century Gothic',                      
+                             'Century Schoolbook',                             
+                             'Chiller', 'Colonna MT',                          
+                             'Comic Sans MS', 'Consolas',                      
+                             'Constantia', 'Cooper Black',                     
+                             'Copperplate Gothic Bold',                        
+                             'Copperplate Gothic Light',                       
+                             'Corbel', 'Corbel Light',                         
+                             'Courier New', 'Curlz MT',                        
+                             'Cursive', 'DejaVu Math TeX                       
+                             Gyre', 'DengXian', 'Dubai',                       
+                             'Dubai Light', 'Dubai Medium',                    
+                             'Ebrima', 'Edwardian Script                       
+                             ITC', 'Elephant', 'Engravers                      
+                             MT', 'Eras Bold ITC', 'Eras                       
+                             Demi ITC', 'Eras Light ITC',                      
+                             'Eras Medium ITC', 'FZShuTi',                     
+                             'FZYaoTi', 'FangSong',                            
+                             'Fantasy', 'Felix Titling',                       
+                             'Footlight MT Light', 'Forte',                    
+                             'Franklin Gothic Book',                           
+                             'Franklin Gothic Demi',                           
+                             'Franklin Gothic Demi Cond',                      
+                             'Franklin Gothic Heavy',                          
+                             'Franklin Gothic Medium',                         
+                             'Franklin Gothic Medium Cond',                    
+                             'Freestyle Script', 'French                       
+                             Script MT', 'Gabriola',                           
+                             'Gadugi', 'Garamond',                             
+                             'Georgia', 'Gigi', 'Gill Sans                     
+                             MT', 'Gill Sans MT Condensed',                    
+                             'Gill Sans MT Ext Condensed                       
+                             Bold', 'Gill Sans Ultra Bold',                    
+                             'Gill Sans Ultra Bold                             
+                             Condensed', 'Gloucester MT                        
+                             Extra Condensed', 'Goudy Old                      
+                             Style', 'Goudy Stout', 'HP                        
+                             Simplified', 'HP Simplified                       
+                             Hans', 'HP Simplified Hans                        
+                             Light', 'HP Simplified Jpan',                     
+                             'HP Simplified Jpan Light',                       
+                             'HP Simplified Light',                            
+                             'Haettenschweiler', 'Harlow                       
+                             Solid Italic', 'Harrington',                      
+                             'High Tower Text', 'Impact',                      
+                             'Imprint MT Shadow', 'Informal                    
+                             Roman', 'Ink Free', 'Javanese                     
+                             Text', 'Jokerman', 'Juice                         
+                             ITC', 'KaiTi', 'Kristen ITC',                     
+                             'Kunstler Script',                                
+                             'Leelawadee', 'Leelawadee UI',                    
+                             'Leelawadee UI Semilight',                        
+                             'LiSu', 'Lucida Bright',                          
+                             'Lucida Calligraphy', 'Lucida                     
+                             Console', 'Lucida Fax',                           
+                             'Lucida Handwriting', 'Lucida                     
+                             Sans', 'Lucida Sans                               
+                             Typewriter', 'Lucida Sans                         
+                             Unicode', 'MS Gothic', 'MS                        
+                             PGothic', 'MS Reference Sans                      
+                             Serif', 'MS UI Gothic', 'MV                       
+                             Boli', 'Magneto', 'Maiandra                       
+                             GD', 'Malgun Gothic', 'Malgun                     
+                             Gothic Semilight', 'Matura MT                     
+                             Script Capitals', 'Microsoft                      
+                             Himalaya', 'Microsoft                             
+                             JhengHei', 'Microsoft JhengHei                    
+                             Light', 'Microsoft JhengHei                       
+                             UI', 'Microsoft JhengHei UI                       
+                             Light', 'Microsoft New Tai                        
+                             Lue', 'Microsoft PhagsPa',                        
+                             'Microsoft Sans Serif',                           
+                             'Microsoft Tai Le', 'Microsoft                    
+                             Uighur', 'Microsoft YaHei',                       
+                             'Microsoft YaHei UI',                             
+                             'Microsoft YaHei UI Light',                       
+                             'Microsoft Yi Baiti',                             
+                             'MingLiU-ExtB',                                   
+                             'MingLiU_HKSCS-ExtB',                             
+                             'MingLiU_MSCS-ExtB',                              
+                             'Mistral', 'Modern No. 20',                       
+                             'Mongolian Baiti',                                
+                             'Monospace', 'Monotype                            
+                             Corsiva', 'Myanmar Text',                         
+                             'NSimSun', 'Niagara Engraved',                    
+                             'Niagara Solid', 'Nirmala                         
+                             Text', 'Nirmala Text                              
+                             Semilight', 'Nirmala UI',                         
+                             'Nirmala UI Semilight', 'Noto                     
+                             Sans SC', 'Noto Sans SC                           
+                             Black', 'Noto Sans SC                             
+                             DemiLight', 'Noto Sans SC                         
+                             Light', 'Noto Sans SC Medium',                    
+                             'Noto Sans SC Thin', 'Noto                        
+                             Serif SC', 'Noto Serif SC                         
+                             Black', 'Noto Serif SC                            
+                             ExtraLight', 'Noto Serif SC                       
+                             Light', 'Noto Serif SC                            
+                             Medium', 'Noto Serif SC                           
+                             SemiBold', 'OCR A Extended',                      
+                             'Old English Text MT', 'Onyx',                    
+                             'PMingLiU-ExtB', 'Palace                          
+                             Script MT', 'Palatino                             
+                             Linotype', 'Papyrus',                             
+                             'Parchment', 'Perpetua',                          
+                             'Perpetua Titling MT',                            
+                             'Playbill', 'Poor Richard',                       
+                             'Pristina', 'Rage Italic',                        
+                             'Ravie', 'Rockwell', 'Rockwell                    
+                             Condensed', 'Rockwell Extra                       
+                             Bold', 'STCaiyun',                                
+                             'STFangsong', 'STHupo',                           
+                             'STKaiti', 'STLiti', 'STSong',                    
+                             'STXihei', 'STXingkai',                           
+                             'STXinwei', 'STZhongsong',                        
+                             'Sans', 'Sans Serif                               
+                             Collection', 'Script MT Bold',                    
+                             'Segoe Fluent Icons', 'Segoe                      
+                             MDL2 Assets', 'Segoe Print',                      
+                             'Segoe Script', 'Segoe UI',                       
+                             'Segoe UI Black', 'Segoe UI                       
+                             Emoji', 'Segoe UI Historic',                      
+                             'Segoe UI Light', 'Segoe UI                       
+                             Semibold', 'Segoe UI                              
+                             Semilight', 'Segoe UI Symbol',                    
+                             'Segoe UI Variable Display',                      
+                             'Segoe UI Variable Display                        
+                             Light', 'Segoe UI Variable                        
+                             Display Semib', 'Segoe UI                         
+                             Variable Display Semil',                          
+                             'Segoe UI Variable Small',                        
+                             'Segoe UI Variable Small                          
+                             Light', 'Segoe UI Variable                        
+                             Small Semibol', 'Segoe UI                         
+                             Variable Small Semilig',                          
+                             'Segoe UI Variable Text',                         
+                             'Segoe UI Variable Text                           
+                             Light', 'Segoe UI Variable                        
+                             Text Semibold', 'Segoe UI                         
+                             Variable Text Semiligh',                          
+                             'Serif', 'Showcard Gothic',                       
+                             'SimHei', 'SimSun',                               
+                             'SimSun-ExtB', 'SimSun-ExtG',                     
+                             'Sitka Banner', 'Sitka Banner                     
+                             Semibold', 'Sitka Display',                       
+                             'Sitka Display Semibold',                         
+                             'Sitka Heading', 'Sitka                           
+                             Heading Semibold', 'Sitka                         
+                             Small', 'Sitka Small                              
+                             Semibold', 'Sitka Subheading',                    
+                             'Sitka Subheading Semibold',                      
+                             'Sitka Text', 'Sitka Text                         
+                             Semibold', 'Snap ITC',                            
+                             'Stencil', 'Sylfaen',                             
+                             'System-ui', 'Tahoma', 'Tempus                    
+                             Sans ITC', 'Times New Roman',                     
+                             'Trebuchet MS', 'Tw Cen MT',                      
+                             'Tw Cen MT Condensed', 'Tw Cen                    
+                             MT Condensed Extra Bold',                         
+                             'Verdana', 'Viner Hand ITC',                      
+                             'Vivaldi', 'Vladimir Script',                     
+                             'Wide Latin', 'YouYuan', 'Yu                      
+                             Gothic', 'Yu Gothic Light',                       
+                             'Yu Gothic Medium', 'Yu Gothic                    
+                             UI', 'Yu Gothic UI Light', 'Yu                    
+                             Gothic UI Semibold', 'Yu                          
+                             Gothic UI Semilight'].                            
+                    INFO     Animation 0 : Using cached    cairo_renderer.py:88
+                             data (hash :                                      
+                             3429491395_3431549853_1250140                     
+                             879)                                              
+                    WARNING  Font EB Garamond not in        text_mobject.py:461
+                             ['Agency FB', 'Algerian',                         
+                             'Arial', 'Arial Black', 'Arial                    
+                             Narrow', 'Arial Rounded MT                        
+                             Bold', 'Bahnschrift',                             
+                             'Bahnschrift Condensed',                          
+                             'Bahnschrift Light',                              
+                             'Bahnschrift Light Condensed',                    
+                             'Bahnschrift Light                                
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiBold', 'Bahnschrift                           
+                             SemiBold Condensed',                              
+                             'Bahnschrift SemiBold                             
+                             SemiConden', 'Bahnschrift                         
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiLight', 'Bahnschrift                          
+                             SemiLight Condensed',                             
+                             'Bahnschrift SemiLight                            
+                             SemiConde', 'Baskerville Old                      
+                             Face', 'Bauhaus 93', 'Bell                        
+                             MT', 'Berlin Sans FB', 'Berlin                    
+                             Sans FB Demi', 'Bernard MT                        
+                             Condensed', 'Blackadder ITC',                     
+                             'Bodoni MT', 'Bodoni MT                           
+                             Black', 'Bodoni MT Condensed',                    
+                             'Bodoni MT Poster Compressed',                    
+                             'Book Antiqua', 'Bookman Old                      
+                             Style', 'Bradley Hand ITC',                       
+                             'Britannic Bold', 'Broadway',                     
+                             'Brush Script MT', 'Calibri',                     
+                             'Calibri Light', 'Californian                     
+                             FB', 'Calisto MT', 'Cambria',                     
+                             'Cambria Math', 'Candara',                        
+                             'Candara Light', 'Cascadia                        
+                             Code', 'Cascadia Code                             
+                             ExtraLight', 'Cascadia Code                       
+                             Light', 'Cascadia Code                            
+                             SemiBold', 'Cascadia Code                         
+                             SemiLight', 'Cascadia Mono',                      
+                             'Cascadia Mono ExtraLight',                       
+                             'Cascadia Mono Light',                            
+                             'Cascadia Mono SemiBold',                         
+                             'Cascadia Mono SemiLight',                        
+                             'Castellar', 'Centaur',                           
+                             'Century', 'Century Gothic',                      
+                             'Century Schoolbook',                             
+                             'Chiller', 'Colonna MT',                          
+                             'Comic Sans MS', 'Consolas',                      
+                             'Constantia', 'Cooper Black',                     
+                             'Copperplate Gothic Bold',                        
+                             'Copperplate Gothic Light',                       
+                             'Corbel', 'Corbel Light',                         
+                             'Courier New', 'Curlz MT',                        
+                             'Cursive', 'DejaVu Math TeX                       
+                             Gyre', 'DengXian', 'Dubai',                       
+                             'Dubai Light', 'Dubai Medium',                    
+                             'Ebrima', 'Edwardian Script                       
+                             ITC', 'Elephant', 'Engravers                      
+                             MT', 'Eras Bold ITC', 'Eras                       
+                             Demi ITC', 'Eras Light ITC',                      
+                             'Eras Medium ITC', 'FZShuTi',                     
+                             'FZYaoTi', 'FangSong',                            
+                             'Fantasy', 'Felix Titling',                       
+                             'Footlight MT Light', 'Forte',                    
+                             'Franklin Gothic Book',                           
+                             'Franklin Gothic Demi',                           
+                             'Franklin Gothic Demi Cond',                      
+                             'Franklin Gothic Heavy',                          
+                             'Franklin Gothic Medium',                         
+                             'Franklin Gothic Medium Cond',                    
+                             'Freestyle Script', 'French                       
+                             Script MT', 'Gabriola',                           
+                             'Gadugi', 'Garamond',                             
+                             'Georgia', 'Gigi', 'Gill Sans                     
+                             MT', 'Gill Sans MT Condensed',                    
+                             'Gill Sans MT Ext Condensed                       
+                             Bold', 'Gill Sans Ultra Bold',                    
+                             'Gill Sans Ultra Bold                             
+                             Condensed', 'Gloucester MT                        
+                             Extra Condensed', 'Goudy Old                      
+                             Style', 'Goudy Stout', 'HP                        
+                             Simplified', 'HP Simplified                       
+                             Hans', 'HP Simplified Hans                        
+                             Light', 'HP Simplified Jpan',                     
+                             'HP Simplified Jpan Light',                       
+                             'HP Simplified Light',                            
+                             'Haettenschweiler', 'Harlow                       
+                             Solid Italic', 'Harrington',                      
+                             'High Tower Text', 'Impact',                      
+                             'Imprint MT Shadow', 'Informal                    
+                             Roman', 'Ink Free', 'Javanese                     
+                             Text', 'Jokerman', 'Juice                         
+                             ITC', 'KaiTi', 'Kristen ITC',                     
+                             'Kunstler Script',                                
+                             'Leelawadee', 'Leelawadee UI',                    
+                             'Leelawadee UI Semilight',                        
+                             'LiSu', 'Lucida Bright',                          
+                             'Lucida Calligraphy', 'Lucida                     
+                             Console', 'Lucida Fax',                           
+                             'Lucida Handwriting', 'Lucida                     
+                             Sans', 'Lucida Sans                               
+                             Typewriter', 'Lucida Sans                         
+                             Unicode', 'MS Gothic', 'MS                        
+                             PGothic', 'MS Reference Sans                      
+                             Serif', 'MS UI Gothic', 'MV                       
+                             Boli', 'Magneto', 'Maiandra                       
+                             GD', 'Malgun Gothic', 'Malgun                     
+                             Gothic Semilight', 'Matura MT                     
+                             Script Capitals', 'Microsoft                      
+                             Himalaya', 'Microsoft                             
+                             JhengHei', 'Microsoft JhengHei                    
+                             Light', 'Microsoft JhengHei                       
+                             UI', 'Microsoft JhengHei UI                       
+                             Light', 'Microsoft New Tai                        
+                             Lue', 'Microsoft PhagsPa',                        
+                             'Microsoft Sans Serif',                           
+                             'Microsoft Tai Le', 'Microsoft                    
+                             Uighur', 'Microsoft YaHei',                       
+                             'Microsoft YaHei UI',                             
+                             'Microsoft YaHei UI Light',                       
+                             'Microsoft Yi Baiti',                             
+                             'MingLiU-ExtB',                                   
+                             'MingLiU_HKSCS-ExtB',                             
+                             'MingLiU_MSCS-ExtB',                              
+                             'Mistral', 'Modern No. 20',                       
+                             'Mongolian Baiti',                                
+                             'Monospace', 'Monotype                            
+                             Corsiva', 'Myanmar Text',                         
+                             'NSimSun', 'Niagara Engraved',                    
+                             'Niagara Solid', 'Nirmala                         
+                             Text', 'Nirmala Text                              
+                             Semilight', 'Nirmala UI',                         
+                             'Nirmala UI Semilight', 'Noto                     
+                             Sans SC', 'Noto Sans SC                           
+                             Black', 'Noto Sans SC                             
+                             DemiLight', 'Noto Sans SC                         
+                             Light', 'Noto Sans SC Medium',                    
+                             'Noto Sans SC Thin', 'Noto                        
+                             Serif SC', 'Noto Serif SC                         
+                             Black', 'Noto Serif SC                            
+                             ExtraLight', 'Noto Serif SC                       
+                             Light', 'Noto Serif SC                            
+                             Medium', 'Noto Serif SC                           
+                             SemiBold', 'OCR A Extended',                      
+                             'Old English Text MT', 'Onyx',                    
+                             'PMingLiU-ExtB', 'Palace                          
+                             Script MT', 'Palatino                             
+                             Linotype', 'Papyrus',                             
+                             'Parchment', 'Perpetua',                          
+                             'Perpetua Titling MT',                            
+                             'Playbill', 'Poor Richard',                       
+                             'Pristina', 'Rage Italic',                        
+                             'Ravie', 'Rockwell', 'Rockwell                    
+                             Condensed', 'Rockwell Extra                       
+                             Bold', 'STCaiyun',                                
+                             'STFangsong', 'STHupo',                           
+                             'STKaiti', 'STLiti', 'STSong',                    
+                             'STXihei', 'STXingkai',                           
+                             'STXinwei', 'STZhongsong',                        
+                             'Sans', 'Sans Serif                               
+                             Collection', 'Script MT Bold',                    
+                             'Segoe Fluent Icons', 'Segoe                      
+                             MDL2 Assets', 'Segoe Print',                      
+                             'Segoe Script', 'Segoe UI',                       
+                             'Segoe UI Black', 'Segoe UI                       
+                             Emoji', 'Segoe UI Historic',                      
+                             'Segoe UI Light', 'Segoe UI                       
+                             Semibold', 'Segoe UI                              
+                             Semilight', 'Segoe UI Symbol',                    
+                             'Segoe UI Variable Display',                      
+                             'Segoe UI Variable Display                        
+                             Light', 'Segoe UI Variable                        
+                             Display Semib', 'Segoe UI                         
+                             Variable Display Semil',                          
+                             'Segoe UI Variable Small',                        
+                             'Segoe UI Variable Small                          
+                             Light', 'Segoe UI Variable                        
+                             Small Semibol', 'Segoe UI                         
+                             Variable Small Semilig',                          
+                             'Segoe UI Variable Text',                         
+                             'Segoe UI Variable Text                           
+                             Light', 'Segoe UI Variable                        
+                             Text Semibold', 'Segoe UI                         
+                             Variable Text Semiligh',                          
+                             'Serif', 'Showcard Gothic',                       
+                             'SimHei', 'SimSun',                               
+                             'SimSun-ExtB', 'SimSun-ExtG',                     
+                             'Sitka Banner', 'Sitka Banner                     
+                             Semibold', 'Sitka Display',                       
+                             'Sitka Display Semibold',                         
+                             'Sitka Heading', 'Sitka                           
+                             Heading Semibold', 'Sitka                         
+                             Small', 'Sitka Small                              
+                             Semibold', 'Sitka Subheading',                    
+                             'Sitka Subheading Semibold',                      
+                             'Sitka Text', 'Sitka Text                         
+                             Semibold', 'Snap ITC',                            
+                             'Stencil', 'Sylfaen',                             
+                             'System-ui', 'Tahoma', 'Tempus                    
+                             Sans ITC', 'Times New Roman',                     
+                             'Trebuchet MS', 'Tw Cen MT',                      
+                             'Tw Cen MT Condensed', 'Tw Cen                    
+                             MT Condensed Extra Bold',                         
+                             'Verdana', 'Viner Hand ITC',                      
+                             'Vivaldi', 'Vladimir Script',                     
+                             'Wide Latin', 'YouYuan', 'Yu                      
+                             Gothic', 'Yu Gothic Light',                       
+                             'Yu Gothic Medium', 'Yu Gothic                    
+                             UI', 'Yu Gothic UI Light', 'Yu                    
+                             Gothic UI Semibold', 'Yu                          
+                             Gothic UI Semilight'].                            
+Animation 1: FadeIn(VGroup of 3 submobjects), etc.:   0%|          | 0/20 [00:00<?, ?it/s]Animation 1: FadeIn(VGroup of 3 submobjects), etc.:  20%|##        | 4/20 [00:00<00:00, 31.32it/s]Animation 1: FadeIn(VGroup of 3 submobjects), etc.:  40%|####      | 8/20 [00:00<00:00, 30.67it/s]Animation 1: FadeIn(VGroup of 3 submobjects), etc.:  60%|######    | 12/20 [00:00<00:00, 30.22it/s]Animation 1: FadeIn(VGroup of 3 submobjects), etc.:  80%|########  | 16/20 [00:00<00:00, 30.12it/s]Animation 1: FadeIn(VGroup of 3 submobjects), etc.: 100%|##########| 20/20 [00:00<00:00, 30.29it/s]                                                                                                   [11/24/26 09:45:32] INFO     Animation 1 : Partial     scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_13034961                         
+                             3_3702375994.mp4'                                 
+
+(process:20268): GLib-GIO-WARNING **: 09:45:33.287: Unexpectedly, UWP app `Microsoft.OutlookForWindows_1.2026.902.100_x64__8wekyb3d8bbwe' (AUMId `Microsoft.OutlookForWindows_8wekyb3d8bbwe!Microsoft.OutlookforWindows') supports 5 extensions but has no verbs
+
+(process:20268): GLib-GIO-WARNING **: 09:45:33.390: Unexpectedly, UWP app `Clipchamp.Clipchamp_4.7.10220.0_x64__yxz26nhyzhsrt' (AUMId `Clipchamp.Clipchamp_yxz26nhyzhsrt!App') supports 41 extensions but has no verbs
+
+(process:20268): GLib-GIO-WARNING **: 09:45:33.566: Unexpectedly, UWP app `Microsoft.ScreenSketch_11.2609.15.0_x64__8wekyb3d8bbwe' (AUMId `Microsoft.ScreenSketch_8wekyb3d8bbwe!App') supports 29 extensions but has no verbs
+
+(process:20268): GLib-GIO-WARNING **: 09:45:33.587: Unexpectedly, UWP app `903DB504.6376363465466_3.13.3.0_x64__a99ra4d2cbcxa' (AUMId `903DB504.6376363465466_a99ra4d2cbcxa!TencentDocs') supports 41 extensions but has no verbs
+[11/24/26 09:45:34] INFO     Animation 2 : Partial     scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_33653187                         
+                             26_310400479.mp4'                                 
+                    WARNING  Font EB Garamond not in        text_mobject.py:461
+                             ['Agency FB', 'Algerian',                         
+                             'Arial', 'Arial Black', 'Arial                    
+                             Narrow', 'Arial Rounded MT                        
+                             Bold', 'Bahnschrift',                             
+                             'Bahnschrift Condensed',                          
+                             'Bahnschrift Light',                              
+                             'Bahnschrift Light Condensed',                    
+                             'Bahnschrift Light                                
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiBold', 'Bahnschrift                           
+                             SemiBold Condensed',                              
+                             'Bahnschrift SemiBold                             
+                             SemiConden', 'Bahnschrift                         
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiLight', 'Bahnschrift                          
+                             SemiLight Condensed',                             
+                             'Bahnschrift SemiLight                            
+                             SemiConde', 'Baskerville Old                      
+                             Face', 'Bauhaus 93', 'Bell                        
+                             MT', 'Berlin Sans FB', 'Berlin                    
+                             Sans FB Demi', 'Bernard MT                        
+                             Condensed', 'Blackadder ITC',                     
+                             'Bodoni MT', 'Bodoni MT                           
+                             Black', 'Bodoni MT Condensed',                    
+                             'Bodoni MT Poster Compressed',                    
+                             'Book Antiqua', 'Bookman Old                      
+                             Style', 'Bradley Hand ITC',                       
+                             'Britannic Bold', 'Broadway',                     
+                             'Brush Script MT', 'Calibri',                     
+                             'Calibri Light', 'Californian                     
+                             FB', 'Calisto MT', 'Cambria',                     
+                             'Cambria Math', 'Candara',                        
+                             'Candara Light', 'Cascadia                        
+                             Code', 'Cascadia Code                             
+                             ExtraLight', 'Cascadia Code                       
+                             Light', 'Cascadia Code                            
+                             SemiBold', 'Cascadia Code                         
+                             SemiLight', 'Cascadia Mono',                      
+                             'Cascadia Mono ExtraLight',                       
+                             'Cascadia Mono Light',                            
+                             'Cascadia Mono SemiBold',                         
+                             'Cascadia Mono SemiLight',                        
+                             'Castellar', 'Centaur',                           
+                             'Century', 'Century Gothic',                      
+                             'Century Schoolbook',                             
+                             'Chiller', 'Colonna MT',                          
+                             'Comic Sans MS', 'Consolas',                      
+                             'Constantia', 'Cooper Black',                     
+                             'Copperplate Gothic Bold',                        
+                             'Copperplate Gothic Light',                       
+                             'Corbel', 'Corbel Light',                         
+                             'Courier New', 'Curlz MT',                        
+                             'Cursive', 'DejaVu Math TeX                       
+                             Gyre', 'DengXian', 'Dubai',                       
+                             'Dubai Light', 'Dubai Medium',                    
+                             'Ebrima', 'Edwardian Script                       
+                             ITC', 'Elephant', 'Engravers                      
+                             MT', 'Eras Bold ITC', 'Eras                       
+                             Demi ITC', 'Eras Light ITC',                      
+                             'Eras Medium ITC', 'FZShuTi',                     
+                             'FZYaoTi', 'FangSong',                            
+                             'Fantasy', 'Felix Titling',                       
+                             'Footlight MT Light', 'Forte',                    
+                             'Franklin Gothic Book',                           
+                             'Franklin Gothic Demi',                           
+                             'Franklin Gothic Demi Cond',                      
+                             'Franklin Gothic Heavy',                          
+                             'Franklin Gothic Medium',                         
+                             'Franklin Gothic Medium Cond',                    
+                             'Freestyle Script', 'French                       
+                             Script MT', 'Gabriola',                           
+                             'Gadugi', 'Garamond',                             
+                             'Georgia', 'Gigi', 'Gill Sans                     
+                             MT', 'Gill Sans MT Condensed',                    
+                             'Gill Sans MT Ext Condensed                       
+                             Bold', 'Gill Sans Ultra Bold',                    
+                             'Gill Sans Ultra Bold                             
+                             Condensed', 'Gloucester MT                        
+                             Extra Condensed', 'Goudy Old                      
+                             Style', 'Goudy Stout', 'HP                        
+                             Simplified', 'HP Simplified                       
+                             Hans', 'HP Simplified Hans                        
+                             Light', 'HP Simplified Jpan',                     
+                             'HP Simplified Jpan Light',                       
+                             'HP Simplified Light',                            
+                             'Haettenschweiler', 'Harlow                       
+                             Solid Italic', 'Harrington',                      
+                             'High Tower Text', 'Impact',                      
+                             'Imprint MT Shadow', 'Informal                    
+                             Roman', 'Ink Free', 'Javanese                     
+                             Text', 'Jokerman', 'Juice                         
+                             ITC', 'KaiTi', 'Kristen ITC',                     
+                             'Kunstler Script',                                
+                             'Leelawadee', 'Leelawadee UI',                    
+                             'Leelawadee UI Semilight',                        
+                             'LiSu', 'Lucida Bright',                          
+                             'Lucida Calligraphy', 'Lucida                     
+                             Console', 'Lucida Fax',                           
+                             'Lucida Handwriting', 'Lucida                     
+                             Sans', 'Lucida Sans                               
+                             Typewriter', 'Lucida Sans                         
+                             Unicode', 'MS Gothic', 'MS                        
+                             PGothic', 'MS Reference Sans                      
+                             Serif', 'MS UI Gothic', 'MV                       
+                             Boli', 'Magneto', 'Maiandra                       
+                             GD', 'Malgun Gothic', 'Malgun                     
+                             Gothic Semilight', 'Matura MT                     
+                             Script Capitals', 'Microsoft                      
+                             Himalaya', 'Microsoft                             
+                             JhengHei', 'Microsoft JhengHei                    
+                             Light', 'Microsoft JhengHei                       
+                             UI', 'Microsoft JhengHei UI                       
+                             Light', 'Microsoft New Tai                        
+                             Lue', 'Microsoft PhagsPa',                        
+                             'Microsoft Sans Serif',                           
+                             'Microsoft Tai Le', 'Microsoft                    
+                             Uighur', 'Microsoft YaHei',                       
+                             'Microsoft YaHei UI',                             
+                             'Microsoft YaHei UI Light',                       
+                             'Microsoft Yi Baiti',                             
+                             'MingLiU-ExtB',                                   
+                             'MingLiU_HKSCS-ExtB',                             
+                             'MingLiU_MSCS-ExtB',                              
+                             'Mistral', 'Modern No. 20',                       
+                             'Mongolian Baiti',                                
+                             'Monospace', 'Monotype                            
+                             Corsiva', 'Myanmar Text',                         
+                             'NSimSun', 'Niagara Engraved',                    
+                             'Niagara Solid', 'Nirmala                         
+                             Text', 'Nirmala Text                              
+                             Semilight', 'Nirmala UI',                         
+                             'Nirmala UI Semilight', 'Noto                     
+                             Sans SC', 'Noto Sans SC                           
+                             Black', 'Noto Sans SC                             
+                             DemiLight', 'Noto Sans SC                         
+                             Light', 'Noto Sans SC Medium',                    
+                             'Noto Sans SC Thin', 'Noto                        
+                             Serif SC', 'Noto Serif SC                         
+                             Black', 'Noto Serif SC                            
+                             ExtraLight', 'Noto Serif SC                       
+                             Light', 'Noto Serif SC                            
+                             Medium', 'Noto Serif SC                           
+                             SemiBold', 'OCR A Extended',                      
+                             'Old English Text MT', 'Onyx',                    
+                             'PMingLiU-ExtB', 'Palace                          
+                             Script MT', 'Palatino                             
+                             Linotype', 'Papyrus',                             
+                             'Parchment', 'Perpetua',                          
+                             'Perpetua Titling MT',                            
+                             'Playbill', 'Poor Richard',                       
+                             'Pristina', 'Rage Italic',                        
+                             'Ravie', 'Rockwell', 'Rockwell                    
+                             Condensed', 'Rockwell Extra                       
+                             Bold', 'STCaiyun',                                
+                             'STFangsong', 'STHupo',                           
+                             'STKaiti', 'STLiti', 'STSong',                    
+                             'STXihei', 'STXingkai',                           
+                             'STXinwei', 'STZhongsong',                        
+                             'Sans', 'Sans Serif                               
+                             Collection', 'Script MT Bold',                    
+                             'Segoe Fluent Icons', 'Segoe                      
+                             MDL2 Assets', 'Segoe Print',                      
+                             'Segoe Script', 'Segoe UI',                       
+                             'Segoe UI Black', 'Segoe UI                       
+                             Emoji', 'Segoe UI Historic',                      
+                             'Segoe UI Light', 'Segoe UI                       
+                             Semibold', 'Segoe UI                              
+                             Semilight', 'Segoe UI Symbol',                    
+                             'Segoe UI Variable Display',                      
+                             'Segoe UI Variable Display                        
+                             Light', 'Segoe UI Variable                        
+                             Display Semib', 'Segoe UI                         
+                             Variable Display Semil',                          
+                             'Segoe UI Variable Small',                        
+                             'Segoe UI Variable Small                          
+                             Light', 'Segoe UI Variable                        
+                             Small Semibol', 'Segoe UI                         
+                             Variable Small Semilig',                          
+                             'Segoe UI Variable Text',                         
+                             'Segoe UI Variable Text                           
+                             Light', 'Segoe UI Variable                        
+                             Text Semibold', 'Segoe UI                         
+                             Variable Text Semiligh',                          
+                             'Serif', 'Showcard Gothic',                       
+                             'SimHei', 'SimSun',                               
+                             'SimSun-ExtB', 'SimSun-ExtG',                     
+                             'Sitka Banner', 'Sitka Banner                     
+                             Semibold', 'Sitka Display',                       
+                             'Sitka Display Semibold',                         
+                             'Sitka Heading', 'Sitka                           
+                             Heading Semibold', 'Sitka                         
+                             Small', 'Sitka Small                              
+                             Semibold', 'Sitka Subheading',                    
+                             'Sitka Subheading Semibold',                      
+                             'Sitka Text', 'Sitka Text                         
+                             Semibold', 'Snap ITC',                            
+                             'Stencil', 'Sylfaen',                             
+                             'System-ui', 'Tahoma', 'Tempus                    
+                             Sans ITC', 'Times New Roman',                     
+                             'Trebuchet MS', 'Tw Cen MT',                      
+                             'Tw Cen MT Condensed', 'Tw Cen                    
+                             MT Condensed Extra Bold',                         
+                             'Verdana', 'Viner Hand ITC',                      
+                             'Vivaldi', 'Vladimir Script',                     
+                             'Wide Latin', 'YouYuan', 'Yu                      
+                             Gothic', 'Yu Gothic Light',                       
+                             'Yu Gothic Medium', 'Yu Gothic                    
+                             UI', 'Yu Gothic UI Light', 'Yu                    
+                             Gothic UI Semibold', 'Yu                          
+                             Gothic UI Semilight'].                            
+Animation 3: GrowFromCenter(VGroup of 2 submobjects), etc.:   0%|          | 0/15 [00:00<?, ?it/s]Animation 3: GrowFromCenter(VGroup of 2 submobjects), etc.:  27%|##6       | 4/15 [00:00<00:00, 31.01it/s]Animation 3: GrowFromCenter(VGroup of 2 submobjects), etc.:  53%|#####3    | 8/15 [00:00<00:00, 28.86it/s]Animation 3: GrowFromCenter(VGroup of 2 submobjects), etc.:  73%|#######3  | 11/15 [00:00<00:00, 28.38it/s]Animation 3: GrowFromCenter(VGroup of 2 submobjects), etc.: 100%|##########| 15/15 [00:00<00:00, 29.32it/s]                                                                                                                               INFO     Animation 3 : Partial     scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_23778031                         
+                             71_354606338.mp4'                                 
+[11/24/26 09:45:35] INFO     Animation 4 : Partial     scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_19933110                         
+                             72_1525728142.mp4'                                
+                    WARNING  Font EB Garamond not in        text_mobject.py:461
+                             ['Agency FB', 'Algerian',                         
+                             'Arial', 'Arial Black', 'Arial                    
+                             Narrow', 'Arial Rounded MT                        
+                             Bold', 'Bahnschrift',                             
+                             'Bahnschrift Condensed',                          
+                             'Bahnschrift Light',                              
+                             'Bahnschrift Light Condensed',                    
+                             'Bahnschrift Light                                
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiBold', 'Bahnschrift                           
+                             SemiBold Condensed',                              
+                             'Bahnschrift SemiBold                             
+                             SemiConden', 'Bahnschrift                         
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiLight', 'Bahnschrift                          
+                             SemiLight Condensed',                             
+                             'Bahnschrift SemiLight                            
+                             SemiConde', 'Baskerville Old                      
+                             Face', 'Bauhaus 93', 'Bell                        
+                             MT', 'Berlin Sans FB', 'Berlin                    
+                             Sans FB Demi', 'Bernard MT                        
+                             Condensed', 'Blackadder ITC',                     
+                             'Bodoni MT', 'Bodoni MT                           
+                             Black', 'Bodoni MT Condensed',                    
+                             'Bodoni MT Poster Compressed',                    
+                             'Book Antiqua', 'Bookman Old                      
+                             Style', 'Bradley Hand ITC',                       
+                             'Britannic Bold', 'Broadway',                     
+                             'Brush Script MT', 'Calibri',                     
+                             'Calibri Light', 'Californian                     
+                             FB', 'Calisto MT', 'Cambria',                     
+                             'Cambria Math', 'Candara',                        
+                             'Candara Light', 'Cascadia                        
+                             Code', 'Cascadia Code                             
+                             ExtraLight', 'Cascadia Code                       
+                             Light', 'Cascadia Code                            
+                             SemiBold', 'Cascadia Code                         
+                             SemiLight', 'Cascadia Mono',                      
+                             'Cascadia Mono ExtraLight',                       
+                             'Cascadia Mono Light',                            
+                             'Cascadia Mono SemiBold',                         
+                             'Cascadia Mono SemiLight',                        
+                             'Castellar', 'Centaur',                           
+                             'Century', 'Century Gothic',                      
+                             'Century Schoolbook',                             
+                             'Chiller', 'Colonna MT',                          
+                             'Comic Sans MS', 'Consolas',                      
+                             'Constantia', 'Cooper Black',                     
+                             'Copperplate Gothic Bold',                        
+                             'Copperplate Gothic Light',                       
+                             'Corbel', 'Corbel Light',                         
+                             'Courier New', 'Curlz MT',                        
+                             'Cursive', 'DejaVu Math TeX                       
+                             Gyre', 'DengXian', 'Dubai',                       
+                             'Dubai Light', 'Dubai Medium',                    
+                             'Ebrima', 'Edwardian Script                       
+                             ITC', 'Elephant', 'Engravers                      
+                             MT', 'Eras Bold ITC', 'Eras                       
+                             Demi ITC', 'Eras Light ITC',                      
+                             'Eras Medium ITC', 'FZShuTi',                     
+                             'FZYaoTi', 'FangSong',                            
+                             'Fantasy', 'Felix Titling',                       
+                             'Footlight MT Light', 'Forte',                    
+                             'Franklin Gothic Book',                           
+                             'Franklin Gothic Demi',                           
+                             'Franklin Gothic Demi Cond',                      
+                             'Franklin Gothic Heavy',                          
+                             'Franklin Gothic Medium',                         
+                             'Franklin Gothic Medium Cond',                    
+                             'Freestyle Script', 'French                       
+                             Script MT', 'Gabriola',                           
+                             'Gadugi', 'Garamond',                             
+                             'Georgia', 'Gigi', 'Gill Sans                     
+                             MT', 'Gill Sans MT Condensed',                    
+                             'Gill Sans MT Ext Condensed                       
+                             Bold', 'Gill Sans Ultra Bold',                    
+                             'Gill Sans Ultra Bold                             
+                             Condensed', 'Gloucester MT                        
+                             Extra Condensed', 'Goudy Old                      
+                             Style', 'Goudy Stout', 'HP                        
+                             Simplified', 'HP Simplified                       
+                             Hans', 'HP Simplified Hans                        
+                             Light', 'HP Simplified Jpan',                     
+                             'HP Simplified Jpan Light',                       
+                             'HP Simplified Light',                            
+                             'Haettenschweiler', 'Harlow                       
+                             Solid Italic', 'Harrington',                      
+                             'High Tower Text', 'Impact',                      
+                             'Imprint MT Shadow', 'Informal                    
+                             Roman', 'Ink Free', 'Javanese                     
+                             Text', 'Jokerman', 'Juice                         
+                             ITC', 'KaiTi', 'Kristen ITC',                     
+                             'Kunstler Script',                                
+                             'Leelawadee', 'Leelawadee UI',                    
+                             'Leelawadee UI Semilight',                        
+                             'LiSu', 'Lucida Bright',                          
+                             'Lucida Calligraphy', 'Lucida                     
+                             Console', 'Lucida Fax',                           
+                             'Lucida Handwriting', 'Lucida                     
+                             Sans', 'Lucida Sans                               
+                             Typewriter', 'Lucida Sans                         
+                             Unicode', 'MS Gothic', 'MS                        
+                             PGothic', 'MS Reference Sans                      
+                             Serif', 'MS UI Gothic', 'MV                       
+                             Boli', 'Magneto', 'Maiandra                       
+                             GD', 'Malgun Gothic', 'Malgun                     
+                             Gothic Semilight', 'Matura MT                     
+                             Script Capitals', 'Microsoft                      
+                             Himalaya', 'Microsoft                             
+                             JhengHei', 'Microsoft JhengHei                    
+                             Light', 'Microsoft JhengHei                       
+                             UI', 'Microsoft JhengHei UI                       
+                             Light', 'Microsoft New Tai                        
+                             Lue', 'Microsoft PhagsPa',                        
+                             'Microsoft Sans Serif',                           
+                             'Microsoft Tai Le', 'Microsoft                    
+                             Uighur', 'Microsoft YaHei',                       
+                             'Microsoft YaHei UI',                             
+                             'Microsoft YaHei UI Light',                       
+                             'Microsoft Yi Baiti',                             
+                             'MingLiU-ExtB',                                   
+                             'MingLiU_HKSCS-ExtB',                             
+                             'MingLiU_MSCS-ExtB',                              
+                             'Mistral', 'Modern No. 20',                       
+                             'Mongolian Baiti',                                
+                             'Monospace', 'Monotype                            
+                             Corsiva', 'Myanmar Text',                         
+                             'NSimSun', 'Niagara Engraved',                    
+                             'Niagara Solid', 'Nirmala                         
+                             Text', 'Nirmala Text                              
+                             Semilight', 'Nirmala UI',                         
+                             'Nirmala UI Semilight', 'Noto                     
+                             Sans SC', 'Noto Sans SC                           
+                             Black', 'Noto Sans SC                             
+                             DemiLight', 'Noto Sans SC                         
+                             Light', 'Noto Sans SC Medium',                    
+                             'Noto Sans SC Thin', 'Noto                        
+                             Serif SC', 'Noto Serif SC                         
+                             Black', 'Noto Serif SC                            
+                             ExtraLight', 'Noto Serif SC                       
+                             Light', 'Noto Serif SC                            
+                             Medium', 'Noto Serif SC                           
+                             SemiBold', 'OCR A Extended',                      
+                             'Old English Text MT', 'Onyx',                    
+                             'PMingLiU-ExtB', 'Palace                          
+                             Script MT', 'Palatino                             
+                             Linotype', 'Papyrus',                             
+                             'Parchment', 'Perpetua',                          
+                             'Perpetua Titling MT',                            
+                             'Playbill', 'Poor Richard',                       
+                             'Pristina', 'Rage Italic',                        
+                             'Ravie', 'Rockwell', 'Rockwell                    
+                             Condensed', 'Rockwell Extra                       
+                             Bold', 'STCaiyun',                                
+                             'STFangsong', 'STHupo',                           
+                             'STKaiti', 'STLiti', 'STSong',                    
+                             'STXihei', 'STXingkai',                           
+                             'STXinwei', 'STZhongsong',                        
+                             'Sans', 'Sans Serif                               
+                             Collection', 'Script MT Bold',                    
+                             'Segoe Fluent Icons', 'Segoe                      
+                             MDL2 Assets', 'Segoe Print',                      
+                             'Segoe Script', 'Segoe UI',                       
+                             'Segoe UI Black', 'Segoe UI                       
+                             Emoji', 'Segoe UI Historic',                      
+                             'Segoe UI Light', 'Segoe UI                       
+                             Semibold', 'Segoe UI                              
+                             Semilight', 'Segoe UI Symbol',                    
+                             'Segoe UI Variable Display',                      
+                             'Segoe UI Variable Display                        
+                             Light', 'Segoe UI Variable                        
+                             Display Semib', 'Segoe UI                         
+                             Variable Display Semil',                          
+                             'Segoe UI Variable Small',                        
+                             'Segoe UI Variable Small                          
+                             Light', 'Segoe UI Variable                        
+                             Small Semibol', 'Segoe UI                         
+                             Variable Small Semilig',                          
+                             'Segoe UI Variable Text',                         
+                             'Segoe UI Variable Text                           
+                             Light', 'Segoe UI Variable                        
+                             Text Semibold', 'Segoe UI                         
+                             Variable Text Semiligh',                          
+                             'Serif', 'Showcard Gothic',                       
+                             'SimHei', 'SimSun',                               
+                             'SimSun-ExtB', 'SimSun-ExtG',                     
+                             'Sitka Banner', 'Sitka Banner                     
+                             Semibold', 'Sitka Display',                       
+                             'Sitka Display Semibold',                         
+                             'Sitka Heading', 'Sitka                           
+                             Heading Semibold', 'Sitka                         
+                             Small', 'Sitka Small                              
+                             Semibold', 'Sitka Subheading',                    
+                             'Sitka Subheading Semibold',                      
+                             'Sitka Text', 'Sitka Text                         
+                             Semibold', 'Snap ITC',                            
+                             'Stencil', 'Sylfaen',                             
+                             'System-ui', 'Tahoma', 'Tempus                    
+                             Sans ITC', 'Times New Roman',                     
+                             'Trebuchet MS', 'Tw Cen MT',                      
+                             'Tw Cen MT Condensed', 'Tw Cen                    
+                             MT Condensed Extra Bold',                         
+                             'Verdana', 'Viner Hand ITC',                      
+                             'Vivaldi', 'Vladimir Script',                     
+                             'Wide Latin', 'YouYuan', 'Yu                      
+                             Gothic', 'Yu Gothic Light',                       
+                             'Yu Gothic Medium', 'Yu Gothic                    
+                             UI', 'Yu Gothic UI Light', 'Yu                    
+                             Gothic UI Semibold', 'Yu                          
+                             Gothic UI Semilight'].                            
+Animation 5: GrowFromCenter(VGroup of 2 submobjects), etc.:   0%|          | 0/15 [00:00<?, ?it/s]Animation 5: GrowFromCenter(VGroup of 2 submobjects), etc.:  27%|##6       | 4/15 [00:00<00:00, 29.85it/s]Animation 5: GrowFromCenter(VGroup of 2 submobjects), etc.:  53%|#####3    | 8/15 [00:00<00:00, 29.89it/s]Animation 5: GrowFromCenter(VGroup of 2 submobjects), etc.:  80%|########  | 12/15 [00:00<00:00, 30.27it/s]                                                                                                           [11/24/26 09:45:36] INFO     Animation 5 : Partial     scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_21410740                         
+                             47_2362679512.mp4'                                
+                    INFO     Animation 6 : Partial     scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_78350736                         
+                             1_2023242986.mp4'                                 
+                    WARNING  Font EB Garamond not in        text_mobject.py:461
+                             ['Agency FB', 'Algerian',                         
+                             'Arial', 'Arial Black', 'Arial                    
+                             Narrow', 'Arial Rounded MT                        
+                             Bold', 'Bahnschrift',                             
+                             'Bahnschrift Condensed',                          
+                             'Bahnschrift Light',                              
+                             'Bahnschrift Light Condensed',                    
+                             'Bahnschrift Light                                
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiBold', 'Bahnschrift                           
+                             SemiBold Condensed',                              
+                             'Bahnschrift SemiBold                             
+                             SemiConden', 'Bahnschrift                         
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiLight', 'Bahnschrift                          
+                             SemiLight Condensed',                             
+                             'Bahnschrift SemiLight                            
+                             SemiConde', 'Baskerville Old                      
+                             Face', 'Bauhaus 93', 'Bell                        
+                             MT', 'Berlin Sans FB', 'Berlin                    
+                             Sans FB Demi', 'Bernard MT                        
+                             Condensed', 'Blackadder ITC',                     
+                             'Bodoni MT', 'Bodoni MT                           
+                             Black', 'Bodoni MT Condensed',                    
+                             'Bodoni MT Poster Compressed',                    
+                             'Book Antiqua', 'Bookman Old                      
+                             Style', 'Bradley Hand ITC',                       
+                             'Britannic Bold', 'Broadway',                     
+                             'Brush Script MT', 'Calibri',                     
+                             'Calibri Light', 'Californian                     
+                             FB', 'Calisto MT', 'Cambria',                     
+                             'Cambria Math', 'Candara',                        
+                             'Candara Light', 'Cascadia                        
+                             Code', 'Cascadia Code                             
+                             ExtraLight', 'Cascadia Code                       
+                             Light', 'Cascadia Code                            
+                             SemiBold', 'Cascadia Code                         
+                             SemiLight', 'Cascadia Mono',                      
+                             'Cascadia Mono ExtraLight',                       
+                             'Cascadia Mono Light',                            
+                             'Cascadia Mono SemiBold',                         
+                             'Cascadia Mono SemiLight',                        
+                             'Castellar', 'Centaur',                           
+                             'Century', 'Century Gothic',                      
+                             'Century Schoolbook',                             
+                             'Chiller', 'Colonna MT',                          
+                             'Comic Sans MS', 'Consolas',                      
+                             'Constantia', 'Cooper Black',                     
+                             'Copperplate Gothic Bold',                        
+                             'Copperplate Gothic Light',                       
+                             'Corbel', 'Corbel Light',                         
+                             'Courier New', 'Curlz MT',                        
+                             'Cursive', 'DejaVu Math TeX                       
+                             Gyre', 'DengXian', 'Dubai',                       
+                             'Dubai Light', 'Dubai Medium',                    
+                             'Ebrima', 'Edwardian Script                       
+                             ITC', 'Elephant', 'Engravers                      
+                             MT', 'Eras Bold ITC', 'Eras                       
+                             Demi ITC', 'Eras Light ITC',                      
+                             'Eras Medium ITC', 'FZShuTi',                     
+                             'FZYaoTi', 'FangSong',                            
+                             'Fantasy', 'Felix Titling',                       
+                             'Footlight MT Light', 'Forte',                    
+                             'Franklin Gothic Book',                           
+                             'Franklin Gothic Demi',                           
+                             'Franklin Gothic Demi Cond',                      
+                             'Franklin Gothic Heavy',                          
+                             'Franklin Gothic Medium',                         
+                             'Franklin Gothic Medium Cond',                    
+                             'Freestyle Script', 'French                       
+                             Script MT', 'Gabriola',                           
+                             'Gadugi', 'Garamond',                             
+                             'Georgia', 'Gigi', 'Gill Sans                     
+                             MT', 'Gill Sans MT Condensed',                    
+                             'Gill Sans MT Ext Condensed                       
+                             Bold', 'Gill Sans Ultra Bold',                    
+                             'Gill Sans Ultra Bold                             
+                             Condensed', 'Gloucester MT                        
+                             Extra Condensed', 'Goudy Old                      
+                             Style', 'Goudy Stout', 'HP                        
+                             Simplified', 'HP Simplified                       
+                             Hans', 'HP Simplified Hans                        
+                             Light', 'HP Simplified Jpan',                     
+                             'HP Simplified Jpan Light',                       
+                             'HP Simplified Light',                            
+                             'Haettenschweiler', 'Harlow                       
+                             Solid Italic', 'Harrington',                      
+                             'High Tower Text', 'Impact',                      
+                             'Imprint MT Shadow', 'Informal                    
+                             Roman', 'Ink Free', 'Javanese                     
+                             Text', 'Jokerman', 'Juice                         
+                             ITC', 'KaiTi', 'Kristen ITC',                     
+                             'Kunstler Script',                                
+                             'Leelawadee', 'Leelawadee UI',                    
+                             'Leelawadee UI Semilight',                        
+                             'LiSu', 'Lucida Bright',                          
+                             'Lucida Calligraphy', 'Lucida                     
+                             Console', 'Lucida Fax',                           
+                             'Lucida Handwriting', 'Lucida                     
+                             Sans', 'Lucida Sans                               
+                             Typewriter', 'Lucida Sans                         
+                             Unicode', 'MS Gothic', 'MS                        
+                             PGothic', 'MS Reference Sans                      
+                             Serif', 'MS UI Gothic', 'MV                       
+                             Boli', 'Magneto', 'Maiandra                       
+                             GD', 'Malgun Gothic', 'Malgun                     
+                             Gothic Semilight', 'Matura MT                     
+                             Script Capitals', 'Microsoft                      
+                             Himalaya', 'Microsoft                             
+                             JhengHei', 'Microsoft JhengHei                    
+                             Light', 'Microsoft JhengHei                       
+                             UI', 'Microsoft JhengHei UI                       
+                             Light', 'Microsoft New Tai                        
+                             Lue', 'Microsoft PhagsPa',                        
+                             'Microsoft Sans Serif',                           
+                             'Microsoft Tai Le', 'Microsoft                    
+                             Uighur', 'Microsoft YaHei',                       
+                             'Microsoft YaHei UI',                             
+                             'Microsoft YaHei UI Light',                       
+                             'Microsoft Yi Baiti',                             
+                             'MingLiU-ExtB',                                   
+                             'MingLiU_HKSCS-ExtB',                             
+                             'MingLiU_MSCS-ExtB',                              
+                             'Mistral', 'Modern No. 20',                       
+                             'Mongolian Baiti',                                
+                             'Monospace', 'Monotype                            
+                             Corsiva', 'Myanmar Text',                         
+                             'NSimSun', 'Niagara Engraved',                    
+                             'Niagara Solid', 'Nirmala                         
+                             Text', 'Nirmala Text                              
+                             Semilight', 'Nirmala UI',                         
+                             'Nirmala UI Semilight', 'Noto                     
+                             Sans SC', 'Noto Sans SC                           
+                             Black', 'Noto Sans SC                             
+                             DemiLight', 'Noto Sans SC                         
+                             Light', 'Noto Sans SC Medium',                    
+                             'Noto Sans SC Thin', 'Noto                        
+                             Serif SC', 'Noto Serif SC                         
+                             Black', 'Noto Serif SC                            
+                             ExtraLight', 'Noto Serif SC                       
+                             Light', 'Noto Serif SC                            
+                             Medium', 'Noto Serif SC                           
+                             SemiBold', 'OCR A Extended',                      
+                             'Old English Text MT', 'Onyx',                    
+                             'PMingLiU-ExtB', 'Palace                          
+                             Script MT', 'Palatino                             
+                             Linotype', 'Papyrus',                             
+                             'Parchment', 'Perpetua',                          
+                             'Perpetua Titling MT',                            
+                             'Playbill', 'Poor Richard',                       
+                             'Pristina', 'Rage Italic',                        
+                             'Ravie', 'Rockwell', 'Rockwell                    
+                             Condensed', 'Rockwell Extra                       
+                             Bold', 'STCaiyun',                                
+                             'STFangsong', 'STHupo',                           
+                             'STKaiti', 'STLiti', 'STSong',                    
+                             'STXihei', 'STXingkai',                           
+                             'STXinwei', 'STZhongsong',                        
+                             'Sans', 'Sans Serif                               
+                             Collection', 'Script MT Bold',                    
+                             'Segoe Fluent Icons', 'Segoe                      
+                             MDL2 Assets', 'Segoe Print',                      
+                             'Segoe Script', 'Segoe UI',                       
+                             'Segoe UI Black', 'Segoe UI                       
+                             Emoji', 'Segoe UI Historic',                      
+                             'Segoe UI Light', 'Segoe UI                       
+                             Semibold', 'Segoe UI                              
+                             Semilight', 'Segoe UI Symbol',                    
+                             'Segoe UI Variable Display',                      
+                             'Segoe UI Variable Display                        
+                             Light', 'Segoe UI Variable                        
+                             Display Semib', 'Segoe UI                         
+                             Variable Display Semil',                          
+                             'Segoe UI Variable Small',                        
+                             'Segoe UI Variable Small                          
+                             Light', 'Segoe UI Variable                        
+                             Small Semibol', 'Segoe UI                         
+                             Variable Small Semilig',                          
+                             'Segoe UI Variable Text',                         
+                             'Segoe UI Variable Text                           
+                             Light', 'Segoe UI Variable                        
+                             Text Semibold', 'Segoe UI                         
+                             Variable Text Semiligh',                          
+                             'Serif', 'Showcard Gothic',                       
+                             'SimHei', 'SimSun',                               
+                             'SimSun-ExtB', 'SimSun-ExtG',                     
+                             'Sitka Banner', 'Sitka Banner                     
+                             Semibold', 'Sitka Display',                       
+                             'Sitka Display Semibold',                         
+                             'Sitka Heading', 'Sitka                           
+                             Heading Semibold', 'Sitka                         
+                             Small', 'Sitka Small                              
+                             Semibold', 'Sitka Subheading',                    
+                             'Sitka Subheading Semibold',                      
+                             'Sitka Text', 'Sitka Text                         
+                             Semibold', 'Snap ITC',                            
+                             'Stencil', 'Sylfaen',                             
+                             'System-ui', 'Tahoma', 'Tempus                    
+                             Sans ITC', 'Times New Roman',                     
+                             'Trebuchet MS', 'Tw Cen MT',                      
+                             'Tw Cen MT Condensed', 'Tw Cen                    
+                             MT Condensed Extra Bold',                         
+                             'Verdana', 'Viner Hand ITC',                      
+                             'Vivaldi', 'Vladimir Script',                     
+                             'Wide Latin', 'YouYuan', 'Yu                      
+                             Gothic', 'Yu Gothic Light',                       
+                             'Yu Gothic Medium', 'Yu Gothic                    
+                             UI', 'Yu Gothic UI Light', 'Yu                    
+                             Gothic UI Semibold', 'Yu                          
+                             Gothic UI Semilight'].                            
+[11/24/26 09:45:37] INFO     Animation 7 : Partial     scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_37544472                         
+                             80_379805609.mp4'                                 
+Animation 8: GrowFromCenter(VGroup of 2 submobjects), etc.:   0%|          | 0/15 [00:00<?, ?it/s]Animation 8: GrowFromCenter(VGroup of 2 submobjects), etc.:  27%|##6       | 4/15 [00:00<00:00, 32.02it/s]Animation 8: GrowFromCenter(VGroup of 2 submobjects), etc.:  53%|#####3    | 8/15 [00:00<00:00, 29.90it/s]Animation 8: GrowFromCenter(VGroup of 2 submobjects), etc.:  73%|#######3  | 11/15 [00:00<00:00, 29.88it/s]Animation 8: GrowFromCenter(VGroup of 2 submobjects), etc.:  93%|#########3| 14/15 [00:00<00:00, 29.84it/s]                                                                                                           [11/24/26 09:45:38] INFO     Animation 8 : Partial     scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_71088948                         
+                             4_4012524488.mp4'                                 
+                    INFO     Animation 9 : Partial     scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_89515168                         
+                             7_179870315.mp4'                                  
+                    WARNING  Font EB Garamond not in        text_mobject.py:461
+                             ['Agency FB', 'Algerian',                         
+                             'Arial', 'Arial Black', 'Arial                    
+                             Narrow', 'Arial Rounded MT                        
+                             Bold', 'Bahnschrift',                             
+                             'Bahnschrift Condensed',                          
+                             'Bahnschrift Light',                              
+                             'Bahnschrift Light Condensed',                    
+                             'Bahnschrift Light                                
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiBold', 'Bahnschrift                           
+                             SemiBold Condensed',                              
+                             'Bahnschrift SemiBold                             
+                             SemiConden', 'Bahnschrift                         
+                             SemiCondensed', 'Bahnschrift                      
+                             SemiLight', 'Bahnschrift                          
+                             SemiLight Condensed',                             
+                             'Bahnschrift SemiLight                            
+                             SemiConde', 'Baskerville Old                      
+                             Face', 'Bauhaus 93', 'Bell                        
+                             MT', 'Berlin Sans FB', 'Berlin                    
+                             Sans FB Demi', 'Bernard MT                        
+                             Condensed', 'Blackadder ITC',                     
+                             'Bodoni MT', 'Bodoni MT                           
+                             Black', 'Bodoni MT Condensed',                    
+                             'Bodoni MT Poster Compressed',                    
+                             'Book Antiqua', 'Bookman Old                      
+                             Style', 'Bradley Hand ITC',                       
+                             'Britannic Bold', 'Broadway',                     
+                             'Brush Script MT', 'Calibri',                     
+                             'Calibri Light', 'Californian                     
+                             FB', 'Calisto MT', 'Cambria',                     
+                             'Cambria Math', 'Candara',                        
+                             'Candara Light', 'Cascadia                        
+                             Code', 'Cascadia Code                             
+                             ExtraLight', 'Cascadia Code                       
+                             Light', 'Cascadia Code                            
+                             SemiBold', 'Cascadia Code                         
+                             SemiLight', 'Cascadia Mono',                      
+                             'Cascadia Mono ExtraLight',                       
+                             'Cascadia Mono Light',                            
+                             'Cascadia Mono SemiBold',                         
+                             'Cascadia Mono SemiLight',                        
+                             'Castellar', 'Centaur',                           
+                             'Century', 'Century Gothic',                      
+                             'Century Schoolbook',                             
+                             'Chiller', 'Colonna MT',                          
+                             'Comic Sans MS', 'Consolas',                      
+                             'Constantia', 'Cooper Black',                     
+                             'Copperplate Gothic Bold',                        
+                             'Copperplate Gothic Light',                       
+                             'Corbel', 'Corbel Light',                         
+                             'Courier New', 'Curlz MT',                        
+                             'Cursive', 'DejaVu Math TeX                       
+                             Gyre', 'DengXian', 'Dubai',                       
+                             'Dubai Light', 'Dubai Medium',                    
+                             'Ebrima', 'Edwardian Script                       
+                             ITC', 'Elephant', 'Engravers                      
+                             MT', 'Eras Bold ITC', 'Eras                       
+                             Demi ITC', 'Eras Light ITC',                      
+                             'Eras Medium ITC', 'FZShuTi',                     
+                             'FZYaoTi', 'FangSong',                            
+                             'Fantasy', 'Felix Titling',                       
+                             'Footlight MT Light', 'Forte',                    
+                             'Franklin Gothic Book',                           
+                             'Franklin Gothic Demi',                           
+                             'Franklin Gothic Demi Cond',                      
+                             'Franklin Gothic Heavy',                          
+                             'Franklin Gothic Medium',                         
+                             'Franklin Gothic Medium Cond',                    
+                             'Freestyle Script', 'French                       
+                             Script MT', 'Gabriola',                           
+                             'Gadugi', 'Garamond',                             
+                             'Georgia', 'Gigi', 'Gill Sans                     
+                             MT', 'Gill Sans MT Condensed',                    
+                             'Gill Sans MT Ext Condensed                       
+                             Bold', 'Gill Sans Ultra Bold',                    
+                             'Gill Sans Ultra Bold                             
+                             Condensed', 'Gloucester MT                        
+                             Extra Condensed', 'Goudy Old                      
+                             Style', 'Goudy Stout', 'HP                        
+                             Simplified', 'HP Simplified                       
+                             Hans', 'HP Simplified Hans                        
+                             Light', 'HP Simplified Jpan',                     
+                             'HP Simplified Jpan Light',                       
+                             'HP Simplified Light',                            
+                             'Haettenschweiler', 'Harlow                       
+                             Solid Italic', 'Harrington',                      
+                             'High Tower Text', 'Impact',                      
+                             'Imprint MT Shadow', 'Informal                    
+                             Roman', 'Ink Free', 'Javanese                     
+                             Text', 'Jokerman', 'Juice                         
+                             ITC', 'KaiTi', 'Kristen ITC',                     
+                             'Kunstler Script',                                
+                             'Leelawadee', 'Leelawadee UI',                    
+                             'Leelawadee UI Semilight',                        
+                             'LiSu', 'Lucida Bright',                          
+                             'Lucida Calligraphy', 'Lucida                     
+                             Console', 'Lucida Fax',                           
+                             'Lucida Handwriting', 'Lucida                     
+                             Sans', 'Lucida Sans                               
+                             Typewriter', 'Lucida Sans                         
+                             Unicode', 'MS Gothic', 'MS                        
+                             PGothic', 'MS Reference Sans                      
+                             Serif', 'MS UI Gothic', 'MV                       
+                             Boli', 'Magneto', 'Maiandra                       
+                             GD', 'Malgun Gothic', 'Malgun                     
+                             Gothic Semilight', 'Matura MT                     
+                             Script Capitals', 'Microsoft                      
+                             Himalaya', 'Microsoft                             
+                             JhengHei', 'Microsoft JhengHei                    
+                             Light', 'Microsoft JhengHei                       
+                             UI', 'Microsoft JhengHei UI                       
+                             Light', 'Microsoft New Tai                        
+                             Lue', 'Microsoft PhagsPa',                        
+                             'Microsoft Sans Serif',                           
+                             'Microsoft Tai Le', 'Microsoft                    
+                             Uighur', 'Microsoft YaHei',                       
+                             'Microsoft YaHei UI',                             
+                             'Microsoft YaHei UI Light',                       
+                             'Microsoft Yi Baiti',                             
+                             'MingLiU-ExtB',                                   
+                             'MingLiU_HKSCS-ExtB',                             
+                             'MingLiU_MSCS-ExtB',                              
+                             'Mistral', 'Modern No. 20',                       
+                             'Mongolian Baiti',                                
+                             'Monospace', 'Monotype                            
+                             Corsiva', 'Myanmar Text',                         
+                             'NSimSun', 'Niagara Engraved',                    
+                             'Niagara Solid', 'Nirmala                         
+                             Text', 'Nirmala Text                              
+                             Semilight', 'Nirmala UI',                         
+                             'Nirmala UI Semilight', 'Noto                     
+                             Sans SC', 'Noto Sans SC                           
+                             Black', 'Noto Sans SC                             
+                             DemiLight', 'Noto Sans SC                         
+                             Light', 'Noto Sans SC Medium',                    
+                             'Noto Sans SC Thin', 'Noto                        
+                             Serif SC', 'Noto Serif SC                         
+                             Black', 'Noto Serif SC                            
+                             ExtraLight', 'Noto Serif SC                       
+                             Light', 'Noto Serif SC                            
+                             Medium', 'Noto Serif SC                           
+                             SemiBold', 'OCR A Extended',                      
+                             'Old English Text MT', 'Onyx',                    
+                             'PMingLiU-ExtB', 'Palace                          
+                             Script MT', 'Palatino                             
+                             Linotype', 'Papyrus',                             
+                             'Parchment', 'Perpetua',                          
+                             'Perpetua Titling MT',                            
+                             'Playbill', 'Poor Richard',                       
+                             'Pristina', 'Rage Italic',                        
+                             'Ravie', 'Rockwell', 'Rockwell                    
+                             Condensed', 'Rockwell Extra                       
+                             Bold', 'STCaiyun',                                
+                             'STFangsong', 'STHupo',                           
+                             'STKaiti', 'STLiti', 'STSong',                    
+                             'STXihei', 'STXingkai',                           
+                             'STXinwei', 'STZhongsong',                        
+                             'Sans', 'Sans Serif                               
+                             Collection', 'Script MT Bold',                    
+                             'Segoe Fluent Icons', 'Segoe                      
+                             MDL2 Assets', 'Segoe Print',                      
+                             'Segoe Script', 'Segoe UI',                       
+                             'Segoe UI Black', 'Segoe UI                       
+                             Emoji', 'Segoe UI Historic',                      
+                             'Segoe UI Light', 'Segoe UI                       
+                             Semibold', 'Segoe UI                              
+                             Semilight', 'Segoe UI Symbol',                    
+                             'Segoe UI Variable Display',                      
+                             'Segoe UI Variable Display                        
+                             Light', 'Segoe UI Variable                        
+                             Display Semib', 'Segoe UI                         
+                             Variable Display Semil',                          
+                             'Segoe UI Variable Small',                        
+                             'Segoe UI Variable Small                          
+                             Light', 'Segoe UI Variable                        
+                             Small Semibol', 'Segoe UI                         
+                             Variable Small Semilig',                          
+                             'Segoe UI Variable Text',                         
+                             'Segoe UI Variable Text                           
+                             Light', 'Segoe UI Variable                        
+                             Text Semibold', 'Segoe UI                         
+                             Variable Text Semiligh',                          
+                             'Serif', 'Showcard Gothic',                       
+                             'SimHei', 'SimSun',                               
+                             'SimSun-ExtB', 'SimSun-ExtG',                     
+                             'Sitka Banner', 'Sitka Banner                     
+                             Semibold', 'Sitka Display',                       
+                             'Sitka Display Semibold',                         
+                             'Sitka Heading', 'Sitka                           
+                             Heading Semibold', 'Sitka                         
+                             Small', 'Sitka Small                              
+                             Semibold', 'Sitka Subheading',                    
+                             'Sitka Subheading Semibold',                      
+                             'Sitka Text', 'Sitka Text                         
+                             Semibold', 'Snap ITC',                            
+                             'Stencil', 'Sylfaen',                             
+                             'System-ui', 'Tahoma', 'Tempus                    
+                             Sans ITC', 'Times New Roman',                     
+                             'Trebuchet MS', 'Tw Cen MT',                      
+                             'Tw Cen MT Condensed', 'Tw Cen                    
+                             MT Condensed Extra Bold',                         
+                             'Verdana', 'Viner Hand ITC',                      
+                             'Vivaldi', 'Vladimir Script',                     
+                             'Wide Latin', 'YouYuan', 'Yu                      
+                             Gothic', 'Yu Gothic Light',                       
+                             'Yu Gothic Medium', 'Yu Gothic                    
+                             UI', 'Yu Gothic UI Light', 'Yu                    
+                             Gothic UI Semibold', 'Yu                          
+                             Gothic UI Semilight'].                            
+Animation 10: FadeIn(VGroup of 2 submobjects), etc.:   0%|          | 0/15 [00:00<?, ?it/s]Animation 10: FadeIn(VGroup of 2 submobjects), etc.:  27%|##6       | 4/15 [00:00<00:00, 30.45it/s]Animation 10: FadeIn(VGroup of 2 submobjects), etc.:  53%|#####3    | 8/15 [00:00<00:00, 29.29it/s]Animation 10: FadeIn(VGroup of 2 submobjects), etc.:  80%|########  | 12/15 [00:00<00:00, 30.32it/s]                                                                                                    [11/24/26 09:45:39] INFO     Animation 10 : Partial    scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_16092371                         
+                             05_20526090.mp4'                                  
+[11/24/26 09:45:41] INFO     Animation 11 : Partial    scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_30386539                         
+                             77_1446953595.mp4'                                
+Animation 12: Create(VGroup of 2 submobjects):   0%|          | 0/12 [00:00<?, ?it/s]Animation 12: Create(VGroup of 2 submobjects):  33%|###3      | 4/12 [00:00<00:00, 31.65it/s]Animation 12: Create(VGroup of 2 submobjects):  67%|######6   | 8/12 [00:00<00:00, 30.47it/s]Animation 12: Create(VGroup of 2 submobjects): 100%|##########| 12/12 [00:00<00:00, 30.23it/s]                                                                                                                  INFO     Animation 12 : Partial    scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_26877152                         
+                             2_2327718209.mp4'                                 
+[11/24/26 09:45:43] INFO     Animation 13 : Partial    scene_file_writer.py:527
+                             movie file written in                             
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\partia                         
+                             l_movie_files\B02_Finishe                         
+                             dForm\1606801221_30874362                         
+                             18_1880489924.mp4'                                
+                    INFO     Combining to Movie file.  scene_file_writer.py:617
+                    INFO                               scene_file_writer.py:737
+                             File ready at                                     
+                             'D:\CSYE7270\assignment2\                         
+                             walker-TANK\youtube\walke                         
+                             r-tank-a8-pitch\media\vid                         
+                             eos\scenes\2160p24\B02_Fi                         
+                             nishedForm.mp4'                                   
+                                                                               
+                    INFO     Rendered B02_FinishedForm             scene.py:247
+                             Played 14 animations                              
+You are using manim version v0.18.1, but version v0.22.1 is available.
+You should consider upgrading via pip install -U manim
+D:\CSYE7270\brutalist.art\runtime\qc\manim_layout_audit.py:149: DeprecationWarning: This method is not guaranteed to stay around. Please prefer getting the attribute normally.
+  if float(mob.get_stroke_opacity()) <= 0.02:
+Animation 1: FadeIn(VGroup of 3 submobjects), etc.:   0%|          | 0/12 [00:00<?, ?it/s]                                                                                          Animation 3: GrowFromCenter(VGroup of 2 submobjects), etc.:   0%|          | 0/9 [00:00<?, ?it/s]                                                                                                 Animation 5: GrowFromCenter(VGroup of 2 submobjects), etc.:   0%|          | 0/9 [00:00<?, ?it/s]                                                                                                 Animation 8: GrowFromCenter(VGroup of 2 submobjects), etc.:   0%|          | 0/9 [00:00<?, ?it/s]                                                                                                 Animation 10: FadeIn(VGroup of 2 submobjects), etc.:   0%|          | 0/9 [00:00<?, ?it/s]                                                                                          Animation 12: Create(VGroup of 2 submobjects):   0%|          | 0/8 [00:00<?, ?it/s]                                                                                    [audit] scenes: 22 snapshots → CLEAN
+[audit] report: D:\CSYE7270\assignment2\walker-TANK\youtube\walker-tank-a8-pitch\layout_audit.md
+[remotion] BIDEA: filled already (skip)
+[remotion] B06: filled already (skip)
+[remotion] done — run `bash scripts/run.sh <REEL>` to compile the cut
+[art] compiled B02  MANIM    13.5s  ← B02.mp4
+[art] compiled B12  VIDEO    13.6s  ← B12.mp4
+[art] motion histogram: graphic:9  video:3  remotion:2
+[art] SKIN LINT: BIDEA: palette=claude but the cold open is 'BrutalistHesitantWriter' — COLD OPEN LAW wants ClaudeComposerAsk
+[art] SKIN LINT: BOUT: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro
+[art] build stamp → beat_sheet.json (14/14 filled)
+[art] QC contact sheet → D:\CSYE7270\assignment2\walker-TANK\youtube\walker-tank-a8-pitch\qc-sheet.png
+[art] wrote D:\CSYE7270\assignment2\walker-TANK\youtube\walker-tank-a8-pitch\walker-tank-a8-pitch-slate.mp4  (204.5s, audio: per-beat timeline (source audio preserved), drawtext: no — PIL overlays)
+[art] slots: 14/14 filled — BIDEA:VIDEO B01:VIDEO B02:MANIM B03:MANIM B04:VIDEO B05:MANIM B06:VIDEO B07:MANIM B08:MANIM B09:MANIM B10:MANIM B11:MANIM B12:VIDEO BOUT:MANIM
+[run] GATE V — frame-level visual QC on the compiled reel
+[gate-v] frames=28 BLOCKER=0 MAJOR=0 → D:/CSYE7270/assignment2/walker-TANK/youtube/walker-tank-a8-pitch\_qc\REPORT.md
+[run] done → /d/CSYE7270/assignment2/walker-TANK/youtube/walker-tank-a8-pitch  (QC gates: on)
+[run] REVIEW built; no final exported. Use ./art final <reel> for a verified master.
+[run] any remaining slates are YOUR slots — see /d/CSYE7270/assignment2/walker-TANK/youtube/walker-tank-a8-pitch/SHOTLIST.md

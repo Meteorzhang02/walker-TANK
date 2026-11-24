@@ -1,0 +1,112 @@
+{
+ "schema_version": 1,
+ "scope": "Pitch film, not a complete walkthrough: only the features the brief cites are shown. Implemented but not shown (not claimed): pause, music/sound mute, restart, victory panel, respawn message.",
+ "game": {
+  "name": "walker-TANK",
+  "build_id": "718a209b8cc983d503b42b417ff06baa9f1862fc4a6abefae5df9818732f53c9"
+ },
+ "captures": {
+  "run-01": {
+   "path": "capture/run-01.mp4",
+   "sha256": "2116476a25d73378539e88bccc283dbaa9e45db18353a89c87e6295e1afed60f",
+   "build_id": "718a209b8cc983d503b42b417ff06baa9f1862fc4a6abefae5df9818732f53c9",
+   "method": "scripted-input",
+   "input_log": "capture/run-01-inputs.jsonl"
+  }
+ },
+ "features": [
+  {
+   "id": "drive-among-cover",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B01",
+     "start_s": 0.0,
+     "action_s": 4.0,
+     "end_s": 8.3,
+     "observation": "YunqiZ idles at spawn, then drives four legs among brick cover while three enemy tanks advance.",
+     "riff": "Narration: what the game is today, recorded at the A7 tag, driven by a script."
+    }
+   ]
+  },
+  {
+   "id": "cover-hit-burst",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B04",
+     "start_s": 5.933,
+     "action_s": 8.6,
+     "end_s": 11.3,
+     "observation": "Shells hit the cover at (320,480); a debris burst leaves the hit point at frames 258 and 302; the cover cracks then breaks.",
+     "riff": "Narration: a shell hits the brick cover and debris bursts from the hit point."
+    }
+   ]
+  },
+  {
+   "id": "yunqiz-red-hit-flash",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B04",
+     "start_s": 9.867,
+     "action_s": 10.267,
+     "end_s": 12.067,
+     "observation": "YunqiZ turns red when hit (A5 shader hit_amount logged 1.0 at frames 308 and 345).",
+     "riff": "Narration: YunqiZ flashes red when it's hit (enemies flash white; not claimed)."
+    }
+   ]
+  },
+  {
+   "id": "damage-smoke",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B04",
+     "start_s": 15.1,
+     "action_s": 15.3,
+     "end_s": 16.367,
+     "observation": "Enemy 2 starts smoking at frame 459 (smoke.emitting logged true, alive).",
+     "riff": "Narration: a damaged tank smokes."
+    }
+   ]
+  },
+  {
+   "id": "wreck-smoke",
+   "status": "implemented",
+   "evidence": [
+    {
+     "capture": "run-01",
+     "beat_id": "B04",
+     "start_s": 18.667,
+     "action_s": 19.167,
+     "end_s": 23.3,
+     "observation": "Enemy 2 was destroyed at frame 515; its dark wreck keeps smoking through frames 560-699.",
+     "riff": "Narration: a wreck keeps smoking."
+    }
+   ]
+  },
+  {
+   "id": "title-screen",
+   "status": "planned",
+   "reason": "PROJECT-BRIEF.md 'Will exist'; drawn in B02/B05, labelled constructed.",
+   "evidence": []
+  },
+  {
+   "id": "windows-export",
+   "status": "planned",
+   "reason": "PROJECT-BRIEF.md 'Will exist'; never exported yet (brief section 6).",
+   "evidence": []
+  },
+  {
+   "id": "one-command-test-report",
+   "status": "planned",
+   "reason": "PROJECT-BRIEF.md 'Will exist'.",
+   "evidence": []
+  }
+ ]
+}

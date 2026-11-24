@@ -6,3 +6,10 @@
 - Dropped a mobile 坦克大战 as a comparable: I could not recall its exact name.
 - Did not use 三角洲行动 as a comparable: it is a large multiplayer shooter, not the same kind of game.
 - Claude drafted PROJECT-BRIEF.md; I still need to confirm the [CHECK] items against the game.
+- The game would not open at first; after that it opened. The firing-animation claim was dropped from the brief because I could not confirm it in play.
+- BUILD-PROMPT forbids the instructor persona that the A7 beat sheet used ("in for Bear", @NikBearBrown); the narrator speaks as me.
+
+## 2026-11-24
+- 4K final rendered with every gate passing after scene fixes for Gate V and Gate T (see GATE-REPORT.md). No gate was waived; B01 and B04 were declared full-frame gameplay.
+- I watched the whole film: no problems. Audio is quiet (−24.8 LUFS); left as is and noted in README.
+- Film uploaded to Google Drive, shared as anyone with the link can view.

@@ -1,0 +1,28 @@
+# ═════════════════════════════ pacing (narration is the clock) ═════════════════════════════
+try:
+    _SHEET = _json.load(open(_os.path.join(_os.path.dirname(_os.path.abspath(__file__)), "beat_sheet.json")))
+    _TARGET = {b["beat_id"]: float(b.get("actual_duration_s") or b.get("estimated_duration_s") or 0) for b in _SHEET["beats"]}
+    _NARR = {b["beat_id"]: b["narration_text"] for b in _SHEET["beats"]}
+except Exception:
+    _TARGET, _NARR = {}, {}
+
+
+def _elapsed(self):
+    rt = getattr(getattr(self, "renderer", None), "time", None)
+    return float(rt) if isinstance(rt, (int, float)) else 0.0
+
+
+def until(self, phrase, lead=0.25):
+    """Wait until `phrase` is spoken (its character share of the narration × the measured audio)."""
+    bid = type(self).__name__.split("_")[0]
+    n, target = _NARR.get(bid, ""), _TARGET.get(bid, 0)
+    if not n or not target or phrase not in n:
+        return
+    gap = target * n.index(phrase) / len(n) - lead - _elapsed(self)
+    if gap > 0.05:
+        self.wait(gap)
+
+
+def finish(self):
+    target = _TARGET.get(type(self).__name__.split("_")[0], 0)
+    self.wait(max(0.3, target - 0.06 - _elapsed(self)) if target else 2.0)  # A8: 0.06 s slack for 24 fps rounding

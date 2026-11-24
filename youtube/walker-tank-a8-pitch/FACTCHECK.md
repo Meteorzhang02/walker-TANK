@@ -1,0 +1,30 @@
+# FACTCHECK — walker-tank-a8-pitch
+
+Status: checked 2026-11-23 by Claude Code for Yunqi Zhang, against `pitch/PROJECT-BRIEF.md` (the only claim source), the game at tag a7 (game source 4f88f1b), and the capture logs. Every claim comes from the brief; nothing is added. Narration spells names phonetically for Kokoro (Yoon-chee Jahng = Yunqi Zhang, Yoon-chee Zee = YunqiZ, Chwan-min Tahn-kuh Dah-jahn = 全民坦克大战); `display_text` in the beat sheet holds the written form.
+
+| # | Beat | Claim (as spoken / shown) | Verdict | Source / derivation | Fix |
+|---|---|---|---|---|---|
+| 1 | BIDEA | I'm Yunqi Zhang, a CSYE 7270 student; this film pitches my final project | PASS | BUILD-PROMPT.md "Voice and identity"; brief header "CSYE 7270 · Assignment 8 · Final project pitch" | — |
+| 2 | BIDEA | The plan is to finish one level, not make it bigger | PASS | Brief title "one finished level"; §1 "one finished level"; §5 Out: "no second level" | — |
+| 3 | B01 | walker-TANK is a 2D top-down tank game; you drive YunqiZ through a ruined brick battlefield against three enemy tanks | PASS | Brief §1, sentence 1; capture run-01 shows YunqiZ, brick cover, three enemies (`scripts/main.gd` ENEMY_SPAWNS has 3) | Brief says "destroy three enemy tanks"; narration says "against" (the clip ends before any kill) |
+| 4 | B01 | Recorded at the A7 tag, driven by a script, not by a player | PASS | CAPTURE.md: git archive HEAD 3cc29f2, game source identical to 4f88f1b (`git diff --name-only 4f88f1b HEAD` touches no game file); scripted input | On-screen label "tag a7, game source 4f88f1b" (the a7 tag commit is e4e5d5f) |
+| 5 | B02 | Done form: Windows desktop build of one level; title screen, battle, win or lose screen; test report a stranger can rerun with one command | PASS | Brief §1 sentence 2 | — |
+| 6 | B02 | None of that exists yet | PASS | Brief "Will exist" list: title screen and win/lose screens, Windows export, one-command test runner | The a7 game shows a victory panel; the film does not show it, because the brief lists win/lose screens under "will exist" |
+| 7 | B03 | I played a 2D browser tank game on 7k7k, 全民坦克大战 | PASS | Brief §2 | Named in narration only; no logo, icon, screenshot or art on screen |
+| 8 | B03 | As I remember it: cover could not be destroyed, firing had no effect, a destroyed tank did not smoke | PASS | Brief §2 ("as I remember it"); FRICTIONAL.md "written from memory, not rechecked" | Drawing labelled "drawn from memory · no art from that game" |
+| 9 | B04 | A shell hits brick cover and debris bursts from the hit point | PASS | Capture run-01 (log `cover_burst` at the shell's position, `main.gd` spawn_cover_burst uses the shell's position); seen in frames (CAPTURE.md) | — |
+| 10 | B04 | YunqiZ flashes red when it's hit | CORRECTED | Brief §2 "a hit tank flashes red". Code: the red A5 shader is attached to YunqiZ only (`main.gd` line 79); enemies flash white (`tank.gd` `_flash`). Capture shows YunqiZ red | Narrowed from "a hit tank" to "YunqiZ" |
+| 11 | B04 | A damaged tank smokes, and a wreck keeps smoking | PASS | Brief §2; `effects/damage_smoke.gd` (smoke at health ≤ 60 %, full on death); capture log `enemy_smoke` and frames | "smokes more as its health drops" not claimed (not visible as a change in the chosen clip) |
+| 12 | B04 | Four moments from one recorded take | PASS | media/B04.mp4 = four in-order frame ranges of run-01 (clips.json); label on screen | — |
+| 13 | B05 | Reader: a hiring manager or lead engineer, role gameplay programmer; first sixty seconds: unzip, double-click the exe, title screen with controls, press start, driving within a minute without reading anything | PASS | Brief §3 | Said with "will"; drawn and labelled constructed |
+| 14 | B06 | Shaders from a5; particles (cover burst, damage smoke) from a6; animation clips with pinned state tests from a7 | PASS | Brief §4 and "Exists today" table | No claim that a firing animation plays in the main game |
+| 15 | B06 | These tests passed again today, headless: hit flash 50, cover burst 82, damage smoke 81, anim states 34 | PASS | `_qc/tests-2026-11-23.txt`: rerun on a clean git-archive copy (`_scratch/test`), each at 30, 60 and 144 fps, all exit 0 | — |
+| 16 | B06 | +0.023 and +0.077 ms of GPU time, measured in a6 on an NVIDIA RTX 3060 Laptop GPU | PASS | Brief §4; `docs/a6/TEST-REPORT-a6.md` lines 215–216 | Not re-measured today; said as "measured in a6"; machine named aloud and on screen |
+| 17 | B07 | In: one level, title screen, win and lose screens, the existing effects, a Windows export, a rerunnable test report. Out: multiplayer, a save system, a second level | PASS | Brief §5 | — |
+| 18 | B08 | First: export the current game to a Windows exe, play it from a clean folder to a win; proof is a capture and a log file in TEST-REPORT.md with the commit | PASS | Brief §5 "First" | Said with "will" |
+| 19 | B09 | Never exported; every test so far in the editor or headless on one RTX 3060 machine; Forward+ needs Vulkan or Direct3D 12; may fail or look wrong on integrated graphics | PASS | Brief §6 | — |
+| 20 | B10 | Export in the first week, run on a second machine; if it fails, Compatibility renderer, recheck each shader and particle effect, log changes; no web export because it runs only on Compatibility | PASS | Brief §6 | Said with "will" |
+| 21 | B11 | Shown with evidence at a5, a6, a7: shaders, particles, animation, profiling, testing. New to me: exporting, running on a machine I don't control, finishing title screen to end screen. A recruiter can judge a finished level, not parts | PASS | Brief §7 | — |
+| 22 | B12 | Today: cover breaks, YunqiZ flashes red, damage smokes; will exist: one finished level, Windows build, rerunnable test report | PASS | Brief §2, §1; left half real capture (labelled), right half drawn (labelled constructed) | — |
+| 23 | BOUT | Title "Walker-TANK: One Finished Level"; Yunqi Zhang | EXEMPT | Title card, no claim | — |
+| 24 | all | No players, sales, market or reviewer claims; no player quotes | PASS | Narration reviewed line by line | — |

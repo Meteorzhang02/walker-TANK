@@ -1,0 +1,228 @@
+{
+  "video": "walker-tank-a8-pitch",
+  "metadata": {
+    "slug": "walker-tank-a8-pitch",
+    "title": "Walker-TANK: One Finished Level",
+    "topic": "CSYE 7270 \u00b7 A8 PITCH",
+    "skill": "show-tell",
+    "style_preset": "show-tell",
+    "builders": [
+      "show-tell",
+      "godot-waikthrough (walker mode, captures only)"
+    ],
+    "channel": "Yunqi Zhang",
+    "channel_title": "Yunqi Zhang",
+    "folderLabel": "Yunqi Zhang",
+    "greeting": "Hello",
+    "persona": "Yunqi Zhang (CSYE 7270 student)",
+    "presenter": "Yunqi Zhang",
+    "credit": "Yunqi Zhang",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "register": "Teardown",
+    "fps": 30,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "captions": false,
+    "bookend_exempt": [
+      "cold-open",
+      "bvdt",
+      "bhtf"
+    ],
+    "bookend_exempt_reason": "Pitch film (BUILD-PROMPT.md): opens on the hesitant writer as Yunqi Zhang; the brief's close beat replaces verdict and Your Turn; the outro is the film's own spoken title card with handle Yunqi Zhang (no instructor name, persona, channel or credit line).",
+    "audience": "CSYE 7270 reviewers of the A8 final-project pitch",
+    "source_doc": "walker-TANK/pitch/PROJECT-BRIEF.md (every claim); game walker-TANK tag a7, game source 4f88f1b",
+    "game": {
+      "name": "walker-TANK",
+      "path": "D:/CSYE7270/assignment2/walker-TANK",
+      "capture_label": "tag a7, game source 4f88f1b",
+      "tag_a7_commit": "e4e5d5f",
+      "game_source_revision": "4f88f1b",
+      "archive_of": "HEAD 3cc29f2",
+      "engine": "Godot 4.7.2.stable.official.ed1daf0bf"
+    },
+    "playlist": "",
+    "chapter_number": 0,
+    "tags": [
+      "walker-TANK",
+      "Godot",
+      "CSYE 7270",
+      "pitch"
+    ],
+    "build": {
+      "at": "2026-11-24T09:46:13",
+      "cut": "review",
+      "filled": 14,
+      "of": 14,
+      "slates": [],
+      "skin_warnings": [
+        "BIDEA: palette=claude but the cold open is 'BrutalistHesitantWriter' \u2014 COLD OPEN LAW wants ClaudeComposerAsk",
+        "BOUT: palette=claude but the outro is 'un-annotated' \u2014 OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "source_of_truth": "beat_sheet.json \u2014 edit the sheet, not this file",
+  "beats_total": 14,
+  "beats_open": 0,
+  "beats": [
+    {
+      "beat_id": "BIDEA",
+      "status": "filled",
+      "on_disk": "media/BIDEA.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/BIDEA.mp4",
+      "label": "Hello. I'm Yoon-chee Jahng, a C S Y E seventy-two seventy student. This film is a pitch for my final"
+    },
+    {
+      "beat_id": "B01",
+      "status": "filled",
+      "on_disk": "media/B01.mp4",
+      "method": "ai-video-prompt",
+      "who": "human",
+      "scene_hint": null,
+      "prompt": "What is it? Walker Tank is a 2D top-down tank game. You drive Yoon-chee Zee through a ruined brick battlefield, against three enemy tanks. This is the game as i",
+      "slot": "media/B01.mp4",
+      "label": "What is it? Walker Tank is a 2D top-down tank game. You drive Yoon-chee Zee through a ruined brick b"
+    },
+    {
+      "beat_id": "B02",
+      "status": "filled",
+      "on_disk": "manim/B02.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B02.mp4",
+      "label": "When the project is done, it will be a Windows desktop build of one finished level: a title screen, "
+    },
+    {
+      "beat_id": "B03",
+      "status": "filled",
+      "on_disk": "manim/B03.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B03.mp4",
+      "label": "Why would anyone care? I played a 2D browser tank game on seven K seven K, called Chwan-min Tahn-kuh"
+    },
+    {
+      "beat_id": "B04",
+      "status": "filled",
+      "on_disk": "media/B04.mp4",
+      "method": "ai-video-prompt",
+      "who": "human",
+      "scene_hint": null,
+      "prompt": "Walker Tank answers each one. A shell hits the brick cover, and debris bursts from the hit point. Yoon-chee Zee flashes red when it's hit. A damaged tank smokes",
+      "slot": "media/B04.mp4",
+      "label": "Walker Tank answers each one. A shell hits the brick cover, and debris bursts from the hit point. Yo"
+    },
+    {
+      "beat_id": "B05",
+      "status": "filled",
+      "on_disk": "manim/B05.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B05.mp4",
+      "label": "Who opens it? A hiring manager or a lead engineer, hiring a gameplay programmer. In the first sixty "
+    },
+    {
+      "beat_id": "B06",
+      "status": "filled",
+      "on_disk": "media/B06.mp4",
+      "method": "remotion",
+      "who": "pipeline",
+      "scene_hint": null,
+      "prompt": null,
+      "slot": "media/B06.mp4",
+      "label": "What does it prove? Shaders, from A5. Particles, the cover burst and the damage smoke, from A6. Anim"
+    },
+    {
+      "beat_id": "B07",
+      "status": "filled",
+      "on_disk": "manim/B07.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B07.mp4",
+      "label": "What's in? One level, a title screen, win and lose screens, the effects that already exist, a Window"
+    },
+    {
+      "beat_id": "B08",
+      "status": "filled",
+      "on_disk": "manim/B08.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B08.mp4",
+      "label": "First, I will export the current game to a Windows exe, and play it from a clean folder to a win. I'"
+    },
+    {
+      "beat_id": "B09",
+      "status": "filled",
+      "on_disk": "manim/B09.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B09.mp4",
+      "label": "What could make it fail? The game has never been exported. Every test so far ran in the editor or he"
+    },
+    {
+      "beat_id": "B10",
+      "status": "filled",
+      "on_disk": "manim/B10.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B10.mp4",
+      "label": "So I will export in the first week, and run the build on a second machine. If it fails, I'll switch "
+    },
+    {
+      "beat_id": "B11",
+      "status": "filled",
+      "on_disk": "manim/B11.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B11.mp4",
+      "label": "Why this project? It's a mix of showing off and learning. Shaders, particles, animation, profiling a"
+    },
+    {
+      "beat_id": "B12",
+      "status": "filled",
+      "on_disk": "media/B12.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/B12.mp4",
+      "label": "So, today: a battlefield where cover breaks, Yoon-chee Zee flashes red, and damage smokes. What will"
+    },
+    {
+      "beat_id": "BOUT",
+      "status": "filled",
+      "on_disk": "manim/BOUT.mp4",
+      "method": "manim",
+      "who": "pipeline",
+      "scene_hint": "animated_graphics",
+      "prompt": null,
+      "slot": "manim/BOUT.mp4",
+      "label": "Walker Tank: One Finished Level. Yoon-chee Jahng."
+    }
+  ]
+}

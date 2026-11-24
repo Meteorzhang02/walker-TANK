@@ -1,0 +1,61 @@
+{
+ "B01": [
+  {
+   "start_frame": 0,
+   "frames": 441,
+   "crop_center_logical": null,
+   "caption": null
+  }
+ ],
+ "B04": [
+  {
+   "start_frame": 178,
+   "frames": 161,
+   "crop_center_logical": [
+    299.565673828125,
+    482.800140380859
+   ],
+   "caption": "debris bursts from the hit point · 1.5× crop"
+  },
+  {
+   "start_frame": 296,
+   "frames": 66,
+   "crop_center_logical": [
+    181.112548828125,
+    576.947326660156
+   ],
+   "caption": "YunqiZ flashes red · 1.5× crop"
+  },
+  {
+   "start_frame": 453,
+   "frames": 38,
+   "crop_center_logical": [
+    432.960906982422,
+    500.094604492188
+   ],
+   "caption": "a damaged tank smokes · 1.5× crop"
+  },
+  {
+   "start_frame": 560,
+   "frames": 139,
+   "crop_center_logical": [
+    548.694580078125,
+    507.710693359375
+   ],
+   "caption": "a wreck keeps smoking · 1.5× crop"
+  }
+ ],
+ "_source": {
+  "capture": "capture/run-01.mp4",
+  "fps": 30,
+  "note": "frame ranges are run-01 frame numbers"
+ },
+ "B12": [
+  {
+   "start_frame": 591,
+   "frames": 407,
+   "crop_center_logical": null,
+   "caption": null
+  }
+ ]
+}

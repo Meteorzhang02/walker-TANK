@@ -1,0 +1,958 @@
+{
+  "metadata": {
+    "slug": "walker-tank-a8-pitch",
+    "title": "Walker-TANK: One Finished Level",
+    "topic": "CSYE 7270 · A8 PITCH",
+    "skill": "show-tell",
+    "style_preset": "show-tell",
+    "builders": [
+      "show-tell",
+      "godot-waikthrough (walker mode, captures only)"
+    ],
+    "channel": "Yunqi Zhang",
+    "channel_title": "Yunqi Zhang",
+    "folderLabel": "Yunqi Zhang",
+    "greeting": "Hello",
+    "persona": "Yunqi Zhang (CSYE 7270 student)",
+    "presenter": "Yunqi Zhang",
+    "credit": "Yunqi Zhang",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "engine": "kokoro",
+    "clock": "narration",
+    "palette": "claude",
+    "register": "Teardown",
+    "fps": 30,
+    "aspect_ratio": "16:9",
+    "width": 3840,
+    "height": 2160,
+    "caption_policy": "none",
+    "captions": false,
+    "bookend_exempt": [
+      "cold-open",
+      "bvdt",
+      "bhtf"
+    ],
+    "bookend_exempt_reason": "Pitch film (BUILD-PROMPT.md): opens on the hesitant writer as Yunqi Zhang; the brief's close beat replaces verdict and Your Turn; the outro is the film's own spoken title card with handle Yunqi Zhang (no instructor name, persona, channel or credit line).",
+    "audience": "CSYE 7270 reviewers of the A8 final-project pitch",
+    "source_doc": "walker-TANK/pitch/PROJECT-BRIEF.md (every claim); game walker-TANK tag a7, game source 4f88f1b",
+    "game": {
+      "name": "walker-TANK",
+      "path": "D:/CSYE7270/assignment2/walker-TANK",
+      "capture_label": "tag a7, game source 4f88f1b",
+      "tag_a7_commit": "e4e5d5f",
+      "game_source_revision": "4f88f1b",
+      "archive_of": "HEAD 3cc29f2",
+      "engine": "Godot 4.7.2.stable.official.ed1daf0bf"
+    },
+    "playlist": "",
+    "chapter_number": 0,
+    "tags": [
+      "walker-TANK",
+      "Godot",
+      "CSYE 7270",
+      "pitch"
+    ],
+    "build": {
+      "at": "2026-11-24T09:52:32",
+      "cut": "master",
+      "filled": 14,
+      "of": 14,
+      "slates": [],
+      "skin_warnings": [
+        "BIDEA: palette=claude but the cold open is 'BrutalistHesitantWriter' — COLD OPEN LAW wants ClaudeComposerAsk",
+        "BOUT: palette=claude but the outro is 'un-annotated' — OUTRO LAW wants ClaudeTitleOutro"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "BIDEA",
+      "act": "who I am",
+      "narration_text": "Hello. I'm Yoon-chee Jahng, a C S Y E seventy-two seventy student. This film is a pitch for my final project. The plan isn't to make Walker Tank bigger. It's to finish one level of it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13.8,
+      "display_text": "Hello. I'm Yunqi Zhang, a CSYE 7270 student. This film is a pitch for my final project. The plan isn't to make walker-TANK bigger. It's to finish one level of it.",
+      "lane": "bookend",
+      "proof_gate": "SHOW",
+      "lead_silence_s": 0.8,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Hesitant-writer opener: the correction is the motion."
+      },
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "types 'My final project: walker-TANK, but bigger'"
+          },
+          {
+            "at": 0.75,
+            "event": "'but bigger' backspaced, 'one finished level' typed"
+          }
+        ],
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "My final project:\nwalker-TANK, but bigger",
+            "triggerWords": "but bigger",
+            "replacementWords": "one finished level",
+            "contextTitle": "",
+            "banner": "",
+            "fontSize": 70,
+            "charMs": 22,
+            "hesitateBetween": 6,
+            "hesitateWithin": 1,
+            "mistakeRate": 1,
+            "jitter": 20,
+            "seed": "walker-tank-a8-pitch",
+            "durationSeconds": 12.3
+          }
+        }
+      },
+      "motion_claim": "The writer types the naive plan (bigger) and corrects it to the real one (one finished level).",
+      "audio_file": "mp3/beat-BIDEA.mp3",
+      "actual_duration_s": 12.3,
+      "tts_duration_s": 11.029,
+      "audio_pad": {
+        "lead_s": 0.8,
+        "tail_s": 0.471,
+        "frames": 369,
+        "raw": "mp3/raw/beat-BIDEA.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 12.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\BIDEA.mp4",
+        "filled_by": "media",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "Q1 · what it is",
+      "narration_text": "What is it? Walker Tank is a 2D top-down tank game. You drive Yoon-chee Zee through a ruined brick battlefield, against three enemy tanks. This is the game as it exists today, recorded at the A7 tag, and driven by a script, not by a player.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17.7,
+      "lane": "capture",
+      "proof_gate": "SHOW",
+      "kind": "capture",
+      "honesty": "real capture, tag a7, game source 4f88f1b",
+      "shot": {
+        "type": "VIDEO",
+        "class": "SHOW",
+        "source": "film-capture (scripted input)",
+        "visual_intent": "Intro + drive legs of run-01: YunqiZ among brick cover, three enemy tanks advancing.",
+        "show": [
+          {
+            "at": "0.0",
+            "event": "YunqiZ idles at spawn, turret sweeping; enemies advance"
+          },
+          {
+            "at": "0.5",
+            "event": "drive legs among cover"
+          }
+        ],
+        "provenance": "Godot 4.7.2 Movie Maker capture, native 3840x2160, of the real scenes/main.tscn on a scratch copy made with git archive HEAD (3cc29f2; game source identical to 4f88f1b, tag a7, game source 4f88f1b); scripted input by scripts/capture_driver.gd (Input.action_press/release + mouse warp only); take run-01; frames in order, no retime",
+        "evidence_media": "media/B01.mp4"
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_regions": [
+          {
+            "label": "capture label plaque",
+            "box": [
+              0.73,
+              0.03,
+              0.98,
+              0.127
+            ]
+          }
+        ],
+        "contrast_reason": "Full-frame gameplay capture: the game's own colours are not text; the label and caption plaques are dark boxes with white type, checked per region."
+      },
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 14.7,
+      "tts_duration_s": 13.973,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.477,
+        "frames": 441,
+        "raw": "mp3/raw/beat-B01.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 14.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "Q1 · finished form",
+      "narration_text": "When the project is done, it will be a Windows desktop build of one finished level: a title screen, the battle, and a win or lose screen, plus a test report that a stranger can rerun with one command. None of that exists yet.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16.9,
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "honesty": "constructed — does not exist yet",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Three screens arrive in a row (title, battle, win or lose) and slide into a box labelled Windows build; a test-report page drops beside it with a check.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "title screen"
+          },
+          {
+            "at": 0.3,
+            "event": "battle"
+          },
+          {
+            "at": 0.45,
+            "event": "win / lose"
+          },
+          {
+            "at": 0.65,
+            "event": "into the Windows build"
+          },
+          {
+            "at": 0.8,
+            "event": "test report + check"
+          }
+        ],
+        "manim": {
+          "class": "B02_FinishedForm"
+        },
+        "motion_claim": "Three screens arrive in a row (title, battle, win or lose) and slide into a box labelled Windows build; a test-report page drops beside it with a check."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "show-tell style: one drawn scene on a cream stage per beat, minimal labels, the voice carries the explanation; only underfill and clustered are waived, edge-bleed, empty-frame and contrast still apply."
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 13.533333333333333,
+      "tts_duration_s": 12.821,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.462,
+        "frames": 406,
+        "raw": "mp3/raw/beat-B02.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 13.533333333333333,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B02.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "Q2 · the comparable",
+      "narration_text": "Why would anyone care? I played a 2D browser tank game on seven K seven K, called Chwan-min Tahn-kuh Dah-jahn. As I remember it, cover could not be destroyed, firing had no effect, and a destroyed tank did not smoke. This is drawn from my memory, with no art from that game.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.0,
+      "display_text": "Why would anyone care? I played a 2D browser tank game on 7k7k, called 全民坦克大战. As I remember it, cover could not be destroyed, firing had no effect, and a destroyed tank did not smoke. This is drawn from my memory, with no art from that game.",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "honesty": "drawn from memory",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A generic drawn tank fires at a drawn wall; the shell stops and the wall is unchanged; a second tank goes grey with no smoke. Label: from memory.",
+        "show": [
+          {
+            "at": 0.3,
+            "event": "shell hits wall; wall unchanged"
+          },
+          {
+            "at": 0.6,
+            "event": "destroyed tank, no smoke"
+          }
+        ],
+        "manim": {
+          "class": "B03_FromMemory"
+        },
+        "motion_claim": "A generic drawn tank fires at a drawn wall; the shell stops and the wall is unchanged; a second tank goes grey with no smoke. Label: from memory."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "show-tell style: one drawn scene on a cream stage per beat, minimal labels, the voice carries the explanation; only underfill and clustered are waived, edge-bleed, empty-frame and contrast still apply."
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.733333333333334,
+      "tts_duration_s": 16.021,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.462,
+        "frames": 502,
+        "raw": "mp3/raw/beat-B03.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 16.733333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B03.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "Q2 · walker-TANK's answer",
+      "narration_text": "Walker Tank answers each one. A shell hits the brick cover, and debris bursts from the hit point. Yoon-chee Zee flashes red when it's hit. A damaged tank smokes, and a wreck keeps smoking. These are four moments from one recorded take.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16.2,
+      "display_text": "walker-TANK answers each one. A shell hits the brick cover, and debris bursts from the hit point. YunqiZ flashes red when it's hit. A damaged tank smokes, and a wreck keeps smoking. These are four moments from one recorded take.",
+      "lane": "capture",
+      "proof_gate": "SHOW",
+      "kind": "capture",
+      "honesty": "real capture, tag a7, game source 4f88f1b",
+      "shot": {
+        "type": "VIDEO",
+        "class": "SHOW",
+        "source": "film-capture (scripted input)",
+        "visual_intent": "Four intervals of run-01, in order: cover-hit burst at the hit point; YunqiZ hit flash (red, A5 shader); a damaged enemy smoking; an enemy wreck smoking.",
+        "show": [
+          {
+            "at": "0.05",
+            "event": "cover burst"
+          },
+          {
+            "at": "0.3",
+            "event": "YunqiZ red flash"
+          },
+          {
+            "at": "0.55",
+            "event": "damaged enemy smokes"
+          },
+          {
+            "at": "0.75",
+            "event": "wreck keeps smoking"
+          }
+        ],
+        "provenance": "Godot 4.7.2 Movie Maker capture, native 3840x2160, of the real scenes/main.tscn on a scratch copy made with git archive HEAD (3cc29f2; game source identical to 4f88f1b, tag a7, game source 4f88f1b); scripted input by scripts/capture_driver.gd (Input.action_press/release + mouse warp only); take run-01; frames in order, no retime",
+        "evidence_media": "media/B04.mp4"
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_regions": [
+          {
+            "label": "capture label plaque",
+            "box": [
+              0.73,
+              0.03,
+              0.98,
+              0.127
+            ]
+          },
+          {
+            "label": "effect caption plaque",
+            "box": [
+              0.37,
+              0.853,
+              0.63,
+              0.92
+            ]
+          }
+        ],
+        "contrast_reason": "Full-frame gameplay capture: the game's own colours are not text; the label and caption plaques are dark boxes with white type, checked per region."
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 13.466666666666667,
+      "tts_duration_s": 12.736,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.481,
+        "frames": 404,
+        "raw": "mp3/raw/beat-B04.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 13.466666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "Q3 · the first sixty seconds",
+      "narration_text": "Who opens it? A hiring manager or a lead engineer, hiring a gameplay programmer. In the first sixty seconds, they will unzip the build, double-click the exe, see the title screen with the controls on it, press start, and be driving within a minute, without reading anything.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.1,
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "honesty": "constructed — does not exist yet",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A zip opens into a folder; a cursor double-clicks the exe; a title screen with a controls strip; Start; a small drawn tank drives; a clock dial sweeps to 60 s.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "zip opens"
+          },
+          {
+            "at": 0.4,
+            "event": "double-click"
+          },
+          {
+            "at": 0.55,
+            "event": "title + controls"
+          },
+          {
+            "at": 0.75,
+            "event": "driving"
+          },
+          {
+            "at": 0.85,
+            "event": "clock reaches 60"
+          }
+        ],
+        "manim": {
+          "class": "B05_FirstMinute"
+        },
+        "motion_claim": "A zip opens into a folder; a cursor double-clicks the exe; a title screen with a controls strip; Start; a small drawn tank drives; a clock dial sweeps to 60 s."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "show-tell style: one drawn scene on a cream stage per beat, minimal labels, the voice carries the explanation; only underfill and clustered are waived, edge-bleed, empty-frame and contrast still apply."
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 15.566666666666666,
+      "tts_duration_s": 14.848,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.469,
+        "frames": 467,
+        "raw": "mp3/raw/beat-B05.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 15.566666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B05.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "Q4 · what it proves",
+      "narration_text": "What does it prove? Shaders, from A5. Particles, the cover burst and the damage smoke, from A6. Animation clips with pinned state tests, from A7. These tests passed again today, headless. And profiling: plus zero point zero two three and plus zero point zero seven seven milliseconds of GPU time, measured in A6 on an NVIDIA RTX thirty-sixty Laptop GPU.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23.1,
+      "display_text": "What does it prove? Shaders, from a5. Particles, the cover burst and the damage smoke, from a6. Animation clips with pinned state tests, from a7. These tests passed again today, headless. And profiling: +0.023 and +0.077 milliseconds of GPU time, measured in a6 on an NVIDIA RTX 3060 Laptop GPU.",
+      "lane": "card",
+      "proof_gate": "SHOW",
+      "honesty": "real test output, rerun 2026-11-23 on a clean git-archive copy (tag a7, game source 4f88f1b); GPU figures from docs/a6/TEST-REPORT-a6.md lines 215-216",
+      "shot": {
+        "type": "REMOTION",
+        "source": "own",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "report rows land"
+          },
+          {
+            "at": 0.15,
+            "event": "lens on shaders row"
+          },
+          {
+            "at": 0.35,
+            "event": "particles"
+          },
+          {
+            "at": 0.55,
+            "event": "animation"
+          },
+          {
+            "at": 0.8,
+            "event": "GPU cost row"
+          }
+        ],
+        "remotion": {
+          "pattern": "ShowTellCard",
+          "props": {
+            "kind": "focus",
+            "heading": "tag a7, game source 4f88f1b",
+            "items": [
+              {
+                "label": "a5 hit flash test",
+                "value": "50 passed"
+              },
+              {
+                "label": "a6 cover burst test",
+                "value": "82 passed"
+              },
+              {
+                "label": "a6 damage smoke test",
+                "value": "81 passed"
+              },
+              {
+                "label": "a7 anim state test",
+                "value": "34 passed"
+              },
+              {
+                "label": "a6 GPU · RTX 3060 Laptop",
+                "value": "+0.023/+0.077 ms"
+              }
+            ],
+            "focus": 4,
+            "cues": [
+              0.108,
+              0.195,
+              0.272,
+              0.58
+            ],
+            "durationSeconds": 22.033333333333335
+          }
+        }
+      },
+      "why_card": "The idea is a set of real numbers (test counts and measured GPU cost); the lens moving row to row is the claim: each skill, then its evidence.",
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 22.033333333333335,
+      "tts_duration_s": 21.312,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.471,
+        "frames": 661,
+        "raw": "mp3/raw/beat-B06.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 22.033333333333335,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "Q5 · in and out",
+      "narration_text": "What's in? One level, a title screen, win and lose screens, the effects that already exist, a Windows export, and a test report you can rerun. What's out? Multiplayer, a save system, and a second level.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13.8,
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "honesty": "constructed — does not exist yet",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Two trays: items drop into IN one by one; three items slide toward OUT and are crossed off.",
+        "show": [
+          {
+            "at": 0.1,
+            "event": "IN tray fills"
+          },
+          {
+            "at": 0.6,
+            "event": "OUT tray: three crossed"
+          }
+        ],
+        "manim": {
+          "class": "B07_InOut"
+        },
+        "motion_claim": "Two trays: items drop into IN one by one; three items slide toward OUT and are crossed off."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "show-tell style: one drawn scene on a cream stage per beat, minimal labels, the voice carries the explanation; only underfill and clustered are waived, edge-bleed, empty-frame and contrast still apply."
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 12.133333333333333,
+      "tts_duration_s": 11.413,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.47,
+        "frames": 364,
+        "raw": "mp3/raw/beat-B07.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 12.133333333333333,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B07.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "Q5 · first",
+      "narration_text": "First, I will export the current game to a Windows exe, and play it from a clean folder to a win. I'll know it ran from a capture of that run and a log file, recorded in TEST-REPORT dot M D, with the commit it was built from.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.5,
+      "display_text": "First, I will export the current game to a Windows exe, and play it from a clean folder to a win. I'll know it ran from a capture of that run and a log file, recorded in TEST-REPORT.md, with the commit it was built from.",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "honesty": "constructed — does not exist yet",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "An exe drops into an empty folder; a drawn screen reaches a win flag; a capture frame and a log page file into a report page tagged with a commit.",
+        "show": [
+          {
+            "at": 0.15,
+            "event": "exe into clean folder"
+          },
+          {
+            "at": 0.45,
+            "event": "win"
+          },
+          {
+            "at": 0.7,
+            "event": "capture + log into report"
+          },
+          {
+            "at": 0.88,
+            "event": "commit tag"
+          }
+        ],
+        "manim": {
+          "class": "B08_FirstStep"
+        },
+        "motion_claim": "An exe drops into an empty folder; a drawn screen reaches a win flag; a capture frame and a log page file into a report page tagged with a commit."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "show-tell style: one drawn scene on a cream stage per beat, minimal labels, the voice carries the explanation; only underfill and clustered are waived, edge-bleed, empty-frame and contrast still apply."
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 13.6,
+      "tts_duration_s": 12.885,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.465,
+        "frames": 408,
+        "raw": "mp3/raw/beat-B08.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 13.6,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B08.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "Q6 · the risk",
+      "narration_text": "What could make it fail? The game has never been exported. Every test so far ran in the editor or headless, on one machine with an RTX thirty-sixty. Forward plus needs a GPU that supports Vulkan or Direct-3D twelve, so the build may fail or look wrong on a reviewer's laptop with integrated graphics.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.8,
+      "display_text": "What could make it fail? The game has never been exported. Every test so far ran in the editor or headless, on one machine with an RTX 3060. Forward+ needs a GPU that supports Vulkan or Direct3D 12, so the build may fail or look wrong on a reviewer's laptop with integrated graphics.",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "honesty": "constructed — does not exist yet",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "One laptop labelled RTX 3060 with a check; a second laptop with integrated graphics; the build box slides across and a question mark rises over the second screen.",
+        "show": [
+          {
+            "at": 0.2,
+            "event": "one machine"
+          },
+          {
+            "at": 0.6,
+            "event": "second laptop, integrated GPU"
+          },
+          {
+            "at": 0.85,
+            "event": "question mark"
+          }
+        ],
+        "manim": {
+          "class": "B09_Risk"
+        },
+        "motion_claim": "One laptop labelled RTX 3060 with a check; a second laptop with integrated graphics; the build box slides across and a question mark rises over the second screen."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "show-tell style: one drawn scene on a cream stage per beat, minimal labels, the voice carries the explanation; only underfill and clustered are waived, edge-bleed, empty-frame and contrast still apply."
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 18.066666666666666,
+      "tts_duration_s": 17.365,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.451,
+        "frames": 542,
+        "raw": "mp3/raw/beat-B09.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 18.066666666666666,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B09.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "Q6 · the plan",
+      "narration_text": "So I will export in the first week, and run the build on a second machine. If it fails, I'll switch to the Compatibility renderer, recheck each shader and particle effect, and log what changed. I'm not choosing a web export, because it runs only on Compatibility.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.1,
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "honesty": "constructed — does not exist yet",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "A switch flips from Forward+ to Compatibility; effect tiles get checks one by one beside a log page; a web tile is crossed out.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "second machine"
+          },
+          {
+            "at": 0.45,
+            "event": "switch to Compatibility"
+          },
+          {
+            "at": 0.65,
+            "event": "effects rechecked + log"
+          },
+          {
+            "at": 0.85,
+            "event": "web export crossed"
+          }
+        ],
+        "manim": {
+          "class": "B10_Fallback"
+        },
+        "motion_claim": "A switch flips from Forward+ to Compatibility; effect tiles get checks one by one beside a log page; a web tile is crossed out."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "show-tell style: one drawn scene on a cream stage per beat, minimal labels, the voice carries the explanation; only underfill and clustered are waived, edge-bleed, empty-frame and contrast still apply."
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 15.1,
+      "tts_duration_s": 14.4,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.45,
+        "frames": 453,
+        "raw": "mp3/raw/beat-B10.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 15.1,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B10.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "Q7 · why",
+      "narration_text": "Why this project? It's a mix of showing off and learning. Shaders, particles, animation, profiling and testing are shown, with evidence, at tags A5, A6 and A7. Exporting, running on a machine I don't control, and finishing a game from title screen to end screen are new to me. A recruiter can't judge parts. They can judge a finished level.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23.1,
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "honesty": "constructed — does not exist yet",
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Left shelf: five evidence blocks tagged a5/a6/a7 (shown). Right: three open outlines (new to me), labelled constructed. The parts slide together into one finished-level box.",
+        "show": [
+          {
+            "at": 0.25,
+            "event": "shown, with tags"
+          },
+          {
+            "at": 0.55,
+            "event": "new to me"
+          },
+          {
+            "at": 0.85,
+            "event": "parts become one level"
+          }
+        ],
+        "manim": {
+          "class": "B11_Why"
+        },
+        "motion_claim": "Left shelf: five evidence blocks tagged a5/a6/a7 (shown). Right: three open outlines (new to me), labelled constructed. The parts slide together into one finished-level box."
+      },
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "show-tell style: one drawn scene on a cream stage per beat, minimal labels, the voice carries the explanation; only underfill and clustered are waived, edge-bleed, empty-frame and contrast still apply."
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 18.966666666666665,
+      "tts_duration_s": 18.261,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.455,
+        "frames": 569,
+        "raw": "mp3/raw/beat-B11.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 18.966666666666665,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\B11.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "close",
+      "narration_text": "So, today: a battlefield where cover breaks, Yoon-chee Zee flashes red, and damage smokes. What will exist: one finished level, in a Windows build, with a test report you can rerun. That's my final project. Thanks for watching.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14.6,
+      "display_text": "So, today: a battlefield where cover breaks, YunqiZ flashes red, and damage smokes. What will exist: one finished level, in a Windows build, with a test report you can rerun. That's my final project. Thanks for watching.",
+      "lane": "capture",
+      "proof_gate": "SHOW",
+      "kind": "capture",
+      "honesty": "left: real capture, tag a7, game source 4f88f1b; right: constructed — does not exist yet",
+      "qc": {
+        "full_bleed": false
+      },
+      "shot": {
+        "type": "VIDEO",
+        "class": "SHOW",
+        "source": "film-capture + own drawing",
+        "visual_intent": "Split frame: left 'exists today' plays a real run-01 interval (labelled); right 'will exist' is the B02 drawing's finished build (labelled constructed).",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "left: real capture"
+          },
+          {
+            "at": 0.45,
+            "event": "right: constructed build"
+          }
+        ],
+        "provenance": "Godot 4.7.2 Movie Maker capture, native 3840x2160, of the real scenes/main.tscn on a scratch copy made with git archive HEAD (3cc29f2; game source identical to 4f88f1b, tag a7, game source 4f88f1b); scripted input by scripts/capture_driver.gd (Input.action_press/release + mouse warp only); take run-01; frames in order, no retime; right half rendered by scenes.py B12_Close (Manim)",
+        "evidence_media": "media/B12.mp4",
+        "manim": {
+          "class": "B12_Close"
+        }
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 13.566666666666666,
+      "tts_duration_s": 12.843,
+      "audio_pad": {
+        "lead_s": 0.25,
+        "tail_s": 0.474,
+        "frames": 407,
+        "raw": "mp3/raw/beat-B12.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 13.566666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B12.mp4",
+        "filled_by": "media",
+        "at": "2026-11-24T09:52:32"
+      }
+    },
+    {
+      "beat_id": "BOUT",
+      "act": "outro",
+      "narration_text": "Walker Tank: One Finished Level. Yoon-chee Jahng.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 2.7,
+      "display_text": "Walker-TANK: One Finished Level. Yunqi Zhang.",
+      "lane": "manim",
+      "proof_gate": "SHOW",
+      "kind": "outro_voice",
+      "tail_silence_s": 1.0,
+      "qc": {
+        "sparse_by_design": true,
+        "sparse_reason": "Title card: title and name on a cream stage."
+      },
+      "shot": {
+        "type": "GRAPHIC",
+        "source": "own",
+        "visual_intent": "Title restated, my name beneath; spoken, no music.",
+        "show": [
+          {
+            "at": 0.0,
+            "event": "title"
+          },
+          {
+            "at": 0.3,
+            "event": "name"
+          }
+        ],
+        "manim": {
+          "class": "BOUT_Title"
+        },
+        "remotion": {
+          "props": {
+            "title": "Walker-TANK: One Finished Level",
+            "handle": "Yunqi Zhang",
+            "subline": ""
+          }
+        }
+      },
+      "role_note": "Own outro: ClaudeTitleOutro hardcodes another channel's handle, which BUILD-PROMPT.md forbids. Spoken, never scored: title then my name, 1.0 s silent tail.",
+      "audio_file": "mp3/beat-BOUT.mp3",
+      "actual_duration_s": 4.433333333333334,
+      "tts_duration_s": 3.413,
+      "audio_pad": {
+        "lead_s": 0.0,
+        "tail_s": 1.02,
+        "frames": 133,
+        "raw": "mp3/raw/beat-BOUT.mp3",
+        "method": "ffmpeg adelay+apad+atrim (silence only)",
+        "tts_sha_src": "raw"
+      },
+      "render_duration_s": 4.433333333333334,
+      "build": {
+        "status": "MANIM",
+        "src": "manim\\BOUT.mp4",
+        "filled_by": "manim",
+        "at": "2026-11-24T09:52:32"
+      }
+    }
+  ]
+}

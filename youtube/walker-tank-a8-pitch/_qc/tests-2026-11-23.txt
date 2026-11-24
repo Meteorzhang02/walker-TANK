@@ -1,0 +1,17 @@
+test_hit_flash.gd @30fps exit=0 | RESULT: 50 passed, 0 failed
+test_hit_flash.gd @60fps exit=0 | RESULT: 50 passed, 0 failed
+test_hit_flash.gd @144fps exit=0 | RESULT: 50 passed, 0 failed
+test_materials.gd @60fps exit=0 | RESULT: 76 passed, 0 failed
+test_cover_hit_burst_state.gd @30fps exit=0 | RESULT: 82 passed, 0 failed
+test_cover_hit_burst_state.gd @60fps exit=0 | RESULT: 82 passed, 0 failed
+test_cover_hit_burst_state.gd @144fps exit=0 | RESULT: 82 passed, 0 failed
+test_damage_smoke_state.gd @30fps exit=0 | RESULT: 81 passed, 0 failed
+test_damage_smoke_state.gd @60fps exit=0 | RESULT: 81 passed, 0 failed
+test_damage_smoke_state.gd @144fps exit=0 | RESULT: 81 passed, 0 failed
+test_anim_states.gd @30fps exit=0 | RESULT: 34 passed, 0 failed
+test_anim_states.gd @60fps exit=0 | RESULT: 34 passed, 0 failed
+test_anim_states.gd @144fps exit=0 | RESULT: 34 passed, 0 failed
+test_anim_edges.gd @30fps exit=0 | RESULT: 27 passed, 0 failed
+test_anim_edges.gd @60fps exit=0 | RESULT: 27 passed, 0 failed
+test_anim_edges.gd @144fps exit=0 | RESULT: 27 passed, 0 failed
+test_clip_readback.gd @60fps exit=0 | readback: 49 passed, 0 failed
