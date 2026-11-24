@@ -12,7 +12,7 @@ When the final project is done, it will be **a Windows desktop build of one fini
 
 It gives a player who likes simple 2D tank games a battlefield that shows what is happening in it.
 In *全民坦克大战*, a 2D browser tank game on 7k7k that I played, as I remember it, cover could not be destroyed, firing had no effect, and a destroyed tank did not smoke.
-In walker-TANK, which already exists at tag a7, cover breaks where the shell hits, a hit tank flashes red, and a badly hurt tank smokes more as its health drops.
+In walker-TANK, which already exists at tag a7, cover breaks where the shell hits, YunqiZ flashes red when it is hit (enemy tanks flash white), and a badly hurt tank smokes more as its health drops.
 I make no claim about players, sales or the market; I have not playtested with anyone but myself.
 
 ## 3. Who opens it, and what do they do?
